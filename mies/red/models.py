@@ -4,7 +4,7 @@ from django.db import models
 class AccesoRed(models.Model):
     """Model definition for AccesoRed."""
 
-    fecha = models.DateField('Fecha', auto_now=True, auto_now_add=False)
+    fecha = models.DateField('Fecha', auto_now=False, auto_now_add=False)
     usuario = models.CharField('Usuario', max_length=50)
     direccion_mac = models.CharField('Dirección Mac', max_length=50, unique =True, null = True,blank=True)
     direccion_ip = models.CharField('Dirección Ip', max_length=50,unique =True,null = True, blank=True)
