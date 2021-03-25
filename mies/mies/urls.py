@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from usuario import views as usuario_views
 from red import views as red_views
 urlpatterns = [
-    path('admin/', admin.site.urls, name="superAdministrador"),
-    path('', red_views.index_view, name="Acceso_red") ,
+    path('', usuario_views.login_view, name="login") ,
+    path('admin/', admin.site.urls),
+    #MENU PARA LOS USUARIOS
+    path('Usuario', usuario_views.dashboardUsuario_view, name="dashboard") ,
+    #MODULO DE ACCESO A REDES
+    path('AccesoRed', red_views.AccesoRedListView.as_view(), name="accesoRed_listar") ,
+    path('AccesoRed/nuevo', red_views.AccesoRedCreateView.as_view(), name="accesoRed_crear") ,
+    
 ]

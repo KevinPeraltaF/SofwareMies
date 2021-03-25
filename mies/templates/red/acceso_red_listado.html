@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}ACCESO A LA RED {% endblock %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Acceso a la red</li>
+    </ol>
+</nav>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row ">
+            <div class="col">
+                <h6 class="m-0 font-weight-bold text-primary">Dispositivos con acceso a la red</h6>
+            </div>
+            <div class="col ">
+                <div class="dropdown float-right">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Acciones
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'accesoRed_crear'%}">Nuevo acceso</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable no-footer" id="dataTable" width="100%"
+                            cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Fecha: activate to sort column descending" style="width: 77px;">
+                                        Fecha</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                        aria-label="Usuario: activate to sort column ascending" style="width: 57px;">
+                                        Usuario</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                        aria-label="Ip: activate to sort column ascending" style="width: 88px;">Ip</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                        aria-label="Mac address: activate to sort column ascending"
+                                        style="width: 203px;">Mac address</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                        aria-label="Estado: activate to sort column ascending" style="width: 77px;">
+                                        Estado</th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                        aria-label="Acciones: activate to sort column ascending" style="width: 134px;">
+                                        Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {% for acceso in object_list %}
+                                <tr role="row" class="odd">
+                                    <th>{{ acceso.fecha }}</th>
+                                    <th>{{ acceso.usuario }}</th>
+                                    <th>{{ acceso.direccion_mac }}</th>
+                                    <th>{{ acceso.direccion_ip }}</th>
+                                    <th>{{ acceso.estado }}</th>
+                                    <th>Ver, editar, modificar,eliminar</th>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

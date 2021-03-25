@@ -21,7 +21,7 @@
         <!-- Sidebar  menu izqquiero inicio-->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{%url 'dashboard'%}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -34,7 +34,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="{{superAdministrador}}">
+                <a class="nav-link" href="{% url 'admin:index' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Super Administrador</span></a>
             </li>
@@ -49,42 +49,11 @@
 
             <!-- Nav Item - Help Desk -->
             <li class="nav-item">
-                <a class="nav-link" href="helpdesk.html">
+                <a class="nav-link" href="{% url 'accesoRed_listar' %}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Atención</span></a>
+                    <span>Acceso a la Red</span></a>
             </li>
 
-        
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Otros
-            </div>
-
-
-            <!-- Nav Item - Repositorio -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Drive</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Configuraciones
-            </div>
-
-            <!-- Nav Item - Configuraciones -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Configurar</span></a>
-            </li>
 
 
             <!-- Divider -->
@@ -195,17 +164,28 @@
 
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  
+    
 
-    <!-- Core plugin JavaScript-->
+
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-
-    <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+     <!-- Page level plugins -->
+     <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+  
+    
+   
+
+    
+
 
 
 
