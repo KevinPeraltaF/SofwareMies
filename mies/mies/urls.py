@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from red import views as red_views
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name="superAdministrador"),
+    path('', red_views.index_view, name="Acceso_red") ,
 ]
