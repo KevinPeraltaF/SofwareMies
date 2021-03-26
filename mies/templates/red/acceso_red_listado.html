@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}ACCESO WIFE {% endblock %}
+{% block title %}ACCESO WIFE {% endblock title %}
 
 
 {% block content_main %}
@@ -63,8 +63,8 @@
                             <th>
                                 <a class="btn btn-light btn-sm " href="#"> <i class="fa fa-eye"></i>
                                 </a>
-                                <a class="btn btn-light btn-sm" href="#"> <i class="fa fa-edit"></i>
-                                </a>
+                                <button  class="btn btn-light btn-sm" onclick="('{% url 'accesoRed_editar' acceso.id %}')"> <i class="fa fa-edit"></i>
+                                </button>
                                 <a class="btn btn-light btn-sm" href="#"><i class="fa fa-trash"></i>
                                 </a>
                             </th>
@@ -79,4 +79,24 @@
 
 </div>
 
-{% endblock %}
+  
+  <!-- Modal -->
+  <div class="modal fade" id="editar" role="dialog" >
+    
+  </div>
+
+{% endblock content_main%}
+
+
+{% block content_extra_js %}
+    <script type="text/javascript" >
+        function abrir_modal_editar(url) {
+            var $ = JQuery.noConflict();
+            $('#editar').load(url, function () {
+                $(this).modal('show');
+            });
+        }
+    </script>
+{% endblock content_extra_js %}
+
+

@@ -24,6 +24,7 @@ urlpatterns = [
     path('Usuario', usuario_views.dashboardUsuario_view, name="dashboard") ,
     #MODULO DE ACCESO A REDES
     path('AccesoRed', red_views.AccesoRedListView.as_view(), name="accesoRed_listar") ,
-    path('AccesoRed/nuevo', red_views.AccesoRedCreateView.as_view(), name="accesoRed_crear") ,
+    path('AccesoRed/Crear', red_views.AccesoRedCreateView.as_view(), name="accesoRed_crear") ,
+    path('AccesoRed/Editar/<pk>', red_views.AccesoRedUpdateView.as_view(), name="accesoRed_editar") ,
     
 ]

@@ -18,3 +18,18 @@ class AccesoRedCreateView(CreateView):
     form_class = AccesoRedForm
     template_name = "red/acceso_red_crear.html"
     success_url = reverse_lazy('accesoRed_listar')
+
+
+class AccesoRedDeleteView(DeleteView):
+    model = AccesoRed
+    success_url = reverse_lazy('accesoRed_listar')
+
+
+class AccesoRedUpdateView(UpdateView):
+    model = AccesoRed
+    form_class = AccesoRedForm
+    template_name = "red/acceso_red_editar.html"
+    success_url = reverse_lazy('accesoRed_listar')
+
+    
+
