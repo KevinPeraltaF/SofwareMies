@@ -14,17 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from usuario import views as usuario_views
 from red import views as red_views
 urlpatterns = [
-    path('', usuario_views.login_view, name="login") ,
+
     path('admin/', admin.site.urls),
     #MENU PARA LOS USUARIOS
-    path('Usuario', usuario_views.dashboardUsuario_view, name="dashboard") ,
+    path('', usuario_views.dashboardUsuario_view, name="dashboard") ,
     #MODULO DE ACCESO A REDES
     path('AccesoRed', red_views.AccesoRedListView.as_view(), name="accesoRed_listar") ,
     path('AccesoRed/Crear', red_views.AccesoRedCreateView.as_view(), name="accesoRed_crear") ,
     path('AccesoRed/Editar/<pk>', red_views.AccesoRedUpdateView.as_view(), name="accesoRed_editar") ,
     
+]
+
+#Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
