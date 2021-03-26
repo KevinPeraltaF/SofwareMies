@@ -8,6 +8,7 @@ class AccesoRedForm(forms.ModelForm):
         """Meta definition for AccesoRedform."""
         model = AccesoRed
         fields = ('fecha','usuario','direccion_mac','direccion_ip','observacion','estado',)
+        
         widgets = {
             'fecha': forms.TextInput(
                 attrs={
@@ -32,7 +33,8 @@ class AccesoRedForm(forms.ModelForm):
             ),
             'observacion': forms.Textarea(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    "rows":3, "cols":10
                 }
             ),
             'estado': forms.TextInput(
