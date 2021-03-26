@@ -21,6 +21,9 @@ INSTALLED_APPS = [
     'practica',
     'empleado',
     'actividad',
+    'ubicacion',
+    'inventario',
+    'capacitacion',
 ]
 
 MIDDLEWARE = [
