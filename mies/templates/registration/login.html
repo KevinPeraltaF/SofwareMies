@@ -1,36 +1,42 @@
+{% extends 'base_account_generic.html ' %}
 
 {% block content %}
-
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    {% if form.errors %}
+<p>Tu usuario  y/o contraseña no son los correctos. Por favor intente de nuevo.</p>
 {% endif %}
 
 {% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
+{% if user.is_authenticated %}
+<p>Tu cuenta no tiene acceso a esta página. Para proceder,
+  por favor inicie sesión con una cuenta que tenga acceso.</p>
+{% else %}
+
 {% endif %}
-
+{% endif %}
+<div class="text-center">
+  <h1 class="h4 text-gray-900 mb-4">Iniciar Sesión</h1>
+</div>
 <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
+  {% csrf_token %}
 
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</div>
+  <div>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+  </div>
+  <div>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+  </div>
 
-<div>
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</div>
+  <div>
+    <input type="submit" value="login" class="btn btn-primary btn-user btn-block" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </div>
 </form>
-
-
+  </div>
+  <div class="col-md-3"></div>
+</div>
 {% endblock %}
