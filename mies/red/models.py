@@ -21,9 +21,4 @@ class AccesoRed(models.Model):
         """Unicode representation of AccesoRed."""
         return self.usuario
 
-    def save(self,*args, **kwargs):
-        """Save method for AccesoRed."""
-        self.usuario =(self.usuario).upper()
-        self.direccion_mac =(self.direccion_mac).upper()
-        self.direccion_ip =(self.direccion_ip).upper()
-        return super(AccesoRed, self).save(*args, **kwargs)
+ 
