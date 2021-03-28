@@ -7,6 +7,7 @@ class AccesoRedForm(forms.ModelForm):
     class Meta:
         """Meta definition for AccesoRedform."""
         model = AccesoRed
+
         fields = (
             'fecha',
             'usuario',
@@ -47,7 +48,7 @@ class AccesoRedForm(forms.ModelForm):
                 attrs={
                     'type':'checkbox',
                     'class': 'form-group ',
-                    
+                    'checked':'True',
                 }
             ),
         }

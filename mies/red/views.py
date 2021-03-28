@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 # Create your views here.
-
 class AccesoRedListView(ListView):
     model = AccesoRed
     template_name = "red/acceso_red_listado.html"
@@ -18,8 +17,6 @@ class AccesoRedListView(ListView):
     def dispatch(self, *args, **kwargs):
         return super(AccesoRedListView, self).dispatch(*args, **kwargs)
     
-
-
 class AccesoRedCreateView(CreateView):
     model = AccesoRed
     form_class = AccesoRedForm
@@ -32,6 +29,7 @@ class AccesoRedCreateView(CreateView):
 
 class AccesoRedDeleteView(DeleteView):
     model = AccesoRed
+    template_name = "red/acceso_red_eliminar.html"
     success_url = reverse_lazy('accesoRed_listar')
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -42,11 +40,13 @@ class AccesoRedUpdateView(UpdateView):
     model = AccesoRed
     form_class = AccesoRedForm
     template_name = "red/acceso_red_editar.html"
-    
     success_url = reverse_lazy('accesoRed_listar')
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(AccesoRedUpdateView, self).dispatch(*args, **kwargs)
 
     
+class AccesoRedDetailView(DetailView):
+    model = AccesoRed
+    template_name = "red/acceso_red_detalle.html"
 
