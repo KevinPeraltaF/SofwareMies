@@ -7,6 +7,7 @@ from .models import AccesoRed
 from .forms import AccesoRedForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+
 # Create your views here.
 
 class AccesoRedListView(ListView):
@@ -32,13 +33,20 @@ class AccesoRedCreateView(CreateView):
 class AccesoRedDeleteView(DeleteView):
     model = AccesoRed
     success_url = reverse_lazy('accesoRed_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(AccesoRedDeleteView, self).dispatch(*args, **kwargs)
 
 
 class AccesoRedUpdateView(UpdateView):
     model = AccesoRed
     form_class = AccesoRedForm
     template_name = "red/acceso_red_editar.html"
+    
     success_url = reverse_lazy('accesoRed_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(AccesoRedUpdateView, self).dispatch(*args, **kwargs)
 
     
 

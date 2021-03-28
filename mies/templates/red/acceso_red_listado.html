@@ -26,10 +26,12 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{% url 'accesoRed_crear'%}">Nuevo acceso</a>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+           
         </div>
 
         <div class="card-body">
@@ -63,7 +65,7 @@
                             <th>
                                 <a class="btn btn-light btn-sm " href="#"> <i class="fa fa-eye"></i>
                                 </a>
-                                <button  class="btn btn-light btn-sm" onclick="('{% url 'accesoRed_editar' acceso.id %}')"> <i class="fa fa-edit"></i>
+                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm" onclick="abrirModal('{% url 'accesoRed_editar' acceso.id%}')"> <i class="fa fa-edit"></i>
                                 </button>
                                 <a class="btn btn-light btn-sm" href="#"><i class="fa fa-trash"></i>
                                 </a>
@@ -82,7 +84,7 @@
   
   <!-- Modal -->
   <div class="modal fade" id="editar" role="dialog" >
-    
+   
   </div>
 
 {% endblock content_main%}
@@ -90,11 +92,12 @@
 
 {% block content_extra_js %}
     <script type="text/javascript" >
-        function abrir_modal_editar(url) {
-            var $ = JQuery.noConflict();
-            $('#editar').load(url, function () {
-                $(this).modal('show');
-            });
+        function abrirModal(url){
+            
+            $('#editar').load(url,function(){
+                $('#editar').modal('show');
+            }
+            )           
         }
     </script>
 {% endblock content_extra_js %}
