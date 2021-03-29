@@ -29,7 +29,9 @@ class ActividadAdmin(admin.ModelAdmin):
     '''Admin View for ActividadCabecera'''
     inlines =(ActividadDetalleInline,)
     list_display = ('fecha','responsable','ubicacion','prioridad')
+    #list_editable = ('responsable','ubicacion')
     list_filter = ('prioridad',)
     search_fields = ('responsable','empleado','ubicacion',)
+    
 
 # Register your models here.

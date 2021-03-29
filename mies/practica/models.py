@@ -49,13 +49,13 @@ class Pasante(models.Model):
 
     nombres = models.CharField('Nombres', max_length=50)
     apellidos = models.CharField('Apellidos', max_length=50)
-    fecha_inicio = models.DateField('Fecha Incio', auto_now=False, auto_now_add=False)
-    fecha_fin = models.DateField('Fecha Fin', auto_now=False, auto_now_add=False, null= True, blank=True)
-    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE)
-    horas_diarias = models.IntegerField('Horas Diarias', default =0)
     cedula = models.CharField('Cédula', max_length=10)
     telefono = models.CharField('Télefono Movil', max_length=10)
+    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE)
     tutor_profesional = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    fecha_inicio = models.DateField('Fecha Inicio', auto_now=False, auto_now_add=False)
+    fecha_fin = models.DateField('Fecha Fin', auto_now=False, auto_now_add=False, null= True, blank=True)
+    horas_diarias = models.IntegerField('Horas Diarias', default =0)
     estado = models.BooleanField('Prácticas profesionales completadas?')
     class Meta:
         """Meta definition for Pasante."""

@@ -23,7 +23,30 @@ class PasanteAdmin(admin.ModelAdmin):
     '''Admin View for Pasante'''
 
     list_display = ('apellidos','nombres','cedula','telefono','tutor_profesional','fecha_inicio','fecha_fin','carrera','horas_diarias','estado',)
+    list_editable = ('nombres','cedula','telefono','tutor_profesional','fecha_inicio','fecha_fin','carrera','horas_diarias','estado',)
     list_filter = ('tutor_profesional','carrera',)
     search_fields = ('cedula','apellidos','nombres','telefono',)
+    fieldsets = (
+        ("Información del Pasante", {
+            "fields": (
+                'nombres',
+                'apellidos',
+                'cedula',
+                'telefono',
+                
+            ),
+        }),
+        ("Información de las Prácticas Profesionalizantes ",{
+            "fields":(
+                'carrera',
+                'tutor_profesional',
+                'fecha_inicio',
+                'fecha_fin',
+                'horas_diarias',
+                'estado',
+                
+            )
+        })
+    )
 
 # Register your models here.
