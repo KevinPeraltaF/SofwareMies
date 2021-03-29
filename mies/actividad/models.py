@@ -73,8 +73,8 @@ class ActividadDetalle(models.Model):
     class Meta:
         """Meta definition for ActividadDetalle."""
 
-        verbose_name = 'ActividadDetalle'
-        verbose_name_plural = 'ActividadDetalles'
+        verbose_name = 'Actividad Detalle'
+        verbose_name_plural = 'Actividad Detalles'
 
     def __int__(self):
         """Unicode representation of ActividadDetalle."""

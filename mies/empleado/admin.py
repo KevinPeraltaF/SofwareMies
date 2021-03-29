@@ -51,10 +51,10 @@ class EmpleadoAdmin(admin.ModelAdmin):
             "fields":(
                 'nombres',
                 'apellidos',
-                'genero',
-                'correo',
                 'cedula',
                 'telefono',
+                'correo',
+                'genero',
                 'foto',
                 
             )

@@ -78,7 +78,7 @@ class Empleado(models.Model):
     ('1', 'MASCULINO'),
     ('2', 'FEMENINO'),
     ('3', 'GLBTI'),]
-    genero = models.CharField(max_length=1, choices=lista_genero, default='2')
+    genero = models.CharField('Género',max_length=1, choices=lista_genero, default='2')
     correo = models.EmailField('Correo', max_length=254, unique= True)
     cedula = models.CharField('Cédula', max_length=10, null=True, blank=True, unique = True)
     telefono = models.CharField('Télefono móvil', max_length=10, null=True, blank=True)

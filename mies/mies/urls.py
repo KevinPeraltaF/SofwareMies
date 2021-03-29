@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from usuario import views as usuario_views
 from red import views as red_views
+from empleado import views as empleado_views
 urlpatterns = [
 
     path('admin/', admin.site.urls),
@@ -28,7 +29,13 @@ urlpatterns = [
     path('AccesoRed/Editar/<pk>', red_views.AccesoRedUpdateView.as_view(), name="accesoRed_editar") ,
     path('AccesoRed/Eliminar/<pk>', red_views.AccesoRedDeleteView.as_view(), name="accesoRed_eliminar") ,
     path('AccesoRed/Detalle/<pk>', red_views.AccesoRedDetailView.as_view(), name="accesoRed_detalle") ,
-    
+    #MODULO DE EMPLEADO
+    path('Empleado', empleado_views.EmpleadoListView.as_view(), name="empleado_listar") ,
+    path('Empleado/Crear', empleado_views.EmpleadoCreateView.as_view(), name="empleado_crear") ,
+    path('Empleado/Editar/<pk>', empleado_views.EmpleadoUpdateView.as_view(), name="empleado_editar") ,
+    path('Empleado/Eliminar/<pk>', empleado_views.EmpleadoDeleteView.as_view(), name="empleado_eliminar") ,
+    path('Empleado/Detalle/<pk>', empleado_views.EmpleadoDetailView.as_view(), name="empleado_detalle") ,
+
 ]
 
 #Add Django site authentication urls (for login, logout, password management)
