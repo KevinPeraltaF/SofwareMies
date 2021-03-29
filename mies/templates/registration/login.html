@@ -1,42 +1,52 @@
 {% extends 'base_account_generic.html ' %}
-
+{% block title %}LOGIN{% endblock %}
+{% load static %}
 {% block content %}
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
     {% if form.errors %}
-<p>Tu usuario  y/o contraseña no son los correctos. Por favor intente de nuevo.</p>
-{% endif %}
+    <div class="alert alert-danger" role="alert">
+      <p>Tu usuario y/o contraseña no son los correctos. Por favor intente de nuevo.</p>
+    </div>
+    
+    {% endif %}
 
-{% if next %}
-{% if user.is_authenticated %}
-<p>Tu cuenta no tiene acceso a esta página. Para proceder,
-  por favor inicie sesión con una cuenta que tenga acceso.</p>
-{% else %}
+    {% if next %}
+    {% if user.is_authenticated %}
+    <div class="alert alert-danger" role="alert">
+      <p>Tu cuenta no tiene acceso a esta página. Para proceder,
+        por favor inicie sesión con una cuenta que tenga acceso.</p>
+    </div>
+    
+    {% else %}
 
-{% endif %}
-{% endif %}
-<div class="text-center">
-  <h1 class="h4 text-gray-900 mb-4">Iniciar Sesión</h1>
-</div>
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
+    {% endif %}
+    {% endif %}
+    <div class="text-center">
+      
+      <div class="container mt-5">
+        <img src="{% static 'img/log_mies.svg'%}" class="img-fluid" alt="Responsive image">
+      </div>
+    </div>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
 
-  <div>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-  </div>
-  <div>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-  </div>
+      <div class="form-group">
+        {{ form.username.label_tag }}
+          <input  class="form-control" type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+      </div>
+      <div class="form-group">
+        {{ form.password.label_tag }}
+        <input  class="form-control" type="password" name="password" autocomplete="current-password" required="" id="id_password">
+      </div>
 
-  <div>
-    <input type="submit" value="login" class="btn btn-primary btn-user btn-block" />
-    <input type="hidden" name="next" value="{{ next }}" />
+      <div class="form-group">
+        <input type="submit" value="login" class="btn btn-primary btn-user btn-block" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+    </form>
   </div>
-</form>
-  </div>
-  <div class="col-md-3"></div>
+  <div class="col-md-4"></div>
 </div>
 {% endblock %}
