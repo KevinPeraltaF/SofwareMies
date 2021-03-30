@@ -18,6 +18,8 @@ from django.urls import path, include
 from usuario import views as usuario_views
 from red import views as red_views
 from empleado import views as empleado_views
+from ubicacion import views as ubicacion_views
+
 urlpatterns = [
 
     path('admin/', admin.site.urls),
@@ -35,6 +37,25 @@ urlpatterns = [
     path('Empleado/Editar/<pk>', empleado_views.EmpleadoUpdateView.as_view(), name="empleado_editar") ,
     path('Empleado/Eliminar/<pk>', empleado_views.EmpleadoDeleteView.as_view(), name="empleado_eliminar") ,
     path('Empleado/Detalle/<pk>', empleado_views.EmpleadoDetailView.as_view(), name="empleado_detalle") ,
+    #MODULO UBICACION DISTRITAL
+    #--zona
+    path('Zona', ubicacion_views.ZonaListView.as_view(), name="zona_listar") ,
+    path('Zona/Crear', ubicacion_views.ZonaCreateView.as_view(), name="zona_crear") ,
+    path('Zona/Editar/<pk>', ubicacion_views.ZonaUpdateView.as_view(), name="zona_editar") ,
+    path('Zona/Eliminar/<pk>', ubicacion_views.ZonaDeleteView.as_view(), name="zona_eliminar") ,
+    path('Zona/Detalle/<pk>', ubicacion_views.ZonaDetailView.as_view(), name="zona_detalle") ,
+    #--provincia
+    path('Provincia', ubicacion_views.ProvinciaListView.as_view(), name="provincia_listar") ,
+    path('Provincia/Crear', ubicacion_views.ProvinciaCreateView.as_view(), name="provincia_crear") ,
+    path('Provincia/Editar/<pk>', ubicacion_views.ProvinciaUpdateView.as_view(), name="provincia_editar") ,
+    path('Provincia/Eliminar/<pk>', ubicacion_views.ProvinciaDeleteView.as_view(), name="provincia_eliminar") ,
+    path('Provincia/Detalle/<pk>', ubicacion_views.ProvinciaDetailView.as_view(), name="provincia_detalle") ,
+    #--distrito
+    path('Distrito', ubicacion_views.DistritoListView.as_view(), name="distrito_listar") ,
+    path('Distrito/Crear', ubicacion_views.DistritoCreateView.as_view(), name="distrito_crear") ,
+    path('Distrito/Editar/<pk>', ubicacion_views.DistritoUpdateView.as_view(), name="distrito_editar") ,
+    path('Distrito/Eliminar/<pk>', ubicacion_views.DistritoDeleteView.as_view(), name="distrito_eliminar") ,
+    path('Distrito/Detalle/<pk>', ubicacion_views.DistritoDetailView.as_view(), name="distrito_detalle") ,
 
 ]
 

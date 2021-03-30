@@ -30,10 +30,21 @@
                     </tr>
                     <tr>
                         <th>Dirección Mac:</th>
-                        <td>{{object.direccion_mac}}</td>
+                        <td>
+                            {% if object.direccion_mac is none %}
+                            <p>-</p>
+                            {% else %}
+                            {{ object.direccion_mac }}
+                            {% endif%}
+                        </td>
                         <th>Dirección IP:</th>
-                        <td>{{object.direccion_ip}}</td>
-
+                        <td>
+                             {% if object.direccion_ip is none %}
+                            <p>-</p>
+                            {% else %}
+                            {{ object.direccion_ip }}
+                            {% endif%}
+                        </td>
                     </tr>
                     <tr>
                         <th>Observación:</th>
