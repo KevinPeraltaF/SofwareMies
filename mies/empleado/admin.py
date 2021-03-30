@@ -37,16 +37,6 @@ class EmpleadoAdmin(admin.ModelAdmin):
     list_filter = ('nombres','apellidos', 'unidadAtencion','correo','cedula',)
     search_fields = ('correo','cedula','nombres','apellidos',)
     fieldsets = (
-        ("Información Empresarial", {
-            "fields": (
-                'fecha',
-                'area',
-                'cargo',
-                'unidadAtencion',
-                'estado',
-                
-            ),
-        }),
         ("Información Personal",{
             "fields":(
                 'nombres',
@@ -58,7 +48,18 @@ class EmpleadoAdmin(admin.ModelAdmin):
                 'foto',
                 
             )
+        }),
+        ("Información Empresarial", {
+            "fields": (
+                'fecha',
+                'area',
+                'cargo',
+                'unidadAtencion',
+                'estado',
+                
+            ),
         })
+
     )
 
 # Register your models here.

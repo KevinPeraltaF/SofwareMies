@@ -16,7 +16,7 @@
         <div class="card-header py-3">
             <div class="row ">
                 <div class="col">
-                    <h6 class="m-0 font-weight-bold text-primary">Listado de los empleados</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Lista empleados</h6>
                 </div>
                 <div class="col ">
                     <div class="dropdown float-right">
@@ -25,7 +25,7 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'empleado_crear'%}">Nuevo acceso</a>
+                            <a class="dropdown-item" href="{% url 'empleado_crear'%}">Nuevo empleado</a>
 
                         </div>
                     </div>
@@ -36,26 +36,41 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-sm" id="dataTable" width="90%" cellspacing="0">
                     <thead>
                         <tr>
 
-                            <th><b>USUARIO</b></th>
-                            <th><b>DIRECCIÓN MAC</b></th>
-                            <th><b>DIRECCIÓN IP</b></th>
+                            <th><b>FECHA DE INGRESO</b></th>
+                            <th><b>AREA</b></th>
+                            <th><b>CARGO</b></th>
+                            <th><b>UNIDAD DE ATENCION</b></th>
+                            <th><b>NOMBRES</b></th>
+                            <th><b>APELLIDOS</b></th>
+                            <th><b>GENERO</b></th>
+                            <th><b>CORREO</b></th>
+                            <th><b>CEDULA</b></th>
+                            <th><b>TELEFONO MOVIL</b></th>
+                            <th><b>FOTO</b></th>
                             <th><b>ESTADO</b></th>
-                            <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for acceso in object_list %}
+                        {% for empl in object_list %}
                         <tr>
 
-                            <th>{{ acceso.usuario }}</th>
-                            <th>{{ acceso.direccion_mac }}</th>
-                            <th>{{ acceso.direccion_ip }}</th>
+                            <th>{{ empl.fecha }}</th>
+                            <th>{{ empl.area }}</th>
+                            <th>{{ empl.cargo }}</th>
+                            <th>{{ empl.unidadAtencion }}</th>
+                            <th>{{ empl.nombres }}</th>
+                            <th>{{ empl.apellidos }}</th>
+                            <th>{{ empl.genero }}</th>
+                            <th>{{ empl.correo }}</th>
+                            <th>{{ empl.cedula }}</th>
+                            <th>{{ empl.telefono }}</th>
+                            <th>{{ empl.foto }}</th>
                             <th>
-                                {% if acceso.estado%}
+                                {% if empl.estado%}
                                 <span class="badge badge-success">Conectado</span>
                                 {% else %}
                                 <span class="badge badge-danger">No conectado</span>
@@ -63,13 +78,13 @@
 
                             </th>
                             <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'accesoRed_detalle' acceso.id%}')"> <i class="fa fa-eye"></i>
+                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'empleado_detalle' empl.id%}')"> <i class="fa fa-eye"></i>
                                 </a>
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'accesoRed_editar' acceso.id%}')"> <i
+                                    onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'accesoRed_eliminar' acceso.id%}')"><i class="fa fa-trash"></i>
+                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'empleado_eliminar' empl.id%}')"><i class="fa fa-trash"></i>
                                 </a>
                             </th>
                         </tr>

@@ -30,21 +30,21 @@ class EmpleadoForm(forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
-            'area' : forms.TextInput(
+            'area' : forms.Select(
                 attrs={
-                    'type': 'Select',
+                    #'type': 'Select()',
                     'class': 'form-control'
                 }
             ),
-            'cargo' : forms.TextInput(
+            'cargo' : forms.Select(
                 attrs={
-                    'type': 'Select',
+                    #'type': 'Select()',
                     'class': 'form-control'
                 }
             ),
-            'unidadAtencion' : forms.TextInput(
+            'unidadAtencion' : forms.Select(
                 attrs={
-                    'type': 'Select',
+                    #'type': 'Select()',
                     'class': 'form-control'
                 }
             ),
@@ -65,9 +65,9 @@ class EmpleadoForm(forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
-            'genero' : forms.TextInput(
+            'genero' : forms.Select(
                 attrs={
-                    'type': 'Select',
+                    #'type': 'Select',
                     'class': 'form-control'
                 }
             ),
