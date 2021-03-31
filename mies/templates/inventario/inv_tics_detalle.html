@@ -13,19 +13,19 @@
                    
                     <tr>
                         <th>Fecha Ingreso:</th>
-                        <td colspan="4">{{object.fechaIngreso}}</td>
+                        <td >{{object.fechaIngreso}}</td>
+                        <th>Ubicacion:</th>
+                        <td >{{object.ubicacion}}</td>
                     </tr>
                     <tr>
                         <th>Responsable:</th>
                         <td colspan="4">{{object.responsable}}</td>
                     </tr>
                     <tr>
-                        <th>Ubicacion:</th>
-                        <td colspan="4">{{object.ubicacion}}</td>
-                    </tr>
-                    <tr>
                         <th>Categoria:</th>
-                        <td colspan="4">{{object.categoria}}</td>
+                        <td >{{object.categoria}}</td>
+                        <th>Condicion:</th>
+                        <td >{{object.condicion}}</td>
                     </tr>
                     <tr>
                         <th>Nombre:</th>
@@ -33,33 +33,48 @@
                     </tr>
                     <tr>
                         <th>Marca:</th>
-                        <td colspan="4">{{object.marca}}</td>
-                    </tr>
-                    <tr>
+                        <td >
+                            {% if object.marca %}
+                            {{object.marca}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
                         <th>Modelo:</th>
-                        <td colspan="4">{{object.modelo}}</td>
-                    </tr>
-                    <tr>
-                        <th>Condicion:</th>
-                        <td colspan="4">{{object.condicion}}</td>
+                        <td >
+                            {% if object.modelo %}
+                            {{object.modelo}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th>Serie:</th>
-                        <td colspan="4">{{object.serie}}</td>
-                    </tr>
-                    <tr>
+                        <td>
+                            {% if object.serie %}
+                            {{object.serie}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
                         <th>Serie MIES:</th>
-                        <td colspan="4">{{object.codigoMies}}</td>
+                        <td >
+                            {% if object.codigoMies %}
+                            {{object.codigoMies}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
                     </tr>
+                  
                     <tr>
                         <th>Cantidad:</th>
-                        <td colspan="4">{{object.cantidad}}</td>
-                    </tr>
-                    <tr>
+                        <td >{{object.cantidad}}</td>
                         <th>Foto:</th>
-                        <td colspan="4">
+                        <td>
                             {% if object.foto %}
-                            <img src="{{object.foto.url}}" alt="",width="50" height="60">
+                            <img src="{{object.foto.url}}" alt="",width="300" height="250">
                             {% else %}
                             N/A
                             {% endif %}
