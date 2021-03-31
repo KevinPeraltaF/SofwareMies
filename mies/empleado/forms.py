@@ -27,24 +27,28 @@ class EmpleadoForm(forms.ModelForm):
             'fecha': forms.TextInput(
                 attrs={
                     'type':'date',
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'area' : forms.Select(
                 attrs={
-                    #'type': 'Select()',
+                    'type': 'Select()',
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'cargo' : forms.Select(
                 attrs={
                     #'type': 'Select()',
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'unidadAtencion' : forms.Select(
                 attrs={
                     #'type': 'Select()',
+                    
                     'class': 'form-control'
                 }
             ),
@@ -57,11 +61,13 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'nombres': forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'apellidos': forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
@@ -73,16 +79,19 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'correo': forms.EmailInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),                     
             'cedula': forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'telefono': forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),

@@ -30,7 +30,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{%url 'dashboard'%}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                   
+
                 </div>
                 <div class="sidebar-brand-text mx-3">System Seim</sup></div>
             </a>
@@ -53,19 +53,62 @@
             <div class="sidebar-heading">
                 Módulo Principal
             </div>
-
-            <!-- Nav Item - Help Desk -->
+            <!-- Nav Item - Otros Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accesoRed_listar' %}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Acceso a la Red</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccesoRed"
+                    aria-expanded="true" aria-controls="collapseAccesoRed">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Otros</span>
+                </a>
+                <div id="collapseAccesoRed" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'accesoRed_listar' %}">Acceso a la Red</a>
+
+                    </div>
+                </div>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'empleado_listar' %}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Empleado</span></a>
+
+    
+             <!-- Nav Item - Ubicación Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmppleado"
+                    aria-expanded="true" aria-controls="collapseEmppleado">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Nómina de Empleados</span>
+                </a>
+                <div id="collapseEmppleado" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{% url 'empleado_listar' %}">Empleado</a>
+                        
+                    </div>
+                </div>
             </li>
+          
+                    <!-- Nav Item - Ubicación Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUbicacionDistrital"
+                            aria-expanded="true" aria-controls="collapseUbicacionDistrital">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Ubicación Distrital</span>
+                        </a>
+                        <div id="collapseUbicacionDistrital" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+        
+                                <a class="collapse-item" href="{% url 'zona_listar' %}">Zona</a>
+                                <a class="collapse-item" href="{% url 'provincia_listar' %}">Provicia</a>
+                                <a class="collapse-item" href="{% url 'distrito_listar' %}">Distrito</a>
+                            </div>
+                        </div>
+                    </li>
 
 
 
@@ -105,19 +148,19 @@
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block">
-                            
+
                         </div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         
+
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     {{user.last_name}} {{user.first_name}}
                                 </span>
                                 <img class="img-profile rounded-circle" src="">
-                                
+
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -144,7 +187,7 @@
                 <div class="container-fluid">
                     {% block content_main %}
 
-                    {% endblock  %}
+                    {% endblock %}
                 </div>
                 <!-- /.container-fluid fin de cambiaria contenido -->
 
@@ -191,6 +234,8 @@
     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
     <!-- Page level custom scripts -->
     <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+
+  
     
     {% block content_extra_js %}
 

@@ -25,21 +25,25 @@ class AccesoRedForm(forms.ModelForm):
             ),
             'usuario': forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'direccion_mac': forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'direccion_ip': forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'observacion': forms.Textarea(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control',
                     "rows":3, "cols":10
                 }

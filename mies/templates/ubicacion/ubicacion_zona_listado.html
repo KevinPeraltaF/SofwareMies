@@ -1,5 +1,5 @@
 {% extends 'base_generic.html' %}
-{% block title %}ACCESO WIFI {% endblock title %}
+{% block title %}ZONA {% endblock title %}
 
 
 {% block content_main %}
@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Acceso a la red</li>
+        <li class="breadcrumb-item active" aria-current="page">Zona</li>
     </ol>
 </nav>
 <div class="container-fluid">
@@ -16,7 +16,7 @@
         <div class="card-header py-3">
             <div class="row ">
                 <div class="col">
-                    <h6 class="m-0 font-weight-bold text-primary">Dispositivos con acceso a la red wifi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Listado de Zonas</h6>
                 </div>
                 <div class="col ">
                     <div class="dropdown float-right">
@@ -25,8 +25,7 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'accesoRed_crear'%}">Nuevo acceso</a>
-
+                            <a class="dropdown-item" href="{% url 'zona_crear'%}">Nueva zona</a>
                         </div>
                     </div>
                 </div>
@@ -40,49 +39,24 @@
                     <thead>
                         <tr>
 
-                            <th><b>USUARIO</b></th>
-                            <th><b>DIRECCIÓN MAC</b></th>
-                            <th><b>DIRECCIÓN IP</b></th>
-                            <th><b>ESTADO</b></th>
+                            <th><b>ZONA</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for acceso in object_list %}
+                        {% for zona in object_list %}
                         <tr>
 
-                            <th>{{ acceso.usuario }}</th>
+                            <th>{{ zona.descripcion }}</th>
+                           
                             <th>
-                                {% if acceso.direccion_mac is none %}
-                                <p>-</p>
-                                {% else %}
-                                {{ acceso.direccion_mac }}
-                                {% endif%}
-                            </th>
-                            <th>
-                                {% if acceso.direccion_ip is none %}
-                                <p>-</p>
-                                {% else %}
-                                {{ acceso.direccion_ip }}
-                                {% endif%}
-                               
-                            </th>
-                            <th>
-                                {% if acceso.estado%}
-                                <span class="badge badge-success">Conectado</span>
-                                {% else %}
-                                <span class="badge badge-danger">No conectado</span>
-                                {% endif %}
-
-                            </th>
-                            <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'accesoRed_detalle' acceso.id%}')"> <i class="fa fa-eye"></i>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'zona_detalle' zona.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'accesoRed_editar' acceso.id%}')"> <i
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'zona_editar' zona.id%}')"> <i data-toggle="popover" title="Editar"
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'accesoRed_eliminar' acceso.id%}')"><i class="fa fa-trash"></i>
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'zona_eliminar' zona.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
                             </th>
                         </tr>
