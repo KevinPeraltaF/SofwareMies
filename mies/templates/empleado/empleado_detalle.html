@@ -39,11 +39,25 @@
                         <th>Correo:</th>
                         <td>{{object.correo}}</td>
                         <th>Género:</th>
-                        <td>{{object.genero}}</td>
+                        <td>
+                            {% if object.genero == '1' %}
+                            <p>MASCULINO</p>
+                            {% elif object.genero == '2' %}
+                            <p>FEMENINO</p>
+                            {% else %}
+                            <p>LGTBI</p>
+                            {% endif%}                            
+                        </td>
                     </tr>
                     <tr>
                         <th>Foto:</th>
-                        <td colspan="4">{{object.foto}}</td>
+                        <td colspan="4">
+                            {% if object.foto %}
+                            <img src="{{object.foto.url}}" alt="",width="50" height="60">
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th>Área:</th>
@@ -55,7 +69,13 @@
                     </tr>
                     <tr>
                         <th>Unidad de Atención:</th>
-                        <td colspan="4">{{object.unidadAtencion}}</td>
+                        <td colspan="4">
+                            {% if object.unidadAtencion is none %}
+                            <p>-</p>
+                            {% else %}
+                            {{object.unidadAtencion}}
+                            {% endif%}
+                        </td>
                     </tr>
                 </tbody>
             </table>

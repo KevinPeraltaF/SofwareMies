@@ -40,15 +40,12 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'cargo' : forms.Select(
                 attrs={
-                    #'type': 'Select()',
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'unidadAtencion' : forms.Select(
                 attrs={
-                    #'type': 'Select()',
-                    
                     'class': 'form-control'
                 }
             ),
@@ -73,7 +70,6 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'genero' : forms.Select(
                 attrs={
-                    #'type': 'Select',
                     'class': 'form-control'
                 }
             ),
@@ -97,7 +93,6 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'foto': forms.ClearableFileInput(
                 attrs={
-                    #'type': 'Select',
                     'class': 'form-control'
                 }
             ),
@@ -114,9 +109,8 @@ class AreaForm(forms.ModelForm):
             'distrito',)
         
         widgets = {
-            'distrito' : forms.TextInput(
+            'distrito' : forms.Select(
                 attrs={
-                    'type': 'Select',
                     'class': 'form-control'
                 }
             ),

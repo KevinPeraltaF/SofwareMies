@@ -25,11 +25,11 @@
             <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
             <ul>
                 {% for field in form %}
-                    {% for error in field.errors %}
-                    <li>
-                        {{error}}
-                    </li>
-                    {% endfor %}
+                {% for error in field.errors %}
+                <li>
+                    {{error}}
+                </li>
+                {% endfor %}
                 {% endfor %}
             </ul>
 
@@ -38,7 +38,7 @@
 
         <form method="post">
             {% csrf_token %}
-        
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     {{form.nombres.label}}
@@ -97,13 +97,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-      
+
+
             <fieldset class="modal-footer">
                 <a type="button" class="btn btn-secondary" href="{% url 'empleado_listar' %}">Cancelar</a>
                 <button type="submit" class="btn  btn-primary">Guardar Registro</button>
             </fieldset>
-        </form>          
+        </form>
     </div>
     <div class="col-md-3"></div>
 
