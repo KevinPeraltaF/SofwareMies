@@ -1,6 +1,10 @@
 from django.db import models
 from empleado.models import Empleado, Area
 from ubicacion.models import Distrito
+import os
+from django.db.models.signals import pre_delete, post_delete, pre_save
+from django.conf import settings
+from django.dispatch import receiver
 # Create your models here.
 class Marca(models.Model):
     """Model definition for Marca."""
@@ -120,8 +124,37 @@ class InventarioTics(models.Model):
         self.codigoMies =(self.codigoMies).upper()
         return super(InventarioTics, self).save(*args, **kwargs)
 
+@receiver(post_delete, sender=InventarioTics)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `MediaFile` object is deleted.
+    """
+    ruta = settings.MEDIA_ROOT +"\\"+ str(instance.foto)
+    print(ruta)
+    if ruta:
+        if os.path.isfile(ruta):
+            os.remove(ruta)
+@receiver(pre_save, sender=InventarioTics)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """
+    Deletes old file from filesystem
+    when corresponding `MediaFile` object is updated
+    with new file.
+    """
+    if not instance.pk:
+        return False
 
+    try:
+        old_file = InventarioTics.objects.get(pk=instance.pk).foto
+    except InventarioTics.DoesNotExist:
+        return False
 
+    new_file = instance.foto
+    if not old_file == new_file:
+        ruta = settings.MEDIA_ROOT +"\\"+ str(old_file)
+        if os.path.isfile(ruta):
+            os.remove(ruta)
 
 
 class CapacidadDisco(models.Model):

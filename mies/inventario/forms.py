@@ -91,7 +91,7 @@ class InvTicsForm(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
-            'foto':forms.FileInput(
+            'foto':forms.ClearableFileInput(
                 attrs={
                     'type':'file',
                     'class':'form-control'
