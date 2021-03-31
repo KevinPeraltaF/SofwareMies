@@ -6,8 +6,8 @@
 <!-- Page Heading -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="empleado_listar">Nómina empleados</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'empleado_listar' %}">Nómina empleados</a></li>
         <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
     </ol>
 </nav>
@@ -39,32 +39,6 @@
         <form method="post">
             {% csrf_token %}
         
-            <div class="form-group">
-                {{form.fecha.label}}
-                {{form.fecha}}
-            </div>
-            <div class="form-group">
-                {{form.area.label}}
-                {{form.area}}
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{form.cargo.label}}
-                    {{form.cargo}}
-                </div>
-                <div class="form-group col-md-6">
-                    {{form.unidadAtencion.label}}
-                    {{form.unidadAtencion}}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <div class="form-check">
-                        {{form.estado.label}}
-                        {{form.estado}}
-                    </div>
-                </div>
-            </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     {{form.nombres.label}}
@@ -75,27 +49,54 @@
                     {{form.apellidos}}
                 </div>
             </div>
-            <div class="form-group">
-                {{form.cedula.label}}
-                {{form.cedula}}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.cedula.label}}
+                    {{form.cedula}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.telefono.label}}
+                    {{form.telefono}}
+                </div>
             </div>
-            <div class="form-group">
-                {{form.telefono.label}}
-                {{form.telefono}}
-            </div>
-            <div class="form-group">
-                {{form.correo.label}}
-                {{form.correo}}
-            </div>
-            <div class="form-group">
-                {{form.genero.label}}
-                {{form.genero}}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.correo.label}}
+                    {{form.correo}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.genero.label}}
+                    {{form.genero}}
+                </div>
             </div>
             <div class="form-group">
                 {{form.foto.label}}
                 {{form.foto}}
             </div>
-
+            <div class="form-group">
+                {{form.fecha.label}}
+                {{form.fecha}}
+            </div>
+            <div class="form-select">
+                {{form.area.label}}
+                {{form.area}}
+            </div>
+            <div class="form-select">
+                {{form.cargo.label}}
+                {{form.cargo}}
+            </div>
+            <div class="form-select">
+                {{form.unidadAtencion.label}}
+                {{form.unidadAtencion}}
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="form-check">
+                        {{form.estado.label}}
+                        {{form.estado}}
+                    </div>
+                </div>
+            </div>
         </div>
       
             <fieldset class="modal-footer">

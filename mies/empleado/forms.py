@@ -33,18 +33,21 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'area' : forms.Select(
                 attrs={
+                    'type': 'Select()',
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'cargo' : forms.Select(
                 attrs={
+                    #'type': 'Select()',
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'unidadAtencion' : forms.Select(
                 attrs={
+                    #'type': 'Select()',
                     
                     'class': 'form-control'
                 }
@@ -70,6 +73,7 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'genero' : forms.Select(
                 attrs={
+                    #'type': 'Select',
                     'class': 'form-control'
                 }
             ),
