@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <th>Ubicacion:</th>
-                        <td colspan="4">{{object.ubicaion}}</td>
+                        <td colspan="4">{{object.ubicacion}}</td>
                     </tr>
                     <tr>
                         <th>Categoria:</th>
@@ -57,7 +57,13 @@
                     </tr>
                     <tr>
                         <th>Foto:</th>
-                        <td colspan="4">{{object.foto}}</td>
+                        <td colspan="4">
+                            {% if object.foto %}
+                            <img src="{{object.foto.url}}" alt="",width="50" height="60">
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -91,7 +91,7 @@ class InvTicsForm(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
-            'foto':forms.TextInput(
+            'foto':forms.FileInput(
                 attrs={
                     'type':'file',
                     'class':'form-control'

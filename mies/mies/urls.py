@@ -20,6 +20,8 @@ from red import views as red_views
 from empleado import views as empleado_views
 from ubicacion import views as ubicacion_views
 from inventario import views as inventaio_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 
@@ -93,4 +95,4 @@ urlpatterns = [
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
