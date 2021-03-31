@@ -1,0 +1,80 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Registro</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          
+  
+        </div>
+        
+        <form action="{% url 'empleado_editar' object.id %}" method="post">
+            {% csrf_token %}
+            
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.nombres.label}}
+                        {{form.nombres}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.apellidos.label}}
+                        {{form.apellidos}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.cedula.label}}
+                        {{form.cedula}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.telefono.label}}
+                        {{form.telefono}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.correo.label}}
+                        {{form.correo}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.genero.label}}
+                        {{form.genero}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form.foto.label}}
+                    {{form.foto}}
+                </div>
+                <div class="form-group">
+                    {{form.fecha.label}}
+                    {{form.fecha}}
+                </div>
+                <div class="form-select">
+                    {{form.area.label}}
+                    {{form.area}}
+                </div>
+                <div class="form-select">
+                    {{form.cargo.label}}
+                    {{form.cargo}}
+                </div>
+                <div class="form-select">
+                    {{form.unidadAtencion.label}}
+                    {{form.unidadAtencion}}
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        {{form.estado.label}}
+                       <input type="checkbox" name="estado" id="id_estado"  {% if object.estado %} checked {% endif %} > 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+</div>

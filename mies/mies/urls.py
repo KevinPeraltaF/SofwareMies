@@ -36,11 +36,24 @@ urlpatterns = [
     path('AccesoRed/Eliminar/<pk>', red_views.AccesoRedDeleteView.as_view(), name="accesoRed_eliminar") ,
     path('AccesoRed/Detalle/<pk>', red_views.AccesoRedDetailView.as_view(), name="accesoRed_detalle") ,
     #MODULO DE EMPLEADO
+    #-- empleado
     path('Empleado', empleado_views.EmpleadoListView.as_view(), name="empleado_listar") ,
     path('Empleado/Crear', empleado_views.EmpleadoCreateView.as_view(), name="empleado_crear") ,
     path('Empleado/Editar/<pk>', empleado_views.EmpleadoUpdateView.as_view(), name="empleado_editar") ,
     path('Empleado/Eliminar/<pk>', empleado_views.EmpleadoDeleteView.as_view(), name="empleado_eliminar") ,
     path('Empleado/Detalle/<pk>', empleado_views.EmpleadoDetailView.as_view(), name="empleado_detalle") ,
+    #--area
+    path('Area', empleado_views.AreaListView.as_view(), name="area_listar") ,
+    path('Area/Crear', empleado_views.AreaCreateView.as_view(), name="area_crear") ,
+    path('Area/Editar/<pk>', empleado_views.AreaUpdateView.as_view(), name="area_editar") ,
+    path('Area/Eliminar/<pk>', empleado_views.AreaDeleteView.as_view(), name="area_eliminar") ,
+    path('Area/Detalle/<pk>', empleado_views.AreaDetailView.as_view(), name="area_detalle") ,
+    #--cargo
+    path('Cargo', empleado_views.CargoListView.as_view(), name="cargo_listar") ,
+    path('Cargo/Crear', empleado_views.CargoCreateView.as_view(), name="cargo_crear") ,
+    path('Cargo/Editar/<pk>', empleado_views.CargoUpdateView.as_view(), name="cargo_editar") ,
+    path('Cargo/Eliminar/<pk>', empleado_views.CargoDeleteView.as_view(), name="cargo_eliminar") ,
+    path('Cargo/Detalle/<pk>', empleado_views.CargoDetailView.as_view(), name="cargo_detalle") ,
     #MODULO UBICACION DISTRITAL
     #--zona
     path('Zona', ubicacion_views.ZonaListView.as_view(), name="zona_listar") ,
