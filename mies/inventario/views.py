@@ -169,6 +169,7 @@ class InvTicsCreateView(CreateView):
         return super(InvTicsCreateView, self).dispatch(*args, **kwargs)
 class InvTicsDeleteView(DeleteView):
     model = InventarioTics
+    print(model.foto)
     template_name = "inventario/inv_tics_eliminar.html"
     success_url = reverse_lazy('inv_tics_listar')
     @method_decorator(login_required)
@@ -185,4 +186,5 @@ class InvTicsUpdateView(UpdateView):
         return super(InvTicsUpdateView, self).dispatch(*args, **kwargs)
 class InvTicsDetailView(DetailView):
     model = InventarioTics
+    print(model.foto)
     template_name = "inventario/inv_tics_detalle.html"
