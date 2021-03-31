@@ -41,17 +41,18 @@
                         <tr>
 
                             <th><b>FECHA DE INGRESO</b></th>
-                            <th><b>AREA</b></th>
+                            <th><b>ÁREA</b></th>
                             <th><b>CARGO</b></th>
-                            <th><b>UNIDAD DE ATENCION</b></th>
+                            <th><b>UNIDAD DE ATENCIÓN</b></th>
                             <th><b>NOMBRES</b></th>
                             <th><b>APELLIDOS</b></th>
-                            <th><b>GENERO</b></th>
+                            <th><b>GÉNERO</b></th>
                             <th><b>CORREO</b></th>
-                            <th><b>CEDULA</b></th>
-                            <th><b>TELEFONO MOVIL</b></th>
+                            <th><b>CÉDULA</b></th>
+                            <th><b>TELÉFONO MÓVIL</b></th>
                             <th><b>FOTO</b></th>
                             <th><b>ESTADO</b></th>
+                            <th><b>ACCIONES</b></th>                           
                         </tr>
                     </thead>
                     <tbody>
@@ -61,14 +62,34 @@
                             <th>{{ empl.fecha }}</th>
                             <th>{{ empl.area }}</th>
                             <th>{{ empl.cargo }}</th>
-                            <th>{{ empl.unidadAtencion }}</th>
+                            <th>
+                                {% if empl.unidadAtencion is none %}
+                                <p>-</p>
+                                {% else %}
+                                {{ empl.unidadAtencion }}
+                                {% endif%}
+                            </th>
                             <th>{{ empl.nombres }}</th>
                             <th>{{ empl.apellidos }}</th>
-                            <th>{{ empl.genero }}</th>
+                            <th>
+                                {% if empl.genero == '1' %}
+                                <p>MASCULINO</p>
+                                {% elif empl.genero == '2' %}
+                                <p>FEMENINO</p>
+                                {% else %}
+                                <p>LGTBI</p>
+                                {% endif%}
+                            </th>
                             <th>{{ empl.correo }}</th>
                             <th>{{ empl.cedula }}</th>
                             <th>{{ empl.telefono }}</th>
-                            <th>{{ empl.foto }}</th>
+                            <th>
+                                {% if empl.foto %}
+                                <img src="{{empl.foto.url}}" alt="",width="50" height="60">
+                                {% else %}
+                                N/A
+                                {% endif %}                               
+                            </th>
                             <th>
                                 {% if empl.estado%}
                                 <span class="badge badge-success">Conectado</span>
