@@ -1,0 +1,21 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Registro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'inv_tics_eliminar' object.id %}" method="post">
+        {% csrf_token %}
+        <div class="modal-body">
+          ¿Estás seguro que desea eliminar el registro: "{{ object.descripcion }}"?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Si, Eliminar</button>
+  
+        </div>
+    </div>
+    </form>
+  </div>

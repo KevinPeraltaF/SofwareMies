@@ -109,6 +109,25 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Nav Item - Inventario Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventarioTics"
+                            aria-expanded="true" aria-controls="collapseInventarioTics">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Inventario Tics</span>
+                        </a>
+                        <div id="collapseInventarioTics" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+        
+                                <a class="collapse-item" href="{% url 'marca_listar' %}">Marca</a>
+                                <a class="collapse-item" href="{% url 'modelo_listar' %}">Modelo</a>
+                                <a class="collapse-item" href="{% url 'categoria_listar' %}">Categoria</a>
+                                <a class="collapse-item" href="{% url 'condicion_listar' %}">Condicion</a>
+                                <a class="collapse-item" href="{% url 'inv_tics_listar' %}">Inventario Tics</a>
+                            </div>
+                        </div>
+                    </li>
 
 
 

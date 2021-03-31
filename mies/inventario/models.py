@@ -1,6 +1,6 @@
 from django.db import models
-from empleado.models import Empleado,Area
-
+from empleado.models import Empleado, Area
+from ubicacion.models import Distrito
 # Create your models here.
 class Marca(models.Model):
     """Model definition for Marca."""
@@ -92,7 +92,7 @@ class InventarioTics(models.Model):
 
     fechaIngreso = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
     responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-    ubicacion = models.ForeignKey(Area, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Distrito, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE)

@@ -1,0 +1,110 @@
+{% extends 'base_generic.html' %}
+{% block title %}NUEVA EQUIPO{% endblock %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'inv_tics_listar' %}">Inventario Tics</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+    </ol>
+</nav>
+<div class="row">
+
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        {% if form.errors %}
+
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                {% for error in field.errors %}
+                <li>
+                    {{error}}
+                </li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+
+        </div>
+        {% endif %}
+
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class='form-row'>
+                <div class="form-group col-md-4">
+                    {{form.fechaIngreso.label}}
+                    {{form.fechaIngreso}}
+                </div>
+                <div class="form-group col-md-8">
+                    {{form.responsable.label}}
+                    {{form.responsable}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.ubicacion.label}}
+                    {{form.ubicacion}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.categoria.label}}
+                    {{form.categoria}}
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.descripcion.label}}
+                {{form.descripcion}}
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    {{form.marca.label}}
+                    {{form.marca}}
+                </div>
+                <div class="form-group col-md-4">
+                    {{form.modelo.label}}
+                    {{form.modelo}}
+                </div>
+                <div class="form-group col-md-3">
+                    {{form.condicion.label}}
+                    {{form.condicion}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.serie.label}}
+                    {{form.serie}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.codigoMies.label}}
+                    {{form.codigoMies}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    {{form.cantidad.label}}
+                    {{form.cantidad}}
+                </div>
+                <div class="form-group col-md-5">
+                    {{form.foto.label}}
+                    {{form.foto}}
+                </div>
+            </div>
+            
+            <fieldset class="modal-footer">
+                <a type="button" class="btn btn-secondary" href="{% url 'inv_tics_listar' %}">Cancelar</a>
+                <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
