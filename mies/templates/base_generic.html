@@ -75,13 +75,16 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmppleado"
                     aria-expanded="true" aria-controls="collapseEmppleado">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Nómina de Empleados</span>
+                    <span>Empleado</span>
                 </a>
                 <div id="collapseEmppleado" class="collapse" aria-labelledby="headingTwo"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
                         <a class="collapse-item" href="{% url 'empleado_listar' %}">Empleado</a>
+                        <a class="collapse-item" href="{% url 'area_listar' %}">Área</a>
+                        <a class="collapse-item" href="{% url 'cargo_listar' %}">Cargo</a>
+                        <!--<a class="collapse-item" href="{% url 'unidad_listar' %}">Unidad de Atención</a>-->
                         
                     </div>
                 </div>

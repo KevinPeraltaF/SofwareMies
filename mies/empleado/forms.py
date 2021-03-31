@@ -116,6 +116,7 @@ class AreaForm(forms.ModelForm):
             ),
             'descripcion' : forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
@@ -133,6 +134,7 @@ class CargoForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
@@ -150,11 +152,13 @@ class UnidadAtencionForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'codigo' : forms.TextInput(
                 attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
