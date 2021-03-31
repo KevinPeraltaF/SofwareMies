@@ -20,6 +20,7 @@ from red import views as red_views
 from empleado import views as empleado_views
 from ubicacion import views as ubicacion_views
 from inventario import views as inventaio_views
+from prestamo import views as prestamo_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -90,6 +91,12 @@ urlpatterns = [
     path('InvTics/Editar/<pk>',inventaio_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
     path('InvTics/Eliminar/<pk>',inventaio_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),
     path('InvTics/Detalle/<pk>',inventaio_views.InvTicsDetailView.as_view(),name ="inv_tics_detalle"),
+     #--PRESTAMO
+    path('Prestamo', prestamo_views.PrestamoListView.as_view(), name="prestamo_listar"),
+    path('Prestamo/Crear',prestamo_views.PrestamoCreateView.as_view(),name ="prestamo_crear"),
+    path('Prestamo/Editar/<pk>',prestamo_views.PrestamoUpdateView.as_view(),name ="prestamo_editar"),
+    path('Prestamo/Eliminar/<pk>',prestamo_views.PrestamoDeleteView.as_view(),name ="prestamo_eliminar"),
+    path('Prestamo/Detalle/<pk>',prestamo_views.PrestamoDetailView.as_view(),name ="prestamo_detalle"),
 ]
 
 #Add Django site authentication urls (for login, logout, password management)

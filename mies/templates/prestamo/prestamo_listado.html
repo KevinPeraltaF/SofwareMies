@@ -1,0 +1,110 @@
+{% extends 'base_generic.html' %}
+{% block title %}PRÉSTAMO {% endblock title %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Préstamo</li>
+    </ol>
+</nav>
+<div class="container-fluid">
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row ">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Préstamos</h6>
+                </div>
+                <div class="col ">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'prestamo_crear'%}">Nuevo préstamo</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th><b>FECHA ENTREGA</b></th>
+                            <th><b>FECHA DEVOLUCIÓN</b></th>
+                            <th><b>USUARIO</b></th>
+                            <th><b>ITEM</b></th>
+                            <th><b>ESTADO</b></th>
+                            <th><b>ACCIONES</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prestamo in object_list %}
+                        <tr>
+
+                            <th>{{ prestamo.fecha_entrega }}</th>
+                            <th>{{ prestamo.fecha_devolucion }}</th>
+                            <th>{{ prestamo.usuario }}</th>
+                            <th>{{ prestamo.item }}</th>
+                            <th>
+                                {% if prestamo.estado%}
+                                <span class="badge badge-success">Devuelto</span>
+                                {% else %}
+                                <span class="badge badge-danger">No Devuelto</span>
+                                {% endif %}
+
+                            </th>
+                            <th>
+                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'prestamo_detalle' prestamo.id%}')"> <i class="fa fa-eye"></i>
+                                </a>
+                                <button id="modalEditarprestamo" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'prestamo_editar' prestamo.id%}')"> <i
+                                        class="fa fa-edit"></i>
+                                </button>
+                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'prestamo_eliminar' prestamo.id%}')"><i class="fa fa-trash"></i>
+                                </a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editar" role="dialog">
+
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" role="dialog">
+
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
+ 
+</div>
+
+
+{% endblock content_main%}
+
+
+{% block content_extra_js %}
+<script src="static/js/funciones_mies.js"></script>
+{% endblock content_extra_js %}
