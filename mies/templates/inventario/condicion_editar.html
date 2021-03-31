@@ -1,0 +1,44 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Registro</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% if form.errors %}
+  
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                        {{error}}
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+  
+        </div>
+        {% endif %}
+        
+        
+        
+        <form action="{% url 'condicion_editar' object.id %}" method="post">
+            {% csrf_token %}
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    {{form.descripcion.label}}
+                    {{form.descripcion}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+  </div>

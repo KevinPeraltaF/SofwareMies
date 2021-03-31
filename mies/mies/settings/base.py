@@ -11,7 +11,6 @@ SECRET_KEY = '=#h(-m2g07vw()&w7axgfn*7goz1rv*c!0m@l54*6wiucx_n^s'
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -24,6 +23,8 @@ INSTALLED_APPS = [
     'ubicacion',
     'inventario',
     'capacitacion',
+    'django.contrib.admin',
+    
 ]
 
 MIDDLEWARE = [

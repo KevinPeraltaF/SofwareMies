@@ -19,6 +19,7 @@ from usuario import views as usuario_views
 from red import views as red_views
 from empleado import views as empleado_views
 from ubicacion import views as ubicacion_views
+from inventario import views as inventaio_views
 
 urlpatterns = [
 
@@ -56,7 +57,37 @@ urlpatterns = [
     path('Distrito/Editar/<pk>', ubicacion_views.DistritoUpdateView.as_view(), name="distrito_editar") ,
     path('Distrito/Eliminar/<pk>', ubicacion_views.DistritoDeleteView.as_view(), name="distrito_eliminar") ,
     path('Distrito/Detalle/<pk>', ubicacion_views.DistritoDetailView.as_view(), name="distrito_detalle") ,
-
+    #Modulo Inventario Tics
+    #--Marca
+    path('Marca', inventaio_views.MarcaListView.as_view(), name="marca_listar"),
+    path('Marca/Crear',inventaio_views.MarcaCreateView.as_view(),name ="marca_crear"),
+    path('Marca/Editar/<pk>',inventaio_views.MarcaUpdateView.as_view(),name ="marca_editar"),
+    path('Marca/Eliminar/<pk>',inventaio_views.MarcaDeleteView.as_view(),name ="marca_eliminar"),
+    path('Marca/Detalle/<pk>',inventaio_views.MarcaDetailView.as_view(),name ="marca_detalle"),
+    #--Modelo
+    path('Modelo', inventaio_views.ModeloListView.as_view(), name="modelo_listar"),
+    path('Modelo/Crear',inventaio_views.ModeloCreateView.as_view(),name ="modelo_crear"),
+    path('Modelo/Editar/<pk>',inventaio_views.ModeloUpdateView.as_view(),name ="modelo_editar"),
+    path('Modelo/Eliminar/<pk>',inventaio_views.ModeloDeleteView.as_view(),name ="modelo_eliminar"),
+    path('Modelo/Detalle/<pk>',inventaio_views.ModeloDetailView.as_view(),name ="modelo_detalle"),
+    #--Categoria
+    path('Categoria', inventaio_views.CategoriaListView.as_view(), name="categoria_listar"),
+    path('Categoria/Crear',inventaio_views.CategoriaCreateView.as_view(),name ="categoria_crear"),
+    path('Categoria/Editar/<pk>',inventaio_views.CategoriaUpdateView.as_view(),name ="categoria_editar"),
+    path('Categoria/Eliminar/<pk>',inventaio_views.CategoriaDeleteView.as_view(),name ="categoria_eliminar"),
+    path('Categoria/Detalle/<pk>',inventaio_views.CategoriaDetailView.as_view(),name ="categoria_detalle"),
+    #--Condicion
+    path('Condicion', inventaio_views.CondicionListView.as_view(), name="condicion_listar"),
+    path('Condicion/Crear',inventaio_views.CondicionCreateView.as_view(),name ="condicion_crear"),
+    path('Condicion/Editar/<pk>',inventaio_views.CondicionUpdateView.as_view(),name ="condicion_editar"),
+    path('Condicion/Eliminar/<pk>',inventaio_views.CondicionDeleteView.as_view(),name ="condicion_eliminar"),
+    path('Condicion/Detalle/<pk>',inventaio_views.CondicionDetailView.as_view(),name ="condicion_detalle"),
+    #--INVENTARIO TICS
+    path('InvTics', inventaio_views.InvTicsListView.as_view(), name="inv_tics_listar"),
+    path('InvTics/Crear',inventaio_views.InvTicsCreateView.as_view(),name ="inv_tics_crear"),
+    path('InvTics/Editar/<pk>',inventaio_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
+    path('InvTics/Eliminar/<pk>',inventaio_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),
+    path('InvTics/Detalle/<pk>',inventaio_views.InvTicsDetailView.as_view(),name ="inv_tics_detalle"),
 ]
 
 #Add Django site authentication urls (for login, logout, password management)
