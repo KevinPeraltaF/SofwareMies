@@ -148,7 +148,7 @@ class CondicionUpdateView(UpdateView):
         return super(CondicionUpdateView, self).dispatch(*args, **kwargs)
 class CondicionDetailView(DetailView):
     model = Condicion
-    template_name = "inventario/inv_tics_detalle.html"
+    template_name = "inventario/condicion_detalle.html"
 #------------------INVENTARIO TICS--------------------------------------
 class InvTicsListView(ListView):
     model = InventarioTics
