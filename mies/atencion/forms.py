@@ -20,7 +20,8 @@ class AtencionForm(forms.ModelForm):
     
     class Meta:
         model = Atencion
-        fields = ('fechaIncidente',
+        fields = (
+        'fechaIncidente',
         'responsable',
         'equipo',
         'detalle',

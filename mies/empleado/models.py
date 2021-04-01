@@ -97,7 +97,7 @@ class Empleado(models.Model):
 
     def __str__(self):
         """Unicode representation of Empleado."""
-        return self.nombres
+        return ("{} {}").format(self.apellidos, self.nombres)
 
     def save(self, *args, **kwargs):
         """Save method for Empleado."""
