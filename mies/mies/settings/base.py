@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'capacitacion',
     'django.contrib.admin',
     'prestamo',
+    'atencion',
     
 ]
 
