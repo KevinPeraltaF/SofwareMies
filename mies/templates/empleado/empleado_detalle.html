@@ -50,16 +50,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Foto:</th>
-                        <td colspan="4">
-                            {% if object.foto %}
-                            <img src="{{object.foto.url}}" alt="",width="50" height="60">
-                            {% else %}
-                            N/A
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
                         <th>Área:</th>
                         <td colspan="4">{{object.area}}</td>
                     </tr>
@@ -77,14 +67,24 @@
                             {% endif%}
                         </td>
                     </tr>
+                    <tr>
+                        <tr class="text-center">
+                            <th>Foto:</th>
+                            <td colspan="4">
+                                {% if object.foto %}
+                                <img class="img-rounded " src="{{object.foto.url}}" alt="" width="304" height="336" >
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tr>
                 </tbody>
             </table>
            
 
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
+
         </form>
     </div>
 

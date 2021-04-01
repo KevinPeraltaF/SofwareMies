@@ -5,7 +5,7 @@ import os
 from django.db.models.signals import pre_delete, post_delete, pre_save
 from django.conf import settings
 from django.dispatch import receiver
-# Create your models here.
+# Create your models here
 class Marca(models.Model):
     """Model definition for Marca."""
     descripcion = models.CharField('Marca', max_length=50,unique= True)

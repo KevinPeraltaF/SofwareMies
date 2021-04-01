@@ -54,6 +54,12 @@ urlpatterns = [
     path('Cargo/Editar/<pk>', empleado_views.CargoUpdateView.as_view(), name="cargo_editar") ,
     path('Cargo/Eliminar/<pk>', empleado_views.CargoDeleteView.as_view(), name="cargo_eliminar") ,
     path('Cargo/Detalle/<pk>', empleado_views.CargoDetailView.as_view(), name="cargo_detalle") ,
+    #--unidad de atencion
+    path('UnidadAtencion', empleado_views.UnidadListView.as_view(), name="unidad_listar") ,
+    path('UnidadAtencion/Crear', empleado_views.UnidadCreateView.as_view(), name="unidad_crear") ,
+    path('UnidadAtencion/Editar/<pk>', empleado_views.UnidadUpdateView.as_view(), name="unidad_editar") ,
+    path('UnidadAtencion/Eliminar/<pk>', empleado_views.UnidadDeleteView.as_view(), name="unidad_eliminar") ,
+    path('UnidadAtencion/Detalle/<pk>', empleado_views.UnidadDetailView.as_view(), name="unidad_detalle") ,
     #MODULO UBICACION DISTRITAL
     #--zona
     path('Zona', ubicacion_views.ZonaListView.as_view(), name="zona_listar") ,

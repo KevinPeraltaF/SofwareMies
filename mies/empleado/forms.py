@@ -93,6 +93,7 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'foto': forms.ClearableFileInput(
                 attrs={
+                    'type':'file',
                     'class': 'form-control'
                 }
             ),

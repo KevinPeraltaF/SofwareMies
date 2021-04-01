@@ -1,6 +1,11 @@
 from django.db import models
 from ubicacion.models import Distrito
+import os
+from django.db.models.signals import pre_delete, post_delete, pre_save
+from django.conf import settings
+from django.dispatch import receiver
 # Modelos del modulo empleado.
+#modelo AREA
 class Area(models.Model):
     """Model definition for area."""
     distrito = models.ForeignKey(Distrito, on_delete=models.PROTECT)
@@ -21,7 +26,7 @@ class Area(models.Model):
         self.descripcion = (self.descripcion).upper()
         return super(Area, self).save(*args, **kwargs)
 
-
+#modelo CARGO
 class Cargo(models.Model):
     """Model definition for Cargo."""
 
@@ -42,12 +47,12 @@ class Cargo(models.Model):
         self.descripcion = (self.descripcion).upper()
         return super(Cargo, self).save(*args, **kwargs)
 
-    
+ #modelo UNIDAD DE ATENCION   
 class UnidadAtencion(models.Model):
     """Model definition for UnidadAtencion."""
 
     descripcion = models.CharField('Unidad de Atención', max_length=50, unique =True)
-    codigo = models.CharField('Código Unidad de atención', max_length=50, unique =True)
+    codigo = models.CharField('Código Unidad de Atención', max_length=50, unique =True)
 
     class Meta:
         """Meta definition for UnidadAtencion."""
@@ -64,7 +69,7 @@ class UnidadAtencion(models.Model):
         self.descripcion = (self.descripcion).upper()
         return super(UnidadAtencion, self).save(*args, **kwargs)
 
-
+#modelo EMPLEADO
 class Empleado(models.Model):
     """Model definition for Empleado."""
 
@@ -101,4 +106,34 @@ class Empleado(models.Model):
         self.correo =(self.correo).upper()
         return super(Empleado, self).save(*args, **kwargs)
 
+@receiver(post_delete, sender=Empleado)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `MediaFile` object is deleted.
+    """
+    ruta = settings.MEDIA_ROOT +"\\"+ str(instance.foto)
+    print(ruta)
+    if ruta:
+        if os.path.isfile(ruta):
+            os.remove(ruta)
+@receiver(pre_save, sender=Empleado)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """
+    Deletes old file from filesystem
+    when corresponding `MediaFile` object is updated
+    with new file.
+    """
+    if not instance.pk:
+        return False
 
+    try:
+        old_file = Empleado.objects.get(pk=instance.pk).foto
+    except Empleado.DoesNotExist:
+        return False
+
+    new_file = instance.foto
+    if not old_file == new_file:
+        ruta = settings.MEDIA_ROOT +"\\"+ str(old_file)
+        if os.path.isfile(ruta):
+            os.remove(ruta)
