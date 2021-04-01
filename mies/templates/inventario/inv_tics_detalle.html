@@ -29,7 +29,9 @@
                     </tr>
                     <tr>
                         <th>Nombre:</th>
-                        <td colspan="4">{{object.descripcion}}</td>
+                        <td >{{object.descripcion}}</td>
+                        <th>Cantidad:</th>
+                        <td >{{object.cantidad}}</td>
                     </tr>
                     <tr>
                         <th>Marca:</th>
@@ -68,13 +70,12 @@
                         </td>
                     </tr>
                   
-                    <tr>
-                        <th>Cantidad:</th>
-                        <td >{{object.cantidad}}</td>
+                  
+                    <tr class="text-center">
                         <th>Foto:</th>
-                        <td>
+                        <td colspan="4">
                             {% if object.foto %}
-                            <img class="img-rounded" src="{{object.foto.url}}" alt="" width="304" height="236" >
+                            <img class="img-rounded " src="{{object.foto.url}}" alt="" width="304" height="336" >
                             {% else %}
                             N/A
                             {% endif %}

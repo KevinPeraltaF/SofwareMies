@@ -4,7 +4,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import Empleado, Area, Cargo, UnidadAtencion
-from .forms import EmpleadoForm, AreaForm, Cargo, UnidadAtencionForm
+from .forms import EmpleadoForm, AreaForm, CargoForm, UnidadAtencionForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
