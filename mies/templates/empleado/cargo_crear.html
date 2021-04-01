@@ -1,5 +1,5 @@
 {% extends 'base_generic.html' %}
-{% block title %}NUEVA ZONA{% endblock %}
+{% block title %}NUEVO CARGO{% endblock %}
 
 
 {% block content_main %}
@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'zona_listar' %}">Listado de zonas</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'cargo_listar' %}">Listado de cargos</a></li>
         <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
     </ol>
 </nav>
@@ -47,7 +47,7 @@
 
 
             <fieldset class="modal-footer">
-                <a type="button" class="btn btn-secondary" href="{% url 'zona_listar' %}">Cancelar</a>
+                <a type="button" class="btn btn-secondary" href="{% url 'cargo_listar' %}">Cancelar</a>
                 <button type="submit" class="btn  btn-primary">Guardar Registro</button>
             </fieldset>
         </form>

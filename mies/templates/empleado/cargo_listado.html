@@ -1,5 +1,5 @@
 {% extends 'base_generic.html' %}
-{% block title %}ZONA {% endblock title %}
+{% block title %}CARGO {% endblock title %}
 
 
 {% block content_main %}
@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Zona</li>
+        <li class="breadcrumb-item active" aria-current="page">Cargo</li>
     </ol>
 </nav>
 <div class="container-fluid">
@@ -16,7 +16,7 @@
         <div class="card-header py-3">
             <div class="row ">
                 <div class="col">
-                    <h6 class="m-0 font-weight-bold text-primary">Listado de Zonas</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Listado de Cargos</h6>
                 </div>
                 <div class="col ">
                     <div class="dropdown float-right">
@@ -25,7 +25,7 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'zona_crear'%}">Nueva zona</a>
+                            <a class="dropdown-item" href="{% url 'cargo_crear'%}">Nuevo Cargo</a>
                         </div>
                     </div>
                 </div>
@@ -39,24 +39,24 @@
                     <thead>
                         <tr>
 
-                            <th><b>ZONA</b></th>
+                            <th><b>CARGOS</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for zona in object_list %}
+                        {% for cargo in object_list %}
                         <tr>
 
-                            <th>{{ zona.descripcion }}</th>
+                            <th>{{ cargo.descripcion }}</th>
                            
                             <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'zona_detalle' zona.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'cargo_detalle' cargo.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
                                 <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'zona_editar' zona.id%}')"> <i data-toggle="popover" title="Editar"
+                                    onclick="abrirModalEditar('{% url 'cargo_editar' cargo.id%}')"> <i data-toggle="popover" title="Editar"
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'zona_eliminar' zona.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'cargo_eliminar' cargo.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
                             </th>
                         </tr>
