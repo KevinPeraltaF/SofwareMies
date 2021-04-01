@@ -25,7 +25,7 @@ class Universidad(models.Model):
 class Carrera(models.Model):
     """Model definition for Carrera."""
 
-    universidad = models.ForeignKey(Universidad, on_delete=models.CASCADE)
+    universidad = models.ForeignKey(Universidad, on_delete=models.PROTECT)
     descripcion = models.CharField('Carrera', max_length=50,unique = True)
 
     class Meta:
@@ -51,8 +51,8 @@ class Pasante(models.Model):
     apellidos = models.CharField('Apellidos', max_length=50)
     cedula = models.CharField('Cédula', max_length=10)
     telefono = models.CharField('Télefono Movil', max_length=10)
-    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE)
-    tutor_profesional = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    carrera = models.ForeignKey(Carrera, on_delete=models.PROTECT)
+    tutor_profesional = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     fecha_inicio = models.DateField('Fecha Inicio', auto_now=False, auto_now_add=False)
     fecha_fin = models.DateField('Fecha Fin', auto_now=False, auto_now_add=False, null= True, blank=True)
     horas_diarias = models.IntegerField('Horas Diarias', default =0)

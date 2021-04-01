@@ -23,7 +23,7 @@ class Zona(models.Model):
 
 class Provincia(models.Model):
     """Model definition for Provincia."""
-    zona = models.ForeignKey(Zona, on_delete=models.CASCADE)
+    zona = models.ForeignKey(Zona, on_delete=models.PROTECT)
     descripcion = models.CharField('Provincia', max_length=50, unique=True)
 
     class Meta:
@@ -43,7 +43,7 @@ class Provincia(models.Model):
 
 class Distrito(models.Model):
     """Model definition for Distrito."""
-    provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE)
+    provincia = models.ForeignKey(Provincia, on_delete=models.PROTECT)
     descripcion = models.CharField('Distrito', max_length=50, unique=True)
 
     class Meta:

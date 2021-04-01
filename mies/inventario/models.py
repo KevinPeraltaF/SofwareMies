@@ -95,13 +95,13 @@ class InventarioTics(models.Model):
     """Model definition for InventarioTics."""
 
     fechaIngreso = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
-    responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-    ubicacion = models.ForeignKey(Distrito, on_delete=models.CASCADE)
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
+    ubicacion = models.ForeignKey(Distrito, on_delete=models.PROTECT)
+    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
-    marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
-    modelo = models.ForeignKey(Modelo, on_delete=models.CASCADE)
-    condicion = models.ForeignKey(Condicion, on_delete=models.CASCADE)
+    marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
+    modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT)
+    condicion = models.ForeignKey(Condicion, on_delete=models.PROTECT)
     serie = models.CharField('Serie', max_length=50, unique=True, null=True,blank=True)
     codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
     cantidad = models.IntegerField('Cantidad', default=0)
@@ -226,20 +226,20 @@ class InvetarioDistritoCabecera(models.Model):
     """Model definition for InvetarioDistritoCabecera."""
 
     fechaIngreso = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
-    responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-    ubicacion = models.ForeignKey(Area, on_delete=models.CASCADE)
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
+    ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
+    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
-    marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
-    modelo = models.ForeignKey(Modelo, on_delete=models.CASCADE)
-    condicion = models.ForeignKey(Condicion, on_delete=models.CASCADE)
+    marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
+    modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT)
+    condicion = models.ForeignKey(Condicion, on_delete=models.PROTECT)
     serie = models.CharField('Serie', max_length=50, default='N/A', unique=True, null=True,blank=True)
     codigoMies = models.CharField('Código Mies', max_length=50, default='N/A',unique=True, null=True,blank=True)
     direccionIp = models.CharField('Dirección Ip', max_length=50, default='N/A',unique=True, null=True,blank=True)
     direccionMac = models.CharField('Dirección Mac Address', default='N/A', max_length=50,unique=True, null=True,blank=True)
-    capacidadDisco = models.ForeignKey(CapacidadDisco, on_delete=models.CASCADE, null=True,blank=True)
-    capacidadMemoria = models.ForeignKey(CapacidadMemoriaRam, on_delete=models.CASCADE, null=True,blank=True)
-    capacidadProcesador = models.ForeignKey(Procesador, on_delete=models.CASCADE, null=True,blank=True)
+    capacidadDisco = models.ForeignKey(CapacidadDisco, on_delete=models.PROTECT, null=True,blank=True)
+    capacidadMemoria = models.ForeignKey(CapacidadMemoriaRam, on_delete=models.PROTECT, null=True,blank=True)
+    capacidadProcesador = models.ForeignKey(Procesador, on_delete=models.PROTECT, null=True,blank=True)
     foto = models.ImageField('Foto', upload_to='InventarioDistrito/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
 
     class Meta:
@@ -264,8 +264,8 @@ class InvetarioDistritoCabecera(models.Model):
 class InventarioDistritoDetalle(models.Model):
     """Model definition for InventarioDistritoDetalle."""
 
-    cabeceraDistrito = models.ForeignKey(InvetarioDistritoCabecera, on_delete=models.CASCADE)
-    periferico = models.ForeignKey(InventarioTics, on_delete=models.CASCADE, null=True,blank=True)
+    cabeceraDistrito = models.ForeignKey(InvetarioDistritoCabecera, on_delete=models.PROTECT)
+    periferico = models.ForeignKey(InventarioTics, on_delete=models.PROTECT, null=True,blank=True)
     cantidad = models.IntegerField('Cantidad', default=1)
     class Meta:
         """Meta definition for InventarioDistritoDetalle."""

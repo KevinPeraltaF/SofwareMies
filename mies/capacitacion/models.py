@@ -29,10 +29,10 @@ class CapacitacionCabecera(models.Model):
     hora_fin = models.TimeField('Hora Fin', auto_now=False, auto_now_add=False)
     lugar = models.CharField('Lugar', max_length=50)
     tema = models.CharField('Tema', max_length=50)
-    tipoCapacitacion = models.ForeignKey(TipoCapacitacion, on_delete=models.CASCADE)
+    tipoCapacitacion = models.ForeignKey(TipoCapacitacion, on_delete=models.PROTECT)
     areaSolicitante = models.CharField('Area Solicitante', max_length=50)
     dirigido = models.CharField('Dirigido a', max_length=50)
-    instructor = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    instructor = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     objetivo = models.TextField('Objetivo')
     class Meta:
         """Meta definition for CapacitacionCabecera."""
@@ -58,8 +58,8 @@ class CapacitacionCabecera(models.Model):
 
 class CapacitacionDetalle(models.Model):
     """Model definition for CapacitacionDetalle."""
-    capacitacionCabecera = models.ForeignKey(CapacitacionCabecera, on_delete=models.CASCADE)
-    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    capacitacionCabecera = models.ForeignKey(CapacitacionCabecera, on_delete=models.PROTECT)
+    empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     observacion = models.CharField('observación', max_length=100, null= True, blank=True)
 
     class Meta:

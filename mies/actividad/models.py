@@ -48,10 +48,10 @@ class ActividadCabecera(models.Model):
     """Model definition for ActividadCabecera."""
 
     fecha = models.DateField('Fecha', auto_now=False, auto_now_add=False)
-    responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE,related_name='responsable_de_activiadad')
-    usuario = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-    ubicacion = models.ForeignKey(Area, on_delete=models.CASCADE)
-    prioridad = models.ForeignKey(Prioridad, on_delete=models.CASCADE)
+    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_activiadad')
+    usuario = models.ForeignKey(Empleado, on_delete=models.PROTECT)
+    ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
+    prioridad = models.ForeignKey(Prioridad, on_delete=models.PROTECT)
     observacion = models.TextField('Observación')
     class Meta:
         """Meta definition for ActividadCabecera."""
@@ -67,8 +67,8 @@ class ActividadCabecera(models.Model):
 
 class ActividadDetalle(models.Model):
     """Model definition for ActividadDetalle."""
-    cabeceraActividad = models.ForeignKey(ActividadCabecera, on_delete=models.CASCADE)
-    asunto =models.ForeignKey(Asunto, on_delete=models.CASCADE)
+    cabeceraActividad = models.ForeignKey(ActividadCabecera, on_delete=models.PROTECT)
+    asunto =models.ForeignKey(Asunto, on_delete=models.PROTECT)
 
     class Meta:
         """Meta definition for ActividadDetalle."""
