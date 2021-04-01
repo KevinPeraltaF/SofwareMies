@@ -84,7 +84,7 @@ class InvTicsForm(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
-            'cantiad':forms.TextInput(
+            'cantidad':forms.TextInput(
                 attrs={
                     'type':'number',
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
