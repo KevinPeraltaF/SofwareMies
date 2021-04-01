@@ -1,0 +1,118 @@
+<div class="modal-dialog modal-lg ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Detalle Registro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th colspan="8">Información Atención</th>
+                    </tr>
+                    <tr>
+                        
+                        <th>Fecha Atención:</th>
+                        <td   colspan="3">{{object.fechaIncidente}} </td>
+                        <th>Hora ingreso:</th>
+                        <td>{{object.hora_ingreso}} </td>
+                        <th>Hora salida:</th>
+                        <td>{{object.hora_salida}} </td>
+                    </tr>
+                    <tr>
+                        <th>Responsable:</th>
+                        <td colspan="3">{{object.responsable }}</td>
+                        <th>Hardware:</th>
+                        <td>
+                            {% if object.hardware%}
+                            <span class="badge badge-success">SI</span>
+                            {% else %}
+                            <span class="badge badge-danger">NO</span>
+                            {% endif %}
+
+
+                        </td>
+                        <th>Software:</th>
+                        <td >
+                            {% if object.software%}
+                            <span class="badge badge-success">SI</span>
+                            {% else %}
+                            <span class="badge badge-danger">NO</span>
+                            {% endif %}
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <th>Instalación:</th>
+                        <td>
+                            {% if object.instalacion%}
+                            <span class="badge badge-success">SI</span>
+                            {% else %}
+                            <span class="badge badge-danger">NO</span>
+                            {% endif %}
+                             </td>
+                        <th>Configuración:</th>
+                        <td>
+                            {% if object.configuracion%}
+                            <span class="badge badge-success">SI</span>
+                            {% else %}
+                            <span class="badge badge-danger">NO</span>
+                            {% endif %}
+                            </td>
+                        <th>Prueba:</th>
+                        <td>
+                            {% if object.prueba%}
+                            <span class="badge badge-success">SI</span>
+                            {% else %}
+                            <span class="badge badge-danger">NO</span>
+                            {% endif %}
+                         
+                        <th>Capacitación:</th>
+                        <td>
+                            {% if object.capacitacion%}
+                            <span class="badge badge-success">SI</span>
+                            {% else %}
+                            <span class="badge badge-danger">NO</span>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                   
+                    <tr>
+                        <th>Equipo:</th>
+                        <td colspan="3">{{object.equipo}}</td>
+                        <th>Custodio-corregir:</th>
+                        <td colspan="3">{{object.responsable}}</td>
+                    </tr>
+                    <tr>
+                        <th>Detalle:</th>
+                        <td colspan="7">{{object.detalle}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Observación:</th>
+                        <td colspan="7">{{object.observacion}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="8">Información Entrega-Recepción</th>
+                    </tr>
+                    <tr>
+                        <th>Item:</th>
+                        <td colspan="8">{{object.pieza}}</td>
+                   
+                    </tr>
+                </tbody>
+            </table>
+           
+
+        </div>
+       
+        </form>
+    </div>
+
+</div>

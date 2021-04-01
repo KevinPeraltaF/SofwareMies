@@ -30,7 +30,7 @@ class TipoDocumento(models.Model):
 class Atencion(models.Model):
     """Model definition for Atencion."""
 
-    fechaIncidente = models.DateField('Fecha Incidente', auto_now=True, auto_now_add=False)
+    fechaIncidente = models.DateField('Fecha Incidente', auto_now=False, auto_now_add=False)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     equipo = models.ForeignKey(InvetarioDistritoCabecera, on_delete=models.PROTECT)
     detalle = models.TextField('Detalle', null=True , blank= True)

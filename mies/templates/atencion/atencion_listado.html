@@ -1,0 +1,105 @@
+{% extends 'base_generic.html' %}
+{% block title %}ATENCIÓ<Nav></Nav> {% endblock title %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Atenciones</li>
+    </ol>
+</nav>
+<div class="container-fluid">
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row ">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Acta de Entrega-Recepción y Devolución</h6>
+                </div>
+                <div class="col ">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nueva Entrega-Recepción</a>
+                            <a class="dropdown-item" href="#">Nueva Devolución</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th><b>FECHA ATENCIÓN</b></th>
+                            <th><b>RESPONSABLE</b></th>
+                            <th><b>EQUIPO</b></th>
+                            <th><b>CUSTODIO</b></th>
+                            <th><b>TIPO DOCUMENTO</b></th>
+                            <th><b>DOCUMENTOS</b></th>
+                            <th><b>ACCIONES</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for atencion in object_list %}
+                        <tr>
+
+                            <th>{{ atencion.fechaIncidente }}</th>
+                            <th>{{ atencion.responsable }}</th>
+                            <th>{{ atencion.equipo }}</th>
+                            <th>custodio</th>
+                            <th>{{ atencion.tipoDocumento }}</th>
+                            <th>url_documentos</th>
+                            <th>
+                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'atencion_detalle' atencion.id%}')"> <i class="fa fa-eye"></i>
+                                </a>
+                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'atencion_editar' atencion.id%}')"> <i
+                                        class="fa fa-edit"></i>
+                                </button>
+                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'atencion_eliminar' atencion.id%}')"><i class="fa fa-trash"></i>
+                                </a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editar" role="dialog">
+
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" role="dialog">
+
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
+ 
+</div>
+
+
+{% endblock content_main%}
+
+
+{% block content_extra_js %}
+<script src="static/js/funciones_mies.js"></script>
+{% endblock content_extra_js %}
