@@ -9,66 +9,32 @@
           
   
         </div>
+        {% if form.errors %}
+  
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                        {{error}}
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+  
+        </div>
+        {% endif %}
         
-        <form action="{% url 'empleado_editar' object.id %}" method="post">
+        
+        
+        <form action="{% url 'cargo_editar' object.id %}" method="post">
             {% csrf_token %}
             
             <div class="modal-body">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {{form.nombres.label}}
-                        {{form.nombres}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {{form.apellidos.label}}
-                        {{form.apellidos}}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {{form.cedula.label}}
-                        {{form.cedula}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {{form.telefono.label}}
-                        {{form.telefono}}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {{form.correo.label}}
-                        {{form.correo}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {{form.genero.label}}
-                        {{form.genero}}
-                    </div>
-                </div>
                 <div class="form-group">
-                    {{form.foto.label}}
-                    {{form.foto}}
-                </div>
-                <div class="form-group">
-                    {{form.fecha.label}}
-                    {{form.fecha}}
-                </div>
-                <div class="form-select">
-                    {{form.area.label}}
-                    {{form.area}}
-                </div>
-                <div class="form-select">
-                    {{form.cargo.label}}
-                    {{form.cargo}}
-                </div>
-                <div class="form-select">
-                    {{form.unidadAtencion.label}}
-                    {{form.unidadAtencion}}
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        {{form.estado.label}}
-                       <input type="checkbox" name="estado" id="id_estado"  {% if object.estado %} checked {% endif %} > 
-                    </div>
+                    {{form.descripcion.label}}
+                    {{form.descripcion}}
                 </div>
             </div>
             <div class="modal-footer">
@@ -77,4 +43,4 @@
             </div>
         </form>
     </div>
-</div>
+  </div>

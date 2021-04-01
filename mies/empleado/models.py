@@ -3,7 +3,7 @@ from ubicacion.models import Distrito
 # Modelos del modulo empleado.
 class Area(models.Model):
     """Model definition for area."""
-    distrito = models.ForeignKey(Distrito, on_delete=models.CASCADE)
+    distrito = models.ForeignKey(Distrito, on_delete=models.PROTECT)
     descripcion = models.CharField('Area', max_length=50, unique=True)
 
     class Meta:
@@ -69,9 +69,9 @@ class Empleado(models.Model):
     """Model definition for Empleado."""
 
     fecha = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
-    area = models.ForeignKey(Area, on_delete=models.CASCADE)
-    cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
-    unidadAtencion = models.ForeignKey(UnidadAtencion,verbose_name='Unidad de Atención',on_delete=models.CASCADE, null=True , blank= True)
+    area = models.ForeignKey(Area, on_delete=models.PROTECT)
+    cargo = models.ForeignKey(Cargo, on_delete=models.PROTECT)
+    unidadAtencion = models.ForeignKey(UnidadAtencion,verbose_name='Unidad de Atención',on_delete=models.PROTECT, null=True , blank= True)
     nombres = models.CharField('Nombres', max_length=50)
     apellidos = models.CharField('Apellidos', max_length=50)
     lista_genero = [
