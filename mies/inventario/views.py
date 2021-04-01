@@ -158,7 +158,6 @@ class InvTicsListView(ListView):
     def dispatch(self, *args, **kwargs):
         return super(InvTicsListView, self).dispatch(*args, **kwargs)
     
-
 class InvTicsCreateView(CreateView):
     model = InventarioTics
     form_class = InvTicsForm
@@ -167,6 +166,7 @@ class InvTicsCreateView(CreateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(InvTicsCreateView, self).dispatch(*args, **kwargs)
+
 class InvTicsDeleteView(DeleteView):
     model = InventarioTics
     print(model.foto)
@@ -184,6 +184,7 @@ class InvTicsUpdateView(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(InvTicsUpdateView, self).dispatch(*args, **kwargs)
+        
 class InvTicsDetailView(DetailView):
     model = InventarioTics
     print(model.foto)

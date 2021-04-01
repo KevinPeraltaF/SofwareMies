@@ -29,6 +29,7 @@ class EmpleadoCreateView(CreateView):
 
 class EmpleadoDeleteView(DeleteView):
     model = Empleado
+    print(model.foto)
     template_name = "empleado/empleado_eliminar.html"
     success_url = reverse_lazy('empleado_listar')
     @method_decorator(login_required)
@@ -48,6 +49,7 @@ class EmpleadoUpdateView(UpdateView):
     
 class EmpleadoDetailView(DetailView):
     model = Empleado
+    print(model.foto)
     template_name = "empleado/empleado_detalle.html"
 
 # VISTA AREA.
@@ -130,3 +132,43 @@ class CargoUpdateView(UpdateView):
 class CargoDetailView(DetailView):
     model = Cargo
     template_name = "empleado/cargo_detalle.html"
+
+
+# VISTA UNIDAD DE ATENCION.
+class UnidadListView(ListView):
+    model = UnidadAtencion
+    template_name = "empleado/unidad_listado.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UnidadListView, self).dispatch(*args, **kwargs)
+    
+class UnidadCreateView(CreateView):
+    model = UnidadAtencion
+    form_class = UnidadAtencionForm
+    template_name = "empleado/unidad_crear.html"
+    success_url = reverse_lazy('unidad_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UnidadCreateView, self).dispatch(*args, **kwargs)
+
+class UnidadDeleteView(DeleteView):
+    model = UnidadAtencion
+    template_name = "empleado/unidad_eliminar.html"
+    success_url = reverse_lazy('unidad_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UnidadDeleteView, self).dispatch(*args, **kwargs)
+
+class UnidadUpdateView(UpdateView):
+    model = UnidadAtencion
+    form_class = UnidadAtencionForm
+    template_name = "empleado/unidad_editar.html"
+    success_url = reverse_lazy('unidad_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UnidadUpdateView, self).dispatch(*args, **kwargs)
+    
+class UnidadDetailView(DetailView):
+    model = UnidadAtencion
+    template_name = "empleado/unidad_detalle.html"

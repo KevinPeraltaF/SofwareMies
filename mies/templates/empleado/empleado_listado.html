@@ -50,7 +50,6 @@
                             <th><b>CORREO</b></th>
                             <th><b>CÉDULA</b></th>
                             <th><b>TELÉFONO MÓVIL</b></th>
-                            <th><b>FOTO</b></th>
                             <th><b>ESTADO</b></th>
                             <th><b>ACCIONES</b></th>                           
                         </tr>
@@ -83,13 +82,6 @@
                             <th>{{ empl.correo }}</th>
                             <th>{{ empl.cedula }}</th>
                             <th>{{ empl.telefono }}</th>
-                            <th>
-                                {% if empl.foto %}
-                                <img src="{{empl.foto.url}}" alt="",width="50" height="60">
-                                {% else %}
-                                N/A
-                                {% endif %}                               
-                            </th>
                             <th>
                                 {% if empl.estado%}
                                 <span class="badge badge-success">Conectado</span>
