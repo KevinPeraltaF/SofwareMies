@@ -70,7 +70,7 @@
             </li>
 
               
-             <!-- Nav Item - Ubicación Collapse Menu -->
+             <!-- Nav Item - Empleado Collapse Menu -->
              <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmppleado"
                     aria-expanded="true" aria-controls="collapseEmppleado">
@@ -127,7 +127,23 @@
                         </div>
                     </li>
 
-
+                    <!-- Nav Item - Practicas Profesionalizantes  Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePracticas"
+                            aria-expanded="true" aria-controls="collapsePracticas">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Prácticas Profesionales</span>
+                        </a>
+                        <div id="collapsePracticas" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+        
+                                <a class="collapse-item" href="{% url 'pasante_listar' %}">Pasantes</a>
+                                <a class="collapse-item" href="{% url 'carrera_listar' %}">Carreras</a>
+                                <a class="collapse-item" href="{% url 'universidad_listar' %}">Universidades</a>
+                            </div>
+                        </div>
+                    </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

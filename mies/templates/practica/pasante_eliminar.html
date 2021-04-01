@@ -6,7 +6,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{% url 'empleado_eliminar' object.id %}" method="post">
+      <form action="{% url 'pasante_eliminar' object.id %}" method="post">
         {% csrf_token %}
         <div class="modal-body">
           ¿Estás seguro que desea eliminar el registro: "{{ object.apellidos }} {{ object.nombres }}"?

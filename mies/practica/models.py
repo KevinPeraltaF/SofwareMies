@@ -1,6 +1,8 @@
 from django.db import models
 from empleado.models import Empleado
-# Create your models here.
+
+# Creacion de modelos del modulo Practicas Profesionalizantes
+#modelo UNIVERSIDAD
 class Universidad(models.Model):
     """Model definition for Universidad."""
 
@@ -21,7 +23,7 @@ class Universidad(models.Model):
         self.descripcion =(self.descripcion).upper()
         return super(Universidad, self).save(*args, **kwargs)
 
-
+#modelo CARRERA
 class Carrera(models.Model):
     """Model definition for Carrera."""
 
@@ -43,7 +45,7 @@ class Carrera(models.Model):
         self.descripcion =(self.descripcion).upper()
         return super(Carrera, self).save(*args, **kwargs)
 
-
+#modelo PASANTE
 class Pasante(models.Model):
     """Model definition for Pasante."""
 
@@ -74,5 +76,3 @@ class Pasante(models.Model):
         return super(Pasante, self).save(*args, **kwargs)
 
 
-
-# Create your models here.
