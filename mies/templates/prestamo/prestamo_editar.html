@@ -1,0 +1,64 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Registro</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          
+  
+        </div>
+        
+        <form action="{% url 'prestamo_editar' object.id %}" method="post">
+            {% csrf_token %}
+            
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.fecha_entrega.label}}
+                        {{form.fecha_entrega}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.fecha_devolucion.label}}
+                        {{form.fecha_devolucion}}
+                    </div>
+                </div>
+              
+                <div class="form-group">
+                    {{form.usuario.label}}
+                    {{form.usuario}}
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.item.label}}
+                        {{form.item}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.cantidad.label}}
+                        {{form.cantidad}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.condicion.label}}
+                        {{form.condicion}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form.observacion.label}}
+                    {{form.observacion}}
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        {{form.estado.label}}
+                       <input type="checkbox" name="estado" id="id_estado"  {% if object.estado %} checked {% endif %} > 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
