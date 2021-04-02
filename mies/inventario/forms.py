@@ -1,5 +1,5 @@
 from django import forms
-from .models import Marca, Modelo, Condicion, Categoria, InventarioTics
+from .models import Marca, Modelo, Condicion, Categoria, InventarioTics, CapacidadDisco,CapacidadMemoriaRam, Procesador
 
 class InvTicsForm(forms.ModelForm):
     
@@ -148,6 +148,52 @@ class CondicionForm(forms.ModelForm):
     class Meta:
 
         model = Condicion
+        fields = (
+            'descripcion',
+        )
+        widgets ={
+            'descripcion':forms.TextInput(
+                attrs={
+                    'class':'form-control'
+                }
+            )
+        }
+class CapacidadDiscoForm(forms.ModelForm):
+
+    class Meta:
+
+        model = CapacidadDisco
+        fields = (
+            'descripcion',
+        )
+        widgets ={
+            'descripcion':forms.TextInput(
+                attrs={
+                    'class':'form-control'
+                }
+            )
+        }
+        
+class CapacidadMemoriaRamForm(forms.ModelForm):
+
+    class Meta:
+
+        model = CapacidadMemoriaRam
+        fields = (
+            'descripcion',
+        )
+        widgets ={
+            'descripcion':forms.TextInput(
+                attrs={
+                    'class':'form-control'
+                }
+            )
+        }
+class ProcesadorForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Procesador
         fields = (
             'descripcion',
         )

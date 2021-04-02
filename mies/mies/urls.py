@@ -111,6 +111,24 @@ urlpatterns = [
     path('InvTics/Editar/<pk>',inventaio_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
     path('InvTics/Eliminar/<pk>',inventaio_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),
     path('InvTics/Detalle/<pk>',inventaio_views.InvTicsDetailView.as_view(),name ="inv_tics_detalle"),
+    #--CAPACIDAD DISCO
+    path('CapacidadDisco', inventaio_views.CapacidadDiscoListView.as_view(), name="capacidad_disco_listar"),
+    path('CapacidadDisco/Crear',inventaio_views.CapacidadDiscoCreateView.as_view(),name ="capacidad_disco_crear"),
+    path('CapacidadDisco/Editar/<pk>',inventaio_views.CapacidadDiscoUpdateView.as_view(),name ="capacidad_disco_editar"),
+    path('CapacidadDisco/Eliminar/<pk>',inventaio_views.CapacidadDiscoDeleteView.as_view(),name ="capacidad_disco_eliminar"),
+    path('CapacidadDisco/Detalle/<pk>',inventaio_views.CapacidadDiscoDetailView.as_view(),name ="capacidad_disco_detalle"),
+    #--CAPACIDAD DISCO
+    path('CapacidadMemoriaRam', inventaio_views.CapacidadMemoriaRamListView.as_view(), name="capacidad_memoria_ram_listar"),
+    path('CapacidadMemoriaRam/Crear',inventaio_views.CapacidadMemoriaRamCreateView.as_view(),name ="capacidad_memoria_ram_crear"),
+    path('CapacidadMemoriaRam/Editar/<pk>',inventaio_views.CapacidadMemoriaRamUpdateView.as_view(),name ="capacidad_memoria_ram_editar"),
+    path('CapacidadMemoriaRam/Eliminar/<pk>',inventaio_views.CapacidadMemoriaRamDeleteView.as_view(),name ="capacidad_memoria_ram_eliminar"),
+    path('CapacidadMemoriaRam/Detalle/<pk>',inventaio_views.CapacidadMemoriaRamDetailView.as_view(),name ="capacidad_memoria_ram_detalle"),
+    #--CPROCESADORProcesador
+    path('Procesador', inventaio_views.ProcesadorListView.as_view(), name="procesador_listar"),
+    path('Procesador/Crear',inventaio_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
+    path('Procesador/Editar/<pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
+    path('Procesador/Eliminar/<pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
+    path('Procesador/Detalle/<pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
      #--PRESTAMO
     path('Prestamo', prestamo_views.PrestamoListView.as_view(), name="prestamo_listar"),
     path('Prestamo/Crear',prestamo_views.PrestamoCreateView.as_view(),name ="prestamo_crear"),

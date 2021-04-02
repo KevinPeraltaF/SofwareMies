@@ -3,8 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
-from .models import InventarioTics, Marca, Modelo, Condicion, Categoria
-from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm
+from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador
+from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 # Create your views here.
@@ -169,7 +169,6 @@ class InvTicsCreateView(CreateView):
 
 class InvTicsDeleteView(DeleteView):
     model = InventarioTics
-    print(model.foto)
     template_name = "inventario/inv_tics_eliminar.html"
     success_url = reverse_lazy('inv_tics_listar')
     @method_decorator(login_required)
@@ -187,5 +186,118 @@ class InvTicsUpdateView(UpdateView):
         
 class InvTicsDetailView(DetailView):
     model = InventarioTics
-    print(model.foto)
     template_name = "inventario/inv_tics_detalle.html"
+#------------------CAPACIDAD DISCO--------------------------------------
+class CapacidadDiscoListView(ListView):
+    model = CapacidadDisco
+    template_name = "inventario/capacidad_disco_listado.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadDiscoListView, self).dispatch(*args, **kwargs)
+    
+class CapacidadDiscoCreateView(CreateView):
+    model = CapacidadDisco
+    form_class = CapacidadDiscoForm
+    template_name= "inventario/capacidad_disco_crear.html"
+    success_url = reverse_lazy('capacidad_disco_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadDiscoCreateView, self).dispatch(*args, **kwargs)
+
+class CapacidadDiscoDeleteView(DeleteView):
+    model = CapacidadDisco
+    template_name = "inventario/capacidad_discos_eliminar.html"
+    success_url = reverse_lazy('capacidad_disco_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadDiscoDeleteView, self).dispatch(*args, **kwargs)
+    
+class CapacidadDiscoUpdateView(UpdateView):
+    model = CapacidadDisco
+    form_class = CapacidadDiscoForm
+    template_name = "inventario/capacidad_disco_editar.html"
+    success_url = reverse_lazy('capacidad_disco_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadDiscoUpdateView, self).dispatch(*args, **kwargs)
+        
+class CapacidadDiscoDetailView(DetailView):
+    model = CapacidadDisco
+    template_name = "inventario/capacidad_disco_detalle.html"
+#------------------CAPACIDAD MEMORIA RAM--------------------------------------
+class CapacidadMemoriaRamListView(ListView):
+    model = CapacidadMemoriaRam
+    template_name = "inventario/capacidad_memoria_ram_listado.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadMemoriaRamListView, self).dispatch(*args, **kwargs)
+    
+class CapacidadMemoriaRamCreateView(CreateView):
+    model = CapacidadMemoriaRam
+    form_class = CapacidadMemoriaRamForm
+    template_name= "inventario/capacidad_memoria_ram_crear.html"
+    success_url = reverse_lazy('capacidad_memoria_ram_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadMemoriaRamCreateView, self).dispatch(*args, **kwargs)
+
+class CapacidadMemoriaRamDeleteView(DeleteView):
+    model = CapacidadMemoriaRam
+    template_name = "inventario/capacidad_memoria_ram_eliminar.html"
+    success_url = reverse_lazy('capacidad_memoria_ram_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadMemoriaRamDeleteView, self).dispatch(*args, **kwargs)
+    
+class CapacidadMemoriaRamUpdateView(UpdateView):
+    model = CapacidadMemoriaRam
+    form_class = CapacidadMemoriaRamForm
+    template_name = "inventario/capacidad_memoria_ram_editar.html"
+    success_url = reverse_lazy('capacidad_memoria_ram_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CapacidadMemoriaRamUpdateView, self).dispatch(*args, **kwargs)
+        
+class CapacidadMemoriaRamDetailView(DetailView):
+    model = CapacidadMemoriaRam
+    template_name = "inventario/capacidad_memoria_ram_detalle.html"
+#------------------PROCESADOR--------------------------------------
+class ProcesadorListView(ListView):
+    model = Procesador
+    template_name = "inventario/procesador_listado.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProcesadorListView, self).dispatch(*args, **kwargs)
+    
+class ProcesadorCreateView(CreateView):
+    model = Procesador
+    form_class = ProcesadorForm
+    template_name= "inventario/procesador_crear.html"
+    success_url = reverse_lazy('procesador_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProcesadorCreateView, self).dispatch(*args, **kwargs)
+
+class ProcesadorDeleteView(DeleteView):
+    model = Procesador
+    template_name = "inventario/procesador_eliminar.html"
+    success_url = reverse_lazy('procesador_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProcesadorDeleteView, self).dispatch(*args, **kwargs)
+    
+class ProcesadorUpdateView(UpdateView):
+    model = Procesador
+    form_class = ProcesadorForm
+    template_name = "inventario/procesador_editar.html"
+    success_url = reverse_lazy('procesador_listar')
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProcesadorUpdateView, self).dispatch(*args, **kwargs)
+        
+class ProcesadorDetailView(DetailView):
+    model = Procesador
+    template_name = "inventario/procesador_detalle.html"

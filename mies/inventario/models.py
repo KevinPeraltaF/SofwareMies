@@ -96,7 +96,7 @@ class InventarioTics(models.Model):
 
     fechaIngreso = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    ubicacion = models.ForeignKey(Distrito, on_delete=models.PROTECT)
+    ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
