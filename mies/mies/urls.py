@@ -21,6 +21,7 @@ from empleado import views as empleado_views
 from ubicacion import views as ubicacion_views
 from inventario import views as inventaio_views
 from prestamo import views as prestamo_views
+from practica import views as practica_views
 from atencion import views as atencion_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -30,7 +31,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #MENU PARA LOS USUARIOS
     path('', usuario_views.dashboardUsuario_view, name="dashboard") ,
-    #MODULO DE ACCESO A REDES
+    #MODULO OTROS
+    # ACCESO A REDES
     path('AccesoRed', red_views.AccesoRedListView.as_view(), name="accesoRed_listar") ,
     path('AccesoRed/Crear', red_views.AccesoRedCreateView.as_view(), name="accesoRed_crear") ,
     path('AccesoRed/Editar/<pk>', red_views.AccesoRedUpdateView.as_view(), name="accesoRed_editar") ,
@@ -135,6 +137,25 @@ urlpatterns = [
     path('Prestamo/Editar/<pk>',prestamo_views.PrestamoUpdateView.as_view(),name ="prestamo_editar"),
     path('Prestamo/Eliminar/<pk>',prestamo_views.PrestamoDeleteView.as_view(),name ="prestamo_eliminar"),
     path('Prestamo/Detalle/<pk>',prestamo_views.PrestamoDetailView.as_view(),name ="prestamo_detalle"),
+    #MODULO PRACTICAS PROFESIONALIZANTES
+    #--Pasante
+    path('Pasante', practica_views.PasanteListView.as_view(), name="pasante_listar") ,
+    path('Pasante/Crear', practica_views.PasanteCreateView.as_view(), name="pasante_crear") ,
+    path('Pasante/Editar/<pk>', practica_views.PasanteUpdateView.as_view(), name="pasante_editar") ,
+    path('Pasante/Eliminar/<pk>', practica_views.PasanteDeleteView.as_view(), name="pasante_eliminar") ,
+    path('Pasante/Detalle/<pk>', practica_views.PasanteDetailView.as_view(), name="pasante_detalle") ,
+    #--Carrera
+    path('Carrera', practica_views.CarreraListView.as_view(), name="carrera_listar") ,
+    path('Carrera/Crear', practica_views.CarreraCreateView.as_view(), name="carrera_crear") ,
+    path('Carrera/Editar/<pk>', practica_views.CarreraUpdateView.as_view(), name="carrera_editar") ,
+    path('Carrera/Eliminar/<pk>', practica_views.CarreraDeleteView.as_view(), name="carrera_eliminar") ,
+    path('Carrera/Detalle/<pk>', practica_views.CarreraDetailView.as_view(), name="carrera_detalle") ,
+    #--Universidad
+    path('Universidad', practica_views.UniversidadListView.as_view(), name="universidad_listar") ,
+    path('Universidad/Crear', practica_views.UniversidadCreateView.as_view(), name="universidad_crear") ,
+    path('Universidad/Editar/<pk>', practica_views.UniversidadUpdateView.as_view(), name="universidad_editar") ,
+    path('Universidad/Eliminar/<pk>', practica_views.UniversidadDeleteView.as_view(), name="universidad_eliminar") ,
+    path('Universidad/Detalle/<pk>', practica_views.UniversidadDetailView.as_view(), name="universidad_detalle") ,
 
     #--ATENCION
     path('Atencion', atencion_views.AtencionListView.as_view(), name="atencion_listar"),
