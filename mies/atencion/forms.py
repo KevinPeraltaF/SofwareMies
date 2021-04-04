@@ -1,6 +1,6 @@
 from django import forms
 from .models import TipoDocumento, Atencion,AtencionDetalle
-
+from django.forms.models import inlineformset_factory
 class TipoDocumentoForm(forms.ModelForm):
     
     class Meta:
@@ -131,10 +131,16 @@ class AtencionDetalleForm(forms.ModelForm):
     
     class Meta:
         model = AtencionDetalle
-        fields = ('pieza',
+        fields = ('cabecera',
+                   'pieza',
                   'cantidad',)
 
         widgets = {
+            'cabecera': forms.Select(
+                attrs ={
+                    'class': 'form-control'
+                }
+            ),
             'pieza': forms.Select(
                 attrs ={
                     'class': 'form-control'
@@ -148,5 +154,4 @@ class AtencionDetalleForm(forms.ModelForm):
             ),
         }
 
-
-
+DetalleForm = inlineformset_factory(Atencion,AtencionDetalle,form=AtencionDetalleForm, extra=1,can_delete= True)

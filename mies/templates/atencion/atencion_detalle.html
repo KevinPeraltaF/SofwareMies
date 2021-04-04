@@ -16,18 +16,18 @@
                     <tr>
                         
                         <th>Fecha Atención:</th>
-                        <td   colspan="3">{{object.fechaIncidente}} </td>
+                        <td   colspan="3">{{object.cabecera.fechaIncidente}} </td>
                         <th>Hora ingreso:</th>
-                        <td>{{object.hora_ingreso}} </td>
+                        <td>{{object.cabecera.hora_ingreso}} </td>
                         <th>Hora salida:</th>
-                        <td>{{object.hora_salida}} </td>
+                        <td>{{object.cabecera.hora_salida}} </td>
                     </tr>
                     <tr>
                         <th>Responsable:</th>
-                        <td colspan="3">{{object.responsable }}</td>
+                        <td colspan="3">{{object.cabecera.responsable }}</td>
                         <th>Hardware:</th>
                         <td>
-                            {% if object.hardware%}
+                            {% if object.cabecera.hardware%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -37,7 +37,7 @@
                         </td>
                         <th>Software:</th>
                         <td >
-                            {% if object.software%}
+                            {% if object.cabecera.software%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -50,7 +50,7 @@
                         
                         <th>Instalación:</th>
                         <td>
-                            {% if object.instalacion%}
+                            {% if object.cabecera.instalacion%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -58,7 +58,7 @@
                              </td>
                         <th>Configuración:</th>
                         <td>
-                            {% if object.configuracion%}
+                            {% if object.cabecera.configuracion%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -66,7 +66,7 @@
                             </td>
                         <th>Prueba:</th>
                         <td>
-                            {% if object.prueba%}
+                            {% if object.cabecera.prueba%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -74,7 +74,7 @@
                          
                         <th>Capacitación:</th>
                         <td>
-                            {% if object.capacitacion%}
+                            {% if object.cabecera.capacitacion%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -85,25 +85,27 @@
                    
                     <tr>
                         <th>Equipo:</th>
-                        <td colspan="3">{{object.equipo}}</td>
+                        <td colspan="3">{{object.cabecera.equipo}}</td>
                         <th>Custodio-corregir:</th>
-                        <td colspan="3">{{object.responsable}}</td>
+                        <td colspan="3">{{object.cabecera.responsable}}</td>
                     </tr>
                     <tr>
                         <th>Detalle:</th>
-                        <td colspan="7">{{object.detalle}}</td>
+                        <td colspan="7">{{object.cabecera.detalle}}</td>
                     </tr>
 
                     <tr>
                         <th>Observación:</th>
-                        <td colspan="7">{{object.observacion}}</td>
+                        <td colspan="7">{{object.cabecera.observacion}}</td>
                     </tr>
                     <tr>
                         <th colspan="8">Información Entrega-Recepción</th>
                     </tr>
                     <tr>
                         <th>Item:</th>
-                        <td colspan="8">{{object.pieza}}</td>
+                        <td colspan="5">{{object.pieza}}</td>
+                        <th>Cantidad:</th>
+                        <td colspan="2">{{object.cantidad}}</td>
                    
                     </tr>
                 </tbody>
