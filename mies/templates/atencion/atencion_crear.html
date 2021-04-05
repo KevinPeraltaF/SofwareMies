@@ -35,19 +35,124 @@
         </div>
         {% endif %}
 
+        <span class="border border-light">
 
-        <form method="post">
-            {% csrf_token %}
-            {{form.as_p}}  
-            {{detalle_form.as_p}}
+            <form method="post" >
+                {% csrf_token %}
+                <h4>Información de la Atención.</h4>
+                   
+               
+                <div class="form-group">
+                    {{form.responsable.label}}
+                    {{form.responsable}}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.fechaIncidente.label}}
+                            {{form.fechaIncidente}}
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.tipoDocumento.label}}
+                            {{form.tipoDocumento}}
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{form.equipo.label}}
+                    {{form.equipo}}
+                </div>
+                  
+                  <div class="form-group">
+                    <label for="custodio">Custodio del Equipo</label>
+                    <input class="form-control"  type="text" name="cusodio" id="custodio" value="Maria Banchon" readonly >
+                </div>
+                <div class="form-group">
+                    {{form.detalle.label}}
+                    {{form.detalle}}
+                </div>
+               
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.hora_ingreso.label}}
+                            {{form.hora_ingreso}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.hora_salida.label}}
+                            {{form.hora_salida}}
+                        </div>
+                    </div>
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.instalacion.label}}
+                            {{form.instalacion}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.configuracion.label}}
+                            {{form.configuracion}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.capacitacion.label}}
+                            {{form.capacitacion}}
+                        </div>
+                    </div>
+                  </div>
+              
+                
+                
+               
+                  <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.hardware.label}}
+                            {{form.hardware}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.software.label}}
+                            {{form.software}}
+                        </div>
+                    </div>
+                    <div class="col">
+                       
+                    </div>
+                    
+                  </div>
+                  
+                
+                
+    
+                <h4>Piezas asignadas como repuesto.</h4>
+                <div class="form-group">
+          
+                    {{detalle_form}}
+                </div>
+    
             
-
-
-            <fieldset class="modal-footer">
-                <a type="button" class="btn btn-secondary" href="{% url 'accesoRed_listar' %}">Cancelar</a>
-                <button type="submit" class="btn  btn-primary">Guardar Registro</button>
-            </fieldset>
-        </form>
+            
+    
+    
+                <fieldset class="modal-footer">
+                    <a type="button" class="btn btn-secondary" href="{% url 'accesoRed_listar' %}">Cancelar</a>
+                    <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+                </fieldset>
+            </form>
+        </span>
+        
     </div>
     <div class="col-md-3"></div>
 </div>

@@ -11,7 +11,7 @@ from django.http import  HttpResponseRedirect
 
 # Create your views here.
 class AtencionListView(ListView):
-    model = AtencionDetalle 
+    model = Atencion
     template_name = "atencion/atencion_listado.html"
 
     @method_decorator(login_required)
@@ -81,6 +81,12 @@ class AtencionUpdateView(UpdateView):
 
     
 class AtencionDetailView(DetailView):
-    model = AtencionDetalle
+    model = Atencion
     template_name = "atencion/atencion_detalle.html"
-    
+    # additional parameters
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+     
+        context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
+        return context

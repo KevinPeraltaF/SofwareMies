@@ -14,20 +14,20 @@
                         <th colspan="8">Información Atención</th>
                     </tr>
                     <tr>
-                        
+
                         <th>Fecha Atención:</th>
-                        <td   colspan="3">{{object.cabecera.fechaIncidente}} </td>
+                        <td colspan="3">{{object.fechaIncidente}} </td>
                         <th>Hora ingreso:</th>
-                        <td>{{object.cabecera.hora_ingreso}} </td>
+                        <td>{{object.hora_ingreso}} </td>
                         <th>Hora salida:</th>
-                        <td>{{object.cabecera.hora_salida}} </td>
+                        <td>{{object.hora_salida}} </td>
                     </tr>
                     <tr>
                         <th>Responsable:</th>
-                        <td colspan="3">{{object.cabecera.responsable }}</td>
+                        <td colspan="3">{{object.responsable }}</td>
                         <th>Hardware:</th>
                         <td>
-                            {% if object.cabecera.hardware%}
+                            {% if object.hardware%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -36,8 +36,8 @@
 
                         </td>
                         <th>Software:</th>
-                        <td >
-                            {% if object.cabecera.software%}
+                        <td>
+                            {% if object.software%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -47,34 +47,34 @@
                         </td>
                     </tr>
                     <tr>
-                        
+
                         <th>Instalación:</th>
                         <td>
-                            {% if object.cabecera.instalacion%}
+                            {% if object.instalacion%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
                             {% endif %}
-                             </td>
+                        </td>
                         <th>Configuración:</th>
                         <td>
-                            {% if object.cabecera.configuracion%}
+                            {% if object.configuracion%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
                             {% endif %}
-                            </td>
+                        </td>
                         <th>Prueba:</th>
                         <td>
-                            {% if object.cabecera.prueba%}
+                            {% if object.prueba%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
                             {% endif %}
-                         
+
                         <th>Capacitación:</th>
                         <td>
-                            {% if object.cabecera.capacitacion%}
+                            {% if object.capacitacion%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
                             <span class="badge badge-danger">NO</span>
@@ -82,38 +82,47 @@
 
                         </td>
                     </tr>
-                   
+
                     <tr>
                         <th>Equipo:</th>
-                        <td colspan="3">{{object.cabecera.equipo}}</td>
-                        <th>Custodio-corregir:</th>
-                        <td colspan="3">{{object.cabecera.responsable}}</td>
+                        <td colspan="3">{{object.equipo}}</td>
+                        <th>Custodio:</th>
+                        <td colspan="3">{{object.responsable}}</td>
                     </tr>
                     <tr>
                         <th>Detalle:</th>
-                        <td colspan="7">{{object.cabecera.detalle}}</td>
+                        <td colspan="7">{{object.detalle}}</td>
                     </tr>
 
                     <tr>
                         <th>Observación:</th>
-                        <td colspan="7">{{object.cabecera.observacion}}</td>
+                        <td colspan="7">{{object.observacion}}</td>
                     </tr>
                     <tr>
                         <th colspan="8">Información Entrega-Recepción</th>
                     </tr>
+
+
+
+                    {% for a in items %}
                     <tr>
-                        <th>Item:</th>
-                        <td colspan="5">{{object.pieza}}</td>
+                        <th></th>
+                        <td colspan="5">{{a.pieza}}</td>
                         <th>Cantidad:</th>
-                        <td colspan="2">{{object.cantidad}}</td>
-                   
+                        <td colspan="2">{{a.cantidad }}</td>
                     </tr>
+                    {% endfor %}
+
+
+
+
+
                 </tbody>
             </table>
-           
+
 
         </div>
-       
+
         </form>
     </div>
 

@@ -16,7 +16,11 @@
                         <td> {{object.fecha_entrega}}</td>
                         <th>Fecha Devolución:</th>
                         <td>
-                            {{object.fecha_devolucion}} 
+                            {% if object.fecha_devolucion is none %}
+                                <p>----</p>
+                                {% else %}
+                                {{ object.fecha_devolucion }}
+                                {% endif%} 
                         </td>
                         <th>Estado:</th>
                         <td>

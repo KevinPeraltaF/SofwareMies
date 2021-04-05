@@ -53,7 +53,13 @@
                         <tr>
 
                             <th>{{ prestamo.fecha_entrega }}</th>
-                            <th>{{ prestamo.fecha_devolucion }}</th>
+                            <th>
+                                {% if prestamo.fecha_devolucion is none %}
+                                <p>-</p>
+                                {% else %}
+                                {{ prestamo.fecha_devolucion }}
+                                {% endif%}
+                            </th>
                             <th>{{ prestamo.usuario }}</th>
                             <th>{{ prestamo.item }}</th>
                             <th>
