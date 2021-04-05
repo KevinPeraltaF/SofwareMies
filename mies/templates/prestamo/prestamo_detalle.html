@@ -8,7 +8,7 @@
         </div>
 
         <div class="modal-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive-sm">
                 <tbody>
                     <tr>
 
@@ -17,7 +17,7 @@
                         <th>Fecha Devolución:</th>
                         <td>
                             {% if object.fecha_devolucion is none %}
-                                <p>----</p>
+                                <p>-</p>
                                 {% else %}
                                 {{ object.fecha_devolucion }}
                                 {% endif%} 
