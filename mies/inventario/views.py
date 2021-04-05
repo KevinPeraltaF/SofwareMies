@@ -3,10 +3,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
-from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador
-from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm
+from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador, InvetarioDistritoCabecera, InventarioDistritoDetalle
+from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm, InvetarioDistritoCabeceraForm, InventarioDistritoDetalleForm, DetalleForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseRedirect
 # Create your views here.
 #------------------MARCA--------------------------------------
 class MarcaListView(ListView):
@@ -301,3 +302,105 @@ class ProcesadorUpdateView(UpdateView):
 class ProcesadorDetailView(DetailView):
     model = Procesador
     template_name = "inventario/procesador_detalle.html"
+#------------------CABECERA-DETALLE--------------------------------------
+class DetCabListView(ListView):
+    model = InvetarioDistritoCabecera
+    template_name = "inventario/det_cab_listado.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DetCabListView, self).dispatch(*args, **kwargs)
+class DetCabCreateView(CreateView):
+    model = InvetarioDistritoCabecera
+    template_name = "inventario/det_cab_crear.html"
+    form_class = InvetarioDistritoCabeceraForm
+    success_url = reverse_lazy('det_cab_listar')
+    
+    def get(self, request,*args,**kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_form = DetalleForm()
+        return self.render_to_response(
+            self.get_context_data(form=form, detalle_form=detalle_form)
+        )
+    
+    def post(self, request,*args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_form = DetalleForm(self.request.POST)
+        if (form.is_valid() and detalle_form.is_valid()):
+            return self.form_valid(form, detalle_form)
+        else:
+            return self.form_invalid(form, detalle_form)
+
+    def form_valid(self, form, detalle_form):
+        cabecera = form.save()
+        detalle_form.instance = cabecera
+        detalle_form.save()
+        cabecera.save()
+        return HttpResponseRedirect(self.success_url)
+
+    def form_invalid(self, form, detalle_form):
+        return self.render_to_response(
+            self.get_context_data(form = form, detalle_form=detalle_form)
+        )
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DetCabDeleteView, self).dispatch(*args, **kwargs)
+class DetCabDeleteView(DeleteView):
+    model = InvetarioDistritoCabecera
+    template_name = "inventario/det_cab_eliminar.html"
+    success_url = reverse_lazy('det_cab_listar')
+    
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DetCabDeleteView, self).dispatch(*args, **kwargs)
+    
+class DetCabUpdateView(UpdateView):
+    model = InvetarioDistritoCabecera
+    form_class = InvetarioDistritoCabeceraForm
+    template_name = "inventario/det_cab_editar.html"
+    success_url = reverse_lazy('det_cab_listar')
+    def get_context_data(self, **kwargs):
+        context = super(DetCabUpdateView, self).get_context_data(**kwargs)
+        if self.request.POST :
+            context['detalle_form'] = DetalleForm(self.request.POST, instance=self.object)
+        else:
+            context['detalle_form'] = DetalleForm(instance=self.object)
+        return context
+    def post(self, request,*args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_form = DetalleForm(self.request.POST,instance=self.object)
+        if (form.is_valid() and detalle_form.is_valid()):
+            return self.form_valid(form, detalle_form)
+        else:
+            return self.form_invalid(form, detalle_form)
+
+    def form_valid(self, form, detalle_form):
+        cabecera =form.save()
+        detalle_form.instance = cabecera
+        detalle_form.save()    
+        return HttpResponseRedirect(self.success_url)
+        
+    def form_invalid(self, form, detalle_form):
+        return self.render_to_response(
+            self.get_context_data(form = form, detalle_form=detalle_form)
+        )
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DetCabUpdateView, self).dispatch(*args, **kwargs)
+
+class DetCabDetailView(DetailView):
+    model = InvetarioDistritoCabecera
+    template_name = "inventario/det_cab_detalle.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+     
+        context['items'] = InventarioDistritoDetalle.objects.filter(cabeceraDistrito=self.object.id)
+        return context
+

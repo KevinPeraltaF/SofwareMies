@@ -131,6 +131,12 @@ urlpatterns = [
     path('Procesador/Editar/<pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
     path('Procesador/Eliminar/<pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
     path('Procesador/Detalle/<pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
+    #--INVENTARIO CABECERA DISTRITO
+    path('InvDistrito', inventaio_views.DetCabListView.as_view(), name="det_cab_listar"),
+    path('InvDistrito/Crear',inventaio_views.DetCabCreateView.as_view(),name ="det_cab_crear"),
+    path('InvDistrito/Editar/<pk>',inventaio_views.DetCabUpdateView.as_view(),name ="det_cab_editar"),
+    path('InvDistrito/Eliminar/<pk>',inventaio_views.DetCabDeleteView.as_view(),name ="det_cab_eliminar"),
+    path('InvDistrito/Detalle/<pk>',inventaio_views.DetCabDetailView.as_view(),name ="det_cab_detalle"),
      #--PRESTAMO
     path('Prestamo', prestamo_views.PrestamoListView.as_view(), name="prestamo_listar"),
     path('Prestamo/Crear',prestamo_views.PrestamoCreateView.as_view(),name ="prestamo_crear"),
@@ -163,6 +169,11 @@ urlpatterns = [
     path('Atencion/Editar/<pk>',atencion_views.AtencionUpdateView.as_view(),name ="atencion_editar"),
     path('Atencion/Eliminar/<pk>',atencion_views.AtencionDeleteView.as_view(),name ="atencion_eliminar"),
     path('Atencion/Detalle/<pk>',atencion_views.AtencionDetailView.as_view(),name ="atencion_detalle"),
+    path('Procesador', inventaio_views.ProcesadorListView.as_view(), name="procesador_listar"),
+    path('Procesador/Crear',inventaio_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
+    path('Procesador/Editar/<pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
+    path('Procesador/Eliminar/<pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
+    path('Procesador/Detalle/<pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
 ]
 
 #Add Django site authentication urls (for login, logout, password management)

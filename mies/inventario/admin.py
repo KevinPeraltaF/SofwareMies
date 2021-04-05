@@ -77,11 +77,12 @@ class ProcesadorAdmin(admin.ModelAdmin):
 
 class ListadoDetalleInventarioDistrital(admin.TabularInline):
     model=InventarioDistritoDetalle
-    extra =1
+    fk_name ="cabeceraDistrito"
+    extra = 4
 
 
 @admin.register(InvetarioDistritoCabecera)
-class InventarioDistritalAdmin(admin.ModelAdmin):
+class InventarioDistritalAdmin(admin.ModelAdmin ):
     '''Admin View for InventarioDistrital'''
     inlines = (ListadoDetalleInventarioDistrital,)
     list_display = ('fechaIngreso','descripcion','direccionIp' ,'direccionMac','responsable','ubicacion','categoria','marca',
@@ -90,6 +91,5 @@ class InventarioDistritalAdmin(admin.ModelAdmin):
     'modelo','condicion','serie' ,'codigoMies','direccionIp' ,'direccionMac',)
     search_fields = ('ubicacion','categoria','descripcion','marca',
     'modelo','condicion','serie' ,'codigoMies','direccionIp' ,'direccionMac',)
-
 
 # Register your models here.
