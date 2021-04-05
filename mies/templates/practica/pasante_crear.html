@@ -1,0 +1,105 @@
+{% extends 'base_generic.html' %}
+{% block title %}NUEVO PASANTE{% endblock %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'pasante_listar' %}">Nómina de Pasantes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+    </ol>
+</nav>
+
+<div class="row">
+
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        {% if form.errors %}
+
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                {% for error in field.errors %}
+                <li>
+                    {{error}}
+                </li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.nombres.label}}
+                    {{form.nombres}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.apellidos.label}}
+                    {{form.apellidos}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.cedula.label}}
+                    {{form.cedula}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.telefono.label}}
+                    {{form.telefono}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-select col-md-6">
+                    {{form.carrera.label}}
+                    {{form.carrera}}
+                </div>
+                <div class="form-select col-md-6">
+                    {{form.tutor_profesional.label}}
+                    {{form.tutor_profesional}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.fecha_inicio.label}}
+                    {{form.fecha_inicio}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.fecha_fin.label}}
+                    {{form.fecha_fin}}
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.horas_diarias.label}}
+                {{form.horas_diarias}}
+            </div>
+            <div class="form-row mt-3">
+                <div class="form-group">
+                    <div class="form-check">
+                        {{form.estado.label}}
+                        {{form.estado}}
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="modal-footer">
+                <a type="button" class="btn btn-secondary" href="{% url 'pasante_listar' %}">Cancelar</a>
+                <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+
+</div>
+
+{% endblock %}

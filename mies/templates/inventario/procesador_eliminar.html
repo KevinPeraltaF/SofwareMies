@@ -6,10 +6,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{% url 'empleado_eliminar' object.id %}" method="post">
+      <form action="{% url 'procesador_eliminar' object.id %}" method="post">
         {% csrf_token %}
         <div class="modal-body">
-          ¿Estás seguro que desea eliminar el registro: "{{ object.apellidos }} {{ object.nombres }}"?
+          ¿Estás seguro que desea eliminar el registro: "{{ object.descripcion }}"?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

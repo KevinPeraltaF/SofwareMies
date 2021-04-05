@@ -21,6 +21,7 @@ from empleado import views as empleado_views
 from ubicacion import views as ubicacion_views
 from inventario import views as inventaio_views
 from prestamo import views as prestamo_views
+from practica import views as practica_views
 from atencion import views as atencion_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -30,7 +31,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #MENU PARA LOS USUARIOS
     path('', usuario_views.dashboardUsuario_view, name="dashboard") ,
-    #MODULO DE ACCESO A REDES
+    #MODULO OTROS
+    # ACCESO A REDES
     path('AccesoRed', red_views.AccesoRedListView.as_view(), name="accesoRed_listar") ,
     path('AccesoRed/Crear', red_views.AccesoRedCreateView.as_view(), name="accesoRed_crear") ,
     path('AccesoRed/Editar/<pk>', red_views.AccesoRedUpdateView.as_view(), name="accesoRed_editar") ,
@@ -111,12 +113,49 @@ urlpatterns = [
     path('InvTics/Editar/<pk>',inventaio_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
     path('InvTics/Eliminar/<pk>',inventaio_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),
     path('InvTics/Detalle/<pk>',inventaio_views.InvTicsDetailView.as_view(),name ="inv_tics_detalle"),
+    #--CAPACIDAD DISCO
+    path('CapacidadDisco', inventaio_views.CapacidadDiscoListView.as_view(), name="capacidad_disco_listar"),
+    path('CapacidadDisco/Crear',inventaio_views.CapacidadDiscoCreateView.as_view(),name ="capacidad_disco_crear"),
+    path('CapacidadDisco/Editar/<pk>',inventaio_views.CapacidadDiscoUpdateView.as_view(),name ="capacidad_disco_editar"),
+    path('CapacidadDisco/Eliminar/<pk>',inventaio_views.CapacidadDiscoDeleteView.as_view(),name ="capacidad_disco_eliminar"),
+    path('CapacidadDisco/Detalle/<pk>',inventaio_views.CapacidadDiscoDetailView.as_view(),name ="capacidad_disco_detalle"),
+    #--CAPACIDAD DISCO
+    path('CapacidadMemoriaRam', inventaio_views.CapacidadMemoriaRamListView.as_view(), name="capacidad_memoria_ram_listar"),
+    path('CapacidadMemoriaRam/Crear',inventaio_views.CapacidadMemoriaRamCreateView.as_view(),name ="capacidad_memoria_ram_crear"),
+    path('CapacidadMemoriaRam/Editar/<pk>',inventaio_views.CapacidadMemoriaRamUpdateView.as_view(),name ="capacidad_memoria_ram_editar"),
+    path('CapacidadMemoriaRam/Eliminar/<pk>',inventaio_views.CapacidadMemoriaRamDeleteView.as_view(),name ="capacidad_memoria_ram_eliminar"),
+    path('CapacidadMemoriaRam/Detalle/<pk>',inventaio_views.CapacidadMemoriaRamDetailView.as_view(),name ="capacidad_memoria_ram_detalle"),
+    #--CPROCESADORProcesador
+    path('Procesador', inventaio_views.ProcesadorListView.as_view(), name="procesador_listar"),
+    path('Procesador/Crear',inventaio_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
+    path('Procesador/Editar/<pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
+    path('Procesador/Eliminar/<pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
+    path('Procesador/Detalle/<pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
      #--PRESTAMO
     path('Prestamo', prestamo_views.PrestamoListView.as_view(), name="prestamo_listar"),
     path('Prestamo/Crear',prestamo_views.PrestamoCreateView.as_view(),name ="prestamo_crear"),
     path('Prestamo/Editar/<pk>',prestamo_views.PrestamoUpdateView.as_view(),name ="prestamo_editar"),
     path('Prestamo/Eliminar/<pk>',prestamo_views.PrestamoDeleteView.as_view(),name ="prestamo_eliminar"),
     path('Prestamo/Detalle/<pk>',prestamo_views.PrestamoDetailView.as_view(),name ="prestamo_detalle"),
+    #MODULO PRACTICAS PROFESIONALIZANTES
+    #--Pasante
+    path('Pasante', practica_views.PasanteListView.as_view(), name="pasante_listar") ,
+    path('Pasante/Crear', practica_views.PasanteCreateView.as_view(), name="pasante_crear") ,
+    path('Pasante/Editar/<pk>', practica_views.PasanteUpdateView.as_view(), name="pasante_editar") ,
+    path('Pasante/Eliminar/<pk>', practica_views.PasanteDeleteView.as_view(), name="pasante_eliminar") ,
+    path('Pasante/Detalle/<pk>', practica_views.PasanteDetailView.as_view(), name="pasante_detalle") ,
+    #--Carrera
+    path('Carrera', practica_views.CarreraListView.as_view(), name="carrera_listar") ,
+    path('Carrera/Crear', practica_views.CarreraCreateView.as_view(), name="carrera_crear") ,
+    path('Carrera/Editar/<pk>', practica_views.CarreraUpdateView.as_view(), name="carrera_editar") ,
+    path('Carrera/Eliminar/<pk>', practica_views.CarreraDeleteView.as_view(), name="carrera_eliminar") ,
+    path('Carrera/Detalle/<pk>', practica_views.CarreraDetailView.as_view(), name="carrera_detalle") ,
+    #--Universidad
+    path('Universidad', practica_views.UniversidadListView.as_view(), name="universidad_listar") ,
+    path('Universidad/Crear', practica_views.UniversidadCreateView.as_view(), name="universidad_crear") ,
+    path('Universidad/Editar/<pk>', practica_views.UniversidadUpdateView.as_view(), name="universidad_editar") ,
+    path('Universidad/Eliminar/<pk>', practica_views.UniversidadDeleteView.as_view(), name="universidad_eliminar") ,
+    path('Universidad/Detalle/<pk>', practica_views.UniversidadDetailView.as_view(), name="universidad_detalle") ,
 
     #--ATENCION
     path('Atencion', atencion_views.AtencionListView.as_view(), name="atencion_listar"),
