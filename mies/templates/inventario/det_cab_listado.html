@@ -1,0 +1,126 @@
+{% extends 'base_generic.html' %}
+{% block title %}INV TICS {% endblock title %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Inventario Distrital</li>
+    </ol>
+</nav>
+<div class="container-fluid">
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row ">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Listado de Inventario del Distrito</h6>
+                </div>
+                <div class="col ">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'det_cab_crear'%}">Nuevo Inventario</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th><b>RESPONSABLE</b></th>
+                            <th><b>ITEM</b></th>
+                            <th><b>MARCA</b></th>
+                            <th><b>MODELO</b></th>
+                            <th><b>SERIE</b></th>
+                            <th><b>ESTADO</b></th>
+                            <th><b>ACCIONES</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for inv in object_list %}
+                        <tr>
+                            <th>{{ inv.responsable }}</th>
+                            <th>{{ inv.descripcion }}</th>
+                            <th>
+                                {% if inv.marca is none %}
+                                N/A
+                                {% else%}
+                                {{ inv.marca }}
+                                {% endif%}
+                            </th>
+
+                            <th>
+                                {% if inv.modelo is none %}
+                                N/A
+                                {% else%}
+                                {{ inv.modelo }}
+                                {% endif%}
+                            </th>
+                            <th>
+                                {% if inv.codigoMies is none %}
+                                N/A
+                                {% else%}
+                                {{ inv.codigoMies }}
+                                {% endif%}
+                            </th>
+                            <th>{{ inv.condicion }}</th>
+                           
+                            <th>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " 
+                                    onclick="abrirModalDetalle('{% url 'det_cab_detalle' inv.id %}')"> 
+                                    <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
+                                </a>
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'det_cab_editar' inv.id %}')"> 
+                                    <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
+                                </button>
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" 
+                                    onclick="abrirModalEliminar('{% url 'det_cab_eliminar' inv.id %}')">
+                                    <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                </a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" id="editar" role="dialog">
+
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" role="dialog">
+
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
+ 
+</div>
+
+
+{% endblock content_main%}
+
+
+{% block content_extra_js %}
+<script src="static/js/funciones_mies.js"></script>
+{% endblock content_extra_js %}
