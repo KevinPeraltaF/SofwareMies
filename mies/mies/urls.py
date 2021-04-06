@@ -30,7 +30,8 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     #MENU PARA LOS USUARIOS
-    path('', usuario_views.dashboardUsuario_view, name="dashboard") ,
+    path('', usuario_views.dashboard_view, name="dashboard") ,
+   
     #MODULO OTROS
     # ACCESO A REDES
     path('AccesoRed', red_views.AccesoRedListView.as_view(), name="accesoRed_listar") ,
