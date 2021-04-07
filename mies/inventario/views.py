@@ -3,16 +3,10 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
-<<<<<<< HEAD
-from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador
-from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-=======
 from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador, InvetarioDistritoCabecera, InventarioDistritoDetalle
 from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm, InvetarioDistritoCabeceraForm, InventarioDistritoDetalleForm, DetalleForm
-from django.contrib.auth.decorators import login_required
->>>>>>> 9cdcf2c02cd4c9e8a780143cc6e437e4b5a0c891
-from django.utils.decorators import method_decorator
+
 from django.http import HttpResponseRedirect
 # Create your views here.
 #------------------MARCA--------------------------------------
@@ -244,14 +238,12 @@ class ProcesadorDetailView(LoginRequiredMixin,DetailView):
     model = Procesador
     template_name = "inventario/procesador_detalle.html"
 #------------------CABECERA-DETALLE--------------------------------------
-class DetCabListView(ListView):
+class DetCabListView(LoginRequiredMixin,ListView):
     model = InvetarioDistritoCabecera
     template_name = "inventario/det_cab_listado.html"
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(DetCabListView, self).dispatch(*args, **kwargs)
-class DetCabCreateView(CreateView):
+   
+class DetCabCreateView(LoginRequiredMixin,CreateView):
     model = InvetarioDistritoCabecera
     template_name = "inventario/det_cab_crear.html"
     form_class = InvetarioDistritoCabeceraForm
@@ -287,19 +279,15 @@ class DetCabCreateView(CreateView):
         return self.render_to_response(
             self.get_context_data(form = form, detalle_form=detalle_form)
         )
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(DetCabDeleteView, self).dispatch(*args, **kwargs)
-class DetCabDeleteView(DeleteView):
+   
+class DetCabDeleteView(LoginRequiredMixin,DeleteView):
     model = InvetarioDistritoCabecera
     template_name = "inventario/det_cab_eliminar.html"
     success_url = reverse_lazy('det_cab_listar')
     
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(DetCabDeleteView, self).dispatch(*args, **kwargs)
+  
     
-class DetCabUpdateView(UpdateView):
+class DetCabUpdateView(LoginRequiredMixin,UpdateView):
     model = InvetarioDistritoCabecera
     form_class = InvetarioDistritoCabeceraForm
     template_name = "inventario/det_cab_editar.html"
@@ -332,11 +320,9 @@ class DetCabUpdateView(UpdateView):
             self.get_context_data(form = form, detalle_form=detalle_form)
         )
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(DetCabUpdateView, self).dispatch(*args, **kwargs)
+  
 
-class DetCabDetailView(DetailView):
+class DetCabDetailView(LoginRequiredMixin,DetailView):
     model = InvetarioDistritoCabecera
     template_name = "inventario/det_cab_detalle.html"
     def get_context_data(self, **kwargs):
