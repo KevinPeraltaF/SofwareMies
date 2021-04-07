@@ -5,20 +5,17 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import Atencion, AtencionDetalle
 from .forms import AtencionForm, AtencionDetalleForm, DetalleForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.http import  HttpResponseRedirect
 
 # Create your views here.
-class AtencionListView(ListView):
+class AtencionListView(LoginRequiredMixin,ListView):
     model = Atencion
     template_name = "atencion/atencion_listado.html"
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AtencionListView, self).dispatch(*args, **kwargs)
     
-class AtencionCreateView(CreateView):
+class AtencionCreateView(LoginRequiredMixin,CreateView):
     model = Atencion
     
     form_class = AtencionForm
@@ -55,38 +52,30 @@ class AtencionCreateView(CreateView):
         return self.render_to_response(
             self.get_context_data(form = form, detalle_form=detalle_form)
         )
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AtencionCreateView, self).dispatch(*args, **kwargs)
 
 
-class AtencionDeleteView(DeleteView):
+
+class AtencionDeleteView(LoginRequiredMixin,DeleteView):
     model = AtencionDetalle
     template_name = "atencion/atencion_eliminar.html"
     success_url = reverse_lazy('Atencion_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AtencionDeleteView, self).dispatch(*args, **kwargs)
+   
 
-
-class AtencionUpdateView(UpdateView):
+class AtencionUpdateView(LoginRequiredMixin,UpdateView):
     model = AtencionDetalle
     form_class = AtencionDetalleForm
     second_form__class= AtencionForm
     template_name = "atencion/atencion_editar.html"
     success_url = reverse_lazy('Atencion_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AtencionUpdateView, self).dispatch(*args, **kwargs)
+
 
     
-class AtencionDetailView(DetailView):
+class AtencionDetailView(LoginRequiredMixin,DetailView):
     model = Atencion
     template_name = "atencion/atencion_detalle.html"
     # additional parameters
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-     
         context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
         return context

@@ -5,48 +5,38 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import AccesoRed
 from .forms import AccesoRedForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 
 # Create your views here.
-class AccesoRedListView(ListView):
+class AccesoRedListView(LoginRequiredMixin,ListView):
     model = AccesoRed
     template_name = "red/acceso_red_listado.html"
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedListView, self).dispatch(*args, **kwargs)
-    
-class AccesoRedCreateView(CreateView):
+
+class AccesoRedCreateView(LoginRequiredMixin,CreateView):
     model = AccesoRed
     form_class = AccesoRedForm
     template_name = "red/acceso_red_crear.html"
     success_url = reverse_lazy('accesoRed_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedCreateView, self).dispatch(*args, **kwargs)
+   
 
-
-class AccesoRedDeleteView(DeleteView):
+class AccesoRedDeleteView(LoginRequiredMixin,DeleteView):
     model = AccesoRed
     template_name = "red/acceso_red_eliminar.html"
     success_url = reverse_lazy('accesoRed_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedDeleteView, self).dispatch(*args, **kwargs)
+   
 
 
-class AccesoRedUpdateView(UpdateView):
+class AccesoRedUpdateView(LoginRequiredMixin,UpdateView):
     model = AccesoRed
     form_class = AccesoRedForm
     template_name = "red/acceso_red_editar.html"
     success_url = reverse_lazy('accesoRed_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedUpdateView, self).dispatch(*args, **kwargs)
+
 
     
-class AccesoRedDetailView(DetailView):
+class AccesoRedDetailView(LoginRequiredMixin,DetailView):
     model = AccesoRed
     template_name = "red/acceso_red_detalle.html"
 
