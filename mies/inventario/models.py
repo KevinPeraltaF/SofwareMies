@@ -5,6 +5,8 @@ import os
 from django.db.models.signals import pre_delete, post_delete, pre_save
 from django.conf import settings
 from django.dispatch import receiver
+
+from django.forms import model_to_dict
 # Create your models here
 class Marca(models.Model):
     """Model definition for Marca."""
@@ -123,6 +125,7 @@ class InventarioTics(models.Model):
         self.serie =(self.serie).upper()
         self.codigoMies =(self.codigoMies).upper()
         return super(InventarioTics, self).save(*args, **kwargs)
+    
 
 @receiver(post_delete, sender=InventarioTics)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
@@ -264,7 +267,7 @@ class InvetarioDistritoCabecera(models.Model):
 class InventarioDistritoDetalle(models.Model):
     """Model definition for InventarioDistritoDetalle."""
 
-    cabeceraDistrito = models.ForeignKey(InvetarioDistritoCabecera,related_name='items', on_delete=models.PROTECT)
+    cabeceraDistrito = models.ForeignKey(InvetarioDistritoCabecera,related_name='items', on_delete=models.CASCADE)
     periferico = models.ForeignKey(InventarioTics, on_delete=models.PROTECT, null=True,blank=True)
     cantidad = models.IntegerField('Cantidad', default=1)
     class Meta:
@@ -273,9 +276,14 @@ class InventarioDistritoDetalle(models.Model):
         verbose_name = 'Inventario Distrito Detalle'
         verbose_name_plural = 'Inventario Distrito Detalles'
     
-    def __int__(self):
+    def __str__(self):
         """Unicode representation of InventarioDistritoDetalle."""
         return self.periferico
+    def toJSON(self):
+        item = model_to_dict(self)
+        item['periferico'] = self.periferico.toJSON()
+        item['cantidad'] = format(self.cantidad,'d')
+        return item
 
 
 

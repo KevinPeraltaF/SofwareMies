@@ -7,7 +7,10 @@ from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, Capacid
 from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm, InvetarioDistritoCabeceraForm, InventarioDistritoDetalleForm, DetalleForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect, JsonResponse
+
+from django.forms import model_to_dict
 # Create your views here.
 #------------------MARCA--------------------------------------
 class MarcaListView(ListView):
@@ -325,15 +328,37 @@ class DetCabCreateView(CreateView):
             self.get_context_data(form=form, detalle_form=detalle_form)
         )
     
+    @method_decorator(csrf_exempt,login_required)
+    def dispatch(self,request,*args, **kwargs):
+        return super().dispatch(request,*args, **kwargs)
     def post(self, request,*args, **kwargs):
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        detalle_form = DetalleForm(self.request.POST)
-        if (form.is_valid() and detalle_form.is_valid()):
-            return self.form_valid(form, detalle_form)
+        data ={}
+        if self.request.POST['action']=='search_periferico':
+            try:
+                action = self.request.POST['action']
+                print(self.request.POST['term'])
+                if action =='search_periferico':
+                    data = []
+                    prods = InventarioDistritoDetalle.objects.get(periferico__icontains=self.request.POST['term'])
+                    for i in prods:
+                        item = i.toJSON()
+                        item['value'] = i.periferico
+                        data.append(item)
+                else:
+                    data['error'] = 'No ha ingresado a ninguna opcion'
+            except Exception as e:
+                data['error'] = "error"
+            return JsonResponse(data, safe=False)
         else:
-            return self.form_invalid(form, detalle_form)
+            self.object = None
+            form_class = self.get_form_class()
+            form = self.get_form(form_class)
+            detalle_form = DetalleForm(self.request.POST)
+            if (form.is_valid() and detalle_form.is_valid()):
+                return self.form_valid(form, detalle_form)
+            else:
+                return self.form_invalid(form, detalle_form) 
+        
 
     def form_valid(self, form, detalle_form):
         cabecera = form.save()
@@ -346,14 +371,11 @@ class DetCabCreateView(CreateView):
         return self.render_to_response(
             self.get_context_data(form = form, detalle_form=detalle_form)
         )
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(DetCabDeleteView, self).dispatch(*args, **kwargs)
+
 class DetCabDeleteView(DeleteView):
     model = InvetarioDistritoCabecera
     template_name = "inventario/det_cab_eliminar.html"
     success_url = reverse_lazy('det_cab_listar')
-    
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(DetCabDeleteView, self).dispatch(*args, **kwargs)

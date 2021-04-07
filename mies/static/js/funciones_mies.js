@@ -1,4 +1,26 @@
 /** funcion para abrir el modal de editar */
+var vents = {
+    items :{
+        fechaIngreso :'',
+        responsable :'',
+        ubicacion:'',
+        categoria:'',
+        descripcion:'',
+        marca:'',
+        modelo:'',
+        condicion:'',
+        serie:'',
+        codigoMies:'',
+        direccionIp:'',
+        direccionMac:'',
+        capacidadDisco:'',
+        capacidadMemoria:'',
+        capacidadProcesador:'',
+        foto:'',
+        detalle:[]
+    }
+}
+
 function abrirModalEditar(url){
             
     $('#editar').load(url,function(){
@@ -25,3 +47,6 @@ function abrirModalDetalle(url){
     }
     )           
 }
+
+//busqueda de perifericos
+

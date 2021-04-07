@@ -331,6 +331,7 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
         }
 class InventarioDistritoDetalleForm(forms.ModelForm):
     
+    search =forms.CharField()
     class Meta:
         model = InventarioDistritoDetalle
 
@@ -338,15 +339,9 @@ class InventarioDistritoDetalleForm(forms.ModelForm):
             'cabeceraDistrito',
             'periferico',
             'cantidad',
+            'search'
         )
-
         widgets = {
-            'cabeceraDistrito': forms.Select(
-                attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
-                    'class':'form-control'
-                }
-            ),
             'periferico': forms.Select(
                 attrs={
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
@@ -359,7 +354,14 @@ class InventarioDistritoDetalleForm(forms.ModelForm):
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
+            ),
+            'search':forms.TextInput(
+                attrs={
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
+                    'class':'form-control',
+                    'placeholder':"Ingrese una descripcion..."
+                }
             )
         } 
 DetalleForm = inlineformset_factory(InvetarioDistritoCabecera,InventarioDistritoDetalle,
-    form=InventarioDistritoDetalleForm, extra=4,can_delete= True) 
+    form=InventarioDistritoDetalleForm, extra=1,can_delete= True) 
