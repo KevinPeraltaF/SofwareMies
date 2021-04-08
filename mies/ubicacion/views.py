@@ -6,29 +6,33 @@ from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import Zona, Provincia, Distrito
 from .forms import DistritoForm, ProvinciaForm,ZonaForm
 from django.utils.decorators import method_decorator
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 # ------------------------------ZONA
-class ZonaListView(LoginRequiredMixin,ListView):
+class ZonaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'ubicacion.view_zona'
     model = Zona
     template_name = "ubicacion/ubicacion_zona_listado.html"
 
  
     
-class ZonaCreateView(LoginRequiredMixin,CreateView):
+class ZonaCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'ubicacion.add_zona'
     model = Zona
     form_class = ZonaForm
     template_name = "ubicacion/ubicacion_zona_crear.html"
     success_url = reverse_lazy('zona_listar')
    
 
-class ZonaDeleteView(LoginRequiredMixin,DeleteView):
+class ZonaDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'ubicacion.delete_zona'
     model = Zona
     template_name = "ubicacion/ubicacion_zona_eliminar.html"
     success_url = reverse_lazy('zona_listar')
    
 
 
-class ZonaUpdateView(LoginRequiredMixin,UpdateView):
+class ZonaUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'ubicacion.change_zona'
     model = Zona
     form_class = ZonaForm
     template_name = "ubicacion/ubicacion_zona_editar.html"
@@ -36,17 +40,20 @@ class ZonaUpdateView(LoginRequiredMixin,UpdateView):
    
 
     
-class ZonaDetailView(LoginRequiredMixin,DetailView):
+class ZonaDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'ubicacion.view_zona'
     model = Zona
     template_name = "ubicacion/ubicacion_zona_detalle.html"
 
 #----------------------------------- provincia
-class ProvinciaListView(LoginRequiredMixin,ListView):
+class ProvinciaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'ubicacion.view_provincia'
     model = Provincia
     template_name = "ubicacion/ubicacion_provincia_listado.html"
 
    
-class ProvinciaCreateView(LoginRequiredMixin,CreateView):
+class ProvinciaCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'ubicacion.add_provincia'
     model = Provincia
     form_class = ProvinciaForm
     template_name = "ubicacion/ubicacion_provincia_crear.html"
@@ -54,14 +61,16 @@ class ProvinciaCreateView(LoginRequiredMixin,CreateView):
  
 
 
-class ProvinciaDeleteView(LoginRequiredMixin,DeleteView):
+class ProvinciaDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'ubicacion.delete_provincia'
     model = Provincia
     template_name = "ubicacion/ubicacion_provincia_eliminar.html"
     success_url = reverse_lazy('provincia_listar')
  
 
 
-class ProvinciaUpdateView(LoginRequiredMixin,UpdateView):
+class ProvinciaUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'ubicacion.change_provincia'
     model = Provincia
     form_class = ProvinciaForm
     template_name = "ubicacion/ubicacion_provincia_editar.html"
@@ -69,41 +78,47 @@ class ProvinciaUpdateView(LoginRequiredMixin,UpdateView):
    
 
     
-class ProvinciaDetailView(LoginRequiredMixin,DetailView):
+class ProvinciaDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'ubicacion.view_provincia'
     model = Provincia
     template_name = "ubicacion/ubicacion_provincia_detalle.html"
 
 
 
 # ------------------------------DISTRITO
-class DistritoListView(LoginRequiredMixin,ListView):
+class DistritoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'ubicacion.view_distrito'
     model = Distrito
     template_name = "ubicacion/ubicacion_distrito_listado.html"
 
 
     
-class DistritoCreateView(LoginRequiredMixin,CreateView):
+class DistritoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'ubicacion.add_distrito'
     model = Distrito
     form_class = DistritoForm
     template_name = "ubicacion/ubicacion_distrito_crear.html"
     success_url = reverse_lazy('distrito_listar')
     
 
-class DistritoDeleteView(LoginRequiredMixin,DeleteView):
+class DistritoDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'ubicacion.delete_distrito'
     model = Distrito
     template_name = "ubicacion/ubicacion_distrito_eliminar.html"
     success_url = reverse_lazy('distrito_listar')
   
 
 
-class DistritoUpdateView(LoginRequiredMixin,UpdateView):
+class DistritoUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'ubicacion.change_distrito'
     model = Distrito
     form_class = DistritoForm
     template_name = "ubicacion/ubicacion_distrito_editar.html"
     success_url = reverse_lazy('distrito_listar')
  
     
-class DistritoDetailView(LoginRequiredMixin,DetailView):
+class DistritoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'ubicacion.view_distrito'
     model = Distrito
     template_name = "ubicacion/ubicacion_distrito_detalle.html"
 

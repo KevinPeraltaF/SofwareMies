@@ -53,7 +53,7 @@
             <div class="sidebar-heading">
                 Módulo Principal
             </div>
-           
+
 
 
             <!-- Nav Item - Empleado Collapse Menu -->
@@ -80,7 +80,7 @@
                 </div>
             </li>
 
-            
+
             <!-- Nav Item - Inventario Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventarioTics"
@@ -112,7 +112,7 @@
                 </div>
             </li>
 
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'atencion_listar' %}">
                     <i class="fas fa-fw fa-table"></i>
@@ -145,8 +145,8 @@
             </li>
 
 
-             <!-- Nav Item - Otros Menu -->
-             <li class="nav-item">
+            <!-- Nav Item - Otros Menu -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccesoRed"
                     aria-expanded="true" aria-controls="collapseAccesoRed">
                     <i class="fas fa-clone"></i>
@@ -183,8 +183,8 @@
                     </div>
                 </div>
             </li>
-          
-                   
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -227,22 +227,20 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
+                            
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    {{user.last_name}} {{user.first_name}}
+                                    <strong>Hola, Bienvenido </strong>  {{user.last_name}} {{user.first_name}}
                                 </span>
-                                <img class="img-profile rounded-circle" src="">
+                                
 
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
+                              
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'logout'%}">
