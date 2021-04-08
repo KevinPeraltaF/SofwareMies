@@ -7,7 +7,6 @@ from django.contrib.auth.models import  Group
 
 @login_required
 def dashboard_view(request):
-    print(request.user.user_permissions.all())
     return render(request,'usuario/dashboard.html')
 
 
