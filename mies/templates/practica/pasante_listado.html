@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'pasante_crear'%}">Nuevo pasante</a>
+                            
+                            {% if perms.practica.add_pasante %}
+                                <a class="dropdown-item" href="{% url 'pasante_crear'%}">Nuevo pasante</a>
+                            {% endif %}
+                                
 
                         </div>
                     </div>
@@ -88,12 +92,20 @@
                             <th>
                                 <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'pasante_detalle' pasante.id%}')"> <i class="fa fa-eye"></i>
                                 </a>
+                                {% if perms.practica.change_pasante %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'pasante_editar' pasante.id%}')"> <i
-                                        class="fa fa-edit"></i>
-                                </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'pasante_eliminar' pasante.id%}')"><i class="fa fa-trash"></i>
-                                </a>
+                                onclick="abrirModalEditar('{% url 'pasante_editar' pasante.id%}')"> <i
+                                    class="fa fa-edit"></i>
+                            </button>
+                                {% endif %}
+                                    
+                                 
+                                 {% if perms.practica.delete_pasante %}
+                                 <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'pasante_eliminar' pasante.id%}')"><i class="fa fa-trash"></i>
+                                 </a>
+                                 {% endif %}
+                               
+                                
                             </th>
                         </tr>
                         {% endfor %}

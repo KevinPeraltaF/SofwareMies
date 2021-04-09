@@ -25,8 +25,12 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            
+                            {% if perms.empleado.add_empleado %}
                             <a class="dropdown-item" href="{% url 'empleado_crear'%}">Nuevo empleado</a>
 
+                            {% endif %}
+                                
                         </div>
                     </div>
                 </div>
@@ -93,12 +97,22 @@
                             <th>
                                 <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'empleado_detalle' empl.id%}')"> <i class="fa fa-eye"></i>
                                 </a>
+                                
+                                {% if perms.empleado.change_empleado %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
-                                        class="fa fa-edit"></i>
-                                </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'empleado_eliminar' empl.id%}')"><i class="fa fa-trash"></i>
-                                </a>
+                                onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
+                                    class="fa fa-edit"></i>
+                            </button>
+                                {% endif %}
+                                    
+                                
+                                {% if perms.empleado.delete_empleado %}
+                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
+                                onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
+                                    class="fa fa-edit"></i>
+                            </button>
+                                {% endif %}
+                                    
                             </th>
                         </tr>
                         {% endfor %}

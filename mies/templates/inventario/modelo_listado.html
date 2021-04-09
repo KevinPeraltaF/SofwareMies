@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'modelo_crear'%}">Nuevo Modelo</a>
+                           
+                           {% if perms.inventario.add_modelo %}
+                           <a class="dropdown-item" href="{% url 'modelo_crear'%}">Nuevo Modelo</a>
+                           {% endif %}
+                               
                         </div>
                     </div>
                 </div>
@@ -53,14 +57,22 @@
                                     onclick="abrirModalDetalle('{% url 'modelo_detalle' modelo.id %}')"> 
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
+                                
+                                {% if perms.inventario.change_modelo %}
                                 <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'modelo_editar' modelo.id %}')"> 
-                                    <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
-                                </button>
+                                onclick="abrirModalEditar('{% url 'modelo_editar' modelo.id %}')"> 
+                                <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
+                            </button>
+                                {% endif %}
+                                    
+                                
+                                {% if perms.inventario.delete_modelo %}
                                 <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" 
-                                    onclick="abrirModalEliminar('{% url 'modelo_eliminar' modelo.id %}')">
-                                    <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
-                                </a>
+                                onclick="abrirModalEliminar('{% url 'modelo_eliminar' modelo.id %}')">
+                                <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                            </a>
+                                {% endif %}
+                                    
                             </th>
                         </tr>
                         {% endfor %}

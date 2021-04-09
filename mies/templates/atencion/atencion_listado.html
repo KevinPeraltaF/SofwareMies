@@ -25,8 +25,12 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            
+                            {% if  perms.atencion.add_atencion %}
                             <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nueva Entrega-Recepción</a>
                             <a class="dropdown-item" href="#">Nueva Devolución</a>
+                            {% endif %}
+                                
                         </div>
                     </div>
                 </div>
@@ -62,12 +66,20 @@
                             <th>
                                 <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'atencion_detalle' atencion.id%}')"> <i class="fa fa-eye"></i>
                                 </a>
+                                
+                                {% if perms.atencion.change_atencion  %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'atencion_editar' atencion.id%}')"> <i
-                                        class="fa fa-edit"></i>
-                                </button>
+                                onclick="abrirModalEditar('{% url 'atencion_editar' atencion.id%}')"> <i
+                                    class="fa fa-edit"></i>
+                            </button>
+                                {% endif %}
+                                    
+                                
+                                {% if perms.atencion.delete_atencion   %}
                                 <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'atencion_eliminar' atencion.id%}')"><i class="fa fa-trash"></i>
                                 </a>
+                                {% endif %}
+                                    
                             </th>
                         </tr>
                         {% endfor %}

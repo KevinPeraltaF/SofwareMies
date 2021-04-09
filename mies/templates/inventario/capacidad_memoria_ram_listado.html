@@ -25,7 +25,12 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'capacidad_memoria_ram_crear'%}">Nueva Capacidad de Ram</a>
+
+                            {% if perms.inventario.add_capacidadmemoriaram %}
+                            <a class="dropdown-item" href="{% url 'capacidad_memoria_ram_crear'%}">Nueva Capacidad de
+                                Ram</a>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -46,20 +51,29 @@
                         {% for capacidad_memoria_ram in object_list %}
                         <tr>
                             <th>{{ capacidad_memoria_ram.descripcion }}</th>
-                            
+
                             <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " 
-                                    onclick="abrirModalDetalle('{% url 'capacidad_memoria_ram_detalle' capacidad_memoria_ram.id %}')"> 
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'capacidad_memoria_ram_detalle' capacidad_memoria_ram.id %}')">
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'capacidad_memoria_ram_editar' capacidad_memoria_ram.id %}')"> 
+
+                                {% if perms.inventario.add_capacidadmemoriaram %}
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                    class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'capacidad_memoria_ram_editar' capacidad_memoria_ram.id %}')">
                                     <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
                                 </button>
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" 
+                                {% endif %}
+
+
+                                {% if perms.inventario.delete_capacidadmemoriaram %}
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
                                     onclick="abrirModalEliminar('{% url 'capacidad_memoria_ram_eliminar' capacidad_memoria_ram.id %}')">
                                     <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
+                                {% endif %}
+
                             </th>
                         </tr>
                         {% endfor %}
@@ -85,7 +99,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 
