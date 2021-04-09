@@ -1,6 +1,7 @@
 from django import forms
 from .models import TipoDocumento, Atencion,AtencionDetalle
 from django.forms.models import inlineformset_factory
+
 class TipoDocumentoForm(forms.ModelForm):
     
     class Meta:

@@ -44,30 +44,30 @@ class Asunto(models.Model):
         return super(Asunto, self).save(*args, **kwargs)
 
 
-class ActividadCabecera(models.Model):
-    """Model definition for ActividadCabecera."""
+class Actividad(models.Model):
+    """Model definition for Actividad."""
 
     fecha = models.DateField('Fecha', auto_now=False, auto_now_add=False)
-    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_activiadad')
+    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_actividad')
     usuario = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
     prioridad = models.ForeignKey(Prioridad, on_delete=models.PROTECT)
     observacion = models.TextField('Observación')
     class Meta:
-        """Meta definition for ActividadCabecera."""
+        """Meta definition for Actividad."""
 
         verbose_name = 'Actividad'
         verbose_name_plural = 'Actividades '
 
     def __int__(self):
-        """Unicode representation of ActividadCabecera."""
+        """Unicode representation of Actividad."""
         return self.fecha
 
  
 
 class ActividadDetalle(models.Model):
     """Model definition for ActividadDetalle."""
-    cabeceraActividad = models.ForeignKey(ActividadCabecera, on_delete=models.PROTECT)
+    cabeceraActividad = models.ForeignKey(Actividad, on_delete=models.PROTECT)
     asunto =models.ForeignKey(Asunto, on_delete=models.PROTECT)
 
     class Meta:
@@ -79,6 +79,3 @@ class ActividadDetalle(models.Model):
     def __int__(self):
         """Unicode representation of ActividadDetalle."""
         return self.asunto
-
-
-# Create your models here.
