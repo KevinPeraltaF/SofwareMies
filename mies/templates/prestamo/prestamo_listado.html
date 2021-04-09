@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            
+                            {% if perms.prestamo.add_prestamo %}
                             <a class="dropdown-item" href="{% url 'prestamo_crear'%}">Nuevo préstamo</a>
+                            {% endif %}
+                                
 
                         </div>
                     </div>
@@ -71,14 +75,26 @@
 
                             </th>
                             <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'prestamo_detalle' prestamo.id%}')"> <i class="fa fa-eye"></i>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'prestamo_detalle' prestamo.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
+
+                                {% if perms.prestamo.change_prestamo %}
                                 <button id="modalEditarprestamo" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'prestamo_editar' prestamo.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'prestamo_eliminar' prestamo.id%}')"><i class="fa fa-trash"></i>
+
+                                {% endif %}
+
+                                {% if perms.prestamo.delete_prestamo %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'prestamo_eliminar' prestamo.id%}')"><i
+                                        class="fa fa-trash"></i>
                                 </a>
+                                {% endif %}
+
                             </th>
                         </tr>
                         {% endfor %}
@@ -104,7 +120,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

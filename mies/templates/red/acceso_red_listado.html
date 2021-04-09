@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            
+                            {% if perms.red.add_accesored %}
                             <a class="dropdown-item" href="{% url 'accesoRed_crear'%}">Nuevo acceso</a>
+                            {% endif %}
+                                
 
                         </div>
                     </div>
@@ -65,7 +69,7 @@
                                 {% else %}
                                 {{ acceso.direccion_ip }}
                                 {% endif%}
-                               
+
                             </th>
                             <th>
                                 {% if acceso.estado%}
@@ -76,14 +80,26 @@
 
                             </th>
                             <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'accesoRed_detalle' acceso.id%}')"> <i class="fa fa-eye"></i>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'accesoRed_detalle' acceso.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
+
+                                {% if perms.red.change_accesored %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'accesoRed_editar' acceso.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'accesoRed_eliminar' acceso.id%}')"><i class="fa fa-trash"></i>
+                                {% endif %}
+
+
+                                {% if perms.red.delete_accesored %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'accesoRed_eliminar' acceso.id%}')"><i
+                                        class="fa fa-trash"></i>
                                 </a>
+                                {% endif %}
+
                             </th>
                         </tr>
                         {% endfor %}
@@ -109,7 +125,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 
