@@ -61,7 +61,10 @@
                                 </a>
 
                                 {% if perms.practica.change_carrera %}
-
+                                <button id="modalEditarCarrera" class="btn btn-light btn-sm"
+                                onclick="abrirModalEditar('{% url 'carrera_editar' carrera.id%}')"> <i
+                                    class="fa fa-edit"></i>
+                            </button>
                                 {% endif %}
 
 

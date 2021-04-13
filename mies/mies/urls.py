@@ -172,11 +172,13 @@ urlpatterns = [
     path('Atencion/Editar/<pk>',atencion_views.AtencionUpdateView.as_view(),name ="atencion_editar"),
     path('Atencion/Eliminar/<pk>',atencion_views.AtencionDeleteView.as_view(),name ="atencion_eliminar"),
     path('Atencion/Detalle/<pk>',atencion_views.AtencionDetailView.as_view(),name ="atencion_detalle"),
+    path('Atencion/pdf/<pk>',atencion_views.ReporteAtencionPdfView.as_view(),name ="atencion_reporte_pdf"),
     path('Procesador', inventaio_views.ProcesadorListView.as_view(), name="procesador_listar"),
     path('Procesador/Crear',inventaio_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
     path('Procesador/Editar/<pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
     path('Procesador/Eliminar/<pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
     path('Procesador/Detalle/<pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
+    
 
     #--Actividad
     path('Actividad', actividad_views.ActividadListView.as_view(), name="actividad_listar"),
