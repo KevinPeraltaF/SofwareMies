@@ -2,6 +2,7 @@
 {% block title %}NUEVA EQUIPO{% endblock %}
 
 
+
 {% block content_main %}
 <!-- Page Heading -->
 <nav aria-label="breadcrumb">
@@ -118,16 +119,20 @@
             <hr>
             <div class="form-group">
                 <label>Buscador de perifericos:</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="search"
+                <div class="input-group ">
+                    <select class="form-control select col-md-4"  name="search">
+                    </select>
+                    <input type="number" placeholder="Cantidad" value='1' class="form-control col-md-4" min='1'  onKeypress="if ((event.keyCode 57) or (event.code 189)) event.returnValue = false;">
+                    <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar Periferico</button>
+                    <!--<input type="text" class="form-control" name="search"
                            placeholder="Ingrese una descripcion de perifericos" autocomplete="off">
                     <span class="input-group-append">
                         <button type="button" class="btn btn-danger btn-flat"><i
                                 class="fas fa-times"></i></button>
-                      </span>
+                    </span> -->
                 </div>
             </div>
-            <div class="form-row">
+           <!--  <div class="form-row">
                 {{detalle_form.management_form}}
                 {% for form1 in detalle_form %}
                 <div id = 'js_periferico' class="form-group col-md-6">
@@ -140,14 +145,14 @@
                     {{form1.cantidad}}
                 </div>
                 {% endfor %}
-            </div>
+            </div> -->
             
             <fieldset class="modal-footer">
                 <a type="button" class="btn btn-secondary" href="{% url 'det_cab_listar' %}">Cancelar</a>
                 <button type="submit" class="btn  btn-primary">Guardar Registro</button>
             </fieldset>
         </form>
-        <button type='button' onclick="agregar_inputs();">Agregar Periferico</button>
+        
     </div>
     <div class="col-md-3"></div>
 </div>
@@ -155,6 +160,27 @@
 {% endblock %}
 {% block content_extra_js %}
 <script>
+    var vents = {
+        items :{
+            fechaIngreso :'',
+            responsable :'',
+            ubicacion:'',
+            categoria:'',
+            descripcion:'',
+            marca:'',
+            modelo:'',
+            condicion:'',
+            serie:'',
+            codigoMies:'',
+            direccionIp:'',
+            direccionMac:'',
+            capacidadDisco:'',
+            capacidadMemoria:'',
+            capacidadProcesador:'',
+            foto:'',
+            detalle:[]
+        }
+    }
     function agregar_inputs(){
         var total_forms = document.querySelector('#id_items-TOTAL_FORMS');
 
@@ -162,6 +188,7 @@
         var nuevo_label_periferico = document.createElement('label');
         nuevo_label_periferico.innerHTML = 'Periferico'
         var nuevo_select_periferico = document.querySelector('#id_items-0-periferico').cloneNode(true);
+        var span_periferico = document.querySelector(".select2").cloneNode(true);
         nuevo_select_periferico.name = 'items-'+total_forms.value+'-periferico';
         nuevo_select_periferico.id = 'id_items-'+total_forms.value+'-periferico';
         //nuevo label e input para cantidad
@@ -170,39 +197,43 @@
         var nuevo_select_cantidad = document.querySelector('#id_items-0-cantidad').cloneNode(true);
         nuevo_select_cantidad.name = 'items-'+total_forms.value+'-cantidad';
         nuevo_select_cantidad.id = 'id_items-'+total_forms.value+'-cantidad';
-
+        
+        var span_periferico = document.querySelector(".select2").cloneNode(true);
         document.querySelector('#js_periferico').appendChild(nuevo_label_periferico);
         document.querySelector('#js_periferico').appendChild(nuevo_select_periferico);
-
+        document.querySelector('#js_periferico').appendChild(span_periferico)
         document.querySelector('#js_cantidad').appendChild(nuevo_label_cantidad);
         document.querySelector('#js_cantidad').appendChild(nuevo_select_cantidad);
         total_forms.value = parseInt(total_forms.value)+1;
     }
     $(function(){
-        $('input[name="search"').autocomplete({
-        source:function(request,response){
-            $.ajax({
-                url: window.location.pathname,
+        $('.uniqueSelec2').select2();
+        $('select[name="search"]').select2({
+            theme: "bootstrap4",
+            language:'es',
+            allowClear:true,
+            ajax: {
+                delay:250,
                 type:'POST',
-                data:{
-                    'action':'search_periferico',
-                    'term':request.term
+                url: window.location.pathname,
+                data: function(params){
+                    var queryParameters = {
+                        term: params.term,
+                        action:'search_periferico'
+                    }
+                    return queryParameters;
                 },
-                dataType:'json'
-            }).done(function(data){
-                response(data);
-            }).fail(function(jqXHR,textStatus,errorThrown){
-                alert(textStatus + ': ' + errorThrown);
-            }).always(function (data) {
-    
-            });
-        },
-        delay:500,
-        minLength:1,
-        select: function(event,ui){
-            console.log(ui.item);
-        }
-    });})
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                
+            },
+            placeholder: 'Ingrese una descripción',
+            minimumInputLength: 1,
+        });
+    });
 </script>
 
 {% endblock content_extra_js %}

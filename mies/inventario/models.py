@@ -118,7 +118,11 @@ class InventarioTics(models.Model):
     def __str__(self):
         """Unicode representation of InventarioTics."""
         return self.descripcion
-
+    
+    def toJSON(self):
+        item = model_to_dict(self)
+        item['cantidad'] = self.cantidad
+        return item
     def save(self, *args, **kwargs):
         """Save method for InventarioTics."""
         self.descripcion =(self.descripcion).upper()
@@ -276,14 +280,9 @@ class InventarioDistritoDetalle(models.Model):
         verbose_name = 'Inventario Distrito Detalle'
         verbose_name_plural = 'Inventario Distrito Detalles'
     
-    def __str__(self):
+    def __int__(self):
         """Unicode representation of InventarioDistritoDetalle."""
         return self.periferico
-    def toJSON(self):
-        item = model_to_dict(self)
-        item['periferico'] = self.periferico.toJSON()
-        item['cantidad'] = format(self.cantidad,'d')
-        return item
 
 
 

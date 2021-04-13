@@ -6,17 +6,12 @@ from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador, InvetarioDistritoCabecera, InventarioDistritoDetalle
 from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm, InvetarioDistritoCabeceraForm, InventarioDistritoDetalleForm, DetalleForm
-<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, JsonResponse
 
 from django.forms import model_to_dict
-=======
-
-from django.http import HttpResponseRedirect
->>>>>>> 5d444218691a5eb236c856b2c489d44bf899ff0f
 # Create your views here.
 #------------------MARCA--------------------------------------
 class MarcaListView(LoginRequiredMixin,ListView):
@@ -267,28 +262,30 @@ class DetCabCreateView(LoginRequiredMixin,CreateView):
             self.get_context_data(form=form, detalle_form=detalle_form)
         )
     
-    @method_decorator(csrf_exempt,login_required)
+    @method_decorator(csrf_exempt)
     def dispatch(self,request,*args, **kwargs):
         return super().dispatch(request,*args, **kwargs)
     def post(self, request,*args, **kwargs):
         data ={}
-        if self.request.POST['action']=='search_periferico':
+        if self.request.POST and self.request.POST['action']=='search_periferico':
             try:
-                action = self.request.POST['action']
-                print(self.request.POST['term'])
+                action = request.POST['action']
+                print(request.POST['term'])
                 if action =='search_periferico':
                     data = []
-                    prods = InventarioDistritoDetalle.objects.get(periferico__icontains=self.request.POST['term'])
+                    prods = InventarioTics.objects.filter(descripcion__icontains=request.POST['term'])[0:10]
                     for i in prods:
                         item = i.toJSON()
-                        item['value'] = i.periferico
+                        item['text'] = i.descripcion
+                        item['foto'] = ""
                         data.append(item)
                 else:
                     data['error'] = 'No ha ingresado a ninguna opcion'
             except Exception as e:
-                data['error'] = "error"
+                data['error'] = str(e)
+            print(data)
             return JsonResponse(data, safe=False)
-        else:
+        elif self.request.POST:
             self.object = None
             form_class = self.get_form_class()
             form = self.get_form(form_class)

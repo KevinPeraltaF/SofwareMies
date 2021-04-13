@@ -345,7 +345,7 @@ class InventarioDistritoDetalleForm(forms.ModelForm):
             'periferico': forms.Select(
                 attrs={
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
-                    'class':'form-control'
+                    'class':'form-control uniqueSelec2'
                 }
             ),
             'cantidad':forms.TextInput(
