@@ -23,6 +23,7 @@ from inventario import views as inventaio_views
 from prestamo import views as prestamo_views
 from practica import views as practica_views
 from atencion import views as atencion_views
+from actividad import views as actividad_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -120,7 +121,7 @@ urlpatterns = [
     path('CapacidadDisco/Editar/<pk>',inventaio_views.CapacidadDiscoUpdateView.as_view(),name ="capacidad_disco_editar"),
     path('CapacidadDisco/Eliminar/<pk>',inventaio_views.CapacidadDiscoDeleteView.as_view(),name ="capacidad_disco_eliminar"),
     path('CapacidadDisco/Detalle/<pk>',inventaio_views.CapacidadDiscoDetailView.as_view(),name ="capacidad_disco_detalle"),
-    #--CAPACIDAD DISCO
+    #--CAPACIDAD MEMORIA
     path('CapacidadMemoriaRam', inventaio_views.CapacidadMemoriaRamListView.as_view(), name="capacidad_memoria_ram_listar"),
     path('CapacidadMemoriaRam/Crear',inventaio_views.CapacidadMemoriaRamCreateView.as_view(),name ="capacidad_memoria_ram_crear"),
     path('CapacidadMemoriaRam/Editar/<pk>',inventaio_views.CapacidadMemoriaRamUpdateView.as_view(),name ="capacidad_memoria_ram_editar"),
@@ -163,8 +164,9 @@ urlpatterns = [
     path('Universidad/Editar/<pk>', practica_views.UniversidadUpdateView.as_view(), name="universidad_editar") ,
     path('Universidad/Eliminar/<pk>', practica_views.UniversidadDeleteView.as_view(), name="universidad_eliminar") ,
     path('Universidad/Detalle/<pk>', practica_views.UniversidadDetailView.as_view(), name="universidad_detalle") ,
-
-    #--ATENCION
+    
+    #MODULO OTROS
+    #--Atencion
     path('Atencion', atencion_views.AtencionListView.as_view(), name="atencion_listar"),
     path('Atencion/Crear',atencion_views.AtencionCreateView.as_view(),name ="atencion_crear"),
     path('Atencion/Editar/<pk>',atencion_views.AtencionUpdateView.as_view(),name ="atencion_editar"),
@@ -175,7 +177,14 @@ urlpatterns = [
     path('Procesador/Editar/<pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
     path('Procesador/Eliminar/<pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
     path('Procesador/Detalle/<pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
-]
+
+    #--Actividad
+    path('Actividad', actividad_views.ActividadListView.as_view(), name="actividad_listar"),
+    path('Actividad/Crear',actividad_views.ActividadCreateView.as_view(),name ="actividad_crear"),
+    path('Actividad/Editar/<pk>',actividad_views.ActividadUpdateView.as_view(),name ="actividad_editar"),
+    path('Actividad/Eliminar/<pk>',actividad_views.ActividadDeleteView.as_view(),name ="actividad_eliminar"),
+    path('Actividad/Detalle/<pk>',actividad_views.ActividadDetailView.as_view(),name ="actividad_detalle"),
+]   
 
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [

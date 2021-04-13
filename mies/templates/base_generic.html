@@ -254,8 +254,30 @@
                 </div>
             </li>
 
+<<<<<<< HEAD
             {% endif %}
                 
+=======
+            <!-- Nav Item - Actividades  Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseActividades"
+                    aria-expanded="true" aria-controls="collapseActividades">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Actividades</span>
+                </a>
+                <div id="collapseActividades" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{% url 'actividad_listar' %}"><i class="fas fa-caret-right"></i>
+                            Actividad</a>
+                        <!--<a class="collapse-item" href="{% url 'carrera_listar' %}"><i class="fas fa-caret-right"></i>Carreras</a> -->
+                        <!--<a class="collapse-item" href="{% url 'universidad_listar' %}"><i class="fas fa-caret-right"></i> Universidades</a> -->
+                    </div>
+                </div>
+            </li>
+
+>>>>>>> f1b03b2c53d5783d25a5638204218cbbce72dcdd
             <!-- Nav Item - Ubicación Collapse Menu -->
             
             {% if perms.ubicacion.view_zona or perms.ubicacion.view_provincia or perms.ubicacion.view_distrito %}

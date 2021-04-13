@@ -1,0 +1,110 @@
+{% extends 'base_generic.html' %}
+{% block title %}ACTIVIDAD{% endblock title %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Actividades</li>
+    </ol>
+</nav>
+<div class="container-fluid">
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row ">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Listado de actividades</h6>
+                </div>
+                <div class="col ">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'actividad_crear'%}">Nueva Actividad</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th><b>FECHA</b></th>
+                            <th><b>RESPONSABLE</b></th>
+                            <th><b>USUARIO</b></th>
+                            <th><b>UBICACIÓN</b></th>
+                            <th><b>PRIORIDAD</b></th>
+                            <th><b>ACCIONES</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for actividad in object_list %}
+                        <tr>
+
+                            <th>{{ actividad.fecha }}</th>
+                            <th>{{ actividad.responsable }}</th>
+                            <th>{{ actividad.usuario }}</th>
+                            <th>{{ actividad.ubicacion }}</th>
+                            <th>
+                                {% if actividad.prioridad == '1' %}
+                                <p>ALTA</p>
+                                {% elif actividad.prioridad == '2' %}
+                                <p>MEDIA</p>
+                                {% else %}
+                                <p>BAJA</p>
+                                {% endif%}                               
+                            </th>
+                            <th>
+                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'actividad_detalle' actividad.id%}')"> <i class="fa fa-eye"></i>
+                                </a>
+                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'actividad_editar' actividad.id%}')"> <i
+                                        class="fa fa-edit"></i>
+                                </button>
+                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'actividad_eliminar' actividad.id%}')"><i class="fa fa-trash"></i>
+                                </a>
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editar" role="dialog">
+
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" role="dialog">
+
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
+ 
+</div>
+
+
+{% endblock content_main%}
+
+
+{% block content_extra_js %}
+<script src="static/js/funciones_mies.js"></script>
+{% endblock content_extra_js %}
