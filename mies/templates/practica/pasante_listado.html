@@ -49,10 +49,8 @@
                             <th><b>TELÉFONO MÓVIL</b></th>
                             <th><b>CARRERA</b></th>
                             <th><b>TUTOR PROFESIONAL</b></th>
-                            <th><b>FECHA INICIO</b></th>
-                            <th><b>FECHA FIN</b></th>
-                            <th><b>HORAS DIARIAS</b></th>
-                            <th><b>PRÁCTICAS PROFESIONALES</b></th>
+                        
+                            <th><b>ESTADO</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
@@ -66,21 +64,7 @@
                             <td>{{ pasante.telefono }}</td>
                             <td>{{ pasante.carrera }}</td>
                             <td>{{ pasante.tutor_profesional }}</td>
-                            <td>
-                                {% if pasante.fecha_inicio is none %}
-                                <p>-</p>
-                                {% else %}
-                                {{pasante.fecha_inicio}}
-                                {% endif%}
-                            </td>
-                            <td>
-                                {% if pasante.fecha_fin is none %}
-                                <p>-</p>
-                                {% else %}
-                                {{pasante.fecha_fin}}
-                                {% endif%}
-                            </td>
-                            <td>{{ pasante.horas_diarias }}</td>
+                            
                             <td>
                                 {% if pasante.estado%}
                                 <span class="badge badge-success">Completo</span>

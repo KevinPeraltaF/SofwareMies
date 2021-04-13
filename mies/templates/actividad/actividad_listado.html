@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            
+                            {% if perms.actividad.add_actividadcabecera %}
                             <a class="dropdown-item" href="{% url 'actividad_crear'%}">Nueva Actividad</a>
+                            {% endif %}
+                                
                         </div>
                     </div>
                 </div>
@@ -51,29 +55,36 @@
                         {% for actividad in object_list %}
                         <tr>
 
-                            <th>{{ actividad.fecha }}</th>
-                            <th>{{ actividad.responsable }}</th>
-                            <th>{{ actividad.usuario }}</th>
-                            <th>{{ actividad.ubicacion }}</th>
-                            <th>
-                                {% if actividad.prioridad == '1' %}
-                                <p>ALTA</p>
-                                {% elif actividad.prioridad == '2' %}
-                                <p>MEDIA</p>
-                                {% else %}
-                                <p>BAJA</p>
-                                {% endif%}                               
-                            </th>
-                            <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'actividad_detalle' actividad.id%}')"> <i class="fa fa-eye"></i>
+                            <td>{{ actividad.fecha }}</td>
+                            <td>{{ actividad.responsable }}</td>
+                            <td>{{ actividad.usuario }}</td>
+                            <td>{{ actividad.ubicacion }}</td>
+                            <td>
+                                {{ actividad.prioridad }}
+
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'actividad_detalle' actividad.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
+                                {% if perms.actividad.change_actividadcabecera %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'actividad_editar' actividad.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'actividad_eliminar' actividad.id%}')"><i class="fa fa-trash"></i>
+                                {% endif %}
+
+
+                                {% if perms.actividad.delete_actividadcabecera %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'actividad_eliminar' actividad.id%}')"><i
+                                        class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -98,7 +109,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

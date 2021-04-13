@@ -5,7 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import Prioridad, Asunto, ActividadCabecera, ActividadDetalle
 from .forms import PrioridadForm, AsuntoForm, ActividadCabeceraForm, ActividadDetalleForm, DetalleForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.utils.decorators import method_decorator
 from django.http import  HttpResponseRedirect
 
@@ -76,7 +76,7 @@ class ActividadDetailView(LoginRequiredMixin,DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['items'] = ActividadDetalle.objects.filter(cabecera=self.object.id)
+        context['items'] = ActividadDetalle.objects.filter(cabeceraActividad=self.object.id)
         return context
 
 #VISTA PRIORIDAD
