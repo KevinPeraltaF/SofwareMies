@@ -1,5 +1,5 @@
 from django import forms
-from .models import Prioridad, Asunto, Actividad, ActividadDetalle
+from .models import Prioridad, Asunto, ActividadCabecera, ActividadDetalle
 from django.forms.models import inlineformset_factory
 
 class PrioridadForm(forms.ModelForm):
@@ -30,10 +30,10 @@ class AsuntoForm(forms.ModelForm):
             ),
         }
 
-class ActividadForm(forms.ModelForm):
+class ActividadCabeceraForm(forms.ModelForm):
     
     class Meta:
-        model = Actividad
+        model = ActividadCabecera
         fields = (
         'fecha',
         'responsable',
@@ -77,15 +77,16 @@ class ActividadForm(forms.ModelForm):
                 }
             ),
         }
+
 class ActividadDetalleForm(forms.ModelForm):
     
     class Meta:
         model = ActividadDetalle
-        fields = ('cabecera',
+        fields = ('cabeceraActividad',
                    'asunto',)
 
         widgets = {
-            'cabecera': forms.Select(
+            'cabeceraActividad': forms.Select(
                 attrs ={
                     'class': 'form-control'
                 }
@@ -97,4 +98,4 @@ class ActividadDetalleForm(forms.ModelForm):
             ),
         }
 
-DetalleForm = inlineformset_factory(Actividad,ActividadDetalle,form=ActividadDetalleForm, extra=1,can_delete= True)
+DetalleForm = inlineformset_factory(ActividadCabecera,ActividadDetalle,form=ActividadDetalleForm, extra=1,can_delete= True)

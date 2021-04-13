@@ -44,8 +44,8 @@ class Asunto(models.Model):
         return super(Asunto, self).save(*args, **kwargs)
 
 
-class Actividad(models.Model):
-    """Model definition for Actividad."""
+class ActividadCabecera(models.Model):
+    """Model definition for ActividadCabecera."""
 
     fecha = models.DateField('Fecha', auto_now=False, auto_now_add=False)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_actividad')
@@ -54,20 +54,20 @@ class Actividad(models.Model):
     prioridad = models.ForeignKey(Prioridad, on_delete=models.PROTECT)
     observacion = models.TextField('Observación')
     class Meta:
-        """Meta definition for Actividad."""
+        """Meta definition for ActividadCabecera."""
 
         verbose_name = 'Actividad'
         verbose_name_plural = 'Actividades '
 
     def __int__(self):
-        """Unicode representation of Actividad."""
+        """Unicode representation of ActividadCabecera."""
         return self.fecha
 
  
 
 class ActividadDetalle(models.Model):
     """Model definition for ActividadDetalle."""
-    cabeceraActividad = models.ForeignKey(Actividad, on_delete=models.PROTECT)
+    cabeceraActividad = models.ForeignKey(ActividadCabecera, on_delete=models.PROTECT)
     asunto =models.ForeignKey(Asunto, on_delete=models.PROTECT)
 
     class Meta:

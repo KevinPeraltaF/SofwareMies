@@ -3,8 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
-from .models import Prioridad, Asunto, Actividad, ActividadDetalle
-from .forms import Prioridad, Asunto, ActividadForm, ActividadDetalleForm, DetalleForm
+from .models import Prioridad, Asunto, ActividadCabecera, ActividadDetalle
+from .forms import PrioridadForm, AsuntoForm, ActividadCabeceraForm, ActividadDetalleForm, DetalleForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.http import  HttpResponseRedirect
@@ -12,14 +12,14 @@ from django.http import  HttpResponseRedirect
 # VISTAS DEL MODULO ACTIVIDAD.
 #VISTA ACTIVIDAD
 class ActividadListView(LoginRequiredMixin,ListView):
-    model = Actividad
+    model = ActividadCabecera
     template_name = "actividad/actividad_listado.html"
 
     
 class ActividadCreateView(LoginRequiredMixin,CreateView):
-    model = Actividad
+    model = ActividadCabecera
     
-    form_class = ActividadForm
+    form_class = ActividadCabeceraForm
     template_name = "actividad/actividad_crear.html"
     success_url = reverse_lazy('actividad_listar')
     
@@ -55,24 +55,22 @@ class ActividadCreateView(LoginRequiredMixin,CreateView):
         )
 
 
-
 class ActividadDeleteView(LoginRequiredMixin,DeleteView):
     model = ActividadDetalle
     template_name = "actividad/actividad_eliminar.html"
     success_url = reverse_lazy('actividad_listar')
-   
+
 
 class ActividadUpdateView(LoginRequiredMixin,UpdateView):
     model = ActividadDetalle
     form_class = ActividadDetalleForm
-    second_form__class= ActividadForm
+    second_form__class= ActividadCabeceraForm
     template_name = "actividad/actividad_editar.html"
     success_url = reverse_lazy('actividad_listar')
 
 
-    
 class ActividadDetailView(LoginRequiredMixin,DetailView):
-    model = Actividad
+    model = ActividadCabecera
     template_name = "actividad/actividad_detalle.html"
     # additional parameters
 
