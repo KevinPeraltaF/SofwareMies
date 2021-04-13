@@ -25,11 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            
+
                             {% if perms.inventario.add_procesador %}
                             <a class="dropdown-item" href="{% url 'procesador_crear'%}">Nuevo Procesador</a>
                             {% endif %}
-                                
+
                         </div>
                     </div>
                 </div>
@@ -49,31 +49,32 @@
                     <tbody>
                         {% for procesador in object_list %}
                         <tr>
-                            <th>{{ procesador.descripcion }}</th>
-                            
-                           
-                            <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " 
-                                    onclick="abrirModalDetalle('{% url 'procesador_detalle' procesador.id %}')"> 
+                            <td>{{ procesador.descripcion }}</td>
+
+
+                            <td>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'procesador_detalle' procesador.id %}')">
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                
+
                                 {% if perms.inventario.add_procesador %}
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                onclick="abrirModalEditar('{% url 'procesador_editar' procesador.id %}')"> 
-                                <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
-                            </button>
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                    class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'procesador_editar' procesador.id %}')">
+                                    <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
+                                </button>
                                 {% endif %}
-                                    
-                                
+
+
                                 {% if perms.inventario.change_procesador %}
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" 
-                                onclick="abrirModalEliminar('{% url 'procesador_eliminar' procesador.id %}')">
-                                <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
-                            </a>
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'procesador_eliminar' procesador.id %}')">
+                                    <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                </a>
                                 {% endif %}
-                                    
-                            </th>
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -98,7 +99,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

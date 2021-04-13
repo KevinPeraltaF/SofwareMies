@@ -42,19 +42,20 @@
                 <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-
-                            <th><b>ZONA</b></th>
                             <th><b>PROVINCIA</b></th>
+                            <th><b>ZONA</b></th>
+                            
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for provincia in object_list %}
                         <tr>
-                            <th>{{ provincia.zona }}</th>
-                            <th>{{ provincia.descripcion }}</th>
+                            <td>{{ provincia.descripcion }}</td>
+                            <td>{{ provincia.zona }}</td>
+                            
 
-                            <th>
+                            <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
                                     onclick="abrirModalDetalle('{% url 'provincia_detalle' provincia.id%}')"> <i
                                         data-toggle="popover" title="Ver" class="fa fa-eye"></i>
@@ -76,7 +77,7 @@
                                 </a>
                                 {% endif %}
 
-                            </th>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

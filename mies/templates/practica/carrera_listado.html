@@ -25,11 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                           
-                           {% if perms.practica.add_carrera %}
-                           <a class="dropdown-item" href="{% url 'carrera_crear'%}">Nueva Carrera</a>
-                           {% endif %}
-                               
+
+                            {% if perms.practica.add_carrera %}
+                            <a class="dropdown-item" href="{% url 'carrera_crear'%}">Nueva Carrera</a>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -50,25 +50,29 @@
                     <tbody>
                         {% for carrera in object_list %}
                         <tr>
-                            <th>{{ carrera.descripcion }}</th>
-                            <th>{{ carrera.universidad }}</th>
-                            
-                           
-                            <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'carrera_detalle' carrera.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
+                            <td>{{ carrera.descripcion }}</td>
+                            <td>{{ carrera.universidad }}</td>
+
+
+                            <td>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'carrera_detalle' carrera.id%}')"> <i
+                                        data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                
+
                                 {% if perms.practica.change_carrera %}
-                                    
+
                                 {% endif %}
-                                    
-                               
-                               {% if  perms.practica.delete_carrera%}
-                               <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'carrera_eliminar' carrera.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
-                               </a>
-                               {% endif %}
-                                   
-                            </th>
+
+
+                                {% if perms.practica.delete_carrera%}
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'carrera_eliminar' carrera.id%}')"><i
+                                        data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                </a>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -93,7 +97,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

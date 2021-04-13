@@ -25,11 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            
+
                             {% if perms.red.add_accesored %}
                             <a class="dropdown-item" href="{% url 'accesoRed_crear'%}">Nuevo acceso</a>
                             {% endif %}
-                                
+
 
                         </div>
                     </div>
@@ -55,31 +55,31 @@
                         {% for acceso in object_list %}
                         <tr>
 
-                            <th>{{ acceso.usuario }}</th>
-                            <th>
+                            <td>{{ acceso.usuario }}</td>
+                            <td>
                                 {% if acceso.direccion_mac is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{ acceso.direccion_mac }}
                                 {% endif%}
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 {% if acceso.direccion_ip is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{ acceso.direccion_ip }}
                                 {% endif%}
 
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 {% if acceso.estado%}
                                 <span class="badge badge-success">Conectado</span>
                                 {% else %}
                                 <span class="badge badge-danger">No conectado</span>
                                 {% endif %}
 
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 <a class="btn btn-light btn-sm "
                                     onclick="abrirModalDetalle('{% url 'accesoRed_detalle' acceso.id%}')"> <i
                                         class="fa fa-eye"></i>
@@ -100,7 +100,7 @@
                                 </a>
                                 {% endif %}
 
-                            </th>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

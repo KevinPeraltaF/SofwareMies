@@ -25,11 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            
+
                             {% if perms.practica.add_pasante %}
-                                <a class="dropdown-item" href="{% url 'pasante_crear'%}">Nuevo pasante</a>
+                            <a class="dropdown-item" href="{% url 'pasante_crear'%}">Nuevo pasante</a>
                             {% endif %}
-                                
+
 
                         </div>
                     </div>
@@ -53,60 +53,64 @@
                             <th><b>FECHA FIN</b></th>
                             <th><b>HORAS DIARIAS</b></th>
                             <th><b>PRÁCTICAS PROFESIONALES</b></th>
-                            <th><b>ACCIONES</b></th>                           
+                            <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for pasante in pasante_list %}
                         <tr>
 
-                            <th>{{ pasante.nombres }}</th>
-                            <th>{{ pasante.apellidos }}</th>
-                            <th>{{ pasante.cedula }}</th>
-                            <th>{{ pasante.telefono }}</th>
-                            <th>{{ pasante.carrera }}</th>
-                            <th>{{ pasante.tutor_profesional }}</th>
-                            <th>
+                            <td>{{ pasante.nombres }}</td>
+                            <td>{{ pasante.apellidos }}</td>
+                            <td>{{ pasante.cedula }}</td>
+                            <td>{{ pasante.telefono }}</td>
+                            <td>{{ pasante.carrera }}</td>
+                            <td>{{ pasante.tutor_profesional }}</td>
+                            <td>
                                 {% if pasante.fecha_inicio is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{pasante.fecha_inicio}}
                                 {% endif%}
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 {% if pasante.fecha_fin is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{pasante.fecha_fin}}
                                 {% endif%}
-                            </th>
-                            <th>{{ pasante.horas_diarias }}</th>
-                            <th>
+                            </td>
+                            <td>{{ pasante.horas_diarias }}</td>
+                            <td>
                                 {% if pasante.estado%}
                                 <span class="badge badge-success">Completo</span>
                                 {% else %}
                                 <span class="badge badge-danger">Incompleto</span>
                                 {% endif %}
 
-                            </th>
-                            <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'pasante_detalle' pasante.id%}')"> <i class="fa fa-eye"></i>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'pasante_detalle' pasante.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
                                 {% if perms.practica.change_pasante %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                onclick="abrirModalEditar('{% url 'pasante_editar' pasante.id%}')"> <i
-                                    class="fa fa-edit"></i>
-                            </button>
+                                    onclick="abrirModalEditar('{% url 'pasante_editar' pasante.id%}')"> <i
+                                        class="fa fa-edit"></i>
+                                </button>
                                 {% endif %}
-                                    
-                                 
-                                 {% if perms.practica.delete_pasante %}
-                                 <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'pasante_eliminar' pasante.id%}')"><i class="fa fa-trash"></i>
-                                 </a>
-                                 {% endif %}
-                               
-                                
-                            </th>
+
+
+                                {% if perms.practica.delete_pasante %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'pasante_eliminar' pasante.id%}')"><i
+                                        class="fa fa-trash"></i>
+                                </a>
+                                {% endif %}
+
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -131,7 +135,7 @@
 
 <!-- Large modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

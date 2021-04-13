@@ -51,9 +51,9 @@
                         {% for zona in object_list %}
                         <tr>
 
-                            <th>{{ zona.descripcion }}</th>
+                            <td>{{ zona.descripcion }}</td>
 
-                            <th>
+                            <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
                                     onclick="abrirModalDetalle('{% url 'zona_detalle' zona.id%}')"> <i
                                         data-toggle="popover" title="Ver" class="fa fa-eye"></i>
@@ -75,7 +75,7 @@
                                 </a>
                                 {% endif %}
 
-                            </th>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

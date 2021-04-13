@@ -51,9 +51,9 @@
                         {% for cargo in object_list %}
                         <tr>
 
-                            <th>{{ cargo.descripcion }}</th>
+                            <td>{{ cargo.descripcion }}</td>
                            
-                            <th>
+                            <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'cargo_detalle' cargo.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
                                 
@@ -70,7 +70,7 @@
                                 </a>
                                 {% endif %}
                                     
-                            </th>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

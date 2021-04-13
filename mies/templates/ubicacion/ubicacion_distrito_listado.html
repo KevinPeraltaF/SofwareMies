@@ -50,11 +50,11 @@
                     <tbody>
                         {% for distrito in object_list %}
                         <tr>
-                            <th>{{ distrito.descripcion }}</th>
-                            <th>{{ distrito.provincia }}</th>
+                            <td>{{ distrito.descripcion }}</td>
+                            <td>{{ distrito.provincia }}</td>
 
 
-                            <th>
+                            <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
                                     onclick="abrirModalDetalle('{% url 'distrito_detalle' distrito.id%}')"> <i
                                         data-toggle="popover" title="Ver" class="fa fa-eye"></i>
@@ -76,7 +76,7 @@
                                 </a>
                                 {% endif %}
 
-                            </th>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

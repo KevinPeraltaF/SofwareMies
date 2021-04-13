@@ -50,9 +50,9 @@
                     <tbody>
                         {% for capacidad_memoria_ram in object_list %}
                         <tr>
-                            <th>{{ capacidad_memoria_ram.descripcion }}</th>
+                            <td>{{ capacidad_memoria_ram.descripcion }}</td>
 
-                            <th>
+                            <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
                                     onclick="abrirModalDetalle('{% url 'capacidad_memoria_ram_detalle' capacidad_memoria_ram.id %}')">
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
@@ -74,7 +74,7 @@
                                 </a>
                                 {% endif %}
 
-                            </th>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

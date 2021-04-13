@@ -25,11 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            
+
                             {% if perms.inventario.add_categoria %}
                             <a class="dropdown-item" href="{% url 'categoria_crear'%}">Nueva Categoria</a>
                             {% endif %}
-                                
+
                         </div>
                     </div>
                 </div>
@@ -49,31 +49,32 @@
                     <tbody>
                         {% for categoria in object_list %}
                         <tr>
-                            <th>{{ categoria.descripcion }}</th>
-                            
-                           
-                            <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " 
-                                    onclick="abrirModalDetalle('{% url 'categoria_detalle' categoria.id %}')"> 
+                            <td>{{ categoria.descripcion }}</td>
+
+
+                            <td>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'categoria_detalle' categoria.id %}')">
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                
+
                                 {% if perms.inventario.change_categoria %}
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                onclick="abrirModalEditar('{% url 'categoria_editar' categoria.id %}')"> 
-                                <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
-                            </button>
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                    class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'categoria_editar' categoria.id %}')">
+                                    <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
+                                </button>
                                 {% endif %}
-                                    
-                                
+
+
                                 {% if perms.inventario.delete_categoria %}
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" 
-                                onclick="abrirModalEliminar('{% url 'categoria_eliminar' categoria.id %}')">
-                                <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
-                            </a>
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'categoria_eliminar' categoria.id %}')">
+                                    <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                </a>
                                 {% endif %}
-                                    
-                            </th>
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -98,7 +99,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

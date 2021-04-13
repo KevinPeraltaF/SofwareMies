@@ -49,10 +49,10 @@
                     <tbody>
                         {% for capacidad_disco in object_list %}
                         <tr>
-                            <th>{{ capacidad_disco.descripcion }}</th>
+                            <td>{{ capacidad_disco.descripcion }}</td>
                             
                            
-                            <th>
+                            <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " 
                                     onclick="abrirModalDetalle('{% url 'capacidad_disco_detalle' capacidad_disco.id %}')"> 
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
@@ -73,7 +73,7 @@
                             </a>
                                 {% endif %}
                                     
-                            </th>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
