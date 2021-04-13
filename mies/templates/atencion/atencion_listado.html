@@ -25,8 +25,12 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.atencion.add_atencion %}
                             <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nueva Entrega-Recepción</a>
                             <a class="dropdown-item" href="#">Nueva Devolución</a>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -45,7 +49,7 @@
                             <th><b>EQUIPO</b></th>
                             <th><b>CUSTODIO</b></th>
                             <th><b>TIPO DOCUMENTO</b></th>
-                            <th><b>DOCUMENTOS</b></th>
+                            <th><b>REPORTE PDF</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
@@ -53,22 +57,44 @@
                         {% for atencion in object_list %}
                         <tr>
 
-                            <th>{{ atencion.fechaIncidente }}</th>
-                            <th>{{ atencion.responsable }}</th>
-                            <th>{{ atencion.equipo }}</th>
-                            <th>{{ atencion.equipo.responsable }}</th>
-                            <th>{{ atencion.tipoDocumento }}</th>
-                            <th>url_documentos</th>
-                            <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'atencion_detalle' atencion.id%}')"> <i class="fa fa-eye"></i>
+                            <td>{{ atencion.fechaIncidente }}</td>
+                            <td>{{ atencion.responsable }}</td>
+                            <td>{{ atencion.equipo }}</td>
+                            <td>{{ atencion.equipo.responsable }}</td>
+                            <td>{{ atencion.tipoDocumento }}</td>
+                            <td>
+
+                                <div class="row">
+                                <a href=""><i class="fas fa-file-pdf"></i>  Atención Pdf</a>
+                                </div>
+
+                                <div class="row">
+                                    <a href=""><i class="fas fa-file-pdf"></i>  Entrega Pdf</a>
+                                </div>
+
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'atencion_detalle' atencion.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
+
+                                {% if perms.atencion.change_atencion %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'atencion_editar' atencion.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'atencion_eliminar' atencion.id%}')"><i class="fa fa-trash"></i>
+                                {% endif %}
+
+
+                                {% if perms.atencion.delete_atencion %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'atencion_eliminar' atencion.id%}')"><i
+                                        class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -93,7 +119,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

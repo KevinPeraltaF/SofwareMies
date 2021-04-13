@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            
+                            {% if perms.prestamo.add_prestamo %}
                             <a class="dropdown-item" href="{% url 'prestamo_crear'%}">Nuevo préstamo</a>
+                            {% endif %}
+                                
 
                         </div>
                     </div>
@@ -52,34 +56,46 @@
                         {% for prestamo in object_list %}
                         <tr>
 
-                            <th>{{ prestamo.fecha_entrega }}</th>
-                            <th>
+                            <td>{{ prestamo.fecha_entrega }}</td>
+                            <td>
                                 {% if prestamo.fecha_devolucion is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{ prestamo.fecha_devolucion }}
                                 {% endif%}
-                            </th>
-                            <th>{{ prestamo.usuario }}</th>
-                            <th>{{ prestamo.item }}</th>
-                            <th>
+                            </td>
+                            <td>{{ prestamo.usuario }}</td>
+                            <td>{{ prestamo.item }}</td>
+                            <td>
                                 {% if prestamo.estado%}
                                 <span class="badge badge-success">Devuelto</span>
                                 {% else %}
                                 <span class="badge badge-danger">No Devuelto</span>
                                 {% endif %}
 
-                            </th>
-                            <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'prestamo_detalle' prestamo.id%}')"> <i class="fa fa-eye"></i>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'prestamo_detalle' prestamo.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
+
+                                {% if perms.prestamo.change_prestamo %}
                                 <button id="modalEditarprestamo" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'prestamo_editar' prestamo.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'prestamo_eliminar' prestamo.id%}')"><i class="fa fa-trash"></i>
+
+                                {% endif %}
+
+                                {% if perms.prestamo.delete_prestamo %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'prestamo_eliminar' prestamo.id%}')"><i
+                                        class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -104,7 +120,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

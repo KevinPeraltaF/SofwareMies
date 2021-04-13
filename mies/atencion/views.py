@@ -7,7 +7,8 @@ from .models import Atencion, AtencionDetalle
 from .forms import AtencionForm, AtencionDetalleForm, DetalleForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
-from django.http import  HttpResponseRedirect
+from django.http import  HttpResponseRedirect, HttpResponse
+from django_xhtml2pdf.views import PdfMixin
 
 # Create your views here.
 class AtencionListView(LoginRequiredMixin,ListView):
@@ -79,3 +80,8 @@ class AtencionDetailView(LoginRequiredMixin,DetailView):
         context = super().get_context_data(**kwargs)
         context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
         return context
+
+
+class ReporteAtencionPdfView(PdfMixin, DetailView):
+    model = Atencion
+    template_name = "atencion/atencion_reporte_pdf.html"

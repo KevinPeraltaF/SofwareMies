@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'cargo_crear'%}">Nuevo Cargo</a>
+                           
+                           {% if perms.empleado.add_cargo  %}
+                           <a class="dropdown-item" href="{% url 'cargo_crear'%}">Nuevo Cargo</a>
+                           {% endif %}
+                               
                         </div>
                     </div>
                 </div>
@@ -47,18 +51,26 @@
                         {% for cargo in object_list %}
                         <tr>
 
-                            <th>{{ cargo.descripcion }}</th>
+                            <td>{{ cargo.descripcion }}</td>
                            
-                            <th>
+                            <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'cargo_detalle' cargo.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
+                                
+                                {% if perms.empleado.change_cargo %}
                                 <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'cargo_editar' cargo.id%}')"> <i data-toggle="popover" title="Editar"
-                                        class="fa fa-edit"></i>
-                                </button>
+                                onclick="abrirModalEditar('{% url 'cargo_editar' cargo.id%}')"> <i data-toggle="popover" title="Editar"
+                                    class="fa fa-edit"></i>
+                            </button>
+                                {% endif %}
+                                    
+                                
+                                {% if perms.empleado.delete_cargo %}
                                 <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'cargo_eliminar' cargo.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+                                    
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

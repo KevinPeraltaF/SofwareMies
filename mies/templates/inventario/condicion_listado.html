@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Modelo</li>
+        <li class="breadcrumb-item active" aria-current="page">Condición</li>
     </ol>
 </nav>
 <div class="container-fluid">
@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.inventario.add_condicion %}
                             <a class="dropdown-item" href="{% url 'condicion_crear'%}">Nueva Condicion</a>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -45,23 +49,32 @@
                     <tbody>
                         {% for condicion in object_list %}
                         <tr>
-                            <th>{{ condicion.descripcion }}</th>
-                            
-                           
-                            <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " 
-                                    onclick="abrirModalDetalle('{% url 'condicion_detalle' condicion.id %}')"> 
+                            <td>{{ condicion.descripcion }}</td>
+
+
+                            <td>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'condicion_detalle' condicion.id %}')">
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'condicion_editar' condicion.id %}')"> 
+
+                                {% if perms.inventario.change_condicion %}
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                    class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'condicion_editar' condicion.id %}')">
                                     <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
                                 </button>
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" 
+                                {% endif %}
+
+
+                                {% if perms.inventario.delete_condicion %}
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
                                     onclick="abrirModalEliminar('{% url 'condicion_eliminar' condicion.id %}')">
                                     <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -86,7 +99,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

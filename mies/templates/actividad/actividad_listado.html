@@ -1,5 +1,5 @@
 {% extends 'base_generic.html' %}
-{% block title %}UNIVERSIDAD {% endblock title %}
+{% block title %}ACTIVIDAD{% endblock title %}
 
 
 {% block content_main %}
@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Universidad</li>
+        <li class="breadcrumb-item active" aria-current="page">Actividades</li>
     </ol>
 </nav>
 <div class="container-fluid">
@@ -16,7 +16,7 @@
         <div class="card-header py-3">
             <div class="row ">
                 <div class="col">
-                    <h6 class="m-0 font-weight-bold text-primary">Listado de Universidades</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Listado de actividades</h6>
                 </div>
                 <div class="col ">
                     <div class="dropdown float-right">
@@ -25,11 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.practica.add_universidad %}
-                            <a class="dropdown-item" href="{% url 'universidad_crear'%}">Nueva Universidad</a>
+                            
+                            {% if perms.actividad.add_actividadcabecera %}
+                            <a class="dropdown-item" href="{% url 'actividad_crear'%}">Nueva Actividad</a>
                             {% endif %}
-
+                                
                         </div>
                     </div>
                 </div>
@@ -43,37 +43,46 @@
                     <thead>
                         <tr>
 
-                            <th><b>UNIVERSIDADES</b></th>
+                            <th><b>FECHA</b></th>
+                            <th><b>RESPONSABLE</b></th>
+                            <th><b>USUARIO</b></th>
+                            <th><b>UBICACIÓN</b></th>
+                            <th><b>PRIORIDAD</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for universidad in object_list %}
+                        {% for actividad in object_list %}
                         <tr>
 
-                            <td>{{ universidad.descripcion }}</td>
-
+                            <td>{{ actividad.fecha }}</td>
+                            <td>{{ actividad.responsable }}</td>
+                            <td>{{ actividad.usuario }}</td>
+                            <td>{{ actividad.ubicacion }}</td>
                             <td>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
-                                    onclick="abrirModalDetalle('{% url 'universidad_detalle' universidad.id%}')"> <i
-                                        data-toggle="popover" title="Ver" class="fa fa-eye"></i>
-                                </a>
+                                {{ actividad.prioridad }}
 
-                                {% if perms.practica.add_universidad %}
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
-                                    class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'universidad_editar' universidad.id%}')"> <i
-                                        data-toggle="popover" title="Editar" class="fa fa-edit"></i>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'actividad_detalle' actividad.id%}')"> <i
+                                        class="fa fa-eye"></i>
+                                </a>
+                                {% if perms.actividad.change_actividadcabecera %}
+                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'actividad_editar' actividad.id%}')"> <i
+                                        class="fa fa-edit"></i>
                                 </button>
                                 {% endif %}
 
 
-                                {% if perms.practica.add_universidad %}
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEliminar('{% url 'universidad_eliminar' universidad.id%}')"><i
-                                        data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                {% if perms.actividad.delete_actividadcabecera %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'actividad_eliminar' actividad.id%}')"><i
+                                        class="fa fa-trash"></i>
                                 </a>
                                 {% endif %}
+
 
                             </td>
                         </tr>
