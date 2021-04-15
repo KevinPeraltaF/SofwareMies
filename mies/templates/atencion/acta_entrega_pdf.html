@@ -1,0 +1,506 @@
+{% extends 'base_atencion_reporte_pdf.html' %}
+{% block content %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<HEAD>
+
+    <TITLE>Acta de entrega- {{object.id}}</TITLE>
+
+
+</HEAD>
+
+<BODY LANG="en-US" DIR="LTR">
+
+    <P LANG="en-US" CLASS="western" ALIGN=RIGHT>
+        <FONT SIZE=5 STYLE="font-size: 11pt"><U><B>DM-09D17-TIC-MIES</B></U></FONT>
+    </P>
+    <P LANG="en-US" CLASS="western">
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+        <FONT SIZE=2 STYLE="font-size: 11pt">
+            <FONT SIZE=4 STYLE="font-size: 16pt"><U><B>ACTA
+                        DE ENTREGA– RECEPCIÓN</B></U></FONT>
+        </FONT>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
+        <FONT SIZE=2 STYLE="font-size: 11pt">
+            <FONT SIZE=4>En
+                la ciudad de Milagro a los {{ object.fechaIncidente.day}} días del mes de {{ object.fechaIncidente.month}} del {{ object.fechaIncidente.year  }}, se
+                procede a la ENTREGA de  {{object.equipo.categoria}} , entre las siguientes personas, por
+                una parte quien ENTREGA ING. {{object.responsable}} </FONT>
+            <FONT SIZE=4><B>RESPONSABLE
+                    ENCARGADO DE TICS </B></FONT>
+            <FONT SIZE=4>de la DIRECCION DISTRITAL
+                MILAGRO MIES/ZONA 5, y por otro lado quien RECIBE  {{object.equipo.responsable}} con 
+            </FONT>
+            <FONT SIZE=4><B>CI: {{object.equipo.responsable.cedula}}</B></FONT>
+            <FONT SIZE=4>
+                {{object.equipo.responsable.cargo}}.</FONT>
+        </FONT>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
+    </P>
+    <!---->
+    <table width="566" cellpadding="7" cellspacing="0">
+        <colgroup>
+            <col width="79">
+            <col width="80">
+            <col width="80">
+            <col width="80">
+            <col width="80">
+            <col width="79">
+        </colgroup>
+        <tbody>
+            <tr valign="TOP">
+                <td width="79"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>#</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>BIEN</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>MARCA</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>SERIE</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>MODELO</b></font>
+                    </p>
+                </td>
+                <td width="79"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>ESTADO</b></font>
+                    </p>
+                </td>
+            </tr>
+  
+            <tr valign="TOP">
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">1
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{object.equipo.categoria}}
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{object.equipo.marca}}
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{object.equipo.serie}}
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{object.equipo.modelo}}
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{object.equipo.condicion}}
+                    </p>
+                </td>
+            </tr>
+            
+            {% for a in  items %}
+            <tr valign="TOP">
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{a.pieza}}
+                    </p>
+                </td>
+                <td width="100"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{a.pieza.marca}}
+                    </p>
+                </td>
+                <td width="100"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{a.pieza.serie}}
+                    </p>
+                </td>
+                <td width="100"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{a.pieza.modelo}}
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        {{a.pieza.condicion}}
+                    </p>
+                </td>
+            </tr>
+            {% endfor %}
+                
+            
+        </tbody>
+    </table>
+    <!---->
+    
+      <!--
+    <table width="566" cellpadding="7" cellspacing="0">
+        <colgroup>
+            <col width="79">
+            <col width="80">
+            <col width="80">
+            <col width="80">
+            <col width="80">
+            <col width="79">
+        </colgroup>
+
+        <tbody>
+            <tr valign="TOP">
+                <td width="79"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>#</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>BIEN</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>MARCA</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>SERIE</b></font>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>MODELO</b></font>
+                    </p>
+                </td>
+                <td width="79"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western">
+                        <font size="3" style="font-size: 11pt"><b>ESTADO</b></font>
+                    </p>
+                </td>
+            </tr>
+            <tr valign="TOP">
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+            </tr>
+            <tr valign="TOP">
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+            </tr>
+            <tr valign="TOP">
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+            </tr>
+            <tr valign="TOP">
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+                <td width="80"
+                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+                    <p lang="en-US" class="western"><br>
+                    </p>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+-->
+  <!---->
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
+        <FONT SIZE=2 STYLE="font-size: 11pt">
+            <FONT SIZE=4>Esta
+                entrega recepción se sujeta a las siguientes clausulas:</FONT>
+        </FONT>
+    </P>
+
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
+        <FONT SIZE=2 STYLE="font-size: 11pt">
+            <FONT SIZE=4><B>Primera.-</B></FONT>
+            <FONT SIZE=4>
+                Los bienes descritos en la presente acta, a partir de la firma,
+                estarán bajo la responsabilidad, buen uso y cuidado de quien recibe
+                y garantiza que se emplearán única y exclusivamente para cumplir
+                con los fines propios inherentes a las funciones que se cumplen en el
+            </FONT>
+            <FONT SIZE=4><B>MINISTERIO DE INCLUSIÓN ECONÓMICA Y SOCIAL. </B></FONT>
+        </FONT>
+    </P>
+
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
+        <FONT SIZE=2 STYLE="font-size: 11pt">
+            <FONT SIZE=4><B>Segunda.-</B></FONT>
+            <FONT SIZE=4>
+                En caso de cambio o retiro, el custodio de los bienes deberá
+                elaborar la respectiva acta de descarga a nombre de la persona que se
+                responsabilizará, para su actualización registro y control.</FONT>
+        </FONT>
+    </P>
+
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
+        <FONT SIZE=2 STYLE="font-size: 11pt">
+            <FONT SIZE=4><B>Tercera.-</B></FONT>
+            <FONT SIZE=4>
+                Cuando alguno de los bienes, hubiere desaparecido por hurto, robo o
+                cualquier cosa semejante, comunicara inmediatamente por escrito este
+                hecho al responsable de Bienes, al jefe inmediato y a la máxima
+                autoridad de la institución con todos los pormenores que fueren del
+                caso, dentro de las 48 horas hábiles, conforme lo indica el Art. 86
+                del Reglamento General Sustitutivo para el manejo y Administración
+                de Bienes del Sector Publico.</FONT>
+        </FONT>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
+        <FONT SIZE=2 STYLE="font-size: 11pt">
+            <FONT SIZE=4>Para
+                constancia y fe de lo actuado, firman las partes intervinientes en
+                unidad de acto, en un original y una copia de igual tenor.</FONT>
+        </FONT>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
+    </P>
+
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
+    </P>
+    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
+    </P>
+    
+    <TABLE WIDTH=653 CELLPADDING=7 CELLSPACING=0>
+        <COL WIDTH=312>
+        <COL WIDTH=312>
+        <TR VALIGN=TOP>
+            <TD WIDTH=312 STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT FACE="Calibri, serif">
+                        <FONT SIZE=4><SPAN LANG="es-ES"><B>ENTREGA
+                                    CONFORME:</B></SPAN></FONT>
+                    </FONT>
+                </P>
+            </TD>
+            <TD WIDTH=312 STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT FACE="Calibri, serif">
+                        <FONT SIZE=4><SPAN LANG="es-ES"><B>RECIBE
+                                    CONFORME:</B></SPAN></FONT>
+                    </FONT>
+                </P>
+            </TD>
+        </TR>
+    </TABLE>
+
+    <TABLE WIDTH=640 CELLPADDING=5 CELLSPACING=0>
+        <COL WIDTH=310>
+        <COL WIDTH=310>
+        <TR VALIGN=BOTTOM>
+            <TD WIDTH=310 HEIGHT=7 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT SIZE=4 STYLE="font-size: 11pt">ING.
+                        {{object.responsable}}</FONT>
+                </P>
+            </TD>
+            <TD WIDTH=310 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT SIZE=4 STYLE="font-size: 11pt"><SPAN LANG="es-ES">{{object.equipo.responsable}}</SPAN></FONT>
+                </P>
+            </TD>
+        </TR>
+        <TR VALIGN=BOTTOM>
+            <TD WIDTH=310 HEIGHT=7 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT SIZE=2 STYLE="font-size: 11pt">
+                        <FONT SIZE=4><B>ANALISTA
+                                TICS</B></FONT>
+                    </FONT>
+                </P>
+            </TD>
+            <TD WIDTH=310 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT SIZE=2 STYLE="font-size: 11pt">
+                        <FONT SIZE=4><SPAN LANG="es-ES"><B>{{object.equipo.responsable.cargo}}</B></SPAN></FONT>
+                    </FONT>
+                </P>
+            </TD>
+        </TR>
+        <TR VALIGN=BOTTOM>
+            <TD WIDTH=310 HEIGHT=7 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT SIZE=2 STYLE="font-size: 11pt">
+                        <FONT SIZE=4><B>DIRECCION
+                                DISTRITAL MILAGRO</B></FONT>
+                    </FONT>
+                </P>
+            </TD>
+            <TD WIDTH=310 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
+                <P LANG="en-US" CLASS="western" ALIGN=CENTER>
+                    <FONT SIZE=2 STYLE="font-size: 11pt">
+                        <FONT SIZE=4><B>DIRECCION
+                                DISTRITAL MILAGRO</B></FONT>
+                    </FONT>
+                </P>
+            </TD>
+        </TR>
+    </TABLE>
+
+</BODY>
+
+</HTML>
+
+{% endblock content %}

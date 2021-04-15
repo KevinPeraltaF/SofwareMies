@@ -82,6 +82,21 @@ class AtencionDetailView(LoginRequiredMixin,DetailView):
         return context
 
 
-class ReporteAtencionPdfView(PdfMixin, DetailView):
+class ReporteAtencionPdfView(LoginRequiredMixin,PdfMixin, DetailView):
     model = Atencion
     template_name = "atencion/atencion_reporte_pdf.html"
+
+    
+
+        
+
+
+class ReporteActaEntregaPdfView(LoginRequiredMixin,PdfMixin,DetailView):
+    model = Atencion
+    template_name = "atencion/acta_entrega_pdf.html"
+    # additional parameters
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
+        return context
