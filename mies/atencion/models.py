@@ -61,10 +61,13 @@ class Atencion(models.Model):
         self.observacion =self.observacion and (self.observacion).upper()
         
         ultimoDocumento = Atencion.objects.all().order_by('contadorDocumento').last()
-        if (self.fechaIncidente.year != ultimoDocumento.fechaIncidente.year):
-            self.contadorDocumento =1
+        if ultimoDocumento:
+            if (self.fechaIncidente.year != ultimoDocumento.fechaIncidente.year):
+                self.contadorDocumento =1
+            else:
+                self.contadorDocumento =ultimoDocumento.contadorDocumento+1
         else:
-            self.contadorDocumento =ultimoDocumento.contadorDocumento+1
+            self.contadorDocumento =1
 
         return super(Atencion, self).save(*args, **kwargs)
 
