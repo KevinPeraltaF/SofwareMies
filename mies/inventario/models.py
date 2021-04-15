@@ -96,7 +96,7 @@ class InventarioTics(models.Model):
 
     fechaIngreso = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    ubicacion = models.ForeignKey(Distrito, on_delete=models.PROTECT)
+    ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
@@ -264,7 +264,7 @@ class InvetarioDistritoCabecera(models.Model):
 class InventarioDistritoDetalle(models.Model):
     """Model definition for InventarioDistritoDetalle."""
 
-    cabeceraDistrito = models.ForeignKey(InvetarioDistritoCabecera, on_delete=models.PROTECT)
+    cabeceraDistrito = models.ForeignKey(InvetarioDistritoCabecera,related_name='items', on_delete=models.PROTECT)
     periferico = models.ForeignKey(InventarioTics, on_delete=models.PROTECT, null=True,blank=True)
     cantidad = models.IntegerField('Cantidad', default=1)
     class Meta:
@@ -272,9 +272,8 @@ class InventarioDistritoDetalle(models.Model):
 
         verbose_name = 'Inventario Distrito Detalle'
         verbose_name_plural = 'Inventario Distrito Detalles'
-
+    
     def __int__(self):
-        return self.periferico
         """Unicode representation of InventarioDistritoDetalle."""
         return self.periferico
 

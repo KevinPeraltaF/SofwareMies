@@ -5,48 +5,45 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import AccesoRed
 from .forms import AccesoRedForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import  Group
+from django.contrib.auth.mixins import PermissionRequiredMixin,LoginRequiredMixin
+from django.http import HttpRequest
 from django.utils.decorators import method_decorator
-
+from django.contrib import messages
 # Create your views here.
-class AccesoRedListView(ListView):
+class AccesoRedListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'red.view_accesored'
     model = AccesoRed
     template_name = "red/acceso_red_listado.html"
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedListView, self).dispatch(*args, **kwargs)
     
-class AccesoRedCreateView(CreateView):
+
+class AccesoRedCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'red.add_accesored'
     model = AccesoRed
     form_class = AccesoRedForm
     template_name = "red/acceso_red_crear.html"
     success_url = reverse_lazy('accesoRed_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedCreateView, self).dispatch(*args, **kwargs)
+   
 
-
-class AccesoRedDeleteView(DeleteView):
+class AccesoRedDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'red.delete_accesored'
     model = AccesoRed
     template_name = "red/acceso_red_eliminar.html"
     success_url = reverse_lazy('accesoRed_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedDeleteView, self).dispatch(*args, **kwargs)
+   
 
 
-class AccesoRedUpdateView(UpdateView):
+class AccesoRedUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'red.change_accesored'
     model = AccesoRed
     form_class = AccesoRedForm
     template_name = "red/acceso_red_editar.html"
     success_url = reverse_lazy('accesoRed_listar')
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AccesoRedUpdateView, self).dispatch(*args, **kwargs)
+
 
     
-class AccesoRedDetailView(DetailView):
+class AccesoRedDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'red.view_accesored'
     model = AccesoRed
     template_name = "red/acceso_red_detalle.html"
 

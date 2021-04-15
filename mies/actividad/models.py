@@ -48,7 +48,7 @@ class ActividadCabecera(models.Model):
     """Model definition for ActividadCabecera."""
 
     fecha = models.DateField('Fecha', auto_now=False, auto_now_add=False)
-    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_activiadad')
+    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_actividad')
     usuario = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
     prioridad = models.ForeignKey(Prioridad, on_delete=models.PROTECT)
@@ -79,6 +79,3 @@ class ActividadDetalle(models.Model):
     def __int__(self):
         """Unicode representation of ActividadDetalle."""
         return self.asunto
-
-
-# Create your models here.

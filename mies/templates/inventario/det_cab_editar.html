@@ -1,0 +1,143 @@
+<div class="modal-dialog modal-lg"  role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Registro</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% if form.errors %}
+  
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                        {{error}}
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+  
+        </div>
+        {% endif %}
+        
+        
+        
+        <form action="{% url 'det_cab_editar' object.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="modal-body">
+                <div class='form-row'>
+                    <div class="form-group col-md-4">
+                        {{form.fechaIngreso.label}}
+                        {{form.fechaIngreso}}
+                    </div>
+                    <div class="form-group col-md-8">
+                        {{form.responsable.label}}
+                        {{form.responsable}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.ubicacion.label}}
+                        {{form.ubicacion}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.categoria.label}}
+                        {{form.categoria}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form.descripcion.label}}
+                    {{form.descripcion}}
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        {{form.marca.label}}
+                        {{form.marca}}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{form.modelo.label}}
+                        {{form.modelo}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{form.condicion.label}}
+                        {{form.condicion}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.serie.label}}
+                        {{form.serie}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.codigoMies.label}}
+                        {{form.codigoMies}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.direccionIp.label}}
+                        {{form.direccionIp}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.direccionMac.label}}
+                        {{form.direccionMac}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        {{form.capacidadDisco.label}}
+                        {{form.capacidadDisco}}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{form.capacidadMemoria.label}}
+                        {{form.capacidadMemoria}}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{form.capacidadProcesador.label}}
+                        {{form.capacidadProcesador}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form.foto.label}}
+                    {{form.foto}}
+                </div>
+                <hr>
+               <!--  <div class="form-row">
+                    {{detalle_form.management_form}}
+                    {% for ft in detalle_form %}
+                    {{ ft }}
+                    {% endfor %}
+                </div> -->
+                <div class="form-row">
+                    {{detalle_form.management_form}}
+                    {% for form1 in detalle_form %}
+                    {{form1.id}}
+                    <div class="form-group col-md-4">
+                        {{form1.periferico.label}}
+                        {{form1.periferico}}
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        {{form1.cantidad.label}}
+                        {{form1.cantidad}}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{form1.DELETE.label}}
+                        {{form1.DELETE}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+  </div>

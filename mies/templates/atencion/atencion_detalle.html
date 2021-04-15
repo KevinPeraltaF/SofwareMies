@@ -8,15 +8,15 @@
         </div>
 
         <div class="modal-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive-sm">
                 <tbody>
                     <tr>
                         <th colspan="8">Información Atención</th>
                     </tr>
                     <tr>
-                        
+
                         <th>Fecha Atención:</th>
-                        <td   colspan="3">{{object.fechaIncidente}} </td>
+                        <td colspan="3">{{object.fechaIncidente}} </td>
                         <th>Hora ingreso:</th>
                         <td>{{object.hora_ingreso}} </td>
                         <th>Hora salida:</th>
@@ -36,7 +36,7 @@
 
                         </td>
                         <th>Software:</th>
-                        <td >
+                        <td>
                             {% if object.software%}
                             <span class="badge badge-success">SI</span>
                             {% else %}
@@ -47,7 +47,7 @@
                         </td>
                     </tr>
                     <tr>
-                        
+
                         <th>Instalación:</th>
                         <td>
                             {% if object.instalacion%}
@@ -55,7 +55,7 @@
                             {% else %}
                             <span class="badge badge-danger">NO</span>
                             {% endif %}
-                             </td>
+                        </td>
                         <th>Configuración:</th>
                         <td>
                             {% if object.configuracion%}
@@ -63,7 +63,7 @@
                             {% else %}
                             <span class="badge badge-danger">NO</span>
                             {% endif %}
-                            </td>
+                        </td>
                         <th>Prueba:</th>
                         <td>
                             {% if object.prueba%}
@@ -71,7 +71,7 @@
                             {% else %}
                             <span class="badge badge-danger">NO</span>
                             {% endif %}
-                         
+
                         <th>Capacitación:</th>
                         <td>
                             {% if object.capacitacion%}
@@ -82,11 +82,11 @@
 
                         </td>
                     </tr>
-                   
+
                     <tr>
                         <th>Equipo:</th>
                         <td colspan="3">{{object.equipo}}</td>
-                        <th>Custodio-corregir:</th>
+                        <th>Custodio:</th>
                         <td colspan="3">{{object.responsable}}</td>
                     </tr>
                     <tr>
@@ -101,17 +101,28 @@
                     <tr>
                         <th colspan="8">Información Entrega-Recepción</th>
                     </tr>
+
+
+
+                    {% for a in items %}
                     <tr>
-                        <th>Item:</th>
-                        <td colspan="8">{{object.pieza}}</td>
-                   
+                        <th>Piezas:</th>
+                        <td colspan="5">{{a.pieza}}</td>
+                        <th>Cantidad:</th>
+                        <td colspan="2">{{a.cantidad }}</td>
                     </tr>
+                    {% endfor %}
+
+
+
+
+
                 </tbody>
             </table>
-           
+
 
         </div>
-       
+
         </form>
     </div>
 

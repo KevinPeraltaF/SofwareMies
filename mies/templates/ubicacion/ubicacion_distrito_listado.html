@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'distrito_crear'%}">Nuevo Distrito</a>
+
+                            {% if perms.ubicacion.add_distrito %}
+                            <a class="dropdown-item" href="{% url 'prestamo_crear'%}">Nuevo préstamo</a>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -46,20 +50,33 @@
                     <tbody>
                         {% for distrito in object_list %}
                         <tr>
-                            <th>{{ distrito.descripcion }}</th>
-                            <th>{{ distrito.provincia }}</th>
-                            
-                           
-                            <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'distrito_detalle' distrito.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
+                            <td>{{ distrito.descripcion }}</td>
+                            <td>{{ distrito.provincia }}</td>
+
+
+                            <td>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'distrito_detalle' distrito.id%}')"> <i
+                                        data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'distrito_editar' distrito.id%}')"> <i data-toggle="popover" title="Editar"
-                                        class="fa fa-edit"></i>
+
+                                {% if perms.ubicacion.change_distrito %}
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                    class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'distrito_editar' distrito.id%}')"> <i
+                                        data-toggle="popover" title="Editar" class="fa fa-edit"></i>
                                 </button>
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'distrito_eliminar' distrito.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                {% endif %}
+
+
+                                {% if perms.ubicacion.delete_distrito %}
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'distrito_eliminar' distrito.id%}')"><i
+                                        data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -84,7 +101,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

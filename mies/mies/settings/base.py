@@ -6,7 +6,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=#h(-m2g07vw()&w7axgfn*7goz1rv*c!0m@l54*6wiucx_n^s'
-
+#solucion para error de warning-  error(model.w042)
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 # Application definition
 
@@ -94,3 +95,4 @@ USE_TZ = True
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL='/accounts/login/'

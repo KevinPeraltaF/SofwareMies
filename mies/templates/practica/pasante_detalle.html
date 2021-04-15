@@ -8,7 +8,7 @@
         </div>
 
         <div class="modal-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive-sm">
                 <tbody>
                     <tr>
                         <th>Fecha Inicio:</th>
@@ -27,7 +27,7 @@
                             {{object.fecha_fin}}
                             {% endif%}
                         </td>
-                        <th>Prácticas Profesionales:</th>
+                        <th>Estado:</th>
                         <td>
                             {% if object.estado%}
                             <span class="badge badge-success">Completo</span>
@@ -38,25 +38,25 @@
                     </tr>
                     <tr>
                         <th>Nombres:</th>
-                        <td>{{object.nombres}}</td>
+                        <td colspan="2">{{object.nombres}}</td>
                         <th>Apellidos:</th>
-                        <td>{{object.apellidos}}</td>
+                        <td colspan="4">{{object.apellidos}}</td>
                     </tr>
                     <tr>
                         <th>Cédula:</th>
-                        <td>{{object.cedula}}</td>
+                        <td colspan="2" >{{object.cedula}}</td>
                         <th>Teléfono móvil:</th>
-                        <td>{{object.telefono}}</td>
+                        <td colspan="4">{{object.telefono}}</td>
                     </tr>
                     <tr>
                         <th>Carrera</th>
-                        <td>{{object.carrera}}</td>
+                        <td colspan="2" >{{object.carrera}}</td>
                         <th>Tutor Profesional:</th>
-                        <td>{{object.tutor_profesional}}</td>                          
+                        <td colspan="4">{{object.tutor_profesional}}</td>                          
                     </tr>
                     <tr>
                         <th>Horas Diarias:</th>
-                        <td colspan="4">{{object.horas_diarias}}</td>
+                        <td colspan="5">{{object.horas_diarias}}</td>
                     </tr>
 
                 </tbody>

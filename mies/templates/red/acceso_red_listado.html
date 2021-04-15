@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.red.add_accesored %}
                             <a class="dropdown-item" href="{% url 'accesoRed_crear'%}">Nuevo acceso</a>
+                            {% endif %}
+
 
                         </div>
                     </div>
@@ -51,40 +55,52 @@
                         {% for acceso in object_list %}
                         <tr>
 
-                            <th>{{ acceso.usuario }}</th>
-                            <th>
+                            <td>{{ acceso.usuario }}</td>
+                            <td>
                                 {% if acceso.direccion_mac is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{ acceso.direccion_mac }}
                                 {% endif%}
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 {% if acceso.direccion_ip is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{ acceso.direccion_ip }}
                                 {% endif%}
-                               
-                            </th>
-                            <th>
+
+                            </td>
+                            <td>
                                 {% if acceso.estado%}
                                 <span class="badge badge-success">Conectado</span>
                                 {% else %}
                                 <span class="badge badge-danger">No conectado</span>
                                 {% endif %}
 
-                            </th>
-                            <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'accesoRed_detalle' acceso.id%}')"> <i class="fa fa-eye"></i>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'accesoRed_detalle' acceso.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
+
+                                {% if perms.red.change_accesored %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'accesoRed_editar' acceso.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'accesoRed_eliminar' acceso.id%}')"><i class="fa fa-trash"></i>
+                                {% endif %}
+
+
+                                {% if perms.red.delete_accesored %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'accesoRed_eliminar' acceso.id%}')"><i
+                                        class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -109,7 +125,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

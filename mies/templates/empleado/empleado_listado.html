@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.empleado.add_empleado %}
                             <a class="dropdown-item" href="{% url 'empleado_crear'%}">Nuevo empleado</a>
+
+                            {% endif %}
 
                         </div>
                     </div>
@@ -51,26 +55,26 @@
                             <th><b>CÉDULA</b></th>
                             <th><b>TELÉFONO MÓVIL</b></th>
                             <th><b>ESTADO</b></th>
-                            <th><b>ACCIONES</b></th>                           
+                            <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for empl in object_list %}
                         <tr>
 
-                            <th>{{ empl.fecha }}</th>
-                            <th>{{ empl.area }}</th>
-                            <th>{{ empl.cargo }}</th>
-                            <th>
+                            <td>{{ empl.fecha }}</td>
+                            <td>{{ empl.area }}</td>
+                            <td>{{ empl.cargo }}</td>
+                            <td>
                                 {% if empl.unidadAtencion is none %}
                                 <p>-</p>
                                 {% else %}
                                 {{ empl.unidadAtencion }}
                                 {% endif%}
-                            </th>
-                            <th>{{ empl.nombres }}</th>
-                            <th>{{ empl.apellidos }}</th>
-                            <th>
+                            </td>
+                            <td>{{ empl.nombres }}</td>
+                            <td>{{ empl.apellidos }}</td>
+                            <td>
                                 {% if empl.genero == '1' %}
                                 <p>MASCULINO</p>
                                 {% elif empl.genero == '2' %}
@@ -78,28 +82,40 @@
                                 {% else %}
                                 <p>LGTBI</p>
                                 {% endif%}
-                            </th>
-                            <th>{{ empl.correo }}</th>
-                            <th>{{ empl.cedula }}</th>
-                            <th>{{ empl.telefono }}</th>
-                            <th>
+                            </td>
+                            <td>{{ empl.correo }}</td>
+                            <td>{{ empl.cedula }}</td>
+                            <td>{{ empl.telefono }}</td>
+                            <td>
                                 {% if empl.estado%}
                                 <span class="badge badge-success">Activo</span>
                                 {% else %}
                                 <span class="badge badge-danger">No Activo</span>
                                 {% endif %}
 
-                            </th>
-                            <th>
-                                <a class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'empleado_detalle' empl.id%}')"> <i class="fa fa-eye"></i>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'empleado_detalle' empl.id%}')"> <i
+                                        class="fa fa-eye"></i>
                                 </a>
+
+                                {% if perms.empleado.change_empleado %}
                                 <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
                                         class="fa fa-edit"></i>
                                 </button>
-                                <a class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'empleado_eliminar' empl.id%}')"><i class="fa fa-trash"></i>
-                                </a>
-                            </th>
+                                {% endif %}
+
+
+                                {% if perms.empleado.delete_empleado %}
+                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
+                                        class="fa fa-edit"></i>
+                                </button>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -124,7 +140,7 @@
 
 <!-- Large modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

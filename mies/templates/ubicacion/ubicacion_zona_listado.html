@@ -25,7 +25,11 @@
                             Acciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.ubicacion.add_zona %}
                             <a class="dropdown-item" href="{% url 'zona_crear'%}">Nueva zona</a>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -47,18 +51,31 @@
                         {% for zona in object_list %}
                         <tr>
 
-                            <th>{{ zona.descripcion }}</th>
-                           
-                            <th>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'zona_detalle' zona.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
+                            <td>{{ zona.descripcion }}</td>
+
+                            <td>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'zona_detalle' zona.id%}')"> <i
+                                        data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'zona_editar' zona.id%}')"> <i data-toggle="popover" title="Editar"
-                                        class="fa fa-edit"></i>
+
+                                {% if perms.ubicacion.change_zona %}
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                    class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'zona_editar' zona.id%}')"> <i
+                                        data-toggle="popover" title="Editar" class="fa fa-edit"></i>
                                 </button>
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'zona_eliminar' zona.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+                                {% endif %}
+
+
+                                {% if perms.ubicacion.delete_zona %}
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'zona_eliminar' zona.id%}')"><i
+                                        data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
-                            </th>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -83,7 +100,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

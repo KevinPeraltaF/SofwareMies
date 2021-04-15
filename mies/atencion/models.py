@@ -63,7 +63,7 @@ class Atencion(models.Model):
 
 class AtencionDetalle(models.Model):
     """Model definition for AtencionDetalle."""
-    cabecera = models.ForeignKey(Atencion, on_delete=models.PROTECT)
+    cabecera = models.ForeignKey(Atencion, on_delete=models.CASCADE)
     pieza = models.ForeignKey(InventarioTics, on_delete=models.PROTECT)
     cantidad = models.IntegerField('Cantidad', default = 1)
 
