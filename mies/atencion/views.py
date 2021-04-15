@@ -86,6 +86,10 @@ class ReporteAtencionPdfView(LoginRequiredMixin,PdfMixin, DetailView):
     model = Atencion
     template_name = "atencion/atencion_reporte_pdf.html"
 
+    
+
+        
+
 
 class ReporteActaEntregaPdfView(LoginRequiredMixin,PdfMixin,DetailView):
     model = Atencion

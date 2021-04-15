@@ -73,15 +73,16 @@
 
                     <td colspan="5"><img src="{% static 'img/barra_colores.png' %}" width="400"></td>
                 </tr>
+                {% block header %}
+
+                {% endblock header %}
 
             </thead>
 
         </table>
 
 
-        {% block header %}
-
-        {% endblock header %}
+      
         <table>
             <hr class="sidebar-divider">
         </table>
@@ -93,7 +94,6 @@
 
     <!-- Content for Static Frame 'footer_frame' -->
     <div id="footer_content">
-
         <table>
             <thead>
                 <tr>
