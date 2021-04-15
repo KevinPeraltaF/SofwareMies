@@ -21,3 +21,5 @@ class AtencionAdmin(admin.ModelAdmin):
     list_display = ('equipo','responsable','tipoDocumento','hora_ingreso','hora_salida','instalacion','configuracion','prueba','capacitacion','hardware','software')
     list_filter = ('equipo','fechaIncidente','tipoDocumento',)
     search_fields = ('equipo','fechaIncidente','tipoDocumento',)
+    exclude=("contadorDocumento ",)
+    readonly_fields=('contadorDocumento',)

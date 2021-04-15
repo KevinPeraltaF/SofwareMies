@@ -44,6 +44,7 @@ class Atencion(models.Model):
     software = models.BooleanField('Software')
     observacion = models.TextField('Observación', null=True , blank= True)
     tipoDocumento = models.ForeignKey(TipoDocumento, on_delete=models.PROTECT)
+    contadorDocumento = models.IntegerField(default=0)
     class Meta:
         """Meta definition for Atencion."""
 
@@ -58,6 +59,13 @@ class Atencion(models.Model):
         """Save method for Atencion."""
         self.detalle =self.detalle and (self.detalle).upper()
         self.observacion =self.observacion and (self.observacion).upper()
+        
+        ultimoDocumento = Atencion.objects.all().order_by('contadorDocumento').last()
+        if (self.fechaIncidente.year != ultimoDocumento.fechaIncidente.year):
+            self.contadorDocumento =1
+        else:
+            self.contadorDocumento =ultimoDocumento.contadorDocumento+1
+
         return super(Atencion, self).save(*args, **kwargs)
 
 

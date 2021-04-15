@@ -22,7 +22,6 @@ class AtencionCreateView(LoginRequiredMixin,CreateView):
     form_class = AtencionForm
     template_name = "atencion/atencion_crear.html"
     success_url = reverse_lazy('atencion_listar')
-    
     def get(self, request,*args,**kwargs):
         self.object = None
         form_class = self.get_form_class()
@@ -85,9 +84,7 @@ class AtencionDetailView(LoginRequiredMixin,DetailView):
 class ReporteAtencionPdfView(LoginRequiredMixin,PdfMixin, DetailView):
     model = Atencion
     template_name = "atencion/atencion_reporte_pdf.html"
-
-    
-
+        
         
 
 
