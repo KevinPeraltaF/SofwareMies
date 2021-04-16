@@ -17,7 +17,7 @@ class Zona(models.Model):
 
     def save(self, *args, **kwargs):
         """Save method for Zona."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Zona, self).save(*args, **kwargs)
 
 
@@ -37,7 +37,7 @@ class Provincia(models.Model):
     
     def save(self, *args, **kwargs):
         """Save method for Provincia."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Provincia, self).save(*args, **kwargs)
 
 
@@ -59,6 +59,6 @@ class Distrito(models.Model):
     
     def save(self, *args, **kwargs):
         """Save method for Distrito."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Distrito, self).save(*args, **kwargs)
 

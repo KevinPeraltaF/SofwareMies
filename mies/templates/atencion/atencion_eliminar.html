@@ -9,7 +9,7 @@
       <form action="{% url 'accesoRed_eliminar' object.id %}" method="post">
         {% csrf_token %}
         <div class="modal-body">
-          ¿Estás seguro que desea eliminar el registro: "{{ object.fechaIncidente }}-{{ object.equipo }}"?
+          ¿Estás seguro que desea eliminar el registro: "{{ object.tipoDocumento }}-DDM-09D17-TICS-MIES-{{ object.fechaIncidente.year }}-00{{ object.contadorDocumento }}"?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

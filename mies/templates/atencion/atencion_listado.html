@@ -27,8 +27,10 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                             {% if perms.atencion.add_atencion %}
-                            <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nueva Entrega-Recepción</a>
-                            <a class="dropdown-item" href="#">Nueva Devolución</a>
+                            <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nueva Entrega y reporte</a>
+                            <a class="dropdown-item" href="#">Nueva Entrega</a>
+                            <a class="dropdown-item" href="#">Nueva Recepción</a>
+                            <a class="dropdown-item" href="#">Nuevo reporte-entrega bienes: </a>
                             {% endif %}
 
                         </div>

@@ -18,7 +18,7 @@ class Prioridad(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Prioridad."""
-        self.descripcion =(self.descripcion).upper()
+        self.descripcion =self.descripcion and (self.descripcion).upper()
         return super(Prioridad, self).save(*args, **kwargs)
         
 
@@ -40,7 +40,7 @@ class Asunto(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Asunto."""
-        self.descripcion =(self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Asunto, self).save(*args, **kwargs)
 
 

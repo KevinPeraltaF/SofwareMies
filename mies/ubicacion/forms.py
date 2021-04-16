@@ -15,7 +15,6 @@ class ZonaForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
@@ -42,7 +41,6 @@ class ProvinciaForm(forms.ModelForm):
             ),
             'descripcion': forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
@@ -69,7 +67,6 @@ class DistritoForm(forms.ModelForm):
             ),
             'descripcion': forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),

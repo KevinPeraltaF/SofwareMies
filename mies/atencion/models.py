@@ -1,6 +1,7 @@
 from django.db import models
 from empleado.models import Empleado
 from inventario.models import InvetarioDistritoCabecera, InventarioTics
+from django.utils import timezone
 # Create your models here.
 
 class TipoDocumento(models.Model):
@@ -30,12 +31,12 @@ class TipoDocumento(models.Model):
 class Atencion(models.Model):
     """Model definition for Atencion."""
 
-    fechaIncidente = models.DateField('Fecha Incidente', auto_now=False, auto_now_add=False)
+    fechaIncidente = models.DateField('Fecha Incidente',default=timezone.now)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     equipo = models.ForeignKey(InvetarioDistritoCabecera, on_delete=models.PROTECT)
     detalle = models.TextField('Detalle', null=True , blank= True)
-    hora_ingreso = models.TimeField('Hora Ingreso', auto_now=False, auto_now_add=False)
-    hora_salida = models.TimeField('Hora Salida', auto_now=False, auto_now_add=False , null=True , blank= True)
+    fecha_salida = models.DateField('Fecha Salida', auto_now=False, auto_now_add=False)
+    hora_salida = models.TimeField('Hora Salida')
     instalacion =models.BooleanField('Instalación')
     configuracion = models.BooleanField('Configuración')
     prueba = models.BooleanField('Prueba')

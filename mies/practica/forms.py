@@ -26,59 +26,51 @@ class PasanteForm(forms.ModelForm):
         widgets = {
             'nombres': forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'apellidos': forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'cedula': forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'telefono': forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'carrera' : forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'tutor_profesional' : forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'fecha_inicio': forms.TextInput(
                 attrs={
                     'type':'date',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'fecha_fin': forms.TextInput(
                 attrs={
                     'type':'date',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
             'horas_diarias': forms.TextInput(
                 attrs={
                     'type':'number',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'min':'1'
                 }
             ),
             'estado': forms.TextInput(
@@ -108,7 +100,6 @@ class CarreraForm(forms.ModelForm):
             ),
             'descripcion' : forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),
@@ -126,7 +117,6 @@ class UniversidadForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control'
                 }
             ),

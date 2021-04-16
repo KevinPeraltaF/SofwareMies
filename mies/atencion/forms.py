@@ -22,11 +22,11 @@ class AtencionForm(forms.ModelForm):
     class Meta:
         model = Atencion
         fields = (
-        'fechaIncidente',
+        
         'responsable',
         'equipo',
         'detalle',
-        'hora_ingreso',
+        'fecha_salida',
         'hora_salida',
         'instalacion',
         'configuracion',
@@ -38,12 +38,7 @@ class AtencionForm(forms.ModelForm):
         'tipoDocumento')
 
         widgets = {
-            'fechaIncidente':forms.TextInput(
-                    attrs={
-                        'type':'date',
-                        'class': 'form-control'
-                    }
-                ),
+            
             'responsable':forms.Select(
                     attrs={
                         'class': 'form-control'
@@ -56,14 +51,14 @@ class AtencionForm(forms.ModelForm):
                 ),
             'detalle': forms.Textarea(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
+                    
                     'class': 'form-control',
                     "rows":3, "cols":10
                 }
             ),
-            'hora_ingreso':forms.TextInput(
+            'fecha_salida':forms.TextInput(
                     attrs={
-                        'type':'time',
+                        'type':'date',
                         'class': 'form-control'
                     }
                 ),
@@ -117,7 +112,7 @@ class AtencionForm(forms.ModelForm):
             ),
             'observacion':forms.Textarea(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
+                  
                     'class': 'form-control',
                     "rows":3, "cols":10
                 }

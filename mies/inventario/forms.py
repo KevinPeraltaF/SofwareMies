@@ -26,70 +26,60 @@ class InvTicsForm(forms.ModelForm):
             'fechaIngreso': forms.TextInput(
                 attrs={
                     'type':'date',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'responsable':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'ubicacion':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'categoria':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'descripcion':forms.Textarea(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control',
                     "rows":3, "cols":10
                 }
             ),
             'marca':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'modelo':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'condicion':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'serie':forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'codigoMies':forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'cantidad':forms.TextInput(
                 attrs={
                     'type':'number',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
-                    'class':'form-control'
+                    'class':'form-control',
+                    'min':'0'
                 }
             ),
             'foto':forms.ClearableFileInput(
@@ -233,92 +223,77 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
             'fechaIngreso': forms.TextInput(
                 attrs={
                     'type':'date',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'responsable':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'ubicacion':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'categoria':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'descripcion':forms.Textarea(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control',
                     "rows":3, "cols":10
                 }
             ),
             'marca':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'modelo':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'condicion':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'serie':forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'codigoMies':forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'direccionIp':forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'direccionMac':forms.TextInput(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'capacidadDisco':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'capacidadMemoria':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'capacidadProcesador':forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
@@ -343,20 +318,17 @@ class InventarioDistritoDetalleForm(forms.ModelForm):
         widgets = {
             'cabeceraDistrito': forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'periferico': forms.Select(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             ),
             'cantidad':forms.TextInput(
                 attrs={
                     'type':'number',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
             )
