@@ -18,6 +18,8 @@ class ListadoDetalleAtencion(admin.TabularInline):
 class AtencionAdmin(admin.ModelAdmin):
     '''Admin View for Atencion'''
     inlines=(ListadoDetalleAtencion,)
-    list_display = ('equipo','responsable','tipoDocumento','hora_ingreso','hora_salida','instalacion','configuracion','prueba','capacitacion','hardware','software')
+    list_display = ('equipo','responsable','tipoDocumento','fecha_salida','hora_salida','instalacion','configuracion','prueba','capacitacion','hardware','software')
     list_filter = ('equipo','fechaIncidente','tipoDocumento',)
     search_fields = ('equipo','fechaIncidente','tipoDocumento',)
+    exclude=("contadorDocumento ",)
+    readonly_fields=('contadorDocumento',)

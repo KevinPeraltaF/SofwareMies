@@ -22,7 +22,6 @@ class AtencionCreateView(LoginRequiredMixin,CreateView):
     form_class = AtencionForm
     template_name = "atencion/atencion_crear.html"
     success_url = reverse_lazy('atencion_listar')
-    
     def get(self, request,*args,**kwargs):
         self.object = None
         form_class = self.get_form_class()
@@ -57,7 +56,7 @@ class AtencionCreateView(LoginRequiredMixin,CreateView):
 
 
 class AtencionDeleteView(LoginRequiredMixin,DeleteView):
-    model = AtencionDetalle
+    model = Atencion
     template_name = "atencion/atencion_eliminar.html"
     success_url = reverse_lazy('Atencion_listar')
    
@@ -82,6 +81,20 @@ class AtencionDetailView(LoginRequiredMixin,DetailView):
         return context
 
 
-class ReporteAtencionPdfView(PdfMixin, DetailView):
+class ReporteAtencionPdfView(LoginRequiredMixin,PdfMixin, DetailView):
     model = Atencion
     template_name = "atencion/atencion_reporte_pdf.html"
+
+  
+        
+
+
+class ReporteActaEntregaPdfView(LoginRequiredMixin,PdfMixin,DetailView):
+    model = Atencion
+    template_name = "atencion/acta_entrega_pdf.html"
+    # additional parameters
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
+        return context

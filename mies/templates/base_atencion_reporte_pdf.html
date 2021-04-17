@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    {% load static %}
+
+    <style>
+        @page {
+            size: a4 portrait;
+
+            @frame header_frame {
+                /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                height: 40pt;
+
+            }
+
+            @frame content_frame {
+                /* Content Frame */
+                left: 70pt;
+                width: 462pt;
+                top: 90pt;
+                height: 632pt;
+                /* -pdf-frame-border: 1;
+                for debugging the layout */
+            }
+
+
+
+            @frame footer_frame {
+                /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt;
+                width: 512pt;
+                top: 752pt;
+                height: 80pt;
+
+            }
+
+
+        }
+
+        p.western {
+
+            font-size: 7pt;
+
+        }
+        p {
+			margin-bottom: 0in;
+			direction: ltr;
+			widows: 2;
+			orphans: 2
+		}
+        
+
+    </style>
+</head>
+
+<body>
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content" style=" font-size:11px;">
+
+        <table>
+            <thead>
+                <tr>
+
+                    <td colspan="7">
+                        <h1>MINISTERIO DE INCLUSIÓN ECONÓMICA Y SOCIAL</th>
+
+                    </td>
+
+                    <td colspan="5"><img src="{% static 'img/barra_colores.png' %}" width="400"></td>
+                </tr>
+                {% block header %}
+
+                {% endblock header %}
+
+            </thead>
+
+        </table>
+
+
+      
+        <table>
+            <hr class="sidebar-divider">
+        </table>
+
+    </div>
+
+
+
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <thead>
+                <tr>
+
+                    <td colspan="4">
+                        <p CLASS="western" STYLE="margin-top: 0.01in">
+                            <font> <strong>Dirección Distrital 09D17 Milagro,</strong> Centro de Atención Ciudadana
+                                (CAC). </font>
+                        </p>
+                        <p CLASS="western" STYLE="margin-top: 0.01in">
+                            <font>Av. Cristóbal Colón y Av. 17 de Septiembre <strong>postal:</strong> 091050/ Milagro -
+                                Ecuador </font>
+                            
+                        </p>
+                        <p CLASS="western" STYLE="margin-top: 0.01in">
+                            <font><strong>Teléfono:</strong> 593- 3706633 - <a
+                                href="http://www.inclusion.gob.ec/">www.inclusion.gob.ec</a> </font>
+                        </p>
+                    </td>
+                    <td colspan="1"><img src="{% static 'img/toda_una_vida.png' %}" width="400"></td>
+                    <td colspan="2"><img src="{% static 'img/gobierno_de_todos.png' %}" width="400"></td>
+                </tr>
+
+            </thead>
+
+        </table>
+        {% block footer %}
+
+        {% endblock footer %}
+
+    </div>
+
+    <!-- HTML Content -->
+    {% block content %}
+
+    {% endblock content %}
+
+</body>
+
+</html>

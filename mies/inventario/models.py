@@ -25,7 +25,7 @@ class Marca(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Marca."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Marca, self).save(*args, **kwargs)
 
 class Modelo(models.Model):
@@ -46,7 +46,7 @@ class Modelo(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Modelo."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Modelo, self).save(*args, **kwargs)
 
 
@@ -68,7 +68,7 @@ class Categoria(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Categoria."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Categoria, self).save(*args, **kwargs)
 
 
@@ -89,7 +89,7 @@ class Condicion(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Condicion."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Condicion, self).save(*args, **kwargs)
 
 
@@ -101,12 +101,12 @@ class InventarioTics(models.Model):
     ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
-    marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
-    modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT)
+    marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)
+    modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT, null=True,blank=True)
     condicion = models.ForeignKey(Condicion, on_delete=models.PROTECT)
     serie = models.CharField('Serie', max_length=50, unique=True, null=True,blank=True)
     codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
-    cantidad = models.IntegerField('Cantidad', default=0)
+    cantidad = models.IntegerField('Cantidad', default=1)
     foto = models.ImageField('Foto', upload_to='InventarioTics/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
 
     class Meta:
@@ -125,9 +125,9 @@ class InventarioTics(models.Model):
         return item
     def save(self, *args, **kwargs):
         """Save method for InventarioTics."""
-        self.descripcion =(self.descripcion).upper()
-        self.serie =(self.serie).upper()
-        self.codigoMies =(self.codigoMies).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        self.serie = self.serie and  (self.serie).upper()
+        self.codigoMies = self.codigoMies and (self.codigoMies).upper()
         return super(InventarioTics, self).save(*args, **kwargs)
     
 
@@ -181,7 +181,7 @@ class CapacidadDisco(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for CapacidadDisco."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(CapacidadDisco, self).save(*args, **kwargs)
 
 
@@ -202,7 +202,7 @@ class CapacidadMemoriaRam(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for CapacidadMemoriaRam."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(CapacidadMemoriaRam, self).save(*args, **kwargs)
 
     # TODO: Define custom methods here
@@ -225,7 +225,7 @@ class Procesador(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Procesador."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Procesador, self).save(*args, **kwargs)
 
 
@@ -261,9 +261,9 @@ class InvetarioDistritoCabecera(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for InvetarioDistritoCabecera."""
-        self.descripcion =(self.descripcion).upper()
-        self.serie =(self.serie).upper()
-        self.codigoMies =(self.codigoMies).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        self.serie =self.serie and (self.serie).upper()
+        self.codigoMies = self.codigoMies and (self.codigoMies).upper()
         return super(InvetarioDistritoCabecera, self).save(*args, **kwargs)
 
 

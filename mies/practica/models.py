@@ -20,7 +20,7 @@ class Universidad(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Universidad."""
-        self.descripcion =(self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Universidad, self).save(*args, **kwargs)
 
 #modelo CARRERA
@@ -42,7 +42,7 @@ class Carrera(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Carrera."""
-        self.descripcion =(self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Carrera, self).save(*args, **kwargs)
 
 #modelo PASANTE
@@ -57,7 +57,7 @@ class Pasante(models.Model):
     tutor_profesional = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     fecha_inicio = models.DateField('Fecha Inicio', auto_now=False, auto_now_add=False)
     fecha_fin = models.DateField('Fecha Fin', auto_now=False, auto_now_add=False, null= True, blank=True)
-    horas_diarias = models.IntegerField('Horas Diarias', default =0)
+    horas_diarias = models.IntegerField('Horas Diarias', default =1)
     estado = models.BooleanField('Prácticas profesionales completadas?')
     class Meta:
         """Meta definition for Pasante."""
@@ -71,8 +71,8 @@ class Pasante(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Pasante."""
-        self.nombres =(self.nombres).upper()
-        self.apellidos =(self.apellidos).upper()
+        self.nombres = self.nombres and (self.nombres).upper()
+        self.apellidos = self.apellidos and (self.apellidos).upper()
         return super(Pasante, self).save(*args, **kwargs)
 
 

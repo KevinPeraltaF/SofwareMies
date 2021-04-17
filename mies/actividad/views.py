@@ -80,4 +80,65 @@ class ActividadDetailView(LoginRequiredMixin,DetailView):
         return context
 
 #VISTA PRIORIDAD
+class PrioridadListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'actividad.view_prioridad'
+    model = Prioridad
+    template_name = "actividad/prioridad_listado.html"
+    
+class PrioridadCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'actividad.add_prioridad'
+    model = Prioridad
+    form_class = PrioridadForm
+    template_name = "actividad/prioridad_crear.html"
+    success_url = reverse_lazy('prioridad_listar')
+ 
+class PrioridadDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'actividad.delete_prioridad'
+    model = Prioridad
+    template_name = "actividad/prioridad_eliminar.html"
+    success_url = reverse_lazy('prioridad_listar')
+
+class PrioridadUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'actividad.change_prioridad'
+    model = Prioridad
+    form_class = PrioridadForm
+    template_name = "actividad/prioridad_editar.html"
+    success_url = reverse_lazy('prioridad_listar')
+  
+class PrioridadDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'actividad.view_prioridad'
+    model = Prioridad
+    template_name = "actividad/prioridad_detalle.html"
+
+
+
 #VISTA ASUNTO
+class AsuntoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'actividad.view_asunto'
+    model = Asunto
+    template_name = "actividad/asunto_listado.html"
+
+class AsuntoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'actividad.add_asunto'
+    model = Asunto
+    form_class = AsuntoForm
+    template_name = "actividad/asunto_crear.html"
+    success_url = reverse_lazy('asunto_listar')
+ 
+class AsuntoDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'actividad.delete_asunto'
+    model = Asunto
+    template_name = "actividad/asunto_eliminar.html"
+    success_url = reverse_lazy('asunto_listar')
+  
+class AsuntoUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'actividad.change_asunto'
+    model = Asunto
+    form_class = AsuntoForm
+    template_name = "actividad/asunto_editar.html"
+    success_url = reverse_lazy('asunto_listar')
+    
+class AsuntoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'actividad.view_asunto'
+    model = Asunto
+    template_name = "actividad/asunto_detalle.html"

@@ -269,7 +269,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseActividades"
                     aria-expanded="true" aria-controls="collapseActividades">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Actividades</span>
+                    <span>Actividad</span>
                 </a>
                 <div id="collapseActividades" class="collapse" aria-labelledby="headingTwo"
                     data-parent="#accordionSidebar">
@@ -278,11 +278,20 @@
                         
                         {% if perms.actividad.view_actividadcabecera %}
                         <a class="collapse-item" href="{% url 'actividad_listar' %}"><i class="fas fa-caret-right"></i>
-                            Actividad</a>
+                            Actividades</a>
                         {% endif %}
                             
-                        <!--<a class="collapse-item" href="{% url 'carrera_listar' %}"><i class="fas fa-caret-right"></i>Carreras</a> -->
-                        <!--<a class="collapse-item" href="{% url 'universidad_listar' %}"><i class="fas fa-caret-right"></i> Universidades</a> -->
+                        {% if perms.actividad.view_prioridad %}
+                        <a class="collapse-item" href="{% url 'prioridad_listar' %}"><i class="fas fa-caret-right"></i>
+                            Prioridades</a>
+                        {% endif %}
+                        
+                        {% if perms.actividad.view_asunto %}
+                        <a class="collapse-item" href="{% url 'asunto_listar' %}"><i class="fas fa-caret-right"></i>
+                            Asuntos</a>
+                        {% endif %}
+
+                        
                     </div>
                 </div>
             </li>

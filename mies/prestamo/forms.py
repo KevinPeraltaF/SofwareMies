@@ -45,7 +45,8 @@ class PrestamoForm(forms.ModelForm):
             'cantidad': forms.TextInput(
                 attrs={
                     'type':'number',
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'min':'0'
                 }
             ),
 
@@ -57,7 +58,6 @@ class PrestamoForm(forms.ModelForm):
             
             'observacion': forms.Textarea(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control',
                     "rows":3, "cols":10
                 }

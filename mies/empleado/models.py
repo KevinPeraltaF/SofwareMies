@@ -23,7 +23,7 @@ class Area(models.Model):
 
     def save(self, *args, **kwargs):
         """Save method for Area."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Area, self).save(*args, **kwargs)
 
 #modelo CARGO
@@ -44,7 +44,7 @@ class Cargo(models.Model):
 
     def save(self, *args, **kwargs):
         """Save method for Cargo."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Cargo, self).save(*args, **kwargs)
 
  #modelo UNIDAD DE ATENCION   
@@ -66,7 +66,7 @@ class UnidadAtencion(models.Model):
 
     def save(self, *args, **kwargs):
         """Save method for UnidadAtencion."""
-        self.descripcion = (self.descripcion).upper()
+        self.descripcion =self.descripcion and (self.descripcion).upper()
         return super(UnidadAtencion, self).save(*args, **kwargs)
 
 #modelo EMPLEADO
@@ -101,9 +101,9 @@ class Empleado(models.Model):
 
     def save(self, *args, **kwargs):
         """Save method for Empleado."""
-        self.nombres = (self.nombres).upper()
-        self.apellidos = (self.apellidos).upper() 
-        self.correo =(self.correo).upper()
+        self.nombres = self.nombres and (self.nombres).upper()
+        self.apellidos = self.apellidos and (self.apellidos).upper() 
+        self.correo =self.correo and (self.correo).upper()
         return super(Empleado, self).save(*args, **kwargs)
 
 @receiver(post_delete, sender=Empleado)

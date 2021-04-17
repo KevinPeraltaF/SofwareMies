@@ -27,8 +27,10 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                             {% if perms.atencion.add_atencion %}
-                            <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nueva Entrega-Recepción</a>
-                            <a class="dropdown-item" href="#">Nueva Devolución</a>
+                            <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nueva Entrega y reporte</a>
+                            <a class="dropdown-item" href="#">Nueva Entrega</a>
+                            <a class="dropdown-item" href="#">Nueva Recepción</a>
+                            <a class="dropdown-item" href="#">Nuevo reporte-entrega bienes: </a>
                             {% endif %}
 
                         </div>
@@ -65,11 +67,11 @@
                             <td>
 
                                 <div class="row">
-                                <a href=""><i class="fas fa-file-pdf"></i>  Atención Pdf</a>
+                                <a href="{% url 'atencion_reporte_pdf' atencion.id%}" target="_blank"><i class="fas fa-file-pdf"></i> <font size="2">ATENCION-DDM-09D17-TICS-MIES-{{ atencion.fechaIncidente.year }}-00{{ atencion.contadorDocumento }}</font></a>
                                 </div>
 
                                 <div class="row">
-                                    <a href=""><i class="fas fa-file-pdf"></i>  Entrega Pdf</a>
+                                    <a href="{% url 'acta_entrega_atencion_reporte_pdf' atencion.id%}" target="_blank"><i class="fas fa-file-pdf"></i>  <font size="2">ACTA-DM-09D17-TIC-MIES</font></a>
                                 </div>
 
                             </td>

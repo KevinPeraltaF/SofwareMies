@@ -71,7 +71,7 @@ class ActividadCabeceraForm(forms.ModelForm):
             ),
             'observacion':forms.Textarea(
                 attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
+                    
                     'class': 'form-control',
                     "rows":3, "cols":10
                 }
