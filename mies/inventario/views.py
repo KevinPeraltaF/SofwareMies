@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, JsonResponse
-
+import json
 from django.forms import model_to_dict
 # Create your views here.
 #------------------MARCA--------------------------------------
@@ -295,60 +295,61 @@ class DetCabCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     form_class = InvetarioDistritoCabeceraForm
     success_url = reverse_lazy('det_cab_listar')
     
-    def get(self, request,*args,**kwargs):
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        detalle_form = DetalleForm()
-        return self.render_to_response(
-            self.get_context_data(form=form, detalle_form=detalle_form)
-        )
     
     @method_decorator(csrf_exempt)
     def dispatch(self,request,*args, **kwargs):
         return super().dispatch(request,*args, **kwargs)
     def post(self, request,*args, **kwargs):
         data ={}
-        if self.request.POST and self.request.POST['action']=='search_periferico':
-            try:
-                action = request.POST['action']
-                print(request.POST['term'])
-                if action =='search_periferico':
-                    data = []
-                    prods = InventarioTics.objects.filter(descripcion__icontains=request.POST['term'])[0:10]
-                    for i in prods:
-                        item = i.toJSON()
-                        item['text'] = i.descripcion
-                        item['foto'] = ""
-                        data.append(item)
-                else:
-                    data['error'] = 'No ha ingresado a ninguna opcion'
-            except Exception as e:
-                data['error'] = str(e)
-            print(data)
-            return JsonResponse(data, safe=False)
-        elif self.request.POST:
-            self.object = None
-            form_class = self.get_form_class()
-            form = self.get_form(form_class)
-            detalle_form = DetalleForm(self.request.POST)
-            if (form.is_valid() and detalle_form.is_valid()):
-                return self.form_valid(form, detalle_form)
+        try:
+            action = request.POST['action']
+            if action =='search_periferico':
+                data = []
+                prods = InventarioTics.objects.filter(descripcion__icontains=request.POST['term'])[0:10]
+                for i in prods:
+                    item = i.toJSON()
+                    item['text'] = i.descripcion
+                    item['foto'] = ""
+                    data.append(item)
+            elif action =='add':
+                vents = json.loads(request.POST['vents'])
+                print(vents['foto'])
+                invCab = InvetarioDistritoCabecera()
+                invCab.fechaIngreso = vents['fechaIngreso']
+                invCab.responsable_id = vents['responsable']
+                invCab.ubicacion_id = vents['ubicacion']
+                invCab.categoria_id = vents['categoria']
+                invCab.descripcion = vents['descripcion']
+                invCab.marca_id = vents['marca']
+                invCab.modelo_id = vents['modelo']
+                invCab.condicion_id = vents['condicion']
+                invCab.serie = vents['serie']
+                invCab.codigoMies = vents['codigoMies']
+                invCab.direccionIp = vents['direccionIp']
+                invCab.direccionMac = vents['direccionMac']
+                invCab.capacidadDisco_id = vents['capacidadDisco']
+                invCab.capacidadMemoria_id = vents['capacidadMemoria']
+                invCab.capacidadProcesador_id = vents['capacidadProcesador']
+                invCab.foto = vents['foto']
+                invCab.save()
+                for i in vents['detalle']:
+                    det = InventarioDistritoDetalle()
+                    det.cabeceraDistrito_id = invCab.id
+                    det.periferico_id = i['id']
+                    det.cantidad = int(i['cantidad'])
+                    det.save()
+
             else:
-                return self.form_invalid(form, detalle_form) 
-        
-
-    def form_valid(self, form, detalle_form):
-        cabecera = form.save()
-        detalle_form.instance = cabecera
-        detalle_form.save()
-        cabecera.save()
-        return HttpResponseRedirect(self.success_url)
-
-    def form_invalid(self, form, detalle_form):
-        return self.render_to_response(
-            self.get_context_data(form = form, detalle_form=detalle_form)
-        )
+                data['error'] = 'No ha ingresado a ninguna opcion'
+        except Exception as e:
+            data['error'] = str(e)
+        print(data)
+        return JsonResponse(data, safe=False)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'add'
+        context['det'] = []
+        return context   
 
    
 class DetCabDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
@@ -365,33 +366,73 @@ class DetCabUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     form_class = InvetarioDistritoCabeceraForm
     template_name = "inventario/det_cab_editar.html"
     success_url = reverse_lazy('det_cab_listar')
-    def get_context_data(self, **kwargs):
-        context = super(DetCabUpdateView, self).get_context_data(**kwargs)
-        if self.request.POST :
-            context['detalle_form'] = DetalleForm(self.request.POST, instance=self.object)
-        else:
-            context['detalle_form'] = DetalleForm(instance=self.object)
-        return context
-    def post(self, request,*args, **kwargs):
-        self.object = self.get_object()
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        detalle_form = DetalleForm(self.request.POST,instance=self.object)
-        if (form.is_valid() and detalle_form.is_valid()):
-            return self.form_valid(form, detalle_form)
-        else:
-            return self.form_invalid(form, detalle_form)
 
-    def form_valid(self, form, detalle_form):
-        cabecera =form.save()
-        detalle_form.instance = cabecera
-        detalle_form.save()    
-        return HttpResponseRedirect(self.success_url)
-        
-    def form_invalid(self, form, detalle_form):
-        return self.render_to_response(
-            self.get_context_data(form = form, detalle_form=detalle_form)
-        )
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    def post(self, request,*args, **kwargs):
+        data ={}
+        try:
+            action = request.POST['action']
+            if action =='search_periferico':
+                data = []
+                prods = InventarioTics.objects.filter(descripcion__icontains=request.POST['term'])[0:10]
+                for i in prods:
+                    item = i.toJSON()
+                    item['text'] = i.descripcion
+                    item['foto'] = ""
+                    data.append(item)
+            elif action =='edit':
+                vents = json.loads(request.POST['vents'])
+                invCab = InvetarioDistritoCabecera()
+                invCab.fechaIngreso = vents['fechaIngreso']
+                invCab.responsable_id = vents['responsable']
+                invCab.ubicacion_id = vents['ubicacion']
+                invCab.categoria_id = vents['categoria']
+                invCab.descripcion = vents['descripcion']
+                invCab.marca_id = vents['marca']
+                invCab.modelo_id = vents['modelo']
+                invCab.condicion_id = vents['condicion']
+                invCab.serie = vents['serie']
+                invCab.codigoMies = vents['codigoMies']
+                invCab.direccionIp = vents['direccionIp']
+                invCab.direccionMac = vents['direccionMac']
+                invCab.capacidadDisco_id = vents['capacidadDisco']
+                invCab.capacidadMemoria_id = vents['capacidadMemoria']
+                invCab.capacidadProcesador_id = vents['capacidadProcesador']
+                invCab.foto = vents['foto']
+                invCab.save()
+                for i in vents['detalle']:
+                    det = InventarioDistritoDetalle()
+                    det.cabeceraDistrito_id = invCab.id
+                    det.periferico_id = i['id']
+                    det.cantidad = int(i['cantidad'])
+                    det.save()
+
+            else:
+                data['error'] = 'No ha ingresado a ninguna opcion'
+        except Exception as e:
+            data['error'] = str(e)
+        print(data)
+        return JsonResponse(data, safe=False)
+
+    def get_details_det(self):
+        data = []
+        try:
+            for i in InventarioDistritoDetalle.objects.filter(cabeceraDistrito_id=self.get_object().id):
+                item = i.periferico.toJSON()
+                item['foto'] = ""
+                itme['fechaIngreso'] = ""
+                data.append(item)
+        except:
+            pass
+        return data
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'edit'
+        context['det'] = json.dumps(self.get_details_det())
+        return context   
+    
 
   
 

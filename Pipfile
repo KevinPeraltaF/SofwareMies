@@ -8,6 +8,7 @@ django = "*"
 psycopg2 = "*"
 pillow = "*"
 xhtml2pdf = "*"
+django-xhtml2pdf = "*"
 
 [dev-packages]
 

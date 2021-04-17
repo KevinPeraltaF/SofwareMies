@@ -108,32 +108,26 @@
                     {{form.foto}}
                 </div>
                 <hr>
-               <!--  <div class="form-row">
-                    {{detalle_form.management_form}}
-                    {% for ft in detalle_form %}
-                    {{ ft }}
-                    {% endfor %}
-                </div> -->
-                <div class="form-row">
-                    {{detalle_form.management_form}}
-                    {% for form1 in detalle_form %}
-                    {{form1.id}}
-                    <div class="form-group col-md-4">
-                        {{form1.periferico.label}}
-                        {{form1.periferico}}
+                <div class="form-group">
+                    <label>Buscador de perifericos:</label>
+                    <div class="input-group ">
+                        <select class="form-control select2 col-md-12"  name="search">
+                        </select>
                     </div>
-                    
-                    <div class="form-group col-md-4">
-                        {{form1.cantidad.label}}
-                        {{form1.cantidad}}
-                    </div>
-                    <div class="form-group col-md-4">
-                        {{form1.DELETE.label}}
-                        {{form1.DELETE}}
-                    </div>
-                    {% endfor %}
                 </div>
-            </div>
+                <hr>
+                <table class="table table-bordered" id="tblProducts">
+                    <thead>
+                    <tr>
+                        <th>Eliminar</th>
+                        <th>Periferico</th>
+                        <th>Cantidad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
@@ -141,3 +135,16 @@
         </form>
     </div>
   </div>
+
+
+
+
+  {% block content_extra_js %}
+  
+<script src="static/js/funciones_busqueda.js"></script>
+  <script>
+      vents.items.detalle = {{ det|safe }};
+      console.log({{ det|safe }});
+      vents.list();
+  </script>
+  {% endblock content_extra_js %}

@@ -279,7 +279,11 @@ class InventarioDistritoDetalle(models.Model):
 
         verbose_name = 'Inventario Distrito Detalle'
         verbose_name_plural = 'Inventario Distrito Detalles'
-    
+    def toJSON(self):
+        item = model_to_dict(self, exclude=['cabeceraDistrito'])
+        item['periferico'] = self.periferico.toJSON()
+        return item
+
     def __int__(self):
         """Unicode representation of InventarioDistritoDetalle."""
         return self.periferico

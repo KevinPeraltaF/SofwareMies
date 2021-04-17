@@ -206,7 +206,7 @@ class ProcesadorForm(forms.ModelForm):
             )
         }
 class InvetarioDistritoCabeceraForm(forms.ModelForm):
-    
+    action =forms.CharField()
     class Meta:
         model = InvetarioDistritoCabecera
 
@@ -325,7 +325,8 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
             'foto':forms.ClearableFileInput(
                 attrs={
                     'type':'file',
-                    'class':'form-control'
+                    'class':'form-control',
+                    'onchange':'previewFile()'
                 }
             )
         }
