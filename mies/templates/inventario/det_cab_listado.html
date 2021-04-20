@@ -81,11 +81,11 @@
                                     onclick="abrirModalDetalle('{% url 'det_cab_detalle' inv.id %}')">
                                     <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                <a data-toggle="popover" title="Editar" id="modalEditarZona"
                                     class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'det_cab_editar' inv.id %}')">
+                                    href="{% url 'det_cab_editar' inv.id %}">
                                     <i data-toggle="popover" title="Editar" class="fa fa-edit"></i>
-                                </button>
+                                </a>
                                 <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
                                     onclick="abrirModalEliminar('{% url 'det_cab_eliminar' inv.id %}')">
                                     <i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>

@@ -39,7 +39,8 @@ var vents = {
             data: this.items.detalle,
             columns: [
                 {"data": "id"},
-                {"data": "descripcion"}
+                {"data": "descripcion"},
+                {"data": "cant"}
             ],
             columnDefs: [
                 {
@@ -72,9 +73,13 @@ var vents = {
 
             }
         });}
-}
+};
 
 $(function(){
+    $('.select2').select2({
+        theme: "bootstrap4",
+        language: 'es'
+    });
     $('#tblProducts tbody')
     .on('click', 'a[rel="remove"]', function () {
         var tr = tblProducts.cell($(this).closest('td, li')).index();
@@ -82,6 +87,12 @@ $(function(){
             vents.items.detalle.splice(tr.row, 1);
             vents.list();
         });
+    })
+    .on('change', 'input[name="cant"]', function () {
+        console.clear();
+        var cant = parseInt($(this).val());
+        var tr = tblProducts.cell($(this).closest('td, li')).index();
+        vents.items.detalle[tr.row].cant = cant;
     });
     $('form').on('submit', function (e) {
         e.preventDefault();
@@ -105,8 +116,7 @@ $(function(){
         vents.items.capacidadDisco = $('select[name="capacidadDisco"]').val();
         vents.items.capacidadMemoria = $('select[name="capacidadMemoria"]').val();
         vents.items.capacidadProcesador = $('select[name="capacidadProcesador"]').val();
-        vents.items.foto = $('img[id="foto"]').val();
-
+        vents.items.foto = $('input[name="foto"]').val();
         var parameters = new FormData();
         parameters.append('action', $('input[name="action"]').val());
         parameters.append('vents', JSON.stringify(vents.items));
@@ -145,4 +155,6 @@ $(function(){
         vents.add(data);
         $(this).val('').trigger('change.select2');
     });
+
+    vents.list();
 });

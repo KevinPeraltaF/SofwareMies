@@ -1,12 +1,19 @@
-<div class="modal-dialog modal-lg"  role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Editar Registro</h5>
-           
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+{% extends 'base_generic.html' %}
+{% block title %}EDITAR EQUIPO{% endblock %}
+
+
+
+{% block content_main %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'det_cab_listar' %}">Inventario Del Distrito</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Editar</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6"  role="document">
         {% if form.errors %}
   
         <div class="alert alert-danger" role="alert">
@@ -30,6 +37,7 @@
             {% csrf_token %}
             
             <div class="modal-body">
+                <input type="hidden" name="action" value="{{ action }}">
                 <div class='form-row'>
                     <div class="form-group col-md-4">
                         {{form.fechaIngreso.label}}
@@ -108,7 +116,7 @@
                     {{form.foto}}
                 </div>
                 <hr>
-                <div class="form-group">
+                <div class="form-group col-md-12">
                     <label>Buscador de perifericos:</label>
                     <div class="input-group ">
                         <select class="form-control select2 col-md-12"  name="search">
@@ -129,22 +137,21 @@
                 </table>
                 </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a type="button" class="btn btn-secondary" href="{% url 'det_cab_listar' %}">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
             </div>
         </form>
     </div>
-  </div>
-
-
+  <div class="col-md-3"></div>
+</div>
+  {% endblock %}
 
 
   {% block content_extra_js %}
   
-<script src="static/js/funciones_busqueda.js"></script>
+<script src="../../static/js/funciones_busqueda.js"></script>
   <script>
       vents.items.detalle = {{ det|safe }};
-      console.log({{ det|safe }});
-      vents.list();
+      
   </script>
   {% endblock content_extra_js %}

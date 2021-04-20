@@ -240,10 +240,10 @@ class InvetarioDistritoCabecera(models.Model):
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
     modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT)
     condicion = models.ForeignKey(Condicion, on_delete=models.PROTECT)
-    serie = models.CharField('Serie', max_length=50, default='N/A', unique=True, null=True,blank=True)
-    codigoMies = models.CharField('Código Mies', max_length=50, default='N/A',unique=True, null=True,blank=True)
-    direccionIp = models.CharField('Dirección Ip', max_length=50, default='N/A',unique=True, null=True,blank=True)
-    direccionMac = models.CharField('Dirección Mac Address', default='N/A', max_length=50,unique=True, null=True,blank=True)
+    serie = models.CharField('Serie', max_length=50,  unique=True, null=True,blank=True)
+    codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
+    direccionIp = models.CharField('Dirección Ip', max_length=50, unique=True, null=True,blank=True)
+    direccionMac = models.CharField('Dirección Mac Address', max_length=50,unique=True, null=True,blank=True)
     capacidadDisco = models.ForeignKey(CapacidadDisco, on_delete=models.PROTECT, null=True,blank=True)
     capacidadMemoria = models.ForeignKey(CapacidadMemoriaRam, on_delete=models.PROTECT, null=True,blank=True)
     capacidadProcesador = models.ForeignKey(Procesador, on_delete=models.PROTECT, null=True,blank=True)
@@ -255,6 +255,10 @@ class InvetarioDistritoCabecera(models.Model):
         verbose_name = 'Invetario Distrito '
         verbose_name_plural = 'Invetario Distrito '
 
+    def toJSON(self):
+        item = model_to_dict(self)
+        item['det']= [i.toJSON() for i in self.inventariodistritodetalle_set.all()]
+        return item
     def __str__(self):
         """Unicode representation of InvetarioDistritoCabecera."""
         return self.descripcion
@@ -282,6 +286,7 @@ class InventarioDistritoDetalle(models.Model):
     def toJSON(self):
         item = model_to_dict(self, exclude=['cabeceraDistrito'])
         item['periferico'] = self.periferico.toJSON()
+        item['cantidad'] = self.cantidad
         return item
 
     def __int__(self):

@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, JsonResponse
 import json
+from django.db import transaction
 from django.forms import model_to_dict
 # Create your views here.
 #------------------MARCA--------------------------------------
@@ -286,6 +287,9 @@ class DetCabListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'inventario.view_Invetariodistritocabecera'
     model = InvetarioDistritoCabecera
     template_name = "inventario/det_cab_listado.html"
+    @method_decorator(csrf_exempt)
+    def dispatch(self,request,*args, **kwargs):
+        return super().dispatch(request,*args, **kwargs)
 
    
 class DetCabCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
@@ -336,7 +340,7 @@ class DetCabCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
                     det = InventarioDistritoDetalle()
                     det.cabeceraDistrito_id = invCab.id
                     det.periferico_id = i['id']
-                    det.cantidad = int(i['cantidad'])
+                    det.cantidad = int(i['cant'])
                     det.save()
 
             else:
@@ -379,36 +383,39 @@ class DetCabUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
                 prods = InventarioTics.objects.filter(descripcion__icontains=request.POST['term'])[0:10]
                 for i in prods:
                     item = i.toJSON()
-                    item['text'] = i.descripcion
+                    item['value'] = i.descripcion
                     item['foto'] = ""
                     data.append(item)
             elif action =='edit':
-                vents = json.loads(request.POST['vents'])
-                invCab = InvetarioDistritoCabecera()
-                invCab.fechaIngreso = vents['fechaIngreso']
-                invCab.responsable_id = vents['responsable']
-                invCab.ubicacion_id = vents['ubicacion']
-                invCab.categoria_id = vents['categoria']
-                invCab.descripcion = vents['descripcion']
-                invCab.marca_id = vents['marca']
-                invCab.modelo_id = vents['modelo']
-                invCab.condicion_id = vents['condicion']
-                invCab.serie = vents['serie']
-                invCab.codigoMies = vents['codigoMies']
-                invCab.direccionIp = vents['direccionIp']
-                invCab.direccionMac = vents['direccionMac']
-                invCab.capacidadDisco_id = vents['capacidadDisco']
-                invCab.capacidadMemoria_id = vents['capacidadMemoria']
-                invCab.capacidadProcesador_id = vents['capacidadProcesador']
-                invCab.foto = vents['foto']
-                invCab.save()
-                for i in vents['detalle']:
-                    det = InventarioDistritoDetalle()
-                    det.cabeceraDistrito_id = invCab.id
-                    det.periferico_id = i['id']
-                    det.cantidad = int(i['cantidad'])
-                    det.save()
-
+                with transaction.atomic():
+                    vents = json.loads(request.POST['vents'])
+                    invCab = self.get_object()
+                    invCab.fechaIngreso = vents['fechaIngreso']
+                    invCab.responsable_id = vents['responsable']
+                    invCab.ubicacion_id = vents['ubicacion']
+                    invCab.categoria_id = vents['categoria']
+                    invCab.descripcion = vents['descripcion']
+                    invCab.marca_id = vents['marca']
+                    invCab.modelo_id = vents['modelo']
+                    invCab.condicion_id = vents['condicion']
+                    invCab.serie = vents['serie']
+                    invCab.codigoMies = vents['codigoMies']
+                    invCab.direccionIp = vents['direccionIp']
+                    invCab.direccionMac = vents['direccionMac']
+                    invCab.capacidadDisco_id = vents['capacidadDisco']
+                    invCab.capacidadMemoria_id = vents['capacidadMemoria']
+                    invCab.capacidadProcesador_id = vents['capacidadProcesador']
+                    print(vents['foto'])
+                    invCab.foto = vents['foto']
+                    invCab.save()
+                    for j in InventarioDistritoDetalle.objects.filter(cabeceraDistrito_id=invCab.id):
+                        j.delete()
+                    for i in vents['detalle']:
+                        det = InventarioDistritoDetalle()
+                        det.cabeceraDistrito_id = invCab.id
+                        det.periferico_id = i['id']
+                        det.cantidad = int(i['cant'])
+                        det.save()
             else:
                 data['error'] = 'No ha ingresado a ninguna opcion'
         except Exception as e:
@@ -422,7 +429,8 @@ class DetCabUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
             for i in InventarioDistritoDetalle.objects.filter(cabeceraDistrito_id=self.get_object().id):
                 item = i.periferico.toJSON()
                 item['foto'] = ""
-                itme['fechaIngreso'] = ""
+                item['fechaIngreso'] = ""
+                item['cant'] = i.cantidad
                 data.append(item)
         except:
             pass
