@@ -264,22 +264,26 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
             ),
             'serie':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'placeholder':'N/A'
                 }
             ),
             'codigoMies':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'placeholder':'N/A'
                 }
             ),
             'direccionIp':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'placeholder':'N/A'
                 }
             ),
             'direccionMac':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'placeholder':'N/A'
                 }
             ),
             'capacidadDisco':forms.Select(

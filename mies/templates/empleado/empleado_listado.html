@@ -109,9 +109,9 @@
 
 
                                 {% if perms.empleado.delete_empleado %}
-                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
-                                        class="fa fa-edit"></i>
+                                <button id="modalEliminarAccesoRed" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'empleado_eliminar' empl.id%}')"> <i
+                                        class="fa fa-trash"></i>
                                 </button>
                                 {% endif %}
 
