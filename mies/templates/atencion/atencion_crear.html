@@ -11,144 +11,150 @@
         <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
     </ol>
 </nav>
-<div class="row">
+
+
+
+
+{% if form.errors %}
+
+<div class="alert alert-danger" role="alert">
+    <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+    <ul>
+        {% for field in form %}
+        {% for error in field.errors %}
+        <li>
+            {{error}}
+        </li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
 
 </div>
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+{% endif %}
 
-        {% if form.errors %}
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
 
-        <div class="alert alert-danger" role="alert">
-            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                    <li>
-                        {{error}}
-                    </li>
-                    {% endfor %}
-                {% endfor %}
-            </ul>
-
-        </div>
-        {% endif %}
-
-        <span class="border border-light">
-
-            <form method="post" >
-                {% csrf_token %}
-                <h4>Información de la Atención.</h4>
-                   
-               
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    {{form.tipoDocumento.label}}
+                    {{form.tipoDocumento}}
+                </div>
+            </div>
+            <div class="col">
                 <div class="form-group">
                     {{form.responsable.label}}
                     {{form.responsable}}
                 </div>
-                <div class="row">
-                    
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.tipoDocumento.label}}
-                            {{form.tipoDocumento}}
-                        </div>
+            </div>
+        </div>
+    
+    
+        <div class="form-group">
+            {{form.equipo.label}}
+            {{form.equipo}}
+        </div>
+    
+        <div class="form-group">
+            <input class="form-control" type="text" name="cusodio" id="custodio" value="Maria Banchon" readonly>
+        </div>
+    
+    
+        <div class="row list-group" >
+            <div class="row ">
+                <div class="col-1"></div>
+                <div class="col">
+                    <div class="form-group">
+    
+                        {{form.instalacion}}
+                        {{form.instalacion.label}}
                     </div>
-                  </div>
-                  <div class="form-group">
-                    {{form.equipo.label}}
-                    {{form.equipo}}
+                    <div class="form-group">
+                        {{form.configuracion}}
+                        {{form.configuracion.label}}
+                    </div>
+    
                 </div>
-                  
-                  <div class="form-group">
-                    <label for="custodio">Custodio del Equipo</label>
-                    <input class="form-control"  type="text" name="cusodio" id="custodio" value="Maria Banchon" readonly >
+    
+                <div class="col">
+                    <div class="form-group">
+    
+                        {{form.hardware}}
+                        {{form.hardware.label}}
+                    </div>
+                    <div class="form-group">
+    
+                        {{form.software}}
+                        {{form.software.label}}
+                    </div>
                 </div>
+    
+                <div class="col">
+                    <div class="form-group">
+    
+                        {{form.capacitacion}}
+                        {{form.capacitacion.label}}
+                    </div>
+                    <div class="form-group">
+    
+                        {{form.prueba}}
+                        {{form.prueba.label}}
+                    </div>
+                </div>
+            </div>
+    
+    
+    
+    
+        </div>
+    
+        <div class="row">
+            <div class="col">
                 <div class="form-group">
-                    {{form.detalle.label}}
-                    {{form.detalle}}
+                    {{form.fecha_salida.label}}
+                    {{form.fecha_salida}}
                 </div>
-               
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.fecha_salida.label}}
-                            {{form.fecha_salida}}
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.hora_salida.label}}
-                            {{form.hora_salida}}
-                        </div>
-                    </div>
-                   
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.instalacion.label}}
-                            {{form.instalacion}}
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.configuracion.label}}
-                            {{form.configuracion}}
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.capacitacion.label}}
-                            {{form.capacitacion}}
-                        </div>
-                    </div>
-                  </div>
-              
-                
-                
-               
-                  <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.hardware.label}}
-                            {{form.hardware}}
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            {{form.software.label}}
-                            {{form.software}}
-                        </div>
-                    </div>
-                    <div class="col">
-                       
-                    </div>
-                    
-                  </div>
-                  
-                
-                
-    
-                <h4>Piezas asignadas como repuesto.</h4>
+            </div>
+            <div class="col">
                 <div class="form-group">
-          
-                    {{detalle_form}}
+                    {{form.hora_salida.label}}
+                    {{form.hora_salida}}
                 </div>
+            </div>
     
-            
-            
-    
-    
-                <fieldset class="modal-footer">
-                    <a type="button" class="btn btn-secondary" href="{% url 'accesoRed_listar' %}">Cancelar</a>
-                    <button type="submit" class="btn  btn-primary">Guardar Registro</button>
-                </fieldset>
-            </form>
-        </span>
+        </div>
         
-    </div>
-    <div class="col-md-3"></div>
+        <div class="form-group">
+            {{form.detalle.label}}
+            {{form.detalle}}
+        </div>
+
+        <div class="form-group">
+            {{form.observacion.label}}
+            {{form.observacion}}
+        </div>
+    
+    
+    
+    
+    
+    
+        <h4>Piezas asignadas como repuesto.</h4>
+        <div class="form-group">
+    
+            {{detalle_form}}
+        </div>
+        <fieldset class="modal-footer">
+            <a type="button" class="btn btn-secondary" href="{% url 'accesoRed_listar' %}">Cancelar</a>
+            <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+        </fieldset>
+    </form>
 </div>
+
+
+
+
 
 {% endblock %}

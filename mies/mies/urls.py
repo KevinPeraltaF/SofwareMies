@@ -174,6 +174,11 @@ urlpatterns = [
     path('Atencion/Detalle/<int:pk>',atencion_views.AtencionDetailView.as_view(),name ="atencion_detalle"),
     path('Atencion/pdf/reporte-atencion/<int:pk>',atencion_views.ReporteAtencionPdfView.as_view(),name ="atencion_reporte_pdf"),
     path('Atencion/pdf/acta-entrega/<int:pk>',atencion_views.ReporteActaEntregaPdfView.as_view(),name ="acta_entrega_atencion_reporte_pdf"),
+    ##
+    path('Atencion/pdf/acta-bienes/<int:pk>',atencion_views.ReporteBienesPdfView.as_view(),name ="acta_bienes_pdf"),
+    path('Atencion/pdf/acta-entrega-reporte/<int:pk>',atencion_views.ReporteEntregaPdfView.as_view(),name ="acta_entrega_reporte_pdf"),
+    path('Atencion/pdf/acta-recepcion/<int:pk>',atencion_views.ReporteRecepcionPdfView.as_view(),name ="acta_recepcion_reporte_pdf"),
+    #
     path('Procesador', inventaio_views.ProcesadorListView.as_view(), name="procesador_listar"),
     path('Procesador/Crear',inventaio_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
     path('Procesador/Editar/<int:pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
