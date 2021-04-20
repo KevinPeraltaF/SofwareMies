@@ -23,10 +23,10 @@ class AtencionCreateView(LoginRequiredMixin,CreateView):
     form_class = AtencionForm
     template_name = "atencion/atencion_crear.html"
     success_url = reverse_lazy('atencion_listar')
+
     def get(self, request,*args,**kwargs):
         self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+        form = self.get_form(self.get_form_class())
         detalle_form = DetalleForm()
         return self.render_to_response(
             self.get_context_data(form=form, detalle_form=detalle_form)
@@ -34,8 +34,7 @@ class AtencionCreateView(LoginRequiredMixin,CreateView):
     
     def post(self, request,*args, **kwargs):
         self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+        form = self.get_form(self.get_form_class())
         detalle_form = DetalleForm(self.request.POST)
         if (form.is_valid() and detalle_form.is_valid()):
             return self.form_valid(form, detalle_form)
@@ -43,7 +42,7 @@ class AtencionCreateView(LoginRequiredMixin,CreateView):
             return self.form_invalid(form, detalle_form)
 
     def form_valid(self, form, detalle_form):
-        cabecera = form.save()
+        cabecera = form
         detalle_form.instance = cabecera
         detalle_form.save()
         cabecera.save()

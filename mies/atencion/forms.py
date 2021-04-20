@@ -122,6 +122,7 @@ class AtencionForm(forms.ModelForm):
                         'class': 'form-control'
                     }
                 ),
+           
         }
 class AtencionDetalleForm(forms.ModelForm):
     

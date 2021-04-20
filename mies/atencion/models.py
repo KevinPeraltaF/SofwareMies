@@ -58,18 +58,23 @@ class Atencion(models.Model):
 
     def save(self,*args, **kwargs):
         """Save method for Atencion."""
-        
         self.detalle =self.detalle and (self.detalle).upper()
         self.observacion =self.observacion and (self.observacion).upper()
+        print('entro')
+        #ultimoDocumento = Atencion.objects.all().order_by('contadorDocumento').last()
+        try:
+            ultimoDocumento = Atencion.objects.all().order_by('contadorDocumento').last()
+        
+          
+            if (self.fechaIncidente.year != ultimoDocumento.fechaIncidente.year):
+                self.contadorDocumento =1
+            else:
+                if self.tipoDocumento.id == 3  or self.tipoDocumento.id == 4:
+                    self.contadorDocumento =ultimoDocumento.contadorDocumento+1
+        except:
+            self.contadorDocumento =1
 
-        ultimoDocumento = Atencion.objects.all().order_by('contadorDocumento').last()
-        print(ultimoDocumento)
-        if (self.fechaIncidente.year != ultimoDocumento.fechaIncidente.year):
-                self.contadorDocumento =0
-        else: 
-            if self.tipoDocumento.id == 3 or self.tipoDocumento.id == 4:
-                self.contadorDocumento =self.contadorDocumento + 1
-
+  
         return super(Atencion, self).save(*args, **kwargs)
 
 
