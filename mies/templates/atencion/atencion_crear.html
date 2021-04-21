@@ -154,8 +154,14 @@
     </form>
 </div>
 
-
-
-
-
 {% endblock %}
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_tipoDocumento').select2();
+        $('#id_responsable').select2();
+        $('#id_equipo').select2();
+    });
+</script>
+{% endblock content_extra_js %}

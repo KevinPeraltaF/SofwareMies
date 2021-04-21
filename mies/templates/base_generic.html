@@ -16,16 +16,16 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">
     <link href="{% static 'js/jquery-ui.min.css'%}" rel="stylesheet">
-    <script src="{% static 'js/funciones_mies.js'%}"></script>
-
-
-    
+  
+   
     <!-- Custom styles for this page -->
     <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
     
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="{% static 'touchSpin/jquery.bootstrap-touchspin.min.css'%}">
     <link rel="stylesheet" href="{% static 'touchSpin/jquery-confirm.min.css'%}">
+    
+    <link href="{% static 'css/select2.min.css'%}" rel="stylesheet">
 </head>
 
 
@@ -173,6 +173,11 @@
                         <a class="collapse-item" href="{% url 'inv_tics_listar' %}"><i class="fas fa-caret-right"></i>
                             Inventario Tics</a>
                         {% endif %}
+
+                        
+                        <a class="collapse-item" href="{% url 'det_cab_listar' %}"><i class="fas fa-caret-right"></i>
+                            Inventario Distrito</a>
+                        
                             
                     </div>
                 </div>
@@ -464,7 +469,9 @@
      
      <script src="{% static 'touchSpin/jquery.bootstrap-touchspin.min.js' %}"></script>
      <script src="{% static 'touchSpin/jquery-confirm.min.js' %}"></script>
-     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+     <script src="{% static 'js/select2.min.js' %}"></script>
+     
 
     {% block content_extra_js %}
 

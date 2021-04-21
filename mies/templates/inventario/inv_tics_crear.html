@@ -108,3 +108,20 @@
 </div>
 
 {% endblock %}
+
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_responsable').select2();
+        $('#id_ubicacion').select2();
+        $('#id_categoria').select2();
+
+        $('#id_marca').select2();
+        $('#id_modelo').select2();
+        $('#id_condicion').select2();
+    
+       
+    });
+</script>
+{% endblock content_extra_js %}

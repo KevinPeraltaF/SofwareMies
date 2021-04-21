@@ -32,7 +32,7 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'area' : forms.Select(
                 attrs={
-                    'type': 'Select()',
+                    
                     'class': 'form-control'
                 }
             ),

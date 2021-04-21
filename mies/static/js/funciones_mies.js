@@ -143,3 +143,5 @@ function alert_action(title, content, callback) {
 }
 //busqueda de perifericos
 
+
+

@@ -130,7 +130,13 @@
         <TD WIDTH=61 BGCOLOR="#ffffff"
             STYLE="border-top: 1.00pt solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
             <P LANG="es-ES" CLASS="western" ALIGN=CENTER STYLE="widows: 2; orphans: 2">
-                <BR> {{object.hora_salida}}
+                <BR>
+                    {% if object.hora_salida is none %}
+                   
+                    {% else %}
+                    {{object.hora_salida}} 
+                    {% endif%}
+                     
             </P>
         </TD>
         <TD COLSPAN=3 WIDTH=236 BGCOLOR="#ffffff"
@@ -149,7 +155,13 @@
         <TD COLSPAN=3 WIDTH=207 BGCOLOR="#ffffff"
             STYLE="border-top: 1.00pt solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1.00pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
             <P LANG="es-ES" CLASS="western" ALIGN=CENTER STYLE="widows: 2; orphans: 2">
-                <BR> {{object.fecha_salida}}
+                <BR>
+                    {% if object.fecha_salida is none %}
+                   
+                    {% else %}
+                    {{object.fecha_salida}} 
+                    {% endif%}
+                     
             </P>
         </TD>
     </TR>
