@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'prestamo',
     'atencion',
+    'custodio',
     
 ]
 

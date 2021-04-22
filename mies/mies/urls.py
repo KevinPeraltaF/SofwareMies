@@ -22,6 +22,7 @@ from ubicacion import views as ubicacion_views
 from inventario import views as inventaio_views
 from prestamo import views as prestamo_views
 from practica import views as practica_views
+from custodio import views as custodio_views
 from atencion import views as atencion_views
 from actividad import views as actividad_views
 from django.conf import settings
@@ -204,6 +205,13 @@ urlpatterns = [
     path('Asunto/Editar/<int:pk>',actividad_views.AsuntoUpdateView.as_view(),name ="asunto_editar"),
     path('Asunto/Eliminar/<int:pk>',actividad_views.AsuntoDeleteView.as_view(),name ="asunto_eliminar"),
     path('Asunto/Detalle/<int:pk>',actividad_views.AsuntoDetailView.as_view(),name ="asunto_detalle"),
+
+    #--custodio
+    path('Custodio', custodio_views.CustodioListView.as_view(), name="custodio_listar") ,
+    path('Custodio/Crear', custodio_views.CustodioCreateView.as_view(), name="custodio_crear") ,
+    path('Custodio/Editar/<int:pk>', custodio_views.CustodioUpdateView.as_view(), name="custodio_editar") ,
+    path('Custodio/Eliminar/<int:pk>', custodio_views.CustodioDeleteView.as_view(), name="custodio_eliminar") ,
+    path('Custodio/Detalle/<int:pk>', custodio_views.CustodioDetailView.as_view(), name="custodio_detalle") ,
 
 ]   
 

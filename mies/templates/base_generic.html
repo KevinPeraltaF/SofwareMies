@@ -194,6 +194,14 @@
                     <span>Atención</span></a>
             </li>
             {% endif %}
+
+            {% if  perms.custodio.view_custodio%}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'custodio_listar' %}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Equipo-Custodio</span></a>
+            </li>
+            {% endif %}
                 
             <!-- Heading -->
             <div class="sidebar-heading">

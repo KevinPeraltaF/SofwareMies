@@ -261,7 +261,7 @@ class InvetarioDistritoCabecera(models.Model):
         return item
     def __str__(self):
         """Unicode representation of InvetarioDistritoCabecera."""
-        return ("{}- {}- {}- {}").format(self.descripcion, self.responsable, self.serie, self.codigoMies)
+        return ("{}- {}- {}").format(self.descripcion,self.serie, self.codigoMies)
 
     def save(self,*args, **kwargs):
         """Save method for InvetarioDistritoCabecera."""

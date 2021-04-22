@@ -5,11 +5,11 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import AccesoRed
 from .forms import AccesoRedForm
-from django.contrib.auth.models import  Group
+
 from django.contrib.auth.mixins import PermissionRequiredMixin,LoginRequiredMixin
 from django.http import HttpRequest
 from django.utils.decorators import method_decorator
-from django.contrib import messages
+
 # Create your views here.
 class AccesoRedListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'red.view_accesored'

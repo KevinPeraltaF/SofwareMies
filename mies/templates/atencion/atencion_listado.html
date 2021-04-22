@@ -44,6 +44,7 @@
                 <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th><b>FECHA</b></th>
                             <th><b>CUSTODIO</b></th>
                             <th><b>TIPO DOCUMENTO</b></th>
                             <th><b>REPORTE PDF</b></th>
@@ -54,8 +55,8 @@
                         {% for atencion in object_list %}
                         <tr>
 
-               
-                            <td>{{ atencion.equipo.responsable }}</td>
+                            <td>{{ atencion.fechaIncidente }}</td>
+                            <td>{{ atencion.equipo.custodio }}</td>
                             <td>{{ atencion.tipoDocumento}}</td>
                             <td>
                                 {% if atencion.tipoDocumento.id == 3 %}

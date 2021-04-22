@@ -1,0 +1,88 @@
+{% extends 'base_generic.html' %}
+{% block title %}NUEVA ASIGNACIÓN{% endblock %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'custodio_listar' %}">Asignación de Custodios</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+    </ol>
+</nav>
+<div class="row">
+
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        {% if form.errors %}
+
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                        {{error}}
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+
+        </div>
+        {% endif %}
+
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{form.fecha.label}}
+                {{form.fecha}}
+            </div>
+            <div class="form-group">
+                {{form.custodio.label}}
+                {{form.custodio}}
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    {{form.equipo.label}}
+                    {{form.equipo}}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="form-check">
+                        {{form.estado.label}}
+                        {{form.estado}}
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="modal-footer">
+                <a type="button" class="btn btn-secondary" href="{% url 'custodio_listar' %}">Cancelar</a>
+                <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_custodio').select2();  
+        $('#id_equipo').select2(); 
+        
+       
+    });
+  
+</script>
+{% endblock content_extra_js %}

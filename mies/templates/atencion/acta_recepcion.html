@@ -30,14 +30,14 @@
             <FONT SIZE=4>En
                 la ciudad de Milagro a los {{ object.fecha_salida.day}} días del mes de {{ object.fecha_salida.month}}
                 del {{ object.fecha_salida.year }}, se
-                procede a la ENTREGA de {{object.equipo.categoria}} , entre las siguientes personas, por
-                una parte quien RECIBE ING. {{object.responsable}} </FONT>
+                procede a la ENTREGA de {{object.equipo.equipo.categoria}} , entre las siguientes personas, por
+                una parte quien RECIBE ING. {{object.responsable}}  </FONT>
             <FONT SIZE=4><B>RESPONSABLE
                     ENCARGADO DE TICS </B></FONT>
             <FONT SIZE=4>de la DIRECCION DISTRITAL
-                MILAGRO MIES/ZONA 5, y por otro lado quien ENTREGA {{object.equipo.responsable}} con
+                MILAGRO MIES/ZONA 5, y por otro lado quien ENTREGA {{object.equipo.equipo.responsable}} con
             </FONT>
-            <FONT SIZE=4><B>CI: {{object.equipo.responsable.cedula}}</B></FONT>
+            <FONT SIZE=4><B>CI: {{object.equipo.equipo.responsable.cedula}}</B></FONT>
             <FONT SIZE=4>
                 {{object.equipo.responsable.cargo}}.</FONT>
         </FONT>
@@ -103,31 +103,31 @@
                 <td width="90"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
-                        {{object.equipo.categoria}}
+                        {{object.equipo.equipo.categoria}}
                     </p>
                 </td>
                 <td width="90"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
-                        {{object.equipo.marca}}
+                        {{object.equipo.equipo.marca}}
                     </p>
                 </td>
                 <td width="90"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
-                        {{object.equipo.serie}}
+                        {{object.equipo.equipo.serie}}
                     </p>
                 </td>
                 <td width="90"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
-                        {{object.equipo.modelo}}
+                        {{object.equipo.equipo.modelo}}
                     </p>
                 </td>
                 <td width="60"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
-                        {{object.equipo.condicion}}
+                        {{object.equipo.equipo.condicion}}
                     </p>
                 </td>
             </tr>
@@ -137,6 +137,7 @@
                 <td width="40"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
+                        {{a.cantidad}}
                     </p>
                 </td>
                 <td width="90"
@@ -289,7 +290,7 @@
             </TD>
             <TD WIDTH=310 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
                 <P LANG="en-US" CLASS="western" ALIGN=CENTER>
-                    <FONT SIZE=4 STYLE="font-size: 11pt"><SPAN LANG="es-ES">{{object.equipo.responsable}}</SPAN></FONT>
+                    <FONT SIZE=4 STYLE="font-size: 11pt"><SPAN LANG="es-ES">{{object.equipo.equipo.responsable}}</SPAN></FONT>
                 </P>
             </TD>
         </TR>
@@ -305,7 +306,7 @@
             <TD WIDTH=310 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
                 <P LANG="en-US" CLASS="western" ALIGN=CENTER>
                     <FONT SIZE=2 STYLE="font-size: 11pt">
-                        <FONT SIZE=4><SPAN LANG="es-ES"><B>{{object.equipo.responsable.cargo}}</B></SPAN></FONT>
+                        <FONT SIZE=4><SPAN LANG="es-ES"><B>{{object.equipo.equipo.responsable.cargo}}</B></SPAN></FONT>
                     </FONT>
                 </P>
             </TD>

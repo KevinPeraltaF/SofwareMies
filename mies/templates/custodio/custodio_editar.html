@@ -1,0 +1,59 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Registro</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          
+  
+        </div>
+        
+        <form action="{% url 'custodio_editar' object.id %}" method="post">
+            {% csrf_token %}
+            
+            <div class="modal-body">
+               
+                <div class="form-group">
+                    {{form.fecha.label}}
+                    {{form.fecha}}
+                </div>
+                <div class="form-group">
+                    {{form.custodio.label}}
+                    {{form.custodio}}
+                </div>
+    
+                <div class="form-group">
+                    <div class="form-group">
+                        {{form.equipo.label}}
+                        {{form.equipo}}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{form.estado.label}}
+                       <input type="checkbox" name="estado" id="id_estado"  {% if object.estado %} checked {% endif %} > 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_custodio').select2();  
+        $('#id_equipo').select2(); 
+        
+       
+    });
+  
+</script>
+{% endblock content_extra_js %}
