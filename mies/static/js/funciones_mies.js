@@ -47,6 +47,7 @@ function abrirModalDetalle(url){
     }
     )           
 }
+
 function message_error(obj) {
     var html = '';
     if (typeof (obj) === 'object') {

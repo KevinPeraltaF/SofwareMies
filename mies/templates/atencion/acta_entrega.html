@@ -28,7 +28,43 @@
     <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
         <FONT SIZE=2 STYLE="font-size: 11pt">
             <FONT SIZE=4>En
-                la ciudad de Milagro a los {{ object.fecha_salida.day}} días del mes de {{ object.fecha_salida.month}}
+                la ciudad de Milagro a los {{ object.fecha_salida.day}} días del mes de 
+                {% if object.fecha_salida.month == 1  %}
+                <span >Enero</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 2  %}
+                <span >Febrero</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 3  %}
+                <span >Marzo</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 4  %}
+                <span >Abril</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 5  %}
+                <span >Mayo</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 6  %}
+                <span >Junio</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 7  %}
+                <span >Julio</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 8  %}
+                <span >Agosto</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 9  %}
+                <span >Septiembre</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 10  %}
+                <span >Octubre</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 11  %}
+                <span >Noviembre</span>
+                {% endif %}
+                {% if object.fecha_salida.month == 12  %}
+                <span >Diciembre</span>
+                {% endif %}
                 del {{ object.fecha_salida.year }}, se
                 procede a la ENTREGA de {{object.equipo.equipo.categoria}} , entre las siguientes personas, por
                 una parte quien ENTREGA ING. {{object.responsable}} </FONT>

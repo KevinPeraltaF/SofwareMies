@@ -13,8 +13,8 @@ class CustodioListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     model = Custodio
     template_name = "custodio/custodio_listado.html"
 
-    def get_queryset(self):
-        return Custodio.objects.exclude(estado = 0)
+    #def get_queryset(self):
+     #   return Custodio.objects.exclude(estado = 0)
     
 
 class CustodioCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):

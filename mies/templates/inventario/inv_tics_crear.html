@@ -1,4 +1,5 @@
 {% extends 'base_generic.html' %}
+
 {% block title %}NUEVA EQUIPO{% endblock %}
 
 
@@ -111,6 +112,8 @@
 
 
 {% block content_extra_js %}
+
+<script src="{% static 'js/funciones_busqueda.js' %}"></script>
 <script>
     $(function(){
         $('#id_responsable').select2();
@@ -124,4 +127,5 @@
        
     });
 </script>
+
 {% endblock content_extra_js %}

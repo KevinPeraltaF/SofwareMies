@@ -75,6 +75,8 @@ var vents = {
         });}
 };
 
+
+
 $(function(){
     $('.select2').select2({
         theme: "bootstrap4",
@@ -158,3 +160,5 @@ $(function(){
 
     vents.list();
 });
+
+
