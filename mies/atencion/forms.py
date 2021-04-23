@@ -1,6 +1,7 @@
 from django import forms
 from .models import TipoDocumento, Atencion,AtencionDetalle
 from empleado.models import Empleado
+from custodio.models import Custodio
 class TipoDocumentoForm(forms.ModelForm):
 
    
@@ -22,6 +23,8 @@ class AtencionForm(forms.ModelForm):
         super(AtencionForm, self).__init__(*args, **kwargs)
         # Filtro al responsable de acuerdo a su cargo id =1; -> tics
         self.fields['responsable'].queryset = Empleado.objects.filter(estado=1, area = 1)
+        #filtro para mostrar solo equipos vigentes
+        self.fields['equipo'].queryset = Custodio.objects.filter(estado=1)
 
     class Meta:
         model = Atencion
