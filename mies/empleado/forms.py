@@ -4,6 +4,8 @@ from .models import Empleado, Area, Cargo, UnidadAtencion
 
 class EmpleadoForm(forms.ModelForm):
     """Form definition for Empleado."""
+
+    
     class Meta:
         """Meta definition for Empleadoform."""
 

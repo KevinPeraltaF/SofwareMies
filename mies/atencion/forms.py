@@ -1,9 +1,9 @@
 from django import forms
 from .models import TipoDocumento, Atencion,AtencionDetalle
-from django.forms.models import inlineformset_factory
-
+from empleado.models import Empleado
 class TipoDocumentoForm(forms.ModelForm):
-    
+
+   
     class Meta:
         model = TipoDocumento
         fields = ('descripcion',)
@@ -18,7 +18,11 @@ class TipoDocumentoForm(forms.ModelForm):
 
 
 class AtencionForm(forms.ModelForm):
-    
+    def __init__(self, *args, **kwargs):
+        super(AtencionForm, self).__init__(*args, **kwargs)
+        # Filtro al responsable de acuerdo a su cargo id =1; -> tics
+        self.fields['responsable'].queryset = Empleado.objects.filter(estado=1, area = 1)
+
     class Meta:
         model = Atencion
         fields = (
@@ -151,4 +155,3 @@ class AtencionDetalleForm(forms.ModelForm):
             ),
         }
 
-DetalleForm = inlineformset_factory(Atencion,AtencionDetalle,form=AtencionDetalleForm, extra=1,can_delete= True)

@@ -1,9 +1,13 @@
 from django import forms
 from django.forms.models import inlineformset_factory
 from .models import Marca, Modelo, Condicion, Categoria, InventarioTics, CapacidadDisco,CapacidadMemoriaRam, Procesador, InvetarioDistritoCabecera, InventarioDistritoDetalle
-
+from empleado.models import Empleado
 class InvTicsForm(forms.ModelForm):
-    
+    def __init__(self, *args, **kwargs):
+        super(InvTicsForm, self).__init__(*args, **kwargs)
+        # Filtro al responsable de acuerdo a su cargo id =1; -> tics
+        self.fields['responsable'].queryset = Empleado.objects.filter(estado=1, area = 1)
+
     class Meta:
         model = InventarioTics
 

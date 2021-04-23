@@ -32,7 +32,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     #MENU PARA LOS USUARIOS
-    path('', usuario_views.dashboard_view, name="dashboard") ,
+    path('', usuario_views.dashboard_view.as_view(), name="dashboard") ,
    
     #MODULO OTROS
     # ACCESO A REDES
@@ -219,3 +219,4 @@ urlpatterns = [
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
