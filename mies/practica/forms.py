@@ -3,8 +3,9 @@ from .models import Pasante, Carrera, Universidad
 
 
 
-class PasanteForm(forms.ModelForm):
+class PasanteForm(forms.ModelForm):       
     """Form definition for Pasant."""
+    
     class Meta:
         """Meta definition for Pasanteform."""
 
@@ -22,6 +23,7 @@ class PasanteForm(forms.ModelForm):
             'horas_diarias',
             'estado',
             )
+      
 
         widgets = {
             'nombres': forms.TextInput(
@@ -44,14 +46,15 @@ class PasanteForm(forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
+          
             'carrera' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'tutor_profesional' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'fecha_inicio': forms.TextInput(
@@ -77,12 +80,16 @@ class PasanteForm(forms.ModelForm):
                 attrs={
                     'type':'checkbox',
                     'class': 'form-group ',
-                    'checked':'True',
+                    
                 }
             ),                    
             }
 
 class CarreraForm(forms.ModelForm):
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
     
     class Meta:
 
@@ -95,7 +102,7 @@ class CarreraForm(forms.ModelForm):
         widgets = {
             'universidad' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'descripcion' : forms.TextInput(
@@ -107,7 +114,12 @@ class CarreraForm(forms.ModelForm):
 
 class UniversidadForm(forms.ModelForm):
 
-     class Meta:
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
 
         model = Universidad
 

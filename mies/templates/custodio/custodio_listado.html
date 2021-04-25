@@ -27,7 +27,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                            {% if perms.red.add_custodiored %}
+                            {% if perms.custodio.add_custodio %}
                             <a class="dropdown-item" href="{% url 'custodio_crear'%}">Nueva Asignación</a>
                             {% endif %}
 
@@ -66,22 +66,29 @@
                                 {{ custodio.custodio }}
                             </td>
                             <td>
-                              
                                 {{ custodio.equipo.descripcion }}
                             </td>
                             <td>
-                              
+                                {% if custodio.equipo.direccionIp  is none %}
+                                <p>N/A</p>
+                                {% else %}
                                 {{ custodio.equipo.direccionIp }}
+                                {% endif%}
+                                
                             </td>
                             <td>
-                              
+                                {% if custodio.equipo.direccionMac  is none %}
+                                <p>N/A</p>
+                                {% else %}
                                 {{ custodio.equipo.direccionMac }}
+                                {% endif%}
+                                
                             </td>
                             <td>
                                 {% if custodio.equipo.serie  is none %}
                                 <p>N/A</p>
                                 {% else %}
-                                {{ custodio.equipo.serie  }}
+                                {{ custodio.equipo.serie}}
                                 {% endif%}
                               
                             </td>
@@ -159,5 +166,6 @@
 
 
 {% block content_extra_js %}
-<script src="{% static 'js/funciones_mies.js' %}"></script>
+<script src="{% static 'js/jquery.chained.min.js' %}"></script>
 {% endblock content_extra_js %}
+

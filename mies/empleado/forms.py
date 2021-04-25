@@ -4,7 +4,11 @@ from .models import Empleado, Area, Cargo, UnidadAtencion
 
 class EmpleadoForm(forms.ModelForm):
     """Form definition for Empleado."""
-
+     #validaciones para que se envie como mayusculas los datos
+    def clean_correo(self):
+        data = self.cleaned_data["correo"].upper()
+        return data
+    
     
     class Meta:
         """Meta definition for Empleadoform."""
@@ -26,7 +30,7 @@ class EmpleadoForm(forms.ModelForm):
             'foto',)
 
         widgets = {
-            'fecha': forms.TextInput(
+            'fecha': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
                     'class': 'form-control'
@@ -35,17 +39,17 @@ class EmpleadoForm(forms.ModelForm):
             'area' : forms.Select(
                 attrs={
                     
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'cargo' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'unidadAtencion' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'estado': forms.TextInput(
@@ -67,7 +71,7 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'genero' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'correo': forms.EmailInput(
@@ -94,6 +98,11 @@ class EmpleadoForm(forms.ModelForm):
             }
 
 class AreaForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
     
     class Meta:
 
@@ -106,7 +115,7 @@ class AreaForm(forms.ModelForm):
         widgets = {
             'distrito' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'descripcion' : forms.TextInput(
@@ -117,8 +126,13 @@ class AreaForm(forms.ModelForm):
         }
 
 class CargoForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
-     class Meta:
+    class Meta:
 
         model = Cargo
 
@@ -134,7 +148,14 @@ class CargoForm(forms.ModelForm):
         }
 
 class UnidadAtencionForm(forms.ModelForm):
-     class Meta:
+
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
 
         model = UnidadAtencion
 

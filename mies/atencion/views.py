@@ -79,6 +79,7 @@ class ReporteBienesPdfView(LoginRequiredMixin,PdfMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['bienes'] = Empleado.objects.get(id=4)
         context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
+
         return context
 
 
@@ -90,6 +91,7 @@ class ReporteEntregaPdfView(LoginRequiredMixin,PdfMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
+
         return context
 
 ####   RECEPCION
@@ -100,6 +102,7 @@ class ReporteRecepcionPdfView(LoginRequiredMixin,PdfMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
+       
         return context
 
 

@@ -19,7 +19,7 @@ class PrestamoForm(forms.ModelForm):
             'estado',)
         
         widgets = {
-            'fecha_entrega': forms.TextInput(
+            'fecha_entrega': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
                     'class': 'form-control'
@@ -34,12 +34,12 @@ class PrestamoForm(forms.ModelForm):
             
             'usuario': forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'item': forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'cantidad': forms.TextInput(
@@ -52,7 +52,7 @@ class PrestamoForm(forms.ModelForm):
 
             'condicion': forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             

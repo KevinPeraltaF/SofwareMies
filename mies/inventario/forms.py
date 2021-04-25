@@ -8,6 +8,17 @@ class InvTicsForm(forms.ModelForm):
         # Filtro al responsable de acuerdo a su cargo id =1; -> tics
         self.fields['responsable'].queryset = Empleado.objects.filter(estado=1, area = 1)
 
+     #validaciones para que se envie como mayusculas los datos
+    def clean_serie(self):
+        data = self.cleaned_data["serie"].upper()
+        
+        return data
+    
+    def clean_codigoMies(self):
+        data = self.cleaned_data["codigoMies"].upper()
+        
+        return data
+
     class Meta:
         model = InventarioTics
 
@@ -35,17 +46,17 @@ class InvTicsForm(forms.ModelForm):
             ),
             'responsable':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'ubicacion':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'categoria':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'descripcion':forms.Textarea(
@@ -56,17 +67,17 @@ class InvTicsForm(forms.ModelForm):
             ),
             'marca':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'modelo':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'condicion':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'serie':forms.TextInput(
@@ -94,6 +105,11 @@ class InvTicsForm(forms.ModelForm):
             )
         }
 class MarcaForm(forms.ModelForm):
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
     class Meta:
 
@@ -109,6 +125,11 @@ class MarcaForm(forms.ModelForm):
             )
         }
 class ModeloForm(forms.ModelForm):
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
     class Meta:
 
@@ -124,6 +145,11 @@ class ModeloForm(forms.ModelForm):
             )
         }
 class CategoriaForm(forms.ModelForm):
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
     class Meta:
 
@@ -139,6 +165,11 @@ class CategoriaForm(forms.ModelForm):
             )
         }
 class CondicionForm(forms.ModelForm):
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
     class Meta:
 
@@ -154,6 +185,11 @@ class CondicionForm(forms.ModelForm):
             )
         }
 class CapacidadDiscoForm(forms.ModelForm):
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
     class Meta:
 
@@ -170,6 +206,11 @@ class CapacidadDiscoForm(forms.ModelForm):
         }
         
 class CapacidadMemoriaRamForm(forms.ModelForm):
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
     class Meta:
 
@@ -185,6 +226,11 @@ class CapacidadMemoriaRamForm(forms.ModelForm):
             )
         }
 class ProcesadorForm(forms.ModelForm):
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
     class Meta:
 
@@ -224,7 +270,7 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
         )
 
         widgets = {
-            'fechaIngreso': forms.TextInput(
+            'fechaIngreso': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
                     'class':'form-control'
@@ -232,17 +278,17 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
             ),
             'responsable':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'ubicacion':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'categoria':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'descripcion':forms.Textarea(
@@ -258,12 +304,12 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
             ),
             'modelo':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'condicion':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'serie':forms.TextInput(
@@ -292,17 +338,17 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
             ),
             'capacidadDisco':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'capacidadMemoria':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'capacidadProcesador':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'foto':forms.ClearableFileInput(

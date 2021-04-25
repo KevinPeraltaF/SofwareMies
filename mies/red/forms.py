@@ -3,6 +3,16 @@ from .models import AccesoRed
 
 class AccesoRedForm(forms.ModelForm):
     """Form definition for AccesoRed."""
+    #valido no repetidos y muestro sms de error
+    def clean_direccion_mac(self):
+        data = self.cleaned_data["direccion_mac"].upper()
+        
+        return data
+
+    def clean_direccion_ip(self):
+        data = self.cleaned_data["direccion_ip"].upper()
+        
+        return data
 
     class Meta:
         """Meta definition for AccesoRedform."""
@@ -17,7 +27,7 @@ class AccesoRedForm(forms.ModelForm):
             'estado',)
         
         widgets = {
-            'fecha': forms.TextInput(
+            'fecha': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
                     'class': 'form-control'
@@ -57,3 +67,7 @@ class AccesoRedForm(forms.ModelForm):
             ),
         }
 
+
+   
+
+        

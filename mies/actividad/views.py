@@ -124,6 +124,10 @@ class AsuntoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     form_class = AsuntoForm
     template_name = "actividad/asunto_crear.html"
     success_url = reverse_lazy('asunto_listar')
+   
+    
+
+
  
 class AsuntoDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     permission_required = 'actividad.delete_asunto'

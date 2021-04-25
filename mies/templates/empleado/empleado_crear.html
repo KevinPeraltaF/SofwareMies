@@ -16,8 +16,8 @@
 
 </div>
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 
         {% if form.errors %}
 
@@ -69,27 +69,44 @@
                     {{form.genero}}
                 </div>
             </div>
-            <div class="form-group">
-                {{form.foto.label}}
-                {{form.foto}}
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{form.foto.label}}
+                        {{form.foto}}
+                    </div>
+                    
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{form.fecha.label}}
+                        {{form.fecha}}
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                {{form.fecha.label}}
-                {{form.fecha}}
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{form.area.label}}
+                        {{form.area}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{form.cargo.label}}
+                        {{form.cargo}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{form.unidadAtencion.label}}
+                        {{form.unidadAtencion}}
+                    </div>
+                </div>
+                
+               
+    
             </div>
-            <div class="form-select">
-                {{form.area.label}}
-                {{form.area}}
-            </div>
-            <div class="form-select">
-                {{form.cargo.label}}
-                {{form.cargo}}
-            </div>
-            <div class="form-select">
-                {{form.unidadAtencion.label}}
-                {{form.unidadAtencion}}
-            </div>
-
             <div class="form-row mt-3">
                 <div class="form-group">
                     <div class="form-check">
@@ -105,7 +122,7 @@
             </fieldset>
         </form>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-1"></div>
 
 </div>
 

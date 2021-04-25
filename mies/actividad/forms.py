@@ -3,7 +3,12 @@ from .models import Prioridad, Asunto, ActividadCabecera, ActividadDetalle
 from django.forms.models import inlineformset_factory
 
 class PrioridadForm(forms.ModelForm):
-    
+   
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        return data
+
     class Meta:
         model = Prioridad
         fields = ('descripcion',)
@@ -17,7 +22,13 @@ class PrioridadForm(forms.ModelForm):
         }
 
 class AsuntoForm(forms.ModelForm):
-    
+
+  
+     #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        return data
+        
     class Meta:
         model = Asunto
         fields = ('descripcion',)
@@ -43,7 +54,7 @@ class ActividadCabeceraForm(forms.ModelForm):
         'observacion',)
 
         widgets = {
-            'fecha':forms.TextInput(
+            'fecha':forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
                     'class': 'form-control'
@@ -51,22 +62,22 @@ class ActividadCabeceraForm(forms.ModelForm):
             ),
             'responsable':forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'usuario':forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'ubicacion': forms.Select(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control select',
                 }
             ),
             'prioridad':forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'observacion':forms.Textarea(

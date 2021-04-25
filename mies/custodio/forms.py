@@ -10,6 +10,7 @@ class CustodioForm(forms.ModelForm):
         self.fields['custodio'].queryset = Empleado.objects.filter(estado=1)
         #filtro que muestre solo los empleados con condicion bueno o regular excluye el id 3 -> de dañado
         self.fields['equipo'].queryset = InvetarioDistritoCabecera.objects.exclude( condicion=3)
+       
 
     class Meta:
         """Meta definition for AccesoRedform."""
@@ -22,7 +23,7 @@ class CustodioForm(forms.ModelForm):
             'estado',)
         
         widgets = {
-            'fecha': forms.TextInput(
+            'fecha': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
                     'class': 'form-control'
@@ -31,13 +32,13 @@ class CustodioForm(forms.ModelForm):
             'custodio': forms.Select(
                 attrs={
                     
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'equipo': forms.Select(
                 attrs={
                    
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
       

@@ -11,6 +11,8 @@ from practica.models import Pasante
 from capacitacion.models import CapacitacionCabecera
 from atencion.models import Atencion
 #404
+from django.shortcuts import render
+from django.template import RequestContext
 
 
 class dashboard_view(LoginRequiredMixin,TemplateView):
@@ -34,5 +36,13 @@ class dashboard_view(LoginRequiredMixin,TemplateView):
 def logout_view(request):
     logout(request)
     success_url = reverse_lazy('login')
+
+
+
+
+
+
+
+
 
 

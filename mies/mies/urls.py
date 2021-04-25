@@ -27,6 +27,10 @@ from atencion import views as atencion_views
 from actividad import views as actividad_views
 from django.conf import settings
 from django.conf.urls.static import static
+#400
+from django.conf.urls import (
+handler400, handler403, handler404, handler500
+)
 
 urlpatterns = [
 
@@ -219,4 +223,6 @@ urlpatterns = [
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 

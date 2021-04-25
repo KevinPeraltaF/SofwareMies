@@ -4,7 +4,11 @@ from empleado.models import Empleado
 from custodio.models import Custodio
 class TipoDocumentoForm(forms.ModelForm):
 
-   
+    #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        return data
+        
     class Meta:
         model = TipoDocumento
         fields = ('descripcion',)
@@ -48,12 +52,12 @@ class AtencionForm(forms.ModelForm):
             
             'responsable':forms.Select(
                     attrs={
-                        'class': 'form-control'
+                        'class': 'form-control select'
                     }
                 ),
             'equipo':forms.Select(
                     attrs={
-                        'class': 'form-control'
+                        'class': 'form-control select'
                     }
                 ),
             'detalle': forms.Textarea(
@@ -126,7 +130,7 @@ class AtencionForm(forms.ModelForm):
             ),
             'tipoDocumento':forms.Select(
                     attrs={
-                        'class': 'form-control'
+                        'class': 'form-control select'
                     }
                 ),
            
@@ -142,7 +146,7 @@ class AtencionDetalleForm(forms.ModelForm):
         widgets = {
             'cabecera': forms.Select(
                 attrs ={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'pieza': forms.Select(
