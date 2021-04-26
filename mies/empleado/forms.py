@@ -92,7 +92,8 @@ class EmpleadoForm(forms.ModelForm):
             'foto': forms.ClearableFileInput(
                 attrs={
                     'type':'file',
-                    'class': 'form-control'
+                    'class': 'dropify',
+                    'data-allowed-file-extensions':'jpg jpeg JPEG JPG png'
                 }
             ),
             }

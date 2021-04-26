@@ -100,7 +100,8 @@ class InvTicsForm(forms.ModelForm):
             'foto':forms.ClearableFileInput(
                 attrs={
                     'type':'file',
-                    'class':'form-control'
+                    'class': 'dropify',
+                    'data-allowed-file-extensions':'jpg jpeg JPEG JPG png'
                 }
             )
         }
@@ -246,6 +247,28 @@ class ProcesadorForm(forms.ModelForm):
             )
         }
 class InvetarioDistritoCabeceraForm(forms.ModelForm):
+
+     #validaciones para que se envie como mayusculas los datos
+    def clean_serie(self):
+        data = self.cleaned_data["serie"].upper()
+        
+        return data
+    
+    def clean_codigoMies(self):
+        data = self.cleaned_data["codigoMies"].upper()
+        
+        return data
+    
+    def clean_direccionIp(self):
+        data = self.cleaned_data["direccionIp"].upper()
+        
+        return data
+    
+    def clean_direccionMac(self):
+        data = self.cleaned_data["direccionMac"].upper()
+        
+        return data
+
     action =forms.CharField()
     class Meta:
         model = InvetarioDistritoCabecera
