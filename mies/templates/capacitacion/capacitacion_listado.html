@@ -1,0 +1,131 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %}CAPACITACIÓN {% endblock title %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Capacitación</li>
+    </ol>
+</nav>
+<div class="container-fluid">
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row ">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Capacitación</h6>
+                </div>
+                <div class="col ">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.red.add_capacitacionred %}
+                            <a class="dropdown-item" href="{% url 'capacitacion_crear'%}">Nueva capacitación</a>
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th><b>FECHA</b></th>
+                            <th><b>LUGAR</b></th>
+                            <th><b>TEMA</b></th>
+                            <th><b>TIPO</b></th>
+                            <th><b>SOLICITANTE</b></th>
+                            <th><b>DOCUMENTO</b></th>
+                            <th><b>ACCIONES</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for capacitacion in object_list %}
+                        <tr>
+
+                            <td>{{ capacitacion.fecha }}</td>
+                            <td>{{ capacitacion.lugar }}</td>
+                            <td>{{ capacitacion.tema }}</td>
+                            <td>{{ capacitacion.tipoCapacitacion }}</td>
+                            <td>{{ capacitacion.areaSolicitante }}</td>
+                            <td>
+                                <div class="row">
+                                <a href="{% url 'capacitacion_reporte_pdf' capacitacion.id %}" target="_blank"><i
+                                        class="fas fa-file-pdf"></i>
+                                    <font size="2">ACTA-CAPACITACION-MIES</font>
+                                </a>
+                            </div>
+                            
+                            </td>
+                            
+                            <td>
+                                <a class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'capacitacion_detalle' capacitacion.id%}')"> <i
+                                        class="fa fa-eye"></i>
+                                </a>
+
+                                {% if perms.capacitacion.change_capacitacioncapacitacion %}
+                                <button id="modalEditarcapacitacionRed" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'capacitacion_editar' capacitacion.id%}')"> <i
+                                        class="fa fa-edit"></i>
+                                </button>
+                                {% endif %}
+
+
+                                {% if perms.capacitacion.delete_capacitacion %}
+                                <a class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'capacitacion_eliminar' capacitacion.id%}')"><i
+                                        class="fa fa-trash"></i>
+                                </a>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editar" role="dialog">
+
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminar" role="dialog">
+
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
+
+</div>
+
+
+{% endblock content_main%}
+
+
+{% block content_extra_js %}
+
+{% endblock content_extra_js %}

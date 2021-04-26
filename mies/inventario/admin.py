@@ -37,11 +37,11 @@ class CondicionAdmin(admin.ModelAdmin):
 class InventarioTicsAdmin(admin.ModelAdmin):
     '''Admin View for InventarioTics'''
 
-    list_display = ('fechaIngreso','responsable','ubicacion','categoria','descripcion','marca',
+    list_display = ('fechaIngreso','responsable','categoria','descripcion','marca',
     'modelo','condicion','serie' ,'codigoMies' ,'cantidad' ,'foto',)
-    list_filter = ('ubicacion','categoria','descripcion','marca',
+    list_filter = ('categoria','descripcion','marca',
     'modelo','condicion','serie' ,'codigoMies' ,)
-    search_fields = ('ubicacion','categoria','descripcion','marca',
+    search_fields = ('categoria','descripcion','marca',
     'modelo','condicion','serie' ,'codigoMies',)
 
 @admin.register(CapacidadDisco)

@@ -54,7 +54,7 @@ class Modelo(models.Model):
 class Categoria(models.Model):
     """Model definition for Categoria."""
 
-    descripcion = models.CharField('Categoria', max_length=50,unique= True)
+    descripcion = models.CharField('Categoría', max_length=50,unique= True)
 
     class Meta:
         """Meta definition for Categoria."""
@@ -75,7 +75,7 @@ class Categoria(models.Model):
 class Condicion(models.Model):
     """Model definition for Condicion."""
 
-    descripcion = models.CharField('Condicion', max_length=50,unique= True)
+    descripcion = models.CharField('Condición', max_length=50,unique= True)
 
     class Meta:
         """Meta definition for Condicion."""
@@ -98,7 +98,6 @@ class InventarioTics(models.Model):
 
     fechaIngreso = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)

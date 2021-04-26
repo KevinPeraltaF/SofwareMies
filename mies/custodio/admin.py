@@ -6,16 +6,17 @@ from custodio.models import Custodio
 @admin.register(Custodio)
 class CustodioAdmin(admin.ModelAdmin):
     '''Admin View for AccesoRed'''
-    list_display = ('fecha','custodio','equipo','estado')
-    list_editable =('custodio','equipo','estado')
-    list_filter = ('fecha','custodio','equipo','estado')
-    search_fields = ('usuario','custodio','equipo','estado',)
+    list_display = ('fecha','custodio','equipo','ubicacion','estado')
+    list_editable =('custodio','equipo','ubicacion','estado')
+    list_filter = ('fecha','custodio','equipo','ubicacion','estado')
+    search_fields = ('usuario','custodio','equipo','ubicacion','estado',)
     fieldsets = (
         ("Asignación  del equipo al custodio" , {
             "fields": (
                 'fecha',
                 'custodio',
                 'equipo',
+                'ubicacion',
                 'estado',
                 
             ),

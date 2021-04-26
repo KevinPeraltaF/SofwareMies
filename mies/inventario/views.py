@@ -321,7 +321,6 @@ class DetCabCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
                 invCab = InvetarioDistritoCabecera()
                 invCab.fechaIngreso = vents['fechaIngreso']
                 invCab.responsable_id = vents['responsable']
-                invCab.ubicacion_id = vents['ubicacion']
                 invCab.categoria_id = vents['categoria']
                 invCab.descripcion = vents['descripcion']
                 invCab.marca_id = vents['marca']

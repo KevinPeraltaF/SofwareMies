@@ -25,6 +25,8 @@ from practica import views as practica_views
 from custodio import views as custodio_views
 from atencion import views as atencion_views
 from actividad import views as actividad_views
+from capacitacion import views as tipocapacitacion_views
+from capacitacion import views as capacitacion_views
 from django.conf import settings
 from django.conf.urls.static import static
 #400
@@ -216,6 +218,22 @@ urlpatterns = [
     path('Custodio/Editar/<int:pk>', custodio_views.CustodioUpdateView.as_view(), name="custodio_editar") ,
     path('Custodio/Eliminar/<int:pk>', custodio_views.CustodioDeleteView.as_view(), name="custodio_eliminar") ,
     path('Custodio/Detalle/<int:pk>', custodio_views.CustodioDetailView.as_view(), name="custodio_detalle") ,
+
+
+    #--TipoCapacitacion
+    path('TipoCapacitacion', tipocapacitacion_views.TipoCapacitacionListView.as_view(), name="tipo_capacitacion_listar") ,
+    path('TipoCapacitacion/Crear', tipocapacitacion_views.TipoCapacitacionCreateView.as_view(), name="tipo_capacitacion_crear") ,
+    path('TipoCapacitacion/Editar/<int:pk>', tipocapacitacion_views.TipoCapacitacionUpdateView.as_view(), name="tipo_capacitacion_editar") ,
+    path('TipoCapacitacion/Eliminar/<int:pk>', tipocapacitacion_views.TipoCapacitacionDeleteView.as_view(), name="tipo_capacitacion_eliminar") ,
+    path('TipoCapacitacion/Detalle/<int:pk>', tipocapacitacion_views.TipoCapacitacionDetailView.as_view(), name="tipo_capacitacion_detalle") ,
+    
+     #--Capacitacion
+    path('Capacitacion', capacitacion_views.CapacitacionListView.as_view(), name="capacitacion_listar") ,
+    path('Capacitacion/Crear', capacitacion_views.CapacitacionCreateView.as_view(), name="capacitacion_crear") ,
+    path('Capacitacion/Editar/<int:pk>', capacitacion_views.CapacitacionUpdateView.as_view(), name="capacitacion_editar") ,
+    path('Capacitacion/Eliminar/<int:pk>', capacitacion_views.CapacitacionDeleteView.as_view(), name="capacitacion_eliminar") ,
+    path('Capacitacion/Detalle/<int:pk>', capacitacion_views.CapacitacionDetailView.as_view(), name="capacitacion_detalle") ,
+    path('Capacitacion/pdf/<int:pk>', capacitacion_views.CapacitacionReportePdfDetailView.as_view(), name="capacitacion_reporte_pdf") ,
 
 ]   
 

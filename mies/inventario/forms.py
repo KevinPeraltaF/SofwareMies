@@ -25,7 +25,6 @@ class InvTicsForm(forms.ModelForm):
         fields = (
             'fechaIngreso',
             'responsable',
-            'ubicacion',
             'categoria',
             'descripcion',
             'marca',
@@ -45,11 +44,6 @@ class InvTicsForm(forms.ModelForm):
                 }
             ),
             'responsable':forms.Select(
-                attrs={
-                    'class':'form-control select'
-                }
-            ),
-            'ubicacion':forms.Select(
                 attrs={
                     'class':'form-control select'
                 }

@@ -1,0 +1,257 @@
+{% extends 'base_atencion_reporte_pdf.html' %}
+
+
+
+{% block content %}
+<TITLE>CAPACITACION-DDM-09D17-TICS-MIES</TITLE>
+<TABLE WIDTH=900 CELLPADDING=3 CELLSPACING= 0>
+	<COLGROUP>
+		<COL WIDTH=27>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=126>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=15>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=81>
+		<COL WIDTH=77>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=63>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=28>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=98>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=2>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=40>
+	</COLGROUP>
+	<COLGROUP>
+		<COL WIDTH=33>
+	</COLGROUP>
+	
+	<TR>
+		<TD COLSPAN=11 WIDTH=689 HEIGHT=8 VALIGN=TOP STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P ALIGN=CENTER><FONT SIZE=3><B>ACTA DE CAPACITACIÓN</B></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=2 COLSPAN=3 WIDTH=162 HEIGHT=8 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right:  1px solid #00000a;  padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P><B>FECHA:</B></P>
+		</TD>
+		<TD ROWSPAN=2 COLSPAN=1 WIDTH=105 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P>
+			</P>
+		</TD>
+		<TD ROWSPAN=2 COLSPAN=3 WIDTH=188 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>{{object.fecha}}
+			</P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=110 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>HORA INICIO: </B>
+			</P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=84 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.hora_inicio}}
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=2 WIDTH=110 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>HORA FIN: </B>
+			</P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=84 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.hora_fin}}
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3 WIDTH=162 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P><B>LUGAR:</B></P>
+		</TD>
+		<TD COLSPAN=8 WIDTH=517 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.lugar}}
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD ROWSPAN=4 COLSPAN=3 WIDTH=162 HEIGHT=8 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P><B>TEMA DE CAPACTITACIÓN:</B></P>
+		</TD>
+		<TD ROWSPAN=4 COLSPAN=3 WIDTH=192 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.tema}}
+			</P>
+		</TD>
+		<TD ROWSPAN=4 COLSPAN=2 WIDTH=101 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P><B>TIPO DE CAPACITACIÓN:</B></P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=160 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>Presencial:</P>
+		</TD>
+		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>
+			{% if object.tipoCapacitacion.id == 1%}
+				X
+			{% else %}
+				
+			{% endif %}
+				
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=2 WIDTH=160 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>Video Conferencia:</P>
+		</TD>
+		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>
+			
+					{% if object.tipoCapacitacion.id == 2%}
+						X
+					{% else %}
+						
+					{% endif %}
+						
+				
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=2 WIDTH=160 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>Skype:</P>
+		</TD>
+		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>
+				
+					{% if object.tipoCapacitacion.id == 3%}
+						X
+					{% else %}
+						
+					{% endif %}
+						
+				
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=2 WIDTH=160 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>Telefónica:</P>
+		</TD>
+		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
+			<P>
+				{% if object.tipoCapacitacion.id == 4 %}
+					X
+				{% else %}
+					
+				{% endif %}
+					
+				</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3 WIDTH=162 HEIGHT=3 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P><B>AREA SOLICITANTE:</B></P>
+		</TD>
+		<TD COLSPAN=8 WIDTH=517 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.areaSolicitante}}
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3 WIDTH=162 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P><B>DIRIGIDO A:</B></P>
+		</TD>
+		<TD COLSPAN=8 WIDTH=517 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.dirigido}}
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3 WIDTH=162 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P><B>INSTRUCTOR:</B></P>
+		</TD>
+		<TD COLSPAN=8 WIDTH=517 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.instructor}}
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3 WIDTH=162 HEIGHT=4 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: 1px solid #00000a; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0in">
+			<P><B>OBJETIVOS:</B></P>
+		</TD>
+		<TD COLSPAN=8 WIDTH=517 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{object.objetivo}}
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=11 WIDTH=689 HEIGHT=8 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>LISTA DE PARTICIPANTES:</B></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=27 HEIGHT=7 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>N.-</B></P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=150 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>Nombres y Apellidos</B></P>
+		</TD>
+		<TD WIDTH=81 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>Cédula</B></P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=150 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>Área / Distrito /Zona</B></P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=136 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>Firma</B></P>
+		</TD>
+		<TD COLSPAN=3 WIDTH=95 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><B>Observación</B></P>
+		</TD>
+	</TR>
+	
+	{% for item in items %}
+	<TR>
+		<TD WIDTH=27 HEIGHT=17 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P STYLE="margin-bottom: 0in"><BR>
+			</P>
+			<P STYLE="margin-bottom: 0in">1
+			</P>
+			<P><BR>
+			</P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=150 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{item.empleado}}
+			</P>
+		</TD>
+		<TD WIDTH=81 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{item.empleado.cedula}}
+			</P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=150 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P>{{item.empleado.area}}/ {{item.empleado.area.distrito}}/zona{{item.empleado.area.distrito.provincia.zona}}
+			</P>
+		</TD>
+		<TD COLSPAN=2 WIDTH=136 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><BR>
+			</P>
+		</TD>
+		<TD COLSPAN=3 WIDTH=95 STYLE="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.05in; padding-right: 0.05in">
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	{% endfor %}
+		
+	
+</TABLE>
+{% endblock content %}
+    

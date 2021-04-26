@@ -20,6 +20,7 @@ class CustodioForm(forms.ModelForm):
             'fecha',
             'custodio',
             'equipo',
+            'ubicacion',
             'estado',)
         
         widgets = {
@@ -36,6 +37,12 @@ class CustodioForm(forms.ModelForm):
                 }
             ),
             'equipo': forms.Select(
+                attrs={
+                   
+                    'class': 'form-control select'
+                }
+            ),
+             'ubicacion': forms.Select(
                 attrs={
                    
                     'class': 'form-control select'

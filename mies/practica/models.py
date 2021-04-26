@@ -52,7 +52,7 @@ class Pasante(models.Model):
     nombres = models.CharField('Nombres', max_length=50)
     apellidos = models.CharField('Apellidos', max_length=50)
     cedula = models.CharField('Cédula', max_length=10,unique= True)
-    telefono = models.CharField('Télefono Movil', max_length=10,unique= True)
+    telefono = models.CharField('Teléfono Móvil', max_length=10,unique= True)
     carrera = models.ForeignKey(Carrera, on_delete=models.PROTECT)
     tutor_profesional = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     fecha_inicio = models.DateField('Fecha Inicio', auto_now=False, auto_now_add=False)
