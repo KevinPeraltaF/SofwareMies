@@ -97,7 +97,7 @@
             {%url 'zona_listar' as zona_url%}
             {%url 'provincia_listar' as provincia_url%}
             {%url 'distrito_listar' as distrito_url%}
-            {%url 'tipo_capacitacion_listar' as tipoCapacitacion_url %}
+           
             {%url 'capacitacion_listar' as capacitacion_url %}
             
 
@@ -390,8 +390,7 @@
                 <div id="collapseUbicacionCapacitacion" class="collapse {% if zona_url in request.path or  provincia_url in request.path  or  distrito_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item  " href="{{tipoCapacitacion_url}}"><i class="fas fa-caret-right"></i>
-                            Tipo Capacitación</a>
+                       
 
                             <a class="collapse-item  " href="{{capacitacion_url}}"><i class="fas fa-caret-right"></i>
                                 Capacitación</a>

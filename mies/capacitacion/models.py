@@ -1,26 +1,6 @@
 from django.db import models
 from empleado.models import Empleado
 # Create your models here.
-class TipoCapacitacion(models.Model):
-    """Model definition for TipoCapacitacion."""
-
-    descripcion = models.CharField('Tipo Capacitación', max_length=50, unique =True)
-
-    class Meta:
-        """Meta definition for TipoCapacitacion."""
-
-        verbose_name = 'Tipo Capacitacion'
-        verbose_name_plural = 'Tipo Capacitaciones'
-
-    def __str__(self):
-        """Unicode representation of TipoCapacitacion."""
-        return self.descripcion
-
-    def save(self,*args, **kwargs):
-        """Save method for TipoCapacitacion."""
-        self.descripcion =self.descripcion and (self.descripcion).upper()
-        return super(TipoCapacitacion, self).save(*args, **kwargs)
-
 
 class CapacitacionCabecera(models.Model):
     """Model definition for CapacitacionCabecera."""
@@ -29,7 +9,12 @@ class CapacitacionCabecera(models.Model):
     hora_fin = models.TimeField('Hora Fin', auto_now=False, auto_now_add=False)
     lugar = models.CharField('Lugar', max_length=80)
     tema = models.CharField('Tema', max_length=80)
-    tipoCapacitacion = models.ForeignKey(TipoCapacitacion, on_delete=models.PROTECT)
+    lista_tipo_capacitacion = [
+    ('1', 'PRESENCIAL'),
+    ('2', 'VIDEO CONFERENCIA'),
+    ('3', 'SKYPE'),
+    ('4', 'TELEFÓNICA'),]
+    tipoCapacitacion = models.CharField('Tipo Capacitación',max_length=1, choices=lista_tipo_capacitacion, default='1')
     areaSolicitante = models.CharField('Area Solicitante', max_length=80)
     dirigido = models.CharField('Dirigido a', max_length=80)
     instructor = models.ForeignKey(Empleado, on_delete=models.PROTECT)
@@ -73,5 +58,3 @@ class CapacitacionDetalle(models.Model):
         return self.empleado
 
 
-
-# Create your models here.

@@ -11,7 +11,23 @@
             <table class="table table-bordered table-responsive-sm">
                 <tbody>
                     <tr>
-                        <th colspan="8">Información Atención</th>
+                        <th colspan="4">Información Atención</th>
+                        <th colspan="4">
+                            
+                            {% if object.tipoDocumento == '1'%}
+                                REPORTE DE ENTREGA
+                            {% endif %}
+                            {% if object.tipoDocumento == '2'%}
+                                REPORTE DE RECEPCIÓN
+                            {% endif %}
+                            {% if object.tipoDocumento == '3'%}
+                                REPORTE DE ENTREGA Y ATENCIÓN
+                            {% endif %}
+                            {% if object.tipoDocumento == '4'%}
+                                REPORTE DE ENTREGA A BIENES
+                            {% endif %}
+                                
+                        </th>
                     </tr>
                     <tr>
 

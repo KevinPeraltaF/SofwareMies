@@ -148,19 +148,32 @@
                 <td width="90"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
-                        {{object.equipo.equipo.marca}}
+                        {% if  object.equipo.equipo.marca is none %}
+                            N/A
+                        {% else %}
+                            {{object.equipo.equipo.marca}}
+                       {% endif %}
                     </p>
                 </td>
                 <td width="90"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
+                      
+                        {% if  object.equipo.equipo.serie is none %}
+                        N/A
+                    {% else %}
                         {{object.equipo.equipo.serie}}
+                   {% endif %}
                     </p>
                 </td>
                 <td width="90"
                     style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
                     <p lang="en-US" class="western">
+                        {% if  object.equipo.equipo.modelo is none %}
+                        N/A
+                    {% else %}
                         {{object.equipo.equipo.modelo}}
+                   {% endif %}
                     </p>
                 </td>
                 <td width="60"

@@ -219,14 +219,6 @@ urlpatterns = [
     path('Custodio/Eliminar/<int:pk>', custodio_views.CustodioDeleteView.as_view(), name="custodio_eliminar") ,
     path('Custodio/Detalle/<int:pk>', custodio_views.CustodioDetailView.as_view(), name="custodio_detalle") ,
 
-
-    #--TipoCapacitacion
-    path('TipoCapacitacion', tipocapacitacion_views.TipoCapacitacionListView.as_view(), name="tipo_capacitacion_listar") ,
-    path('TipoCapacitacion/Crear', tipocapacitacion_views.TipoCapacitacionCreateView.as_view(), name="tipo_capacitacion_crear") ,
-    path('TipoCapacitacion/Editar/<int:pk>', tipocapacitacion_views.TipoCapacitacionUpdateView.as_view(), name="tipo_capacitacion_editar") ,
-    path('TipoCapacitacion/Eliminar/<int:pk>', tipocapacitacion_views.TipoCapacitacionDeleteView.as_view(), name="tipo_capacitacion_eliminar") ,
-    path('TipoCapacitacion/Detalle/<int:pk>', tipocapacitacion_views.TipoCapacitacionDetailView.as_view(), name="tipo_capacitacion_detalle") ,
-    
      #--Capacitacion
     path('Capacitacion', capacitacion_views.CapacitacionListView.as_view(), name="capacitacion_listar") ,
     path('Capacitacion/Crear', capacitacion_views.CapacitacionCreateView.as_view(), name="capacitacion_crear") ,

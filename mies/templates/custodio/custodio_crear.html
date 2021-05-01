@@ -1,6 +1,6 @@
 {% extends 'base_generic.html' %}
 {% block title %}NUEVA ASIGNACIÓN{% endblock %}
-
+{% load static %}
 
 {% block content_main %}
 <!-- Page Heading -->
@@ -43,11 +43,30 @@
             {{form.custodio}}
         </div>
 
-        <div class="form-group">
-            <div class="form-group">
-                {{form.equipo.label}}
-                {{form.equipo}}
+        <div class="row">
+            <div class="form-group col-md-6">
+                
+                <label for="id_equipo">Equipo</label>
+                <select name="equipo" id="id_equipo" class="form-control select">
+                    <option value="0">---------</option>
+
+                    {% for item in equipo %}
+                    <option value="{{item.id}}">{{item}}</option>
+                    {% endfor %}
+
+                </select>
             </div>
+           
+            <div class="form-group col-md-6">
+                <label for="id_custodioAnterior">Custodio Anterior</label>
+                <select name="custodioAnterior" id="id_custodioAnterior" class="form-control select">
+                    <option value="0">---------</option>
+                    {% for item in custodioAnterior %}
+                    <option value="{{item.custodio.id}}" class="{{item.equipo.id}}">{{item.custodio}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
         </div>
 
         <div class="form-group">
@@ -81,10 +100,10 @@
     $(function(){
         $('#id_custodio').select2();  
         $('#id_equipo').select2(); 
-        
+        $("#id_custodioAnterior").chained("#id_equipo");
        
     });
   
 </script>
-
+<script src="{% static 'js/jquery.chained.min.js' %}"></script>
 {% endblock content_extra_js %}

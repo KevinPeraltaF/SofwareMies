@@ -59,10 +59,23 @@
 
                             <td>{{ atencion.fechaIncidente }}</td>
                             <td>{{ atencion.equipo.custodio }}</td>
-                            <td>{{ atencion.tipoDocumento}}</td>
+                            <td>
+                            {% if  atencion.tipoDocumento == '1' %}
+                                REPORTE DE ENTREGA
+                            {% endif %}
+                            {% if  atencion.tipoDocumento == '2' %}
+                            REPORTE DE RECEPCIÓN
+                            {% endif %}
+                            {% if  atencion.tipoDocumento == '3' %}
+                            REPORTE DE ENTREGA Y ATENCIÓN
+                            {% endif %}
+                            {% if  atencion.tipoDocumento == '4' %}
+                            REPORTE ENTREGA A BIENES
+                            {% endif %}
+                                </td>
                            
                             <td>
-                                {% if atencion.tipoDocumento.id == 3 %}
+                                {% if atencion.tipoDocumento == '3' %}
                                 <div class="row">
                                     <a href="{% url 'atencion_reporte_pdf' atencion.id%}" target="_blank"><i
                                             class="fas fa-file-pdf"></i>
@@ -79,7 +92,7 @@
                                 {% endif %}
 
 
-                                {% if atencion.tipoDocumento.id == 4 %}
+                                {% if atencion.tipoDocumento == '4' %}
                                 <div class="row">
                                     <a href="{% url 'acta_bienes_pdf' atencion.id%}" target="_blank"><i
                                             class="fas fa-file-pdf"></i>
@@ -90,7 +103,7 @@
                                 {% endif %}
 
                                 
-                                {% if atencion.tipoDocumento.id == 1 %}
+                                {% if atencion.tipoDocumento == '1' and atencion.fecha_salida %}
                                 <div class="row">
                                     <a href="{% url 'acta_entrega_reporte_pdf' atencion.id%}"
                                         target="_blank"><i class="fas fa-file-pdf"></i>
@@ -99,7 +112,7 @@
                                 </div>
                                 {% endif %}
 
-                                {% if atencion.tipoDocumento.id == 2 %}
+                                {% if atencion.tipoDocumento == '2' and atencion.fecha_salida  %}
                                 <div class="row">
                                     <a href="{% url 'acta_recepcion_reporte_pdf' atencion.id%}"
                                         target="_blank"><i class="fas fa-file-pdf"></i>

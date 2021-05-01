@@ -1,25 +1,7 @@
 from django import forms
-from .models import TipoDocumento, Atencion,AtencionDetalle
+from .models import  Atencion,AtencionDetalle
 from empleado.models import Empleado
 from custodio.models import Custodio
-class TipoDocumentoForm(forms.ModelForm):
-
-    #validaciones para que se envie como mayusculas los datos
-    def clean_descripcion(self):
-        data = self.cleaned_data["descripcion"].upper()
-        return data
-        
-    class Meta:
-        model = TipoDocumento
-        fields = ('descripcion',)
-
-        widgets = {
-            'descripcion': forms.TextInput(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
-        }
 
 
 class AtencionForm(forms.ModelForm):

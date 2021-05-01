@@ -1,17 +1,10 @@
 from django.contrib import admin
-from atencion.models import TipoDocumento, Atencion, AtencionDetalle
+from atencion.models import  Atencion, AtencionDetalle
 # Register your models here.
-@admin.register(TipoDocumento)
-class TipoDocumentoAdmin(admin.ModelAdmin):
-    '''Admin View for TipoDocumento'''
-    list_display = ('descripcion',)
-    list_filter = ('descripcion',)
-    search_fields = ('descripcion',)
-
 
 class ListadoDetalleAtencion(admin.TabularInline):
     model=AtencionDetalle
-    extra =0
+    extra =1
 
 
 @admin.register(Atencion)

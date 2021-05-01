@@ -19,6 +19,7 @@ class CustodioForm(forms.ModelForm):
         fields = (
             'fecha',
             'custodio',
+            'custodioAnterior',
             'equipo',
             'ubicacion',
             'estado',)
@@ -34,6 +35,13 @@ class CustodioForm(forms.ModelForm):
                 attrs={
                     
                     'class': 'form-control select'
+                }
+            ),
+            'custodioAnterior': forms.Select(
+                attrs={
+                    
+                    'class': 'form-control select'
+                    
                 }
             ),
             'equipo': forms.Select(

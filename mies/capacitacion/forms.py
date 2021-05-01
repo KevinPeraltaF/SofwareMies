@@ -1,26 +1,6 @@
 from django import forms
-from .models import TipoCapacitacion, CapacitacionCabecera
+from .models import  CapacitacionCabecera
 
-class TipoCapacitacionForm(forms.ModelForm):
-      #validaciones para que se envie como mayusculas los datos
-    def clean_descripcion(self):
-        data = self.cleaned_data["descripcion"].upper()
-        return data
-    
-    class Meta:
-
-        model = TipoCapacitacion
-        fields = (
-            'descripcion',
-            )
-        
-        widgets = {
-            'descripcion' : forms.TextInput(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
-        }
 
 
 

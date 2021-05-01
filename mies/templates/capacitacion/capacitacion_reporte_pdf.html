@@ -98,7 +98,7 @@
 		</TD>
 		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
 			<P>
-			{% if object.tipoCapacitacion.id == 1%}
+			{% if object.tipoCapacitacion == '1'%}
 				X
 			{% else %}
 				
@@ -114,7 +114,7 @@
 		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
 			<P>
 			
-					{% if object.tipoCapacitacion.id == 2%}
+					{% if object.tipoCapacitacion == '2' %}
 						X
 					{% else %}
 						
@@ -131,7 +131,7 @@
 		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
 			<P>
 				
-					{% if object.tipoCapacitacion.id == 3%}
+					{% if object.tipoCapacitacion == '3' %}
 						X
 					{% else %}
 						
@@ -147,12 +147,12 @@
 		</TD>
 		<TD WIDTH=33 STYLE="border-top: 1px solid #00000a; border-bottom: 1px solid #00000a; border-left: none; border-right: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.05in">
 			<P>
-				{% if object.tipoCapacitacion.id == 4 %}
+				{% if object.tipoCapacitacion == '4' %}
 					X
 				{% else %}
 					
 				{% endif %}
-					
+				
 				</P>
 		</TD>
 	</TR>

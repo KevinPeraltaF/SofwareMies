@@ -5,29 +5,6 @@ from custodio.models import Custodio
 from django.utils import timezone
 # Create your models here.
 
-class TipoDocumento(models.Model):
-    """Model definition for TipoDocumento."""
-
-    descripcion = models.CharField('Descripción', max_length=50, unique=True)
-
-    class Meta:
-        """Meta definition for TipoDocumento."""
-
-        verbose_name = 'Tipo Documento'
-        verbose_name_plural = 'Tipo Documentos'
-
-    def __str__(self):
-        """Unicode representation of TipoDocumento."""
-        return self.descripcion
-
-    def save(self,*args, **kwargs):
-        """Save method for TipoDocumento."""
-        self.descripcion =(self.descripcion).upper()
-        return super(TipoDocumento, self).save(*args, **kwargs)
-
-
-
-
 
 class Atencion(models.Model):
     """Model definition for Atencion."""
@@ -45,7 +22,12 @@ class Atencion(models.Model):
     hardware = models.BooleanField('Hardware')
     software = models.BooleanField('Software')
     observacion = models.TextField('Observación', null=True , blank= True)
-    tipoDocumento = models.ForeignKey(TipoDocumento, on_delete=models.PROTECT)
+    lista_tipoDocumento = [
+    ('1', 'REPORTE DE ENTREGA'),
+    ('2', 'REPORTE DE RECEPCIÓN'),
+    ('3', 'REPORTE DE ENTREGA Y ATENCIÓN'),
+    ('4', 'REPORTE ENTREGA A BIENES'),]
+    tipoDocumento = models.CharField('Tipo Documento',max_length=1, choices=lista_tipoDocumento, default='1')
     contadorDocumento = models.IntegerField(default=0)
     class Meta:
         """Meta definition for Atencion."""

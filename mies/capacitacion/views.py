@@ -3,54 +3,14 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
-from .models import  TipoCapacitacion, CapacitacionCabecera, CapacitacionDetalle
-from .forms import TipoCapacitacionForm, CapacitacionForm
+from .models import  CapacitacionCabecera, CapacitacionDetalle
+from .forms import  CapacitacionForm
 
 from django.contrib.auth.mixins import PermissionRequiredMixin,LoginRequiredMixin
 from django.http import HttpRequest
 from django.utils.decorators import method_decorator
 #pdf libreria
 from django_xhtml2pdf.views import PdfMixin
-
-# Create your views here.
-class TipoCapacitacionListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'capacitacion.view_tipocapacitacion'
-    model = TipoCapacitacion
-    template_name = "capacitacion/tipo_capacitacion_listado.html"
-    
-
-class TipoCapacitacionCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
-    permission_required = 'capacitacion.add_tipocapacitacion'
-    model = TipoCapacitacion
-    form_class = TipoCapacitacionForm
-    template_name = "capacitacion/tipo_capacitacion_crear.html"
-    success_url = reverse_lazy('tipo_capacitacion_listar')
-   
-
-class TipoCapacitacionDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
-    permission_required = 'capacitacion.delete_tipocapacitacion'
-    model = TipoCapacitacion
-    template_name = "capacitacion/tipo_capacitacion_eliminar.html"
-    success_url = reverse_lazy('tipo_capacitacion_listar')
-   
-
-
-class TipoCapacitacionUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
-    permission_required = 'capacitacion.change_tipocapacitacion'
-    model = TipoCapacitacion
-    form_class = TipoCapacitacionForm
-    template_name = "capacitacion/tipo_capacitacion_editar.html"
-    success_url = reverse_lazy('tipo_capacitacion_listar')
-
-
-    
-class TipoCapacitacionDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
-    permission_required = 'capacitacion.view_tipocapacitacion'
-    model = TipoCapacitacion
-    template_name = "capacitacion/tipo_capacitacion_detalle.html"
-
-
-
 
 # Create your views here.
 class CapacitacionListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):

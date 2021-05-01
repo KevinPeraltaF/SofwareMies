@@ -46,7 +46,8 @@
                         <tr>
 
                             <th><b>FECHA</b></th>
-                            <th><b>CUSTODIO</b></th>
+                            <th><b>CUSTODIO ACTUAL</b></th>
+                            <th><b>CUSTODIO ANTERIOR</b></th>
                             <th><b>EQUIPO</b></th>
                             <th><b>DIRECCIÓN IP</b></th>
                             <th><b>DIRECCIÓN MAC</b></th>
@@ -64,6 +65,15 @@
                             <td>{{ custodio.fecha }}</td>
                             <td>
                                 {{ custodio.custodio }}
+                            </td>
+                            <td>
+                               
+                               {% if custodio.custodioAnterior is none %}
+                                SIN CUSTODIO ANTERIOR
+                                {% else %}
+                                {{ custodio.custodioAnterior }}
+                               {% endif %}
+                                   
                             </td>
                             <td>
                                 {{ custodio.equipo.descripcion }}

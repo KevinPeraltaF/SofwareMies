@@ -1,13 +1,6 @@
 from django.contrib import admin
-from capacitacion.models import TipoCapacitacion, CapacitacionCabecera, CapacitacionDetalle
+from capacitacion.models import  CapacitacionCabecera, CapacitacionDetalle
 # Register your models here.
-@admin.register(TipoCapacitacion)
-class TipoCapacitacionAdmin(admin.ModelAdmin):
-    '''Admin View for TipoCapacitacion'''
-
-    list_display = ('descripcion',)
-    list_filter = ('descripcion',)
-    search_fields = ('descripcion',)
 
 
 class CapacitacionInline(admin.TabularInline):
