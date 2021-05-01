@@ -58,7 +58,7 @@ class CapacitacionCabecera(models.Model):
 
 class CapacitacionDetalle(models.Model):
     """Model definition for CapacitacionDetalle."""
-    capacitacionCabecera = models.ForeignKey(CapacitacionCabecera, on_delete=models.PROTECT)
+    capacitacionCabecera = models.ForeignKey(CapacitacionCabecera, on_delete=models.CASCADE)
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     observacion = models.CharField('observación', max_length=100, null= True, blank=True)
 

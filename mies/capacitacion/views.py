@@ -70,7 +70,7 @@ class CapacitacionCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateVi
 class CapacitacionDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     permission_required = 'capacitacion.delete_capacitacion'
     model = CapacitacionCabecera
-    template_name = "capacitacion/_capacitacion_eliminar.html"
+    template_name = "capacitacion/capacitacion_eliminar.html"
     success_url = reverse_lazy('capacitacion_listar')
    
 
