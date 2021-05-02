@@ -229,69 +229,7 @@ class Procesador(models.Model):
         return super(Procesador, self).save(*args, **kwargs)
 
 
-class InvetarioDistritoCabecera(models.Model):
-    """Model definition for InvetarioDistritoCabecera."""
 
-    fechaIngreso = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
-    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
-    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
-    descripcion = models.CharField('Descripción / Nombre', max_length=50)
-    marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
-    modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT)
-    condicion = models.ForeignKey(Condicion, on_delete=models.PROTECT)
-    serie = models.CharField('Serie', max_length=50,  unique=True, null=True,blank=True)
-    codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
-    direccionIp = models.CharField('Dirección Ip', max_length=50, unique=True, null=True,blank=True)
-    direccionMac = models.CharField('Dirección Mac Address', max_length=50,unique=True, null=True,blank=True)
-    capacidadDisco = models.ForeignKey(CapacidadDisco, on_delete=models.PROTECT, null=True,blank=True)
-    capacidadMemoria = models.ForeignKey(CapacidadMemoriaRam, on_delete=models.PROTECT, null=True,blank=True)
-    capacidadProcesador = models.ForeignKey(Procesador, on_delete=models.PROTECT, null=True,blank=True)
-    foto = models.ImageField('Foto', upload_to='InventarioDistrito/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
-
-    class Meta:
-        """Meta definition for InvetarioDistritoCabecera."""
-
-        verbose_name = 'Invetario Distrito '
-        verbose_name_plural = 'Invetario Distrito '
-
-    def toJSON(self):
-        item = model_to_dict(self)
-        item['det']= [i.toJSON() for i in self.inventariodistritodetalle_set.all()]
-        return item
-    def __str__(self):
-        """Unicode representation of InvetarioDistritoCabecera."""
-        return self.descripcion
-
-    def save(self,*args, **kwargs):
-        """Save method for InvetarioDistritoCabecera."""
-        self.descripcion = self.descripcion and (self.descripcion).upper()
-        self.serie =self.serie and (self.serie).upper()
-        self.codigoMies = self.codigoMies and (self.codigoMies).upper()
-        return super(InvetarioDistritoCabecera, self).save(*args, **kwargs)
-
-
-
-class InventarioDistritoDetalle(models.Model):
-    """Model definition for InventarioDistritoDetalle."""
-
-    cabeceraDistrito = models.ForeignKey(InvetarioDistritoCabecera,related_name='items', on_delete=models.CASCADE)
-    periferico = models.ForeignKey(InventarioTics, on_delete=models.PROTECT, null=True,blank=True)
-    cantidad = models.IntegerField('Cantidad', default=1)
-    class Meta:
-        """Meta definition for InventarioDistritoDetalle."""
-
-        verbose_name = 'Inventario Distrito Detalle'
-        verbose_name_plural = 'Inventario Distrito Detalles'
-    def toJSON(self):
-        item = model_to_dict(self, exclude=['cabeceraDistrito'])
-        item['periferico'] = self.periferico.toJSON()
-        item['cantidad'] = self.cantidad
-        return item
-
-    def __int__(self):
-        """Unicode representation of InventarioDistritoDetalle."""
-        return self.periferico
 
 class EquipoCabecera(models.Model):
     """Model definition for InvetarioDistritoCabecera."""

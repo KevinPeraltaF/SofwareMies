@@ -1,6 +1,6 @@
 from django.db import models
 from empleado.models import Empleado
-from inventario.models import InvetarioDistritoCabecera, InventarioTics
+from inventario.models import EquipoCabecera, InventarioTics
 from django.utils import timezone
 # Create your models here.
 
@@ -33,7 +33,7 @@ class Atencion(models.Model):
 
     fechaIncidente = models.DateField('Fecha Incidente',default=timezone.now)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    equipo = models.ForeignKey(InvetarioDistritoCabecera, on_delete=models.PROTECT)
+    equipo = models.ForeignKey(EquipoCabecera, on_delete=models.PROTECT)
     detalle = models.TextField('Detalle', null=True , blank= True)
     fecha_salida = models.DateField('Fecha Salida', auto_now=False, auto_now_add=False)
     hora_salida = models.TimeField('Hora Salida')
