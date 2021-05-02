@@ -227,12 +227,12 @@ urlpatterns = [
     path('Capacitacion/Detalle/<int:pk>', capacitacion_views.CapacitacionDetailView.as_view(), name="capacitacion_detalle") ,
     path('Capacitacion/pdf/<int:pk>', capacitacion_views.CapacitacionReportePdfDetailView.as_view(), name="capacitacion_reporte_pdf") ,
 
-]   
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 
 

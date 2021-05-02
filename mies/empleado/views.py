@@ -8,6 +8,29 @@ from .forms import EmpleadoForm, AreaForm, CargoForm, UnidadAtencionForm
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.utils.decorators import method_decorator
 
+
+from functools import wraps
+from django.utils.translation import gettext_lazy as _
+from django.db.models.deletion import ProtectedError
+from django.core.exceptions import PermissionDenied
+
+
+def protected_error_as_api_error():
+    """
+    Decorator to handle all `ProtectedError` error as API Error,
+    which mean, converting from error 500 to error 403.
+    """
+    def decorator(func):
+        @wraps(func)
+        def wrapper(request, *args, **kwargs):
+            try:
+                return func(request, *args, **kwargs)
+            except ProtectedError as error:
+                raise PermissionDenied(_('Action Denied: The selected object is being used '
+                                         'by the system. Deletion not allowed.'))
+        return wrapper
+    return decorator
+
 # VISTA EMPLEADO.
 class EmpleadoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'empleado.view_empleado'
@@ -50,6 +73,8 @@ class AreaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     model = Area
     template_name = "empleado/area_listado.html"
 
+    
+
 class AreaCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     permission_required = 'empleado.add_area'
     model = Area
@@ -57,14 +82,20 @@ class AreaCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     template_name = "empleado/area_crear.html"
     success_url = reverse_lazy('area_listar')
 
-
+  
 
 class AreaDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     permission_required = 'empleado.delete_area'
     model = Area
     template_name = "empleado/area_eliminar.html"
     success_url = reverse_lazy('area_listar')
+    
+    @method_decorator(protected_error_as_api_error())
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
 
+   
 
 
 class AreaUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
