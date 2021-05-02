@@ -1,5 +1,6 @@
 from django.contrib import admin
-from inventario.models import Marca, Modelo, Categoria,Condicion,InventarioTics,InvetarioDistritoCabecera,CapacidadDisco,CapacidadMemoriaRam,Procesador, InventarioDistritoDetalle
+from inventario.models import Marca, Modelo, Categoria,Condicion,InventarioTics,CapacidadDisco,CapacidadMemoriaRam,Procesador,\
+    EquipoCabecera, EquipoDetalle
 # Register your models here.
 @admin.register(Marca)
 class MarcaAdmin(admin.ModelAdmin):
@@ -71,25 +72,17 @@ class ProcesadorAdmin(admin.ModelAdmin):
     search_fields = ('descripcion',)
 
 
-
-
-
-
-class ListadoDetalleInventarioDistrital(admin.TabularInline):
-    model=InventarioDistritoDetalle
+class EquipoDetalleTab(admin.TabularInline):
+    model=EquipoDetalle
     fk_name ="cabeceraDistrito"
     extra = 4
+@admin.register(EquipoCabecera)
+class EquipoAdmin(admin.ModelAdmin):
+    '''Admin View for Procesador'''
+    inlines = (EquipoDetalleTab,)
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
 
-
-@admin.register(InvetarioDistritoCabecera)
-class InventarioDistritalAdmin(admin.ModelAdmin ):
-    '''Admin View for InventarioDistrital'''
-    inlines = (ListadoDetalleInventarioDistrital,)
-    list_display = ('fechaIngreso','descripcion','direccionIp' ,'direccionMac','responsable','ubicacion','categoria','marca',
-    'modelo','condicion','serie' ,'codigoMies' ,'foto')
-    list_filter = ('ubicacion','categoria','descripcion','marca',
-    'modelo','condicion','serie' ,'codigoMies','direccionIp' ,'direccionMac',)
-    search_fields = ('ubicacion','categoria','descripcion','marca',
-    'modelo','condicion','serie' ,'codigoMies','direccionIp' ,'direccionMac',)
 
 # Register your models here.

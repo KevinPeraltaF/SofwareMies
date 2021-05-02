@@ -47,6 +47,7 @@ function abrirModalDetalle(url){
     }
     )           
 }
+<<<<<<< HEAD
 
 function message_error(obj) {
     var html = '';
@@ -143,6 +144,8 @@ function alert_action(title, content, callback) {
     });
 }
 //busqueda de perifericos
+=======
+>>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
 
 
 

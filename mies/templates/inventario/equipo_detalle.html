@@ -13,13 +13,7 @@
                    
                     <tr>
                         <th>Fecha Ingreso:</th>
-                        <td >{{object.fechaIngreso}}</td>
-                        <th>Ubicacion:</th>
-                        <td >{{object.ubicacion}}</td>
-                    </tr>
-                    <tr>
-                        <th>Responsable:</th>
-                        <td colspan="4">{{object.responsable}}</td>
+                        <td colspan="4" >{{object.fechaIngreso}}</td>
                     </tr>
                     <tr>
                         <th>Categoria:</th>
@@ -82,9 +76,9 @@
                     {% for a in items %}
                     <tr>
                         <th>Periferico: </th>
-                        <td colspan="5">{{a.periferico}}</td>
+                        <td >{{a.periferico}}</td>
                         <th>Cantidad:</th>
-                        <td colspan="2">{{a.cantidad }}</td>
+                        <td colspan="4">{{a.cantidad }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

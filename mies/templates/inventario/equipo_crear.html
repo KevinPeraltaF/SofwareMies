@@ -1,21 +1,25 @@
 {% extends 'base_generic.html' %}
-{% block title %}EDITAR EQUIPO{% endblock %}
-
+{% block title %}NUEVO ACCESO{% endblock %}
 
 
 {% block content_main %}
+<!-- Page Heading -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{% url 'det_cab_listar' %}">Inventario Del Distrito</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Editar</li>
+        <li class="breadcrumb-item"><a href="{% url 'equipo_listar' %}">Equipo</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
     </ol>
 </nav>
 <div class="row">
+
+</div>
+<div class="row">
     <div class="col-md-3"></div>
-    <div class="col-md-6"  role="document">
+    <div class="col-md-6">
+
         {% if form.errors %}
-  
+
         <div class="alert alert-danger" role="alert">
             <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
             <ul>
@@ -27,31 +31,18 @@
                     {% endfor %}
                 {% endfor %}
             </ul>
-  
+
         </div>
         {% endif %}
-        
-        
-        
-        <form action="{% url 'det_cab_editar' object.id %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            <div class="modal-body">
-                <input type="hidden" name="action" value="{{ action }}">
+
+        <span class="border border-light">
+
+            <form method="post" >
+                {% csrf_token %}
                 <div class='form-row'>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         {{form.fechaIngreso.label}}
                         {{form.fechaIngreso}}
-                    </div>
-                    <div class="form-group col-md-8">
-                        {{form.responsable.label}}
-                        {{form.responsable}}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {{form.ubicacion.label}}
-                        {{form.ubicacion}}
                     </div>
                     <div class="form-group col-md-6">
                         {{form.categoria.label}}
@@ -114,44 +105,67 @@
                 <div class="form-group">
                     {{form.foto.label}}
                     {{form.foto}}
+                    <img id= 'foto' src="" height="200" alt="Image preview...">
                 </div>
                 <hr>
-                <div class="form-group col-md-12">
-                    <label>Buscador de perifericos:</label>
-                    <div class="input-group ">
-                        <select class="form-control select2 col-md-12"  name="search">
-                        </select>
+                  
+                
+                
+    
+                <div class="form-row">
+                    {{detalle_form.management_form}}
+                    {% for form1 in detalle_form %}
+                    <div id = 'js_periferico' class="form-group col-md-6">
+                        {{form1.periferico.label}}
+                        {{form1.periferico}}
                     </div>
+                    
+                    <div id = 'js_cantidad'  class="form-group col-md-4">
+                        {{form1.cantidad.label}}
+                        {{form1.cantidad}}
+                    </div>
+                    {% endfor %}
                 </div>
-                <hr>
-                <table class="table table-bordered" id="tblProducts">
-                    <thead>
-                    <tr>
-                        <th>Eliminar</th>
-                        <th>Periferico</th>
-                        <th>Cantidad</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                </div>
-            <div class="modal-footer">
-                <a type="button" class="btn btn-secondary" href="{% url 'det_cab_listar' %}">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-            </div>
-        </form>
+                <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar Periferico</button>
+    
+            
+            
+    
+    
+                <fieldset class="modal-footer">
+                    <a type="button" class="btn btn-secondary" href="{% url 'equipo_listar' %}">Cancelar</a>
+                    <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+                </fieldset>
+            </form>
+        </span>
+        
     </div>
-  <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
 </div>
-  {% endblock %}
+<script>
+    function agregar_inputs(){
+        var total_forms = document.querySelector('#id_equipodetalle_set-TOTAL_FORMS');
 
-
-  {% block content_extra_js %}
-  
-<script src="../../static/js/funciones_busqueda.js"></script>
-  <script>
-      vents.items.detalle = {{ det|safe }};
-      
-  </script>
-  {% endblock content_extra_js %}
+        //nuevo label e input para periferico
+        var nuevo_label_periferico = document.createElement('label');
+        nuevo_label_periferico.innerHTML = 'Periferico'
+        var nuevo_select_periferico = document.querySelector('#id_equipodetalle_set-0-periferico').cloneNode(true);
+        var span_periferico = document.querySelector(".select2").cloneNode(true);
+        nuevo_select_periferico.name = 'equipodetalle_set-'+total_forms.value+'-periferico';
+        nuevo_select_periferico.id = 'id_equipodetalle_set-'+total_forms.value+'-periferico';
+        //nuevo label e input para cantidad
+        var nuevo_label_cantidad = document.createElement('label');
+        nuevo_label_cantidad.innerHTML = 'Cantidad'
+        var nuevo_select_cantidad = document.querySelector('#id_equipodetalle_set-0-cantidad').cloneNode(true);
+        nuevo_select_cantidad.name = 'equipodetalle_set-'+total_forms.value+'-cantidad';
+        nuevo_select_cantidad.id = 'id_equipodetalle_set-'+total_forms.value+'-cantidad';
+        
+        var span_periferico = document.querySelector(".select2").cloneNode(true);
+        document.querySelector('#js_periferico').appendChild(nuevo_label_periferico);
+        document.querySelector('#js_periferico').appendChild(nuevo_select_periferico);
+        document.querySelector('#js_cantidad').appendChild(nuevo_label_cantidad);
+        document.querySelector('#js_cantidad').appendChild(nuevo_select_cantidad);
+        total_forms.value = parseInt(total_forms.value)+1;
+    }
+</script>
+{% endblock %}

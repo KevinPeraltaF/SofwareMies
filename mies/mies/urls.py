@@ -140,12 +140,12 @@ urlpatterns = [
     path('Procesador/Editar/<int:pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
     path('Procesador/Eliminar/<int:pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
     path('Procesador/Detalle/<int:pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
-    #--INVENTARIO CABECERA DISTRITO
-    path('InvDistrito', inventaio_views.DetCabListView.as_view(), name="det_cab_listar"),
-    path('InvDistrito/Crear',inventaio_views.DetCabCreateView.as_view(),name ="det_cab_crear"),
-    path('InvDistrito/Editar/<int:pk>',inventaio_views.DetCabUpdateView.as_view(),name ="det_cab_editar"),
-    path('InvDistrito/Eliminar/<int:pk>',inventaio_views.DetCabDeleteView.as_view(),name ="det_cab_eliminar"),
-    path('InvDistrito/Detalle/<int:pk>',inventaio_views.DetCabDetailView.as_view(),name ="det_cab_detalle"),
+    #--EQUIPO CABECERA DISTRITO
+    path('Equipo', inventaio_views.EquipoListView.as_view(), name="equipo_listar"),
+    path('Equipo/Crear',inventaio_views.EquipoCreateView.as_view(),name ="equipo_crear"),
+    path('Equipo/Editar/<int:pk>',inventaio_views.EquipoUpdateView.as_view(),name ="equipo_editar"),
+    path('Equipo/Eliminar/<int:pk>',inventaio_views.EquipoDeleteView.as_view(),name ="equipo_eliminar"),
+    path('Equipo/Detalle/<int:pk>',inventaio_views.EquipoDetailView.as_view(),name ="equipo_detalle"),
      #--PRESTAMO
     path('Prestamo', prestamo_views.PrestamoListView.as_view(), name="prestamo_listar"),
     path('Prestamo/Crear',prestamo_views.PrestamoCreateView.as_view(),name ="prestamo_crear"),

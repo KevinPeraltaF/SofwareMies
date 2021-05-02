@@ -4,8 +4,10 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
-from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador, InvetarioDistritoCabecera, InventarioDistritoDetalle
-from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm, InvetarioDistritoCabeceraForm, InventarioDistritoDetalleForm, DetalleForm
+from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador,\
+    EquipoCabecera, EquipoDetalle
+from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm,\
+    EquipoCabeceraForm, EquipoDetalleForm,EquipoCabDetalleForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -282,28 +284,32 @@ class ProcesadorDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView
     permission_required = 'inventario.view_procesador'
     model = Procesador
     template_name = "inventario/procesador_detalle.html"
-#------------------CABECERA-DETALLE--------------------------------------
-class DetCabListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'inventario.view_Invetariodistritocabecera'
-    model = InvetarioDistritoCabecera
-    template_name = "inventario/det_cab_listado.html"
-    @method_decorator(csrf_exempt)
-    def dispatch(self,request,*args, **kwargs):
-        return super().dispatch(request,*args, **kwargs)
+#------------------CABECERA-DETALLE-EQUIPO--------------------------------------
 
-   
-class DetCabCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
-    permission_required = 'inventario.add_Invetariodistritocabecera'
-    model = InvetarioDistritoCabecera
-    template_name = "inventario/det_cab_crear.html"
-    form_class = InvetarioDistritoCabeceraForm
-    success_url = reverse_lazy('det_cab_listar')
-    
-    
+class EquipoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'inventario.view_Equipocabecera'
+    model = EquipoCabecera
+    template_name = "inventario/equipo_listado.html"
     @method_decorator(csrf_exempt)
     def dispatch(self,request,*args, **kwargs):
         return super().dispatch(request,*args, **kwargs)
+class EquipoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_Equipocabecera'
+    model = EquipoCabecera
+    form_class = EquipoCabeceraForm
+    template_name= "inventario/equipo_crear.html"
+    success_url = reverse_lazy('equipo_listar')
+    def get(self, request,*args,**kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_form = EquipoCabDetalleForm()
+        return self.render_to_response(
+            self.get_context_data(form=form, detalle_form=detalle_form)
+        )
+    
     def post(self, request,*args, **kwargs):
+<<<<<<< HEAD
         data ={}
         try:
             action = request.POST['action']
@@ -341,115 +347,75 @@ class DetCabCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
                     det.periferico_id = i['id']
                     det.cantidad = int(i['cant'])
                     det.save()
+=======
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_form = EquipoCabDetalleForm(self.request.POST)
+        if (form.is_valid() and detalle_form.is_valid()):
+            return self.form_valid(form, detalle_form)
+        else:
+            return self.form_invalid(form, detalle_form)
+>>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
 
-            else:
-                data['error'] = 'No ha ingresado a ninguna opcion'
-        except Exception as e:
-            data['error'] = str(e)
-        print(data)
-        return JsonResponse(data, safe=False)
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['action'] = 'add'
-        context['det'] = []
-        return context   
+    def form_valid(self, form, detalle_form):
+        cabecera = form.save()
+        detalle_form.instance = cabecera
+        detalle_form.save()
+        return HttpResponseRedirect(self.success_url)
 
-   
-class DetCabDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
-    permission_required = 'inventario.delete_Invetariodistritocabecera'
-    model = InvetarioDistritoCabecera
-    template_name = "inventario/det_cab_eliminar.html"
-    success_url = reverse_lazy('det_cab_listar')
+    def form_invalid(self, form, detalle_form):
+        return self.render_to_response(
+            self.get_context_data(form = form, detalle_form=detalle_form)
+        )
+class EquipoUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'inventario.change_Equipocabecera'
+    model = EquipoCabecera
+    form_class = EquipoCabeceraForm
+    template_name= "inventario/equipo_editar.html"
+    success_url = reverse_lazy('equipo_listar')
+    def get(self, request,*args,**kwargs):
+        self.object = self.get_object()
+        print(self.object)
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_form = EquipoCabDetalleForm(instance = self.object)
+        return self.render_to_response(
+            self.get_context_data(form=form, detalle_form=detalle_form)
+        )
     
-  
-    
-class DetCabUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
-    permission_required = 'inventario.change_Invetariodistritocabecera'
-    model = InvetarioDistritoCabecera
-    form_class = InvetarioDistritoCabeceraForm
-    template_name = "inventario/det_cab_editar.html"
-    success_url = reverse_lazy('det_cab_listar')
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
     def post(self, request,*args, **kwargs):
-        data ={}
-        try:
-            action = request.POST['action']
-            if action =='search_periferico':
-                data = []
-                prods = InventarioTics.objects.filter(descripcion__icontains=request.POST['term'])[0:10]
-                for i in prods:
-                    item = i.toJSON()
-                    item['value'] = i.descripcion
-                    item['foto'] = ""
-                    data.append(item)
-            elif action =='edit':
-                with transaction.atomic():
-                    vents = json.loads(request.POST['vents'])
-                    invCab = self.get_object()
-                    invCab.fechaIngreso = vents['fechaIngreso']
-                    invCab.responsable_id = vents['responsable']
-                    invCab.ubicacion_id = vents['ubicacion']
-                    invCab.categoria_id = vents['categoria']
-                    invCab.descripcion = vents['descripcion']
-                    invCab.marca_id = vents['marca']
-                    invCab.modelo_id = vents['modelo']
-                    invCab.condicion_id = vents['condicion']
-                    invCab.serie = vents['serie']
-                    invCab.codigoMies = vents['codigoMies']
-                    invCab.direccionIp = vents['direccionIp']
-                    invCab.direccionMac = vents['direccionMac']
-                    invCab.capacidadDisco_id = vents['capacidadDisco']
-                    invCab.capacidadMemoria_id = vents['capacidadMemoria']
-                    invCab.capacidadProcesador_id = vents['capacidadProcesador']
-                    print(vents['foto'])
-                    invCab.foto = vents['foto']
-                    invCab.save()
-                    for j in InventarioDistritoDetalle.objects.filter(cabeceraDistrito_id=invCab.id):
-                        j.delete()
-                    for i in vents['detalle']:
-                        det = InventarioDistritoDetalle()
-                        det.cabeceraDistrito_id = invCab.id
-                        det.periferico_id = i['id']
-                        det.cantidad = int(i['cant'])
-                        det.save()
-            else:
-                data['error'] = 'No ha ingresado a ninguna opcion'
-        except Exception as e:
-            data['error'] = str(e)
-        print(data)
-        return JsonResponse(data, safe=False)
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_form = EquipoCabDetalleForm(self.request.POST,instance=self.get_object())
+        if (form.is_valid() and detalle_form.is_valid()):
+            return self.form_valid(form, detalle_form)
+        else:
+            return self.form_invalid(form, detalle_form)
 
-    def get_details_det(self):
-        data = []
-        try:
-            for i in InventarioDistritoDetalle.objects.filter(cabeceraDistrito_id=self.get_object().id):
-                item = i.periferico.toJSON()
-                item['foto'] = ""
-                item['fechaIngreso'] = ""
-                item['cant'] = i.cantidad
-                data.append(item)
-        except:
-            pass
-        return data
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['action'] = 'edit'
-        context['det'] = json.dumps(self.get_details_det())
-        return context   
-    
+    def form_valid(self, form, detalle_form):
+        cabecera = form.save()
+        detalle_form.instance = cabecera
+        detalle_form.save()
+        return HttpResponseRedirect(self.success_url)
 
-  
-
-class DetCabDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
-    permission_required = 'inventario.view_Invetariodistritocabecera'
-    model = InvetarioDistritoCabecera
-    template_name = "inventario/det_cab_detalle.html"
+    def form_invalid(self, form, detalle_form):
+        return self.render_to_response(
+            self.get_context_data(form = form, detalle_form=detalle_form)
+        )   
+class EquipoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'inventario.view_Equipocabecera'
+    model = EquipoCabecera
+    template_name = "inventario/equipo_detalle.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
      
-        context['items'] = InventarioDistritoDetalle.objects.filter(cabeceraDistrito=self.object.id)
+        context['items'] = EquipoDetalle.objects.filter(cabeceraDistrito=self.object.id)
         return context
-
+class EquipoDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'inventario.delete_Equipocabecera'
+    model = EquipoCabecera
+    template_name = "inventario/equipo_eliminar.html"
+    success_url = reverse_lazy('equipo_listar')
+    

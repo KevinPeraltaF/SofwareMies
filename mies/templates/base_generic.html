@@ -148,7 +148,7 @@
 
 
            
-           {% if perms.inventario.view_marca or perms.inventario.view_modelo or perms.inventario.view_categoria or  perms.inventario.view_condicion   or  perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_inventariotics %}
+           {% if perms.inventario.view_marca or perms.inventario.view_modelo or perms.inventario.view_categoria or  perms.inventario.view_condicion   or  perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_inventariotics or perms.inventario.view_equipo %}
                 <!-- Nav Item - Inventario Collapse Menu -->
             <li class="nav-item  {% if marca_url in request.path or modelo_url in request.path or categoria_url in request.path or condicion_url in request.path or disco_url in request.path or ram_url in request.path or procesador_url in request.path or tics_url in request.path or det_url in request.path %} active {% endif%}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventarioTics"
@@ -208,10 +208,17 @@
                             Inventario Tics</a>
                         {% endif %}
 
+<<<<<<< HEAD
                         
                         <a class="collapse-item  {% if det_url in request.path%} active {% endif%}" href="{{det_url}}"><i class="fas fa-caret-right"></i>
                             Inventario Distrito</a>
                         
+=======
+                        {% if  perms.inventario.view_equipo %}
+                        <a class="collapse-item" href="{% url 'equipo_listar' %}"><i class="fas fa-caret-right"></i>
+                            Equipo</a>
+                        {% endif %}
+>>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
                             
                     </div>
                 </div>

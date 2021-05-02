@@ -1,7 +1,8 @@
 from django import forms
 from django.forms.models import inlineformset_factory
-from .models import Marca, Modelo, Condicion, Categoria, InventarioTics, CapacidadDisco,CapacidadMemoriaRam, Procesador, InvetarioDistritoCabecera, InventarioDistritoDetalle
-from empleado.models import Empleado
+from .models import Marca, Modelo, Condicion, Categoria, InventarioTics, CapacidadDisco,CapacidadMemoriaRam, Procesador,\
+    EquipoCabecera, EquipoDetalle
+
 class InvTicsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(InvTicsForm, self).__init__(*args, **kwargs)
@@ -254,6 +255,7 @@ class ProcesadorForm(forms.ModelForm):
                 }
             )
         }
+<<<<<<< HEAD
 class InvetarioDistritoCabeceraForm(forms.ModelForm):
 
      #validaciones para que se envie como mayusculas los datos
@@ -278,13 +280,14 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
         return data
 
     action =forms.CharField()
+=======
+class EquipoCabeceraForm(forms.ModelForm):
+>>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
     class Meta:
-        model = InvetarioDistritoCabecera
+        model = EquipoCabecera
 
         fields = (
             'fechaIngreso',
-            'responsable',
-            'ubicacion',
             'categoria',
             'descripcion',
             'marca',
@@ -307,6 +310,7 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
+<<<<<<< HEAD
             'responsable':forms.Select(
                 attrs={
                     'class':'form-control select'
@@ -317,6 +321,8 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
                     'class':'form-control select'
                 }
             ),
+=======
+>>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
             'categoria':forms.Select(
                 attrs={
                     'class':'form-control select'
@@ -385,44 +391,32 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
             'foto':forms.ClearableFileInput(
                 attrs={
                     'type':'file',
-                    'class':'form-control',
-                    'onchange':'previewFile()'
+                    'class':'form-control'
                 }
             )
         }
-class InventarioDistritoDetalleForm(forms.ModelForm):
-    
-    search =forms.CharField()
+class EquipoDetalleForm(forms.ModelForm):
     class Meta:
-        model = InventarioDistritoDetalle
+        model = EquipoDetalle
 
         fields = (
             'cabeceraDistrito',
             'periferico',
             'cantidad',
-            'search'
         )
         widgets = {
             'periferico': forms.Select(
                 attrs={
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
-                    'class':'form-control uniqueSelec2'
+                    'class':'form-control select2'
                 }
             ),
             'cantidad':forms.TextInput(
                 attrs={
                     'type':'number',
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class':'form-control'
                 }
-            ),
-            'search':forms.TextInput(
-                attrs={
-                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
-                    'class':'form-control',
-                    'placeholder':"Ingrese una descripcion..."
-                }
             )
-        } 
-DetalleForm = inlineformset_factory(InvetarioDistritoCabecera,InventarioDistritoDetalle,
-    form=InventarioDistritoDetalleForm, extra=1,can_delete= True) 
+        }
+EquipoCabDetalleForm = inlineformset_factory(EquipoCabecera,EquipoDetalle,
+    form=EquipoDetalleForm, extra=1,can_delete= True) 
