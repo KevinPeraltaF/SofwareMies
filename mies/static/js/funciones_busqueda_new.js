@@ -74,12 +74,8 @@ var vents = {
             }
         });}
 };
-
+  
 $(function(){
-    $('.select2').select2({
-        theme: "bootstrap4",
-        language: 'es'
-    });
     $('#tblProducts tbody')
     .on('click', 'a[rel="remove"]', function () {
         var tr = tblProducts.cell($(this).closest('td, li')).index();
@@ -101,59 +97,30 @@ $(function(){
             message_error('Debe al menos tener un item en su detalle de venta');
             return false;
         }
-        vents.items.descripcion = $('textarea[name="descripcion"]').val();
-        vents.items.fechaIngreso = $('input[name="fechaIngreso"]').val();
-        vents.items.responsable = $('select[name="responsable"]').val();
-        vents.items.ubicacion = $('select[name="ubicacion"]').val();
-        vents.items.categoria = $('select[name="categoria"]').val();
-        vents.items.marca = $('select[name="marca"]').val();
-        vents.items.modelo = $('select[name="modelo"]').val();
-        vents.items.condicion = $('select[name="condicion"]').val();
-        vents.items.serie = $('input[name="serie"]').val();
-        vents.items.codigoMies = $('input[name="codigoMies"]').val();
-        vents.items.direccionIp = $('input[name="direccionIp"]').val();
-        vents.items.direccionMac = $('input[name="direccionMac"]').val();
-        vents.items.capacidadDisco = $('select[name="capacidadDisco"]').val();
-        vents.items.capacidadMemoria = $('select[name="capacidadMemoria"]').val();
-        vents.items.capacidadProcesador = $('select[name="capacidadProcesador"]').val();
-        vents.items.foto = $('input[name="foto"]').val();
-        var parameters = new FormData();
+        var parameters = new FormData($('#demo').get(0));
         parameters.append('action', $('input[name="action"]').val());
         parameters.append('vents', JSON.stringify(vents.items));
         submit_with_ajax(window.location.pathname, 'Notificación', '¿Estas seguro de realizar la siguiente acción?', parameters, function () {
-            location.href = '/InvDistrito';
+            location.href = '/Equipo';
         });
     });
-    $('select[name="search"]').select2({
-        theme: "bootstrap4",
+    $('#id_periferico').select2({
         language:'es',
         allowClear:true,
-        ajax: {
-            delay:250,
-            type:'POST',
-            url: window.location.pathname,
-            data: function(params){
-                var queryParameters = {
-                    term: params.term? params.term:'',
-                    action:'search_periferico'
-                }
-                return queryParameters;
-            },
-            processResults: function (data) {
-                return {
-                    results: data
-                };
-            },
-            
-        },
         placeholder: 'Ingrese una descripción'
     }).on('select2:select', function(e){
         var data = e.params.data;
-
+        data.descripcion = data.text;
+        for (var i=0; i< vents.items.detalle.length; i++) {
+            if (data.descripcion == vents.items.detalle[i].descripcion){
+                $(this).val('').trigger('change.select2');
+                alert('Ya existe');
+                return false;
+            }
+        }
         data.cant = 1;
         vents.add(data);
         $(this).val('').trigger('change.select2');
     });
-
     vents.list();
 });

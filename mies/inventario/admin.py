@@ -1,5 +1,6 @@
 from django.contrib import admin
-from inventario.models import Marca, Modelo, Categoria,Condicion,InventarioTics,InvetarioDistritoCabecera,CapacidadDisco,CapacidadMemoriaRam,Procesador, InventarioDistritoDetalle
+from inventario.models import Marca, Modelo, Categoria,Condicion,InventarioTics,InvetarioDistritoCabecera,CapacidadDisco,CapacidadMemoriaRam,Procesador,\
+    InventarioDistritoDetalle, EquipoCabecera, EquipoDetalle
 # Register your models here.
 @admin.register(Marca)
 class MarcaAdmin(admin.ModelAdmin):
@@ -91,5 +92,18 @@ class InventarioDistritalAdmin(admin.ModelAdmin ):
     'modelo','condicion','serie' ,'codigoMies','direccionIp' ,'direccionMac',)
     search_fields = ('ubicacion','categoria','descripcion','marca',
     'modelo','condicion','serie' ,'codigoMies','direccionIp' ,'direccionMac',)
+
+class EquipoDetalleTab(admin.TabularInline):
+    model=EquipoDetalle
+    fk_name ="cabeceraDistrito"
+    extra = 4
+@admin.register(EquipoCabecera)
+class EquipoAdmin(admin.ModelAdmin):
+    '''Admin View for Procesador'''
+    inlines = (EquipoDetalleTab,)
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
 
 # Register your models here.

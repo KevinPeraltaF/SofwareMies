@@ -114,7 +114,7 @@
 
 
            
-           {% if perms.inventario.view_marca or perms.inventario.view_modelo or perms.inventario.view_categoria or  perms.inventario.view_condicion   or  perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_inventariotics %}
+           {% if perms.inventario.view_marca or perms.inventario.view_modelo or perms.inventario.view_categoria or  perms.inventario.view_condicion   or  perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_inventariotics or perms.inventario.view_equipo %}
                 <!-- Nav Item - Inventario Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventarioTics"
@@ -172,6 +172,11 @@
                         {% if  perms.inventario.view_inventariotics %}
                         <a class="collapse-item" href="{% url 'inv_tics_listar' %}"><i class="fas fa-caret-right"></i>
                             Inventario Tics</a>
+                        {% endif %}
+
+                        {% if  perms.inventario.view_equipo %}
+                        <a class="collapse-item" href="{% url 'equipo_listar' %}"><i class="fas fa-caret-right"></i>
+                            Equipo</a>
                         {% endif %}
                             
                     </div>
