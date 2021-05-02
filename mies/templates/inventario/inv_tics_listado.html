@@ -48,6 +48,7 @@
                             <th><b>MARCA</b></th>
                             <th><b>MODELO</b></th>
                             <th><b>SERIE</b></th>
+                            <th><b>CÓDIGO MIES</b></th>
                             <th><b>ESTADO</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
@@ -73,10 +74,17 @@
                                 {% endif%}
                             </td>
                             <td>
-                                {% if inv.codigoMies is none %}
+                                {% if inv.serie is none %}
                                 N/A
                                 {% else%}
-                                {{ inv.codigoMies }}
+                                {{ inv.serie }}
+                                {% endif%}
+                            </td>
+                            <td>
+                                {% if inv.condigoMies is none %}
+                                N/A
+                                {% else%}
+                                {{ inv.condigoMies }}
                                 {% endif%}
                             </td>
                             <td>{{ inv.condicion }}</td>

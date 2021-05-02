@@ -10,13 +10,20 @@ class InvTicsForm(forms.ModelForm):
 
      #validaciones para que se envie como mayusculas los datos
     def clean_serie(self):
-        data = self.cleaned_data["serie"].upper()
+        data = None
+        try:
+            data = self.cleaned_data["serie"].upper()
+        except:
+            pass
         
         return data
     
     def clean_codigoMies(self):
-        data = self.cleaned_data["codigoMies"].upper()
-        
+        data = None
+        try:
+            data = self.cleaned_data["codigoMies"].upper()
+        except:
+            pass
         return data
 
     class Meta:
@@ -25,6 +32,7 @@ class InvTicsForm(forms.ModelForm):
         fields = (
             'fechaIngreso',
             'responsable',
+            'ubicacion',
             'categoria',
             'descripcion',
             'marca',
@@ -44,6 +52,11 @@ class InvTicsForm(forms.ModelForm):
                 }
             ),
             'responsable':forms.Select(
+                attrs={
+                    'class':'form-control select'
+                }
+            ),
+            'ubicacion':forms.Select(
                 attrs={
                     'class':'form-control select'
                 }
@@ -95,7 +108,8 @@ class InvTicsForm(forms.ModelForm):
                 attrs={
                     'type':'file',
                     'class': 'dropify',
-                    'data-allowed-file-extensions':'jpg jpeg JPEG JPG png'
+                    'data-allowed-file-extensions':'jpg jpeg JPEG JPG png',
+                    
                 }
             )
         }

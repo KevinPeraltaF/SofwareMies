@@ -218,7 +218,13 @@
             </li>
            {% endif %}
                
-
+           {% if  perms.capacitacion.view_capacitacion %}
+           <li class="nav-item  {% if capacitacion_url in request.path%} active {% endif%}">
+               <a class="nav-link" href="{{capacitacion_url}}">
+                   <i class="fas fa-fw fa-table"></i>
+                   <span>Capacitación</span></a>
+           </li>
+           {% endif %}
 
             
             {% if  perms.atencion.view_atencion %}
@@ -379,25 +385,8 @@
                 </div>
             </li>
             {% endif %}
-                
-
-            <li class="nav-item ">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUbicacionCapacitacion"
-                    aria-expanded="true" aria-controls="collapseUbicacionCapacitacion">
-                    <i class="fas fa-globe"></i>
-                    <span>Capacitaciones</span>
-                </a>
-                <div id="collapseUbicacionCapacitacion" class="collapse {% if zona_url in request.path or  provincia_url in request.path  or  distrito_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                       
-
-                            <a class="collapse-item  " href="{{capacitacion_url}}"><i class="fas fa-caret-right"></i>
-                                Capacitación</a>
-                        
-                    </div>
-                </div>
-            </li>
+           
+           
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

@@ -109,4 +109,4 @@ class ActividadDetalleForm(forms.ModelForm):
             ),
         }
 
-DetalleForm = inlineformset_factory(ActividadCabecera,ActividadDetalle,form=ActividadDetalleForm, extra=1,can_delete= True)
+DetalleForm = inlineformset_factory(ActividadCabecera,ActividadDetalle,form=ActividadDetalleForm, extra=3,can_delete= True)

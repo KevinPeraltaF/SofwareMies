@@ -22,7 +22,7 @@ class CapacitacionCabecera(models.Model):
     class Meta:
         """Meta definition for CapacitacionCabecera."""
 
-        verbose_name = 'Capacitación'
+        verbose_name = 'Capacitacion'
         verbose_name_plural = 'Capacitaciones'
 
     def __str__(self):

@@ -23,14 +23,6 @@ class AtencionCreateView(LoginRequiredMixin,CreateView):
     template_name = "atencion/atencion_crear.html"
     success_url = reverse_lazy('atencion_listar')
 
-   
-    
-    
-
-   
-
-
-
 class AtencionDeleteView(LoginRequiredMixin,DeleteView):
     model = Atencion
     template_name = "atencion/atencion_eliminar.html"
