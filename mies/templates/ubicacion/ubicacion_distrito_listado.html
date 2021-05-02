@@ -1,4 +1,5 @@
 {% extends 'base_generic.html' %}
+{% load static %}
 {% block title %}DISTRITO {% endblock title %}
 
 
@@ -27,7 +28,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                             {% if perms.ubicacion.add_distrito %}
-                            <a class="dropdown-item" href="{% url 'prestamo_crear'%}">Nuevo préstamo</a>
+                            <a class="dropdown-item" href="{% url 'distrito_crear'%}">Nuevo Distrito</a>
                             {% endif %}
 
                         </div>
@@ -109,5 +110,5 @@
 
 
 {% block content_extra_js %}
-<script src="static/js/funciones_mies.js"></script>
+<script src="{% static 'js/funciones_mies.js' %}"></script>
 {% endblock content_extra_js %}

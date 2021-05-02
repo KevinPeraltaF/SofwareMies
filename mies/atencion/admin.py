@@ -11,7 +11,7 @@ class TipoDocumentoAdmin(admin.ModelAdmin):
 
 class ListadoDetalleAtencion(admin.TabularInline):
     model=AtencionDetalle
-    extra =1
+    extra =0
 
 
 @admin.register(Atencion)

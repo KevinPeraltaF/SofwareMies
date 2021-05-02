@@ -1,6 +1,7 @@
 {% extends 'base_generic.html' %}
-{% block title %}EQUIPO {% endblock title %}
 
+{% load static %}
+{% block title %}EQUIPO {% endblock title %}
 
 {% block content_main %}
 <!-- Page Heading -->
@@ -123,6 +124,5 @@
 
 
 {% block content_extra_js %}
-<script src="static/js/funciones_mies.js"></script>
-
+<script src="{% static 'js/funciones_mies.js' %}"></script>
 {% endblock content_extra_js %}

@@ -63,10 +63,11 @@
                     {{form.cantidad.label}}
                     {{form.cantidad}}
                 </div>
-                <div class="form-group col-md-6">
-                    {{form.condicion.label}}
+               
+            </div>
+            <div class="form-group">
+                {{form.condicion.label}}
                     {{form.condicion}}
-                </div>
             </div>
             <div class="form-group">
                 {{form.observacion.label}}
@@ -92,3 +93,17 @@
 </div>
 
 {% endblock %}
+
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_usuario').select2();  
+        $('#id_item').select2(); 
+        $('#id_condicion').select2(); 
+       
+    });
+
+  
+</script>
+{% endblock content_extra_js %}

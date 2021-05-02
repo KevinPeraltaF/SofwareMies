@@ -48,3 +48,13 @@
         </form>
     </div>
   </div>
+
+  
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_provincia').select2();
+    });
+</script>
+
+{% endblock content_extra_js %}

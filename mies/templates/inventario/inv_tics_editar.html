@@ -31,25 +31,28 @@
             
             <div class="modal-body">
                 <div class='form-row'>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-12">
                         {{form.fechaIngreso.label}}
                         {{form.fechaIngreso}}
                     </div>
-                    <div class="form-group col-md-8">
+                
+                    
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
                         {{form.responsable.label}}
                         {{form.responsable}}
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         {{form.ubicacion.label}}
                         {{form.ubicacion}}
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
                         {{form.categoria.label}}
                         {{form.categoria}}
                     </div>
                 </div>
+
                 <div class="form-group">
                     {{form.descripcion.label}}
                     {{form.descripcion}}
@@ -69,6 +72,7 @@
                         {{form.condicion}}
                     </div>
                 </div>
+
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         {{form.serie.label}}
@@ -97,3 +101,19 @@
         </form>
     </div>
   </div>
+
+  {% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_responsable').select2();
+        $('#id_ubicacion').select2();
+        $('#id_categoria').select2();
+
+        $('#id_marca').select2();
+        $('#id_modelo').select2();
+        $('#id_condicion').select2();
+    
+       
+    });
+</script>
+{% endblock content_extra_js %}

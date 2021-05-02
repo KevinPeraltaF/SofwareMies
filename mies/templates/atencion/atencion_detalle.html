@@ -18,9 +18,20 @@
                         <th>Fecha Atención:</th>
                         <td colspan="3">{{object.fechaIncidente}} </td>
                         <th>Fecha Salida:</th>
+                      
+                        {% if object.fecha_salida is none %}
+                        <td>-</td>
+                        {% else %}
                         <td>{{object.fecha_salida}} </td>
+                        {% endif%}
+                        
+                        
                         <th>Hora salida:</th>
+                        {% if object.hora_salida is none %}
+                        <td>-</td>
+                        {% else %}
                         <td>{{object.hora_salida}} </td>
+                        {% endif%}
                     </tr>
                     <tr>
                         <th>Responsable:</th>

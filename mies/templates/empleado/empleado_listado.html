@@ -1,4 +1,5 @@
 {% extends 'base_generic.html' %}
+{% load static %}
 {% block title %}ACCESO EMPLEADO {% endblock title %}
 
 
@@ -109,9 +110,9 @@
 
 
                                 {% if perms.empleado.delete_empleado %}
-                                <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                    onclick="abrirModalEditar('{% url 'empleado_editar' empl.id%}')"> <i
-                                        class="fa fa-edit"></i>
+                                <button id="modalEliminarAccesoRed" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'empleado_eliminar' empl.id%}')"> <i
+                                        class="fa fa-trash"></i>
                                 </button>
                                 {% endif %}
 
@@ -148,5 +149,5 @@
 
 
 {% block content_extra_js %}
-<script src="static/js/funciones_mies.js"></script>
+<script src="{% static 'js/funciones_mies.js' %}"></script>
 {% endblock content_extra_js %}

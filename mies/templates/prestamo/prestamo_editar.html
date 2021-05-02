@@ -62,3 +62,14 @@
         </form>
     </div>
 </div>
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_usuario').select2();  
+        $('#id_item').select2(); 
+        $('#id_condicion').select2(); 
+       
+    });
+</script>
+{% endblock content_extra_js %}

@@ -1,4 +1,5 @@
 {% extends 'base_generic.html' %}
+{% load static %}
 {% block title %}CARRERA{% endblock title %}
 
 
@@ -106,7 +107,6 @@
 
 {% endblock content_main%}
 
-
 {% block content_extra_js %}
-<script src="static/js/funciones_mies.js"></script>
+<script src="{% static 'js/funciones_mies.js' %}"></script>
 {% endblock content_extra_js %}

@@ -52,15 +52,15 @@
                     {{form.fecha.label}}
                     {{form.fecha}}
                 </div>
-                <div class="form-select">
+                <div class="form-group">
                     {{form.area.label}}
                     {{form.area}}
                 </div>
-                <div class="form-select">
+                <div class="form-group">
                     {{form.cargo.label}}
                     {{form.cargo}}
                 </div>
-                <div class="form-select">
+                <div class="form-group">
                     {{form.unidadAtencion.label}}
                     {{form.unidadAtencion}}
                 </div>
@@ -78,3 +78,14 @@
         </form>
     </div>
 </div>
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_area').select2();
+        $('#id_cargo').select2();
+        $('#id_unidadAtencion').select2();
+       
+    });
+</script>
+{% endblock content_extra_js %}
