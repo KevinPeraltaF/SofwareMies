@@ -260,25 +260,47 @@ class EquipoCabeceraForm(forms.ModelForm):
 
       #validaciones para que se envie como mayusculas los datos
     def clean_serie(self):
-        data = self.cleaned_data["serie"].upper()
+        data = None
+        try:
+            data = self.cleaned_data["serie"].upper()
+        except:
+            pass
         
         return data
     
     def clean_codigoMies(self):
-        data = self.cleaned_data["codigoMies"].upper()
+
+        data = None
+        try:
+             data = self.cleaned_data["codigoMies"].upper()
+        except:
+            pass
         
         return data
+       
+     
     
     def clean_direccionIp(self):
-        data = self.cleaned_data["direccionIp"].upper()
+        data = None
+        try:
+             data = self.cleaned_data["direccionIp"].upper()
+        except:
+            pass
         
         return data
-    
+
+        
+   
     def clean_direccionMac(self):
-        data = self.cleaned_data["direccionMac"].upper()
+        data = None
+        try:
+             data = self.cleaned_data["direccionMac"].upper()
+        except:
+            pass
         
         return data
-        
+
+  
     class Meta:
         model = EquipoCabecera
 

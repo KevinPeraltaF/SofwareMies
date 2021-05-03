@@ -40,7 +40,8 @@ class CustodioForm(forms.ModelForm):
             'custodioAnterior': forms.Select(
                 attrs={
                     
-                    'class': 'form-control select'
+                    'class': 'form-control ',
+                    'disabled':'True',
                     
                 }
             ),

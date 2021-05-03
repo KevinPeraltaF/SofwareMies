@@ -59,8 +59,8 @@
            
             <div class="form-group col-md-6">
                 <label for="id_custodioAnterior">Custodio Anterior</label>
-                <select name="custodioAnterior" id="id_custodioAnterior" class="form-control select">
-                    <option value="0">---------</option>
+                <select name="custodioAnterior" id="id_custodioAnterior" class="form-control ">
+               
                     {% for item in custodioAnterior %}
                     <option value="{{item.custodio.id}}" class="{{item.equipo.id}}">{{item.custodio}}</option>
                     {% endfor %}
