@@ -2,6 +2,7 @@ from django import forms
 from django.forms.models import inlineformset_factory
 from .models import Marca, Modelo, Condicion, Categoria, InventarioTics, CapacidadDisco,CapacidadMemoriaRam, Procesador,\
     EquipoCabecera, EquipoDetalle
+from empleado.models import Empleado
 
 class InvTicsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
