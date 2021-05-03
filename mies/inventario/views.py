@@ -309,45 +309,6 @@ class EquipoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
         )
     
     def post(self, request,*args, **kwargs):
-<<<<<<< HEAD
-        data ={}
-        try:
-            action = request.POST['action']
-            if action =='search_periferico':
-                data = []
-                prods = InventarioTics.objects.filter(descripcion__icontains=request.POST['term'])[0:10]
-                for i in prods:
-                    item = i.toJSON()
-                    item['text'] = i.descripcion
-                    item['foto'] = ""
-                    data.append(item)
-            elif action =='add':
-                vents = json.loads(request.POST['vents'])
-                print(vents['foto'])
-                invCab = InvetarioDistritoCabecera()
-                invCab.fechaIngreso = vents['fechaIngreso']
-                invCab.responsable_id = vents['responsable']
-                invCab.categoria_id = vents['categoria']
-                invCab.descripcion = vents['descripcion']
-                invCab.marca_id = vents['marca']
-                invCab.modelo_id = vents['modelo']
-                invCab.condicion_id = vents['condicion']
-                invCab.serie = vents['serie']
-                invCab.codigoMies = vents['codigoMies']
-                invCab.direccionIp = vents['direccionIp']
-                invCab.direccionMac = vents['direccionMac']
-                invCab.capacidadDisco_id = vents['capacidadDisco']
-                invCab.capacidadMemoria_id = vents['capacidadMemoria']
-                invCab.capacidadProcesador_id = vents['capacidadProcesador']
-                invCab.foto = vents['foto']
-                invCab.save()
-                for i in vents['detalle']:
-                    det = InventarioDistritoDetalle()
-                    det.cabeceraDistrito_id = invCab.id
-                    det.periferico_id = i['id']
-                    det.cantidad = int(i['cant'])
-                    det.save()
-=======
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
@@ -356,7 +317,6 @@ class EquipoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
             return self.form_valid(form, detalle_form)
         else:
             return self.form_invalid(form, detalle_form)
->>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
 
     def form_valid(self, form, detalle_form):
         cabecera = form.save()

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from empleado.models import Empleado
-from inventario.models import InvetarioDistritoCabecera
+from inventario.models import EquipoCabecera
 # Create your models here.
 from empleado.models import Area
 class Custodio(models.Model):
@@ -9,7 +9,7 @@ class Custodio(models.Model):
 
     fecha = models.DateField('Fecha',default=timezone.now)
     custodio = models.ForeignKey(Empleado,verbose_name='Empleado Custodio', on_delete=models.PROTECT)
-    equipo = models.ForeignKey(InvetarioDistritoCabecera, on_delete=models.PROTECT)
+    equipo = models.ForeignKey(EquipoCabecera, on_delete=models.PROTECT)
     custodioAnterior = models.ForeignKey(Empleado,verbose_name='Custodio Anterior',related_name="custodioAnterior", on_delete=models.PROTECT,  null= True, blank=True)
     ubicacion = models.ForeignKey(Area,verbose_name='Ubicación', on_delete=models.PROTECT)
     estado = models.BooleanField('Estado', default = True)

@@ -1,7 +1,15 @@
 {% extends 'base_generic.html' %}
 {% block title %}NUEVO ACCESO{% endblock %}
 
+{% load static %}
+{% block content_extra_css %}
+<link href="{% static 'fonts/dropify.eot'%}">
+<link href="{% static 'fonts/dropify.svg'%}">
+<link href="{% static 'fonts/dropify.ttf'%}">
+<link href="{% static 'fonts/dropify.woff'%}">
+<link href="{% static 'css/dropify.min.css'%}" rel="stylesheet">
 
+{% endblock content_extra_css %}
 {% block content_main %}
 <!-- Page Heading -->
 <nav aria-label="breadcrumb">
@@ -102,10 +110,10 @@
                         {{form.capacidadProcesador}}
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-12 ">
                     {{form.foto.label}}
                     {{form.foto}}
-                    <img id= 'foto' src="" height="200" alt="Image preview...">
+                   
                 </div>
                 <hr>
                   
@@ -142,6 +150,26 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+{% endblock %}
+{% block content_extra_js %}
+
+<script src="{% static 'js/dropify.min.js' %}"></script>
+<script>
+    $('.dropify').dropify({
+        tpl: {
+            wrap: '<div class="dropify-wrapper"></div>',
+            loader: '<div class="dropify-loader"></div>',
+            message: '<div class="dropify-message"><span class="file-icon" /> <h5> Arrastre y suelte un archivo aquí o haga clic.</h5></div>',
+            preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">Reemplazar</p></div></div></div>',
+            filename: '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
+            clearButton: '<button type="button" class="dropify-clear">remover </button>',
+            errorLine: '<p class="dropify-error">error</p>',
+            errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
+        }
+    });
+</script>
+
+
 <script>
     function agregar_inputs(){
         var total_forms = document.querySelector('#id_equipodetalle_set-TOTAL_FORMS');
@@ -168,4 +196,4 @@
         total_forms.value = parseInt(total_forms.value)+1;
     }
 </script>
-{% endblock %}
+{% endblock content_extra_js %}

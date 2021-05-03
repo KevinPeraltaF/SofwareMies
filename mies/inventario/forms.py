@@ -255,10 +255,9 @@ class ProcesadorForm(forms.ModelForm):
                 }
             )
         }
-<<<<<<< HEAD
-class InvetarioDistritoCabeceraForm(forms.ModelForm):
+class EquipoCabeceraForm(forms.ModelForm):
 
-     #validaciones para que se envie como mayusculas los datos
+      #validaciones para que se envie como mayusculas los datos
     def clean_serie(self):
         data = self.cleaned_data["serie"].upper()
         
@@ -278,11 +277,7 @@ class InvetarioDistritoCabeceraForm(forms.ModelForm):
         data = self.cleaned_data["direccionMac"].upper()
         
         return data
-
-    action =forms.CharField()
-=======
-class EquipoCabeceraForm(forms.ModelForm):
->>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
+        
     class Meta:
         model = EquipoCabecera
 
@@ -310,19 +305,6 @@ class EquipoCabeceraForm(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
-<<<<<<< HEAD
-            'responsable':forms.Select(
-                attrs={
-                    'class':'form-control select'
-                }
-            ),
-            'ubicacion':forms.Select(
-                attrs={
-                    'class':'form-control select'
-                }
-            ),
-=======
->>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
             'categoria':forms.Select(
                 attrs={
                     'class':'form-control select'
@@ -391,7 +373,8 @@ class EquipoCabeceraForm(forms.ModelForm):
             'foto':forms.ClearableFileInput(
                 attrs={
                     'type':'file',
-                    'class':'form-control'
+                    'class': 'dropify',
+                    'data-allowed-file-extensions':'jpg jpeg JPEG JPG png'
                 }
             )
         }

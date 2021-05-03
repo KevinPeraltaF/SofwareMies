@@ -1,7 +1,7 @@
 from django import forms
 from .models import Custodio
 from empleado.models import Empleado
-from inventario.models import InvetarioDistritoCabecera
+from inventario.models import EquipoCabecera
 class CustodioForm(forms.ModelForm):
     """Form definition for AccesoRed."""
     def __init__(self, *args, **kwargs):
@@ -9,7 +9,7 @@ class CustodioForm(forms.ModelForm):
         # Filtro al responsable de acuerdo a su cargo id =1; -> tics
         self.fields['custodio'].queryset = Empleado.objects.filter(estado=1)
         #filtro que muestre solo los empleados con condicion bueno o regular excluye el id 3 -> de dañado
-        self.fields['equipo'].queryset = InvetarioDistritoCabecera.objects.exclude( condicion=3)
+        self.fields['equipo'].queryset = EquipoCabecera.objects.exclude( condicion=3)
        
 
     class Meta:
