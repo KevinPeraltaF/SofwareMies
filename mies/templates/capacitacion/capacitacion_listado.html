@@ -61,7 +61,25 @@
                             <td>{{ capacitacion.fecha }}</td>
                             <td>{{ capacitacion.lugar }}</td>
                             <td>{{ capacitacion.tema }}</td>
-                            <td>{{ capacitacion.tipoCapacitacion }}</td>
+                            <td>
+                            {% if  capacitacion.tipoCapacitacion == '1' %}
+                                PRESENCIAL
+                            {% endif %}
+                            
+                            {% if capacitacion.tipoCapacitacion == '2' %}
+                                VIDEO CONFERENCIA
+                            {% endif  %}
+                            
+                            {% if  capacitacion.tipoCapacitacion == '3' %}
+                                SKYPE
+                            {% endif %}
+                                
+                                
+                            {% if  capacitacion.tipoCapacitacion == '4' %}
+                                 TELEFÓNICA
+                            {% endif %}
+                                    
+                            </td>
                             <td>{{ capacitacion.areaSolicitante }}</td>
                             <td>
                                 <div class="row">

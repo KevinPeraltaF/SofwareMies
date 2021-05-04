@@ -61,7 +61,22 @@
                             <td>{{ actividad.usuario }}</td>
                             <td>{{ actividad.ubicacion }}</td>
                             <td>
-                                {{ actividad.prioridad }}
+                                
+                                {% if actividad.prioridad == '1' %}
+                                ALTA
+                                {% endif %}
+                                    
+                                {% if actividad.prioridad == '2' %}
+                                    MEDIA
+                                {% endif %}
+
+                                
+                                {% if actividad.prioridad ==  '3' %}
+                                BAJA
+                                {% endif %}
+                                    
+                                    
+                                    
 
                             </td>
                             <td>

@@ -199,12 +199,7 @@ urlpatterns = [
     path('Actividad/Editar/<int:pk>',actividad_views.ActividadUpdateView.as_view(),name ="actividad_editar"),
     path('Actividad/Eliminar/<int:pk>',actividad_views.ActividadDeleteView.as_view(),name ="actividad_eliminar"),
     path('Actividad/Detalle/<int:pk>',actividad_views.ActividadDetailView.as_view(),name ="actividad_detalle"),
-    #--Prioridad
-    path('Prioridad', actividad_views.PrioridadListView.as_view(), name="prioridad_listar"),
-    path('Prioridad/Crear',actividad_views.PrioridadCreateView.as_view(),name ="prioridad_crear"),
-    path('Prioridad/Editar/<int:pk>',actividad_views.PrioridadUpdateView.as_view(),name ="prioridad_editar"),
-    path('Prioridad/Eliminar/<int:pk>',actividad_views.PrioridadDeleteView.as_view(),name ="prioridad_eliminar"),
-    path('Prioridad/Detalle/<int:pk>',actividad_views.PrioridadDetailView.as_view(),name ="prioridad_detalle"),
+   
     #--Asunto
     path('Asunto', actividad_views.AsuntoListView.as_view(), name="asunto_listar"),
     path('Asunto/Crear',actividad_views.AsuntoCreateView.as_view(),name ="asunto_crear"),

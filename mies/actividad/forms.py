@@ -1,25 +1,7 @@
 from django import forms
-from .models import Prioridad, Asunto, ActividadCabecera, ActividadDetalle
+from .models import  Asunto, ActividadCabecera, ActividadDetalle
 from django.forms.models import inlineformset_factory
 
-class PrioridadForm(forms.ModelForm):
-   
-     #validaciones para que se envie como mayusculas los datos
-    def clean_descripcion(self):
-        data = self.cleaned_data["descripcion"].upper()
-        return data
-
-    class Meta:
-        model = Prioridad
-        fields = ('descripcion',)
-
-        widgets = {
-            'descripcion': forms.TextInput(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
-        }
 
 class AsuntoForm(forms.ModelForm):
 
@@ -109,4 +91,4 @@ class ActividadDetalleForm(forms.ModelForm):
             ),
         }
 
-DetalleForm = inlineformset_factory(ActividadCabecera,ActividadDetalle,form=ActividadDetalleForm, extra=3,can_delete= True)
+ActividadCabDetalleForm = inlineformset_factory(ActividadCabecera,ActividadDetalle,form=ActividadDetalleForm, extra=1,can_delete= True)

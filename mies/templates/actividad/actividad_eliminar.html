@@ -9,7 +9,7 @@
       <form action="{% url 'actividad_eliminar' object.id %}" method="post">
         {% csrf_token %}
         <div class="modal-body">
-          ¿Estás seguro que desea eliminar el registro: "{{ object.fecha }}"?
+          ¿Estás seguro que desea eliminar el registro: "{{ object.fecha }} {{ object.usuario }}"?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

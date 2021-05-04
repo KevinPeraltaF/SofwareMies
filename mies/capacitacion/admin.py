@@ -6,7 +6,7 @@ from capacitacion.models import  CapacitacionCabecera, CapacitacionDetalle
 class CapacitacionInline(admin.TabularInline):
     '''Tabular Inline View for Capacitacion'''
     model = CapacitacionDetalle
-    extra = 1
+    extra = 0
 
 @admin.register(CapacitacionCabecera)
 class CapacitacionCabeceraAdmin(admin.ModelAdmin):

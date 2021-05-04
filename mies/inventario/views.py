@@ -293,6 +293,8 @@ class EquipoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     @method_decorator(csrf_exempt)
     def dispatch(self,request,*args, **kwargs):
         return super().dispatch(request,*args, **kwargs)
+
+        
 class EquipoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     permission_required = 'inventario.add_Equipocabecera'
     model = EquipoCabecera

@@ -2,7 +2,7 @@ from django import forms
 from .models import  Atencion,AtencionDetalle
 from empleado.models import Empleado
 from custodio.models import Custodio
-
+from django.forms.models import inlineformset_factory
 
 class AtencionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -128,12 +128,12 @@ class AtencionDetalleForm(forms.ModelForm):
         widgets = {
             'cabecera': forms.Select(
                 attrs ={
-                    'class': 'form-control select'
+                    'class': 'form-control '
                 }
             ),
             'pieza': forms.Select(
                 attrs ={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'cantidad':forms.TextInput(
@@ -144,3 +144,5 @@ class AtencionDetalleForm(forms.ModelForm):
             ),
         }
 
+AtencionCabDetalleForm = inlineformset_factory(Atencion,AtencionDetalle,
+    form=AtencionDetalleForm, extra=1,can_delete= True) 

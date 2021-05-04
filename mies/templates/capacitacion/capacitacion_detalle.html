@@ -1,0 +1,99 @@
+<div class="modal-dialog modal-lg ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Detalle Registro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <table class="table table-bordered table-responsive-sm table-responsive-xl">
+                <tbody>
+
+                    <tr>
+
+                        <th>Fecha:</th>
+                        <td colspan="6">{{object.fecha}} </td>
+                        <th>Hora inicio:</th>
+                        <td colspan="3">{{object.hora_inicio}} </td>
+
+                        <th>Hora Fin:</th>
+                        <td colspan="3">{{object.hora_fin}} </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>lugar:</th>
+                        <td colspan="12">{{object.lugar }}</td>
+                    </tr>
+                    <tr>
+                        <th>tema:</th>
+                        <td colspan="12">{{object.tema }}</td>
+                    </tr>
+                    <tr>
+                        <th>tipo capacitacion:</th>
+                        <td colspan="6">
+                            {% if object.tipoCapacitacion == '1' %}
+                            PRESENCIAL
+                            {% endif %}
+
+                            {% if object.tipoCapacitacion == '2' %}
+                            VIDEO CONFERENCIA
+                            {% endif %}
+
+                            {% if object.tipoCapacitacion == '3' %}
+                            SKYPE
+                            {% endif %}
+
+
+                            {% if object.tipoCapacitacion == '4' %}
+                            TELEFÓNICA
+                            {% endif %}
+                        </td>
+                            <th>Area Solicitante:</th>
+                            <td colspan="6">{{object.areaSolicitante}} </td>
+
+                        
+                    </tr>
+                    <tr>
+                        <th>Dirigido a:</th>
+                        <td colspan="12">{{object.dirigido }}</td>
+                    </tr>
+                    <tr>
+                        <th>Instructor:</th>
+                        <td colspan="12">{{object.instructor }}</td>
+                    </tr>
+                    <tr>
+                        <th>Objetivo:</th>
+                        <td colspan="12">{{object.objetivo }}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="12">Lista de participantes de la capacitación</th>
+                    </tr>
+
+
+
+                    {% for a in items %}
+                    <tr>
+                        <th>Empleado:</th>
+                        <td colspan="6">{{a.empleado}}</td>
+                        <th>Observación:</th>
+                        <td colspan="6">{{a.observacion }}</td>
+                    </tr>
+                    {% endfor %}
+
+
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+        </form>
+    </div>
+
+</div>

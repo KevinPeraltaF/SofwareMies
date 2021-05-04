@@ -51,8 +51,13 @@ class ActividadCabecera(models.Model):
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_actividad')
     usuario = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
-    prioridad = models.ForeignKey(Prioridad, on_delete=models.PROTECT)
-    observacion = models.TextField('Observación')
+    lista_tipo_prioridad = [
+    ('1', 'ALTA'),
+    ('2', 'MEDIA'),
+    ('3', 'BAJA'),]
+    prioridad = models.CharField('Prioridad',max_length=1, choices=lista_tipo_prioridad, default='1')
+
+    observacion = models.TextField('Observación', null= True , blank = True)
     class Meta:
         """Meta definition for ActividadCabecera."""
 
@@ -67,7 +72,7 @@ class ActividadCabecera(models.Model):
 
 class ActividadDetalle(models.Model):
     """Model definition for ActividadDetalle."""
-    cabeceraActividad = models.ForeignKey(ActividadCabecera, on_delete=models.PROTECT)
+    cabeceraActividad = models.ForeignKey(ActividadCabecera, on_delete=models.CASCADE)
     asunto =models.ForeignKey(Asunto, on_delete=models.PROTECT)
 
     class Meta:

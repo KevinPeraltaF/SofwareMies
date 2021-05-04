@@ -1,10 +1,10 @@
 from django import forms
-from .models import  CapacitacionCabecera
+from .models import  CapacitacionCabecera, CapacitacionDetalle
+
+from django.forms.models import inlineformset_factory
 
 
-
-
-class CapacitacionForm(forms.ModelForm):
+class CapacitacionCabeceraForm(forms.ModelForm):
       #validaciones para que se envie como mayusculas los datos
     def clean_tema(self):
         data = self.cleaned_data["tema"].upper()
@@ -98,3 +98,35 @@ class CapacitacionForm(forms.ModelForm):
             ),
            
         }
+
+
+class CapacitacionDetalleForm(forms.ModelForm):
+   
+    class Meta:
+
+        model = CapacitacionDetalle
+        fields = (
+            'capacitacionCabecera',
+            'empleado',
+            'observacion', 
+                    
+            )
+        
+        widgets = {
+            'empleado': forms.Select(
+                attrs={
+                    
+                    'class': 'form-control select'
+                }
+            ),
+            'observacion':forms.Textarea(
+                attrs={
+                  
+                    'class': 'form-control',
+                    "rows":1, "cols":10
+                }
+            ),
+        }
+
+CapacitacionCabDetalleForm = inlineformset_factory(CapacitacionCabecera,CapacitacionDetalle,
+    form=CapacitacionDetalleForm, extra=1,can_delete= True) 

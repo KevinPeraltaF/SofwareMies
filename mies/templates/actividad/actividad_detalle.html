@@ -28,7 +28,19 @@
                         <td colspan="3">{{object.ubicacion }}</td>
                         <th>Prioridad:</th>
                         <td>
-                            {{object.prioridad }}
+                            {% if object.prioridad == '1' %}
+                                ALTA
+                                {% endif %}
+                                    
+                                {% if object.prioridad == '2' %}
+                                    MEDIA
+                                {% endif %}
+
+                                
+                                {% if object.prioridad ==  '3' %}
+                                BAJA
+                                {% endif %}
+                                    
                            
                         </td>
                     </tr>
