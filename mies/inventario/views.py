@@ -15,6 +15,18 @@ from django.http import HttpResponseRedirect, JsonResponse
 import json
 from django.db import transaction
 from django.forms import model_to_dict
+# excel
+#Vista genérica para mostrar resultados
+from django.views.generic.base import TemplateView
+#Workbook nos permite crear libros en excel
+from openpyxl import Workbook
+#Nos devuelve un objeto resultado, en este caso un archivo de excel
+from django.http.response import HttpResponse
+import csv
+from csv import reader
+
+from openpyxl.utils import get_column_letter
+
 # Create your views here.
 #------------------MARCA--------------------------------------
 class MarcaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
@@ -151,9 +163,77 @@ class InvTicsListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     model = InventarioTics
     template_name = "inventario/inv_tics_listado.html"
 
- #excel
+ #excel 
+ 
+#Nuestra clase hereda de la vista genérica TemplateView
+class InvTicsExcelListView(TemplateView):
+     
+    #Usamos el método get para generar el archivo excel 
+    def get(self, request, *args, **kwargs):
+        #Obtenemos todas las lista de nuestra base de listas
+        lista = InventarioTics.objects.all()
+        #Creamos el libro de trabajo
+        wb = Workbook()
+        #Definimos como nuestra hoja de trabajo, la hoja activa, por defecto la primera del libro
+        ws = wb.active
+        #En la celda B1 ponemos el texto 'REPORTE DE lista'
+        ws['B1'] = 'INVENTARIO DE TICS'
+        #Juntamos las celdas desde la B1 hasta la E1, formando una sola celda
+        ws.merge_cells('B1:E1')
+        #Creamos los encabezados desde la celda B3 hasta la E3
+        ws['B3'] = 'FECHA INGRESO'
+        ws['C3'] = 'RESPOSABLE'
+        ws['D3'] = 'ITEMS'
+        ws['E3'] = 'CODIGO MIES'
+        ws['F3'] = 'SERIE'
+        ws['G3'] = 'CATEGORIA'
+        ws['H3'] = 'CANTIDAD'
+        ws['I3'] = 'MARCA'
+        ws['J3'] = 'MODELO'
+        ws['K3'] = 'UBICACIÓN'
+        ws['L3'] = 'CONDICIÓN'
 
+
+        #ancho de columna
+        ws.column_dimensions['B'].width = 15.0
+        ws.column_dimensions['C'].width = 30.0
+        ws.column_dimensions['D'].width = 25.0
+        ws.column_dimensions['E'].width = 20.0
+        ws.column_dimensions['F'].width = 20.0
+        ws.column_dimensions['G'].width = 25.0
+        ws.column_dimensions['H'].width = 15.0
+        ws.column_dimensions['I'].width = 25.0
+        ws.column_dimensions['J'].width = 25.0
+        ws.column_dimensions['K'].width = 25.0
+        ws.column_dimensions['L'].width = 15.0
+
+        cont=4
+        #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
+        for dato in lista:
+            ws.cell(row=cont,column=2).value = dato.fechaIngreso
+            ws.cell(row=cont,column=3).value = dato.responsable.apellidos
+            ws.cell(row=cont,column=4).value = dato.descripcion
+            ws.cell(row=cont,column=5).value = dato.codigoMies
+            ws.cell(row=cont,column=6).value = dato.serie
+            ws.cell(row=cont,column=7).value = dato.categoria.descripcion
+            ws.cell(row=cont,column=8).value = dato.cantidad
+            ws.cell(row=cont,column=9).value = dato.marca.descripcion
+            ws.cell(row=cont,column=10).value = dato.modelo.descripcion
+            ws.cell(row=cont,column=11).value = dato.ubicacion.descripcion
+            ws.cell(row=cont,column=12).value = dato.condicion.descripcion
+         
+            cont = cont + 1
     
+
+        #Establecemos el nombre del archivo
+        nombre_archivo ="ReporteInventarioTics.xlsx"
+        #Definimos que el tipo de respuesta a devolver es un archivo de microsoft excel
+        response = HttpResponse(content_type="application/ms-excel") 
+        contenido = "attachment; filename={0}".format(nombre_archivo)
+        response["Content-Disposition"] = contenido
+        wb.save(response)
+        return response
+
 class InvTicsCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     permission_required = 'inventario.add_inventariotics'
     model = InventarioTics
