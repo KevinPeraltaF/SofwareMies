@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %}INV TICS {% endblock title %}
 
-
 {% block content_main %}
 <!-- Page Heading -->
 <nav aria-label="breadcrumb">
@@ -29,6 +28,7 @@
 
                             {% if perms.inventario.add_inventariotics %}
                             <a class="dropdown-item" href="{% url 'inv_tics_crear'%}">Nuevo Equipo</a>
+                            
                             {% endif %}
 
                         </div>

@@ -2,101 +2,107 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Editar Registro</h5>
-           
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         {% if form.errors %}
-  
+
         <div class="alert alert-danger" role="alert">
             <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
             <ul>
                 {% for field in form %}
-                    {% for error in field.errors %}
-                    <li>
-                        {{error}}
-                    </li>
-                    {% endfor %}
+                {% for error in field.errors %}
+                <li>
+                    {{error}}
+                </li>
+                {% endfor %}
                 {% endfor %}
             </ul>
-  
+
         </div>
         {% endif %}
-        
-        
-        
+
+
+
         <form action="{% url 'capacitacion_editar' object.id %}" method="post">
             {% csrf_token %}
-            
+
             <div class="modal-body">
-               <div class='form-row'>
-                <div class="form-group col-md-6">
-                    {{form.fecha.label}}
-                    {{form.fecha}}
+                <div class='form-row'>
+                    <div class="form-group col-md-6">
+                        {{form.fecha.label}}
+                        {{form.fecha}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.hora_inicio.label}}
+                        {{form.hora_inicio}}
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    {{form.hora_inicio.label}}
-                    {{form.hora_inicio}}
+                <div class="form-group">
+                    {{form.hora_fin.label}}
+                    {{form.hora_fin}}
                 </div>
-            </div>
-            <div class="form-group">
-                {{form.hora_fin.label}}
-                {{form.hora_fin}}
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group col-md-5">
-                    {{form.lugar.label}}
-                    {{form.lugar}}
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        {{form.lugar.label}}
+                        {{form.lugar}}
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{form.tema.label}}
+                        {{form.tema}}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{form.tipoCapacitacion.label}}
+                        {{form.tipoCapacitacion}}
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    {{form.tema.label}}
-                    {{form.tema}}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.areaSolicitante.label}}
+                        {{form.areaSolicitante}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.dirigido.label}}
+                        {{form.dirigido}}
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    {{form.tipoCapacitacion.label}}
-                    {{form.tipoCapacitacion}}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.instructor.label}}
+                        {{form.instructor}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.objetivo.label}}
+                        {{form.objetivo}}
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{form.areaSolicitante.label}}
-                    {{form.areaSolicitante}}
+
+                <hr>
+                <div class="form-row">
+                    {{detalle_form.management_form}}
+                    {% for form1 in detalle_form %}
+                    {{form1.id}}
+                    <div id='js_periferico' class="form-group col-md-6">
+                        {{form1.empleado.label}}
+                        {{form1.empleado}}
+                    </div>
+
+                    <div id='js_cantidad' class="form-group col-md-4">
+                        {{form1.observacion.label}}
+                        {{form1.observacion}}
+                    </div>
+                    <div id='js_eliminar' class="form-group col-md-2">
+                        {{form1.DELETE.label}}
+                        {{form1.DELETE}}
+                    </div>
+                    {% endfor %}
+
                 </div>
-                <div class="form-group col-md-6">
-                    {{form.dirigido.label}}
-                    {{form.dirigido}}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{form.instructor.label}}
-                    {{form.instructor}}
-                </div>
-                <div class="form-group col-md-6">
-                    {{form.objetivo.label}}
-                    {{form.objetivo}}
-                </div>
-            </div>
-          
-            <hr>
-            <div class="form-row">
-                {{detalle_form.management_form}}
-                {% for form1 in detalle_form %}
-                
-                <div id = 'js_periferico' class="form-group col-md-6">
-                    {{form1.empleado.label}}
-                    {{form1.empleado}}
-                </div>
-                
-                <div id = 'js_cantidad'  class="form-group col-md-4">
-                    {{form1.observacion.label}}
-                    {{form1.observacion}}
-                </div>
-                {% endfor %}
-            </div>
-            <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar Periferico</button>
+                <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar
+                    Periferico</button>
 
             </div>
             <div class="modal-footer">
@@ -105,4 +111,55 @@
             </div>
         </form>
     </div>
-  </div>
+</div>
+
+
+
+{% block content_extra_js %}
+
+<script>
+    $(function(){
+        $('#id_empleado').select2();
+ 
+    });
+</script>
+
+
+<script>
+    function agregar_inputs(){
+        var total_forms = document.querySelector('#id_capacitaciondetalle_set-TOTAL_FORMS');
+        var value_last = parseInt(total_forms.value)-1;
+        //nuevo label e input para periferico
+        var nuevo_label_periferico = document.createElement('label');
+        nuevo_label_periferico.innerHTML = 'Pieza'
+        var nuevo_select_periferico = document.querySelector('#id_capacitaciondetalle_set-0-empleado').cloneNode(true);
+        //var span_periferico = document.querySelector(".select2").cloneNode(true);
+        nuevo_select_periferico.name = 'capacitaciondetalle_set-'+total_forms.value+'-empleado';
+        nuevo_select_periferico.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-empleado';
+        //nuevo label e input para cantidad
+        var nuevo_label_cantidad = document.createElement('label');
+        nuevo_label_cantidad.innerHTML = 'observacion'
+        var nuevo_select_cantidad = document.querySelector('#id_capacitaciondetalle_set-0-observacion').cloneNode(true);
+        nuevo_select_cantidad.name = 'capacitaciondetalle_set-'+total_forms.value+'-observacion';
+        nuevo_select_cantidad.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-observacion';
+        
+        //var span_periferico = document.querySelector(".select2").cloneNode(true);
+        document.querySelector('#js_periferico').appendChild(nuevo_label_periferico);
+        document.querySelector('#js_periferico').appendChild(nuevo_select_periferico);
+        document.querySelector('#js_cantidad').appendChild(nuevo_label_cantidad);
+        document.querySelector('#js_cantidad').appendChild(nuevo_select_cantidad);
+        total_forms.value = parseInt(total_forms.value)+1;
+        //nuevo label e input para eliminar
+        var nuevo_label_eliminar = document.createElement('label');
+        nuevo_label_eliminar.innerHTML = 'Eliminar'
+        var nuevo_select_eliminar = document.querySelector('#id_capacitaciondetalle_set-'+value_last+'-DELETE').cloneNode(true);
+        nuevo_select_eliminar.name = 'capacitaciondetalle_set-'+total_forms.value+'-DELETE';
+        nuevo_select_eliminar.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-DELETE';
+        document.querySelector('#js_eliminar').appendChild(nuevo_label_eliminar);
+        document.querySelector('#js_eliminar').appendChild(nuevo_select_eliminar);
+        total_forms.value = parseInt(total_forms.value)+1;
+    }
+
+    
+</script>
+{% endblock content_extra_js %}

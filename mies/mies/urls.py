@@ -118,6 +118,7 @@ urlpatterns = [
     path('Condicion/Detalle/<int:pk>',inventaio_views.CondicionDetailView.as_view(),name ="condicion_detalle"),
     #--INVENTARIO TICS
     path('InvTics', inventaio_views.InvTicsListView.as_view(), name="inv_tics_listar"),
+  
     path('InvTics/Crear',inventaio_views.InvTicsCreateView.as_view(),name ="inv_tics_crear"),
     path('InvTics/Editar/<int:pk>',inventaio_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
     path('InvTics/Eliminar/<int:pk>',inventaio_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),

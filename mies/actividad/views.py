@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
-from .models import Prioridad, Asunto, ActividadCabecera, ActividadDetalle
+from .models import Asunto, ActividadCabecera, ActividadDetalle
 from .forms import  AsuntoForm, ActividadCabeceraForm, ActividadDetalleForm, ActividadCabDetalleForm
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.utils.decorators import method_decorator

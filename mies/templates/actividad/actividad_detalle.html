@@ -29,17 +29,18 @@
                         <th>Prioridad:</th>
                         <td>
                             {% if object.prioridad == '1' %}
-                                ALTA
+                                <span class="badge badge-danger">ALTA</span>
                                 {% endif %}
                                     
                                 {% if object.prioridad == '2' %}
-                                    MEDIA
+                                <span class="badge badge-success">MEDIA</span>
                                 {% endif %}
 
                                 
                                 {% if object.prioridad ==  '3' %}
-                                BAJA
+                                <span class="badge badge-success">BAJA</span>
                                 {% endif %}
+                                    
                                     
                            
                         </td>

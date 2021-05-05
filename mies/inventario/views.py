@@ -151,7 +151,8 @@ class InvTicsListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     model = InventarioTics
     template_name = "inventario/inv_tics_listado.html"
 
-   
+ #excel
+
     
 class InvTicsCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     permission_required = 'inventario.add_inventariotics'
@@ -338,7 +339,6 @@ class EquipoUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     success_url = reverse_lazy('equipo_listar')
     def get(self, request,*args,**kwargs):
         self.object = self.get_object()
-        print(self.object)
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         detalle_form = EquipoCabDetalleForm(instance = self.object)

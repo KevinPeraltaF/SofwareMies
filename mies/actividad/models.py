@@ -1,26 +1,6 @@
 from django.db import models
 from empleado.models import Area, Empleado
-# Create your models here.
-class Prioridad(models.Model):
-    """Model definition for Prioridad."""
-
-    descripcion = models.CharField('Prioridad', max_length=50, unique =True)
-
-    class Meta:
-        """Meta definition for Prioridad."""
-
-        verbose_name = 'Prioridad'
-        verbose_name_plural = 'Prioridades'
-
-    def __str__(self):
-        """Unicode representation of Prioridad."""
-        return self.descripcion
-
-    def save(self,*args, **kwargs):
-        """Save method for Prioridad."""
-        self.descripcion =self.descripcion and (self.descripcion).upper()
-        return super(Prioridad, self).save(*args, **kwargs)
-        
+       
 
 class Asunto(models.Model):
     """Model definition for Asunto."""
