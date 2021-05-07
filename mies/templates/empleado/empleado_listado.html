@@ -86,7 +86,13 @@
                             </td>
                             <td>{{ empl.correo }}</td>
                             <td>{{ empl.cedula }}</td>
-                            <td>{{ empl.telefono }}</td>
+                            <td>
+                                {% if empl.telefono is none %}
+                                <p>N/A</p>
+                                {% else %}
+                                {{ empl.telefono }}
+                                {% endif%}
+                            </td>
                             <td>
                                 {% if empl.estado%}
                                 <span class="badge badge-success">Activo</span>

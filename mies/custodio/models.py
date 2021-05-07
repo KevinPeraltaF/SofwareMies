@@ -8,7 +8,7 @@ class Custodio(models.Model):
     """Model definition for AccesoRed."""
 
     fecha = models.DateField('Fecha',default=timezone.now)
-    custodio = models.ForeignKey(Empleado,verbose_name='Empleado Custodio', on_delete=models.PROTECT)
+    custodio = models.ForeignKey(Empleado,verbose_name='Custodio a asignar:', on_delete=models.PROTECT)
     equipo = models.ForeignKey(EquipoCabecera, on_delete=models.PROTECT)
     custodioAnterior = models.ForeignKey(Empleado,verbose_name='Custodio Anterior',related_name="custodioAnterior", on_delete=models.PROTECT,  null= True, blank=True)
     ubicacion = models.ForeignKey(Area,verbose_name='Ubicación', on_delete=models.PROTECT)

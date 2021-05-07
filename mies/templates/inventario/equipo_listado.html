@@ -75,7 +75,24 @@
                                 {{ inv.codigoMies }}
                                 {% endif%}
                             </td>
-                            <td>{{ inv.condicion }}</td>
+                            <td>
+                                
+                                {% if inv.condicion.descripcion == 'BUENO'%}
+                                <span class="badge badge-success">{{inv.condicion}}</span>
+    
+                                {% endif %}
+    
+                                {% if inv.condicion.descripcion == 'REGULAR'%}
+                                <span class="badge badge-warning">{{inv.condicion}}</span>
+    
+                                {% endif %}
+    
+                                {% if inv.condicion.descripcion == 'DAÑADO'%}
+                                <span class="badge badge-danger">{{inv.condicion}}</span>
+    
+                                {% endif %}
+    
+                            </td>
 
                             <td>
                                 <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "

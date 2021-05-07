@@ -10,12 +10,12 @@
         <div class="modal-body">
             <table class="table table-bordered table-responsive-sm table-responsive-xl">
                 <tbody>
-                   
+
                     <tr>
                         <th>Fecha Ingreso:</th>
-                        <td >{{object.fechaIngreso}}</td>
+                        <td>{{object.fechaIngreso}}</td>
                         <th>Ubicacion:</th>
-                        <td >{{object.ubicacion}}</td>
+                        <td>{{object.ubicacion}}</td>
                     </tr>
                     <tr>
                         <th>Responsable:</th>
@@ -23,19 +23,36 @@
                     </tr>
                     <tr>
                         <th>Categoria:</th>
-                        <td >{{object.categoria}}</td>
+                        <td>{{object.categoria}}</td>
                         <th>Condicion:</th>
-                        <td >{{object.condicion}}</td>
+                        <td>
+                            {% if object.condicion.descripcion == 'BUENO'%}
+                            <span class="badge badge-success">{{object.condicion}}</span>
+
+                            {% endif %}
+
+                            {% if object.condicion.descripcion == 'REGULAR'%}
+                            <span class="badge badge-warning">{{object.condicion}}</span>
+
+                            {% endif %}
+
+                            {% if object.condicion.descripcion == 'DAÑADO'%}
+                            <span class="badge badge-danger">{{object.condicion}}</span>
+
+                            {% endif %}
+
+
+                        </td>
                     </tr>
                     <tr>
                         <th>Nombre:</th>
-                        <td >{{object.descripcion}}</td>
+                        <td>{{object.descripcion}}</td>
                         <th>Cantidad:</th>
-                        <td >{{object.cantidad}}</td>
+                        <td>{{object.cantidad}}</td>
                     </tr>
                     <tr>
                         <th>Marca:</th>
-                        <td >
+                        <td>
                             {% if object.marca %}
                             {{object.marca}}
                             {% else %}
@@ -43,7 +60,7 @@
                             {% endif %}
                         </td>
                         <th>Modelo:</th>
-                        <td >
+                        <td>
                             {% if object.modelo %}
                             {{object.modelo}}
                             {% else %}
@@ -61,7 +78,7 @@
                             {% endif %}
                         </td>
                         <th>Serie MIES:</th>
-                        <td >
+                        <td>
                             {% if object.codigoMies %}
                             {{object.codigoMies}}
                             {% else %}
@@ -69,13 +86,13 @@
                             {% endif %}
                         </td>
                     </tr>
-                  
-                  
+
+
                     <tr class="text-center">
                         <th>Foto:</th>
                         <td colspan="4">
                             {% if object.foto %}
-                            <img class="img-rounded " src="{{object.foto.url}}" alt="" width="600" height="400" >
+                            <img class="img-rounded " src="{{object.foto.url}}" alt="" width="600" height="400">
                             {% else %}
                             N/A
                             {% endif %}
@@ -83,11 +100,11 @@
                     </tr>
                 </tbody>
             </table>
-           
+
 
         </div>
-        
-       
+
+
     </div>
 
 </div>

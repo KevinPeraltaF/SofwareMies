@@ -30,7 +30,7 @@ class Area(models.Model):
 class Cargo(models.Model):
     """Model definition for Cargo."""
 
-    descripcion = models.CharField('Cargo', max_length=50, unique=True)
+    descripcion = models.CharField('Cargo', max_length=100, unique=True)
 
     class Meta:
         """Meta definition for Cargo."""

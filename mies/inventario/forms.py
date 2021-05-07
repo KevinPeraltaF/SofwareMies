@@ -8,7 +8,7 @@ class InvTicsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(InvTicsForm, self).__init__(*args, **kwargs)
         # Filtro al responsable de acuerdo a su cargo id =1; -> tics
-        self.fields['responsable'].queryset = Empleado.objects.filter(estado=1, area = 1)
+        #self.fields['responsable'].queryset = Empleado.objects.filter(cargo=1)
 
      #validaciones para que se envie como mayusculas los datos
     def clean_serie(self):

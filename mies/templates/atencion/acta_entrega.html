@@ -66,21 +66,19 @@
                 <span >Diciembre</span>
                 {% endif %}
                 del {{ object.fecha_salida.year }}, se
-                procede a la ENTREGA de {{object.equipo.equipo.categoria}} , entre las siguientes personas, por
-                una parte quien ENTREGA ING. {{object.responsable}} </FONT>
+                procede a la <b>ENTREGA</b> de <b>{{object.equipo.equipo.categoria}}</b> , entre las siguientes personas, por
+                una parte quien <b>ENTREGA</b> ING. {{object.responsable}} </FONT>
             <FONT SIZE=4><B>RESPONSABLE
                     ENCARGADO DE TICS </B></FONT>
             <FONT SIZE=4>de la DIRECCION DISTRITAL
-                MILAGRO MIES/ZONA 5, y por otro lado quien RECIBE {{object.equipo.custodio}} con
+                MILAGRO MIES/ZONA 5, y por otro lado quien <b>RECIBE</b> {{object.equipo.custodio}} con
             </FONT>
             <FONT SIZE=4><B>CI: {{object.equipo.custodio.cedula}}</B></FONT>
             <FONT SIZE=4>
-                {{object.equipo.custodio.cargo}}.</FONT>
+                <b>{{object.equipo.custodio.cargo}}</b>.</FONT>
         </FONT>
     </P>
-    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
-    </P>
-    <!---->
+   
     <table width="600" cellpadding="6" cellspacing="0">
         <colgroup>
             <col width="40">
@@ -297,13 +295,7 @@
 
     <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
     </P>
-    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
-    </P>
-    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
-    </P>
-    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
-    </P>
-
+  
     <TABLE WIDTH=653 CELLPADDING=7 CELLSPACING=0>
         <COL WIDTH=312>
         <COL WIDTH=312>
@@ -348,8 +340,7 @@
             <TD WIDTH=310 HEIGHT=7 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
                 <P LANG="en-US" CLASS="western" ALIGN=CENTER>
                     <FONT SIZE=2 STYLE="font-size: 11pt">
-                        <FONT SIZE=4><B>ANALISTA
-                                TICS</B></FONT>
+                        <FONT SIZE=4><B>{{object.responsable.cargo}}</B></FONT>
                     </FONT>
                 </P>
             </TD>

@@ -21,67 +21,17 @@
     </head>
     
     <body id="page-top ">
-        <!-- Page Wrapper -->
-        <div id="wrapper">
-            
-            <!-- End of Sidebar menu izquiero fin-->
+       
     
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+        <div class="mt-5">
+            {% block content %}
     
-                <!-- Main Content -->
-                <div id="content ">
-    
-                 
-    
-                    <!-- Begin Page Content --cambiaria contenido -->
-                    <div class="container-fluid">
-                        {% block content %}
-    
-                        {% endblock  %}
-                    </div>
-                    <!-- /.container-fluid fin de cambiaria contenido -->
-    
-                </div>
-                <!-- End of Main Content -->
-    
-                <!-- Footer pie de pagina inicio -->
-                <footer class="sticky-footer bg-white footer ">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Unemi-Ingeniería en Sistemas Computacionales - 2021</span>
-    
-                        </div>
-                        <div class="copyright text-center my-auto">
-    
-                            <span>Desarrolladores: <a
-                                    href="https://www.linkedin.com/in/kevin-fuentes-peralta-801b65187">Fuentes Nelson</a>,
-                                <a href="https://www.linkedin.com/in/ariana-odalis-olea-cortez-784a71208">Olea
-                                    Ariana</a></span>
-    
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer fin de pie de pagina -->
-    
-            </div>
-            <!-- End of Content Wrapper -->
-    
+            {% endblock  %}
+       
         </div>
-        <!-- End of Page Wrapper -->
-    
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </body>
 </html>

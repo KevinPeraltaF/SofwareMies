@@ -208,17 +208,40 @@ class InvTicsExcelListView(TemplateView):
         ws.column_dimensions['L'].width = 15.0
 
         cont=4
+        
         #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
         for dato in lista:
+
+            if dato.codigoMies is None:
+                DatoCodigoMies = 'N/A'
+            else:
+                DatoCodigoMies = dato.codigoMies
+               
+
+            if dato.serie is None:
+                DatoSerie = 'N/A'
+            else:
+                DatoSerie = dato.serie
+               
+            if dato.marca is None:
+                DatoMarca = 'N/A'
+            else:
+                DatoMarca = dato.marca.descripcion
+               
+            if dato.modelo is None:
+                DatoModelo = 'N/A'
+            else:
+                 DatoModelo = dato.marca.descripcion
+            
             ws.cell(row=cont,column=2).value = dato.fechaIngreso
             ws.cell(row=cont,column=3).value = dato.responsable.apellidos
             ws.cell(row=cont,column=4).value = dato.descripcion
-            ws.cell(row=cont,column=5).value = dato.codigoMies
-            ws.cell(row=cont,column=6).value = dato.serie
+            ws.cell(row=cont,column=5).value = DatoCodigoMies
+            ws.cell(row=cont,column=6).value = DatoSerie
             ws.cell(row=cont,column=7).value = dato.categoria.descripcion
             ws.cell(row=cont,column=8).value = dato.cantidad
-            ws.cell(row=cont,column=9).value = dato.marca.descripcion
-            ws.cell(row=cont,column=10).value = dato.modelo.descripcion
+            ws.cell(row=cont,column=9).value = DatoMarca
+            ws.cell(row=cont,column=10).value = DatoModelo
             ws.cell(row=cont,column=11).value = dato.ubicacion.descripcion
             ws.cell(row=cont,column=12).value = dato.condicion.descripcion
          

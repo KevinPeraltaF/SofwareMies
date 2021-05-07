@@ -33,7 +33,13 @@
                         <th>Cédula:</th>
                         <td>{{object.cedula}}</td>
                         <th>Teléfono móvil:</th>
-                        <td>{{object.telefono}}</td>
+                        <td colspan="4">
+                            {% if object.telefono is none %}
+                            <p>-</p>
+                            {% else %}
+                            {{object.telefono}}
+                            {% endif%}
+                        </td>
                     </tr>
                     <tr>
                         <th>Correo:</th>

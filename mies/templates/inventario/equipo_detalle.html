@@ -19,7 +19,23 @@
                         <th>Categoria:</th>
                         <td >{{object.categoria}}</td>
                         <th>Condicion:</th>
-                        <td >{{object.condicion}}</td>
+                        <td >
+                            {% if object.condicion.descripcion == 'BUENO'%}
+                            <span class="badge badge-success">{{object.condicion}}</span>
+
+                            {% endif %}
+
+                            {% if object.condicion.descripcion == 'REGULAR'%}
+                            <span class="badge badge-warning">{{object.condicion}}</span>
+
+                            {% endif %}
+
+                            {% if object.condicion.descripcion == 'DAÑADO'%}
+                            <span class="badge badge-danger">{{object.condicion}}</span>
+
+                            {% endif %}
+
+                        </td>
                     </tr>
                     <tr>
                         <th>Nombre:</th>

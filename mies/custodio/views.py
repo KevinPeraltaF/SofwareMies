@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import Custodio
 from .forms import CustodioForm
+from inventario.models import EquipoDetalle
 from django.contrib.auth.mixins import PermissionRequiredMixin,LoginRequiredMixin
 #Empleado
 from inventario.models import EquipoCabecera
@@ -43,6 +44,7 @@ class CustodioReporteExcelView(TemplateView):
     def get(self, request, *args, **kwargs):
         #Obtenemos todas las lista de nuestra base de listas
         lista = Custodio.objects.all()
+        
         #Creamos el libro de trabajo
         wb = Workbook()
         #Definimos como nuestra hoja de trabajo, la hoja activa, por defecto la primera del libro
@@ -68,14 +70,10 @@ class CustodioReporteExcelView(TemplateView):
         ws['O3'] = 'CAPACIDAD DISCO'
         ws['P3'] = 'CAPACIDAD RAM'
         ws['Q3'] = 'PROCESADOR'
-        ws['R3'] = 'MONITOR'
-        ws['S3'] = 'TECLADO'
-        ws['T3'] = 'MOUSE'
-        ws['U3'] = 'ANTENA WIFI'
-        ws['V3'] = 'CAMARA'
-        ws['W3'] = 'UPS'
-        ws['X3'] = 'PARLANTE'
-        ws['Y3'] = 'AURICULARES + MICROFONOS'
+        ws['R3'] = 'PERIFERICOS DEL EQUIPO'
+       
+
+        ws.merge_cells('R3:Y3')
         #ancho de columna
         ws.column_dimensions['B'].width = 15.0
         ws.column_dimensions['C'].width = 30.0
@@ -105,9 +103,8 @@ class CustodioReporteExcelView(TemplateView):
         cont=4
         enumerador = 1
         #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
-
+        contadorDetalle =18
         for dato in lista:
-            print(cont)
             ws.cell(row=cont,column=2).value = enumerador
             ws.cell(row=cont,column=3).value = dato.custodio.area.distrito.provincia.zona.descripcion
             ws.cell(row=cont,column=4).value = dato.custodio.area.distrito.descripcion
@@ -124,15 +121,10 @@ class CustodioReporteExcelView(TemplateView):
             ws.cell(row=cont,column=15).value = dato.equipo.capacidadDisco.descripcion
             ws.cell(row=cont,column=16).value = dato.equipo.capacidadMemoria.descripcion
             ws.cell(row=cont,column=17).value = dato.equipo.capacidadProcesador.descripcion
-            ws.cell(row=cont,column=18).value = 'si'
-            ws.cell(row=cont,column=19).value = 'si'
-            ws.cell(row=cont,column=20).value = 'si'
-            ws.cell(row=cont,column=21).value = 'si'
-            ws.cell(row=cont,column=22).value = 'si'
-            ws.cell(row=cont,column=23).value = 'si'
-            ws.cell(row=cont,column=24).value = 'si'
-            ws.cell(row=cont,column=25).value = 'si'
-
+            listaDetalle = EquipoDetalle.objects.filter(cabeceraDistrito=dato.equipo.id)
+            for detalle in listaDetalle:
+                ws.cell(row=cont,column=contadorDetalle).value = detalle.periferico.descripcion
+                contadorDetalle=contadorDetalle+1
             enumerador = enumerador+1
             cont = cont + 1
         #Establecemos el nombre del archivo

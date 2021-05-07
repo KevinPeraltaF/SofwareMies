@@ -212,7 +212,7 @@
 
                         {% if  perms.inventario.view_equipo %}
                         <a class="collapse-item  {% if equipo_url in request.path%} active {% endif%}" href="{{equipo_url}}"><i class="fas fa-caret-right"></i>
-                            Equipo</a>
+                            Equipo - Distrito</a>
                         {% endif %}
                             
                     </div>
@@ -241,7 +241,7 @@
             <li class="nav-item  {% if custodio_url in request.path%} active {% endif%}">
                 <a class="nav-link" href="{{custodio_url}}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Custodio Equipo</span></a>
+                    <span>Asignación custodio</span></a>
             </li>
             {% endif %}
                 
