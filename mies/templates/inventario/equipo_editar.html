@@ -1,3 +1,10 @@
+<script>
+    $(function () {
+        $('.select').select2(
+            { theme: "bootstrap4", }
+        );
+    });
+</script>
 <div class="modal-dialog modal-lg"  role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -103,10 +110,11 @@
                 
                 
     
-                <div class="form-row">
+                <div id = "jsTotalForms" class="form-row">
                     {{detalle_form.management_form}}
                     {% for form1 in detalle_form %}
                         {{form1.id}}
+                    
                     <div id = 'js_periferico' class="form-group col-md-6">
                         {{form1.periferico.label}}
                         {{form1.periferico}}
@@ -133,36 +141,5 @@
             </div>
         </form>
     </div>
-    <script>
-        function agregar_inputs(){
-            var total_forms = document.querySelector('#id_equipodetalle_set-TOTAL_FORMS');
-            var value_last = parseInt(total_forms.value)-1;
-            //nuevo label e input para periferico
-            var nuevo_label_periferico = document.createElement('label');
-            nuevo_label_periferico.innerHTML = 'Periferico'
-            var nuevo_select_periferico = document.querySelector('#id_equipodetalle_set-'+value_last+'-periferico').cloneNode(true);
-            nuevo_select_periferico.name = 'equipodetalle_set-'+total_forms.value+'-periferico';
-            nuevo_select_periferico.id = 'id_equipodetalle_set-'+total_forms.value+'-periferico';
-            //nuevo label e input para cantidad
-            var nuevo_label_cantidad = document.createElement('label');
-            nuevo_label_cantidad.innerHTML = 'Cantidad'
-            var nuevo_select_cantidad = document.querySelector('#id_equipodetalle_set-'+value_last+'-cantidad').cloneNode(true);
-            nuevo_select_cantidad.name = 'equipodetalle_set-'+total_forms.value+'-cantidad';
-            nuevo_select_cantidad.id = 'id_equipodetalle_set-'+total_forms.value+'-cantidad';
-            //nuevo label e input para eliminar
-            var nuevo_label_eliminar = document.createElement('label');
-            nuevo_label_eliminar.innerHTML = 'Eliminar'
-            var nuevo_select_eliminar = document.querySelector('#id_equipodetalle_set-'+value_last+'-DELETE').cloneNode(true);
-            nuevo_select_eliminar.name = 'equipodetalle_set-'+total_forms.value+'-DELETE';
-            nuevo_select_eliminar.id = 'id_equipodetalle_set-'+total_forms.value+'-DELETE';
-
-            document.querySelector('#js_periferico').appendChild(nuevo_label_periferico);
-            document.querySelector('#js_periferico').appendChild(nuevo_select_periferico);
-            document.querySelector('#js_cantidad').appendChild(nuevo_label_cantidad);
-            document.querySelector('#js_cantidad').appendChild(nuevo_select_cantidad);
-            document.querySelector('#js_eliminar').appendChild(nuevo_label_eliminar);
-            document.querySelector('#js_eliminar').appendChild(nuevo_select_eliminar);
-            total_forms.value = parseInt(total_forms.value)+1;
-        }
-    </script>
   </div>
+  {% load static %}

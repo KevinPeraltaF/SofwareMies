@@ -61,7 +61,24 @@
                             {% endif %}
                         </td>
                     </tr>
-                  
+                    <tr>
+                        <th>Direccion IP:</th>
+                        <td>
+                            {% if object.direccionIp %}
+                            {{object.direccionIp}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>Direccion MAC:</th>
+                        <td >
+                            {% if object.direccionMac %}
+                            {{object.direccionMac}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
                   
                     <tr class="text-center">
                         <th>Foto:</th>

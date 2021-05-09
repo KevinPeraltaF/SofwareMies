@@ -1,25 +1,4 @@
 /** funcion para abrir el modal de editar */
-var vents = {
-    items :{
-        fechaIngreso :'',
-        responsable :'',
-        ubicacion:'',
-        categoria:'',
-        descripcion:'',
-        marca:'',
-        modelo:'',
-        condicion:'',
-        serie:'',
-        codigoMies:'',
-        direccionIp:'',
-        direccionMac:'',
-        capacidadDisco:'',
-        capacidadMemoria:'',
-        capacidadProcesador:'',
-        foto:'',
-        detalle:[]
-    }
-}
 
 function abrirModalEditar(url){
             
@@ -47,105 +26,57 @@ function abrirModalDetalle(url){
     }
     )           
 }
-<<<<<<< HEAD
+function agregar_inputs(){
+    $('.select').select2("destroy");
+    var total_forms = document.querySelectorAll('#jsTotalForms input[type=hidden]')[0];
+    var value_last = parseInt(total_forms.value)-1;
+    //nuevo label e input para periferico
+    var nuevo_label_periferico = document.createElement('label');
+    nuevo_label_periferico.innerHTML = 'Periferico'
+    var nuevo_select_periferico = document.querySelector('#id_equipodetalle_set-'+value_last+'-periferico').cloneNode(true);
+    nuevo_select_periferico.name = 'equipodetalle_set-'+total_forms.value+'-periferico';
+    nuevo_select_periferico.id = 'id_equipodetalle_set-'+total_forms.value+'-periferico';
+    nuevo_select_periferico.className = 'form-control select'
+    //nuevo label e input para cantidad
+    var nuevo_label_cantidad = document.createElement('label');
+    nuevo_label_cantidad.innerHTML = 'Cantidad'
+    var nuevo_select_cantidad = document.querySelector('#id_equipodetalle_set-'+value_last+'-cantidad').cloneNode(true);
+    nuevo_select_cantidad.name = 'equipodetalle_set-'+total_forms.value+'-cantidad';
+    nuevo_select_cantidad.id = 'id_equipodetalle_set-'+total_forms.value+'-cantidad';
+    //nuevo label e input para eliminar
+    var nuevo_label_eliminar = document.createElement('label');
+    nuevo_label_eliminar.innerHTML = 'Eliminar'
+    nuevo_label_eliminar.className = 'col-md-12'
+    nuevo_label_eliminar.style.top = "40px"
+    nuevo_label_eliminar.style.bottom = "40px"
+    var nuevo_select_eliminar = document.querySelector('#id_equipodetalle_set-'+value_last+'-DELETE').cloneNode(true);
+    nuevo_select_eliminar.name = 'equipodetalle_set-'+total_forms.value+'-DELETE';
+    nuevo_select_eliminar.id = 'id_equipodetalle_set-'+total_forms.value+'-DELETE';
+    nuevo_select_eliminar.className = ' col-md-12'
+    nuevo_select_eliminar.style.top = "40px"
+    nuevo_select_eliminar.style.bottom = "40px"
 
-function message_error(obj) {
-    var html = '';
-    if (typeof (obj) === 'object') {
-        html = '<ul style="text-align: left;">';
-        $.each(obj, function (key, value) {
-            html += '<li>' + key + ': ' + value + '</li>';
-        });
-        html += '</ul>';
-    } else {
-        html = '<p>' + obj + '</p>';
+    var cantidadElemen = document.querySelectorAll("#js_periferico");
+    var cantidadElemen_cantidad = document.querySelectorAll("#js_cantidad");
+    var cantidadElemen_eliminar = document.querySelectorAll("#js_eliminar");
+    for (let i=0; i< cantidadElemen.length; i++){
+        if (i == cantidadElemen.length-1){
+            cantidadElemen[i].appendChild(nuevo_label_periferico);
+            cantidadElemen[i].appendChild(nuevo_select_periferico);
+            cantidadElemen_cantidad[i].appendChild(nuevo_label_cantidad);
+            cantidadElemen_cantidad[i].appendChild(nuevo_select_cantidad);
+            cantidadElemen_eliminar[i].appendChild(nuevo_label_eliminar);
+            cantidadElemen_eliminar[i].appendChild(nuevo_select_eliminar);
+        }
     }
-    Swal.fire({
-        title: 'Error!',
-        html: html,
-        icon: 'error'
+    total_forms.value = parseInt(total_forms.value)+1;
+
+    $(function () {
+        $('.select').select2(
+            { theme: "bootstrap4", }
+        );
     });
 }
-function submit_with_ajax(url, title, content, parameters, callback) {
-    $.confirm({
-        theme: 'material',
-        title: title,
-        icon: 'fa fa-info',
-        content: content,
-        columnClass: 'small',
-        typeAnimated: true,
-        cancelButtonClass: 'btn-primary',
-        draggable: true,
-        dragWindowBorder: false,
-        buttons: {
-            info: {
-                text: "Si",
-                btnClass: 'btn-primary',
-                action: function () {
-                    $.ajax({
-                        url: url, //window.location.pathname
-                        type: 'POST',
-                        data: parameters,
-                        dataType: 'json',
-                        processData: false,
-                        contentType: false,
-                    }).done(function (data) {
-                        console.log(data);
-                        if (!data.hasOwnProperty('error')) {
-                            callback();
-                            return false;
-                        }
-                        message_error(data.error);
-                    }).fail(function (jqXHR, textStatus, errorThrown) {
-                        alert(textStatus + ': ' + errorThrown);
-                    }).always(function (data) {
-
-                    });
-                }
-            },
-            danger: {
-                text: "No",
-                btnClass: 'btn-red',
-                action: function () {
-
-                }
-            },
-        }
-    })
-}
-
-function alert_action(title, content, callback) {
-    $.confirm({
-        theme: 'material',
-        title: title,
-        icon: 'fa fa-info',
-        content: content,
-        columnClass: 'small',
-        typeAnimated: true,
-        cancelButtonClass: 'btn-primary',
-        draggable: true,
-        dragWindowBorder: false,
-        buttons: {
-            info: {
-                text: "Si",
-                btnClass: 'btn-primary',
-                action: function () {
-                    callback();
-                }
-            },
-            danger: {
-                text: "No",
-                btnClass: 'btn-red',
-                action: function () {
-
-                }
-            },
-        }
-    });
-}
-//busqueda de perifericos
-=======
->>>>>>> a6bb34eff834a94a8898d054ae68c283b9b7de5f
 
 
 

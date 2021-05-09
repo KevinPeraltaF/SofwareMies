@@ -3,7 +3,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.4']
+#ALLOWED_HOSTS = ['192.168.1.4']
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -17,7 +17,7 @@ DATABASES = {
 
         'USER': 'postgres',
 
-        'PASSWORD': '1234567890',
+        'PASSWORD': '1234',
 
         'HOST': 'localhost',
 

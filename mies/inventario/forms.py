@@ -414,7 +414,7 @@ class EquipoDetalleForm(forms.ModelForm):
             'periferico': forms.Select(
                 attrs={
                     'onkeyup':"javascript:this.value=this.value.toUpperCase();",
-                    'class':'form-control select2'
+                    'class':'form-control select'
                 }
             ),
             'cantidad':forms.TextInput(
