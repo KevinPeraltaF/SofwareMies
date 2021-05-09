@@ -28,8 +28,8 @@ class CustodioForm(forms.ModelForm):
             'fecha': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
-                    'class': 'form-control'
-                }
+                    'class': 'form-control',
+                    'autofocus':'autofocus'                }
             ),
             'custodio': forms.Select(
                 attrs={

@@ -15,11 +15,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            <a href="{% url 'empleado_listar' %}">Total Empleados</a></div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{valores.totalEmpleado}}</div>
+                            <a href="{% url 'empleado_listar' %}">Empleados</a></div>
+                     
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        <i class="fas fa-users  fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -33,11 +33,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                           <a href="{% url 'pasante_listar' %}"> Pasantes Activos</a></div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{valores.totalPasantes}}</div>
+                           <a href="{% url 'pasante_listar' %}"> Pasantes</a></div>
+                       
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-user-tag fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -50,11 +50,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="{%url 'capacitacion_listar' %}">Total Capacitaciones</a>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="{%url 'capacitacion_listar' %}">Capacitaciones</a>
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{valores.totalCapacitaciones}}</div>
+                              
                             </div>
                            
                         </div>
@@ -74,8 +74,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="{% url 'atencion_listar' %}">Total Atenciones</a></div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{valores.totalAtenciones}}</div>
+                            <a href="{% url 'atencion_listar' %}">Atenciones</a></div>
+                       
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -85,5 +85,114 @@
         </div>
     </div>
 </div>
+
+ <!-- Content Row -->
+ <div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <a href="{% url 'actividad_listar' %}">Actividades</a></div>
+                        
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                           <a href="{% url 'inv_tics_listar' %}"> Inventario Distrito</a></div>
+                      
+                    </div>
+                    <div class="col-auto">
+                       
+                        <i class="fas fa-indent fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="{%url 'capacitacion_listar' %}">Inventario Tics</a>
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                          
+                           
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-indent fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="{% url 'accesoRed_listar' %}">Acceso a la red</a></div>
+                       
+                    </div>
+                    <div class="col-auto">
+                        
+                        <i class="fas fa-network-wired fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            
+                            <a href="{% url 'prestamo_listar' %}">Préstamos</a></div>
+                        
+                    </div>
+                    <div class="col-auto">
+                       
+                        <i class="fas fa-money-check fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
 
 {% endblock %}

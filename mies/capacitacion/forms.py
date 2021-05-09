@@ -46,7 +46,8 @@ class CapacitacionCabeceraForm(forms.ModelForm):
             'fecha': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
             'hora_inicio': forms.TextInput(

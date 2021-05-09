@@ -30,7 +30,7 @@ class ActividadCabecera(models.Model):
     fecha = models.DateField('Fecha', auto_now=False, auto_now_add=False)
     responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_actividad')
     usuario = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    ubicacion = models.ForeignKey(Area, on_delete=models.PROTECT)
+    ubicacion = models.ForeignKey(Area,verbose_name='Ubicación', on_delete=models.PROTECT)
     lista_tipo_prioridad = [
     ('1', 'ALTA'),
     ('2', 'MEDIA'),

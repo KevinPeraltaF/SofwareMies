@@ -202,7 +202,7 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             
                                         {% if perms.atencion.add_atencion %}
-                                        <a class="dropdown-item" href="{% url 'atencion_crear'%}">Nuevo Reporte Secundario</a>
+                                        <a class="dropdown-item" href="{% url 'atencionSecundaria_crear'%}">Nuevo Reporte Secundario</a>
                                       
                                         {% endif %}
             
@@ -219,18 +219,21 @@
                                 <thead>
                                     <tr>
                                         <th><b>FECHA</b></th>
+                                        <th><b>ENTREGA</b></th>
+                                        <th><b>RECIBE</b></th>
                                         <th><b>TIPO DOCUMENTO</b></th>
                                         <th><b>REPORTE PDF</b></th>
                                         <th><b>ESTADO</b></th>
                                         <th><b>ACCIONES</b></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody> 
                                     {% for atencion in atencionSecundaria %}
                                     <tr>
             
                                         <td>{{ atencion.fechaIncidente }}</td>
-                                    
+                                        <td>{{ atencion.responsable }}</td>
+                                        <td>{{ atencion.recibe }}</td>
                                         <td>
                                         {% if  atencion.tipoDocumento == '1' %}
                                             REPORTE DE ENTREGA
@@ -249,14 +252,14 @@
                                         <td>
                                             {% if atencion.tipoDocumento == '3' %}
                                             <div class="row">
-                                                <a href="{% url 'atencion_reporte_pdf' atencion.id%}" target="_blank"><i
+                                                <a href="{% url 'atencionSecundaria_reporte_pdf' atencion.id%}" target="_blank"><i
                                                         class="fas fa-file-pdf"></i>
                                                     <font size="2">ATENCION-DDM-09D17-TICS-MIES-{{ atencion.fechaIncidente.year}}-00{{ atencion.contadorDocumento }}</font>
                                                 </a>
                                             </div>
             
                                             <d  iv class="row">
-                                                <a href="{% url 'acta_entrega_atencion_reporte_pdf' atencion.id%}"
+                                                <a href="{% url 'acta_entrega_atencionSecundaria_reporte_pdf' atencion.id%}"
                                                     target="_blank"><i class="fas fa-file-pdf"></i>
                                                     <font size="2">ACTA-DM-09D17-TIC-MIES</font>
                                                 </a>
@@ -266,7 +269,7 @@
             
                                             {% if atencion.tipoDocumento == '4' %}
                                             <div class="row">
-                                                <a href="{% url 'acta_bienes_pdf' atencion.id%}" target="_blank"><i
+                                                <a href="{% url 'acta_bienesSecundaria_pdf' atencion.id%}" target="_blank"><i
                                                         class="fas fa-file-pdf"></i>
                                                     <font size="2">REPORTE-BIENES-DDM-09D17-TICS-MIES-{{ atencion.fechaIncidente.year}}-00{{ atencion.contadorDocumento }}</font>
                                                 </a>
@@ -277,7 +280,7 @@
                                             
                                             {% if atencion.tipoDocumento == '1' and atencion.fecha_salida %}
                                             <div class="row">
-                                                <a href="{% url 'acta_entrega_reporte_pdf' atencion.id%}"
+                                                <a href="{% url 'acta_entregaSecundaria_reporte_pdf' atencion.id%}"
                                                     target="_blank"><i class="fas fa-file-pdf"></i>
                                                     <font size="2">REPORTE-ENTREGA-DM-09D17-TIC-MIES</font>
                                                 </a>
@@ -286,7 +289,7 @@
             
                                             {% if atencion.tipoDocumento == '2' and atencion.fecha_salida  %}
                                             <div class="row">
-                                                <a href="{% url 'acta_recepcion_reporte_pdf' atencion.id%}"
+                                                <a href="{% url 'acta_recepcionSecundaria_reporte_pdf' atencion.id%}"
                                                     target="_blank"><i class="fas fa-file-pdf"></i>
                                                     <font size="2">REPORTE-RECEPCIÓN-DM-09D17-TIC-MIES</font>
                                                 </a>
@@ -306,13 +309,13 @@
                                                 </td>
                                         <td>
                                             <a class="btn btn-light btn-sm "
-                                                onclick="abrirModalDetalle('{% url 'atencion_detalle' atencion.id%}')"> <i
+                                                onclick="abrirModalDetalle('{% url 'atencionSecundaria_detalle' atencion.id%}')"> <i
                                                     class="fa fa-eye"></i>
                                             </a>
             
                                             {% if perms.atencion.change_atencion %}
                                             <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
-                                                onclick="abrirModalEditar('{% url 'atencion_editar' atencion.id%}')"> <i
+                                                onclick="abrirModalEditar('{% url 'atencionSecundaria_editar' atencion.id%}')"> <i
                                                     class="fa fa-edit"></i>
                                             </button>
                                             {% endif %}
@@ -320,7 +323,7 @@
             
                                             {% if perms.atencion.delete_atencion %}
                                             <a class="btn btn-light btn-sm"
-                                                onclick="abrirModalEliminar('{% url 'atencion_eliminar' atencion.id%}')"><i
+                                                onclick="abrirModalEliminar('{% url 'atencionSecundaria_eliminar' atencion.id%}')"><i
                                                     class="fa fa-trash"></i>
                                             </a>
                                             {% endif %}

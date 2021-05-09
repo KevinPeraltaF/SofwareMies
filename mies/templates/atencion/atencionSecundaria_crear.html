@@ -52,12 +52,6 @@
            
         </div>
     
-    
-        <div class="form-group">
-            {{form.equipo.label}}
-            {{form.equipo}}
-        </div>
-        
         <div class="row list-group" >
             <div class="row ">
                 <div class="col-1"></div>
@@ -119,6 +113,12 @@
                     {{form.hora_salida}}
                 </div>
             </div>
+            <div class="col">
+                <div class="form-group">
+                    {{form.recibe.label}}
+                    {{form.recibe}}
+                </div>
+            </div>
     
         </div>
         
@@ -152,7 +152,7 @@
                 </div>
                 {% endfor %}
             </div>
-            <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar</button>
+            <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar Periferico</button>
 
     
 
@@ -170,7 +170,6 @@
     $(function(){
         $('#id_tipoDocumento').select2();
         $('#id_responsable').select2();
-        $('#id_equipo').select2();
     });
 </script>
 

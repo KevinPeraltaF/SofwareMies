@@ -61,7 +61,8 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'nombres': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
             'apellidos': forms.TextInput(
@@ -121,7 +122,8 @@ class AreaForm(forms.ModelForm):
             ),
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
         }
@@ -143,7 +145,8 @@ class CargoForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
         }
@@ -167,7 +170,8 @@ class UnidadAtencionForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
             'codigo' : forms.TextInput(

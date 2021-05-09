@@ -174,6 +174,20 @@ urlpatterns = [
     path('Universidad/Detalle/<int:pk>', practica_views.UniversidadDetailView.as_view(), name="universidad_detalle") ,
     
     #MODULO OTROS
+    #--Atencion secundaria
+    path('AtencionSecundaria', atencion_views.AtencionSecundariaListView.as_view(), name="atencionSecundaria_listar"),
+    path('AtencionSecundaria/Crear',atencion_views.AtencionSecundariaCreateView.as_view(),name ="atencionSecundaria_crear"),
+    path('AtencionSecundaria/Editar/<int:pk>',atencion_views.AtencionSecundariaUpdateView.as_view(),name ="atencionSecundaria_editar"),
+    path('AtencionSecundaria/Eliminar/<int:pk>',atencion_views.AtencionSecundariaDeleteView.as_view(),name ="atencionSecundaria_eliminar"),
+    path('AtencionSecundaria/Detalle/<int:pk>',atencion_views.AtencionSecundariaDetailView.as_view(),name ="atencionSecundaria_detalle"),
+    path('AtencionSecundaria/pdf/reporte-atencion/<int:pk>',atencion_views.ReporteAtencionSecundariaPdfView.as_view(),name ="atencionSecundaria_reporte_pdf"),
+    path('AtencionSecundaria/pdf/acta-entrega/<int:pk>',atencion_views.ReporteActaEntregaSecundariaPdfView.as_view(),name ="acta_entrega_atencionSecundaria_reporte_pdf"),
+     ##
+    path('AtencionSecundaria/pdf/acta-bienes/<int:pk>',atencion_views.ReporteBienesSecundariaPdfView.as_view(),name ="acta_bienesSecundaria_pdf"),
+    path('AtencionSecundaria/pdf/acta-entrega-reporte/<int:pk>',atencion_views.ReporteEntregaSecundariaPdfView.as_view(),name ="acta_entregaSecundaria_reporte_pdf"),
+    path('AtencionSecundaria/pdf/acta-recepcion/<int:pk>',atencion_views.ReporteRecepcionSecundariaPdfView.as_view(),name ="acta_recepcionSecundaria_reporte_pdf"),
+    #
+    ##
     #--Atencion
     path('Atencion', atencion_views.AtencionListView.as_view(), name="atencion_listar"),
     path('Atencion/Crear',atencion_views.AtencionCreateView.as_view(),name ="atencion_crear"),

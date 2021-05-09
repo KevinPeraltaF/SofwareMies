@@ -117,6 +117,8 @@ class AtencionDetailView(LoginRequiredMixin,DetailView):
         context = super().get_context_data(**kwargs)
         context['items'] = AtencionDetalle.objects.filter(cabecera=self.object.id)
         return context
+
+
 ####-ATENCION
 class ReporteActaEntregaPdfView(LoginRequiredMixin,PdfMixin,DetailView):
     model = Atencion
@@ -182,14 +184,14 @@ class AtencionSecundariaListView(LoginRequiredMixin,ListView):
 class AtencionSecundariaCreateView(LoginRequiredMixin,CreateView):
     model = AtencionSecundaria
     form_class = AtencionSecundariaForm
-    template_name = "atencion/atencion_crear.html"
+    template_name = "atencion/atencionSecundaria_crear.html"
     success_url = reverse_lazy('atencion_listar')
 
     def get(self, request,*args,**kwargs):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        detalle_form = AtencionCabDetalleForm()
+        detalle_form = AtencionCabDetalleSecundariaForm()
         return self.render_to_response(
             self.get_context_data(form=form, detalle_form=detalle_form)
         )
@@ -198,7 +200,7 @@ class AtencionSecundariaCreateView(LoginRequiredMixin,CreateView):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        detalle_form = AtencionCabDetalleForm(self.request.POST)
+        detalle_form = AtencionCabDetalleSecundariaForm(self.request.POST)
         if (form.is_valid() and detalle_form.is_valid()):
             return self.form_valid(form, detalle_form)
         else:
@@ -218,7 +220,7 @@ class AtencionSecundariaCreateView(LoginRequiredMixin,CreateView):
 
 class AtencionSecundariaDeleteView(LoginRequiredMixin,DeleteView):
     model = AtencionSecundaria
-    template_name = "atencion/atencion_eliminar.html"
+    template_name = "atencion/atencionSecundaria_eliminar.html"
     success_url = reverse_lazy('atencion_listar')
    
 
@@ -226,14 +228,14 @@ class AtencionSecundariaUpdateView(LoginRequiredMixin,UpdateView):
     permission_required = 'atencion.change_atencionsecundaria'
     model = AtencionSecundaria
     form_class =  AtencionSecundariaForm 
-    template_name = "atencion/atencion_editar.html"
+    template_name = "atencion/atencionSecundaria_editar.html"
     success_url = reverse_lazy('atencion_listar')
 
     def get(self, request,*args,**kwargs):
         self.object = self.get_object()
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        detalle_form = AtencionCabDetalleForm(instance = self.object)
+        detalle_form = AtencionCabDetalleSecundariaForm(instance = self.object)
         return self.render_to_response(
             self.get_context_data(form=form, detalle_form=detalle_form)
         )
@@ -242,7 +244,7 @@ class AtencionSecundariaUpdateView(LoginRequiredMixin,UpdateView):
         self.object = self.get_object()
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        detalle_form = AtencionCabDetalleForm(self.request.POST,instance=self.get_object())
+        detalle_form = AtencionCabDetalleSecundariaForm(self.request.POST,instance=self.get_object())
         if (form.is_valid() and detalle_form.is_valid()):
             return self.form_valid(form, detalle_form)
         else:
@@ -264,7 +266,7 @@ class AtencionSecundariaUpdateView(LoginRequiredMixin,UpdateView):
     
 class AtencionSecundariaDetailView(LoginRequiredMixin,DetailView):
     model = AtencionSecundaria
-    template_name = "atencion/atencion_detalle.html"
+    template_name = "atencion/atencionSecundaria_detalle.html"
     # additional parameters
 
     def get_context_data(self, **kwargs):
@@ -273,3 +275,54 @@ class AtencionSecundariaDetailView(LoginRequiredMixin,DetailView):
         return context
 
 
+###########################################3
+###########
+##
+####-ATENCION SECUNDARIA
+class ReporteActaEntregaSecundariaPdfView(LoginRequiredMixin,PdfMixin,DetailView):
+    model = AtencionSecundaria
+    template_name = "atencion/acta_entregaSecundaria_pdf.html"
+    # additional parameters
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = AtencionSecundariaDetalle.objects.filter(cabecera=self.object.id)
+        return context
+
+class ReporteAtencionSecundariaPdfView(LoginRequiredMixin,PdfMixin, DetailView):
+    model = AtencionSecundaria
+    template_name = "atencion/atencionSecundaria_reporte_pdf.html"
+
+####-BIENES
+class ReporteBienesSecundariaPdfView(LoginRequiredMixin,PdfMixin, DetailView):
+    model = AtencionSecundaria
+    template_name = "atencion/actaSecundaria_bienes.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #context['bienes'] = Empleado.objects.get(id=4)
+        context['items'] = AtencionSecundariaDetalle.objects.filter(cabecera=self.object.id)
+
+        return context
+
+
+####ENTREGA
+class ReporteEntregaSecundariaPdfView(LoginRequiredMixin,PdfMixin, DetailView):
+    model = AtencionSecundaria
+    template_name = "atencion/acta_entregaSecundaria.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = AtencionSecundariaDetalle.objects.filter(cabecera=self.object.id)
+
+        return context
+
+####   RECEPCION
+class ReporteRecepcionSecundariaPdfView(LoginRequiredMixin,PdfMixin, DetailView):
+    model = AtencionSecundaria
+    template_name = "atencion/acta_recepcionSecundaria.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = AtencionSecundariaDetalle.objects.filter(cabecera=self.object.id)
+        return context

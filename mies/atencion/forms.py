@@ -34,7 +34,8 @@ class AtencionForm(forms.ModelForm):
             
             'responsable':forms.Select(
                     attrs={
-                        'class': 'form-control select'
+                        'class': 'form-control select',
+                        'autofocus':'autofocus'
                     }
                 ),
             'equipo':forms.Select(
@@ -161,6 +162,7 @@ class AtencionSecundariaForm(forms.ModelForm):
         fields = (
         
         'responsable',
+        'recibe',
         'detalle',
         'fecha_salida',
         'hora_salida',
@@ -176,6 +178,13 @@ class AtencionSecundariaForm(forms.ModelForm):
         widgets = {
             
             'responsable':forms.Select(
+                    attrs={
+                        'class': 'form-control select',
+                        'autofocus':'autofocus'
+                    }
+                ),
+
+            'recibe':forms.Select(
                     attrs={
                         'class': 'form-control select'
                     }

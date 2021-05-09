@@ -18,7 +18,8 @@ class AsuntoForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                        'autofocus':'autofocus'
                 }
             ),
         }
@@ -39,7 +40,8 @@ class ActividadCabeceraForm(forms.ModelForm):
             'fecha':forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
-                    'class': 'form-control'
+                    'class': 'form-control',
+                        'autofocus':'autofocus'
                 }
             ),
             'responsable':forms.Select(
@@ -86,7 +88,8 @@ class ActividadDetalleForm(forms.ModelForm):
             ),
             'asunto': forms.Select(
                 attrs ={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                        'autofocus':'autofocus'
                 }
             ),
         }

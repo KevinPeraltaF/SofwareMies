@@ -71,7 +71,8 @@ class InvTicsForm(forms.ModelForm):
             'descripcion':forms.Textarea(
                 attrs={
                     'class':'form-control',
-                    "rows":3, "cols":10
+                    "rows":3, "cols":10,
+                    'autofocus':'autofocus'
                 }
             ),
             'marca':forms.Select(
@@ -131,7 +132,8 @@ class MarcaForm(forms.ModelForm):
         widgets = {
             'descripcion':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             )
         }
@@ -151,7 +153,8 @@ class ModeloForm(forms.ModelForm):
         widgets ={
             'descripcion':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             )
         }
@@ -171,7 +174,8 @@ class CategoriaForm(forms.ModelForm):
         widgets ={
             'descripcion':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             )
         }
@@ -191,7 +195,8 @@ class CondicionForm(forms.ModelForm):
         widgets ={
             'descripcion':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             )
         }
@@ -211,7 +216,8 @@ class CapacidadDiscoForm(forms.ModelForm):
         widgets ={
             'descripcion':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             )
         }
@@ -232,7 +238,8 @@ class CapacidadMemoriaRamForm(forms.ModelForm):
         widgets ={
             'descripcion':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             )
         }
@@ -252,7 +259,8 @@ class ProcesadorForm(forms.ModelForm):
         widgets ={
             'descripcion':forms.TextInput(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control',
+                    'autofocus':'autofocus'
                 }
             )
         }
@@ -336,7 +344,8 @@ class EquipoCabeceraForm(forms.ModelForm):
             'descripcion':forms.Textarea(
                 attrs={
                     'class':'form-control',
-                    "rows":3, "cols":10
+                    "rows":3, "cols":10,
+                    'autofocus':'autofocus'
                 }
             ),
             'marca':forms.Select(

@@ -37,33 +37,35 @@
         <form method="post" >
             {% csrf_token %}
             <div class='form-row'>
-                <div class="form-group col-md-6">
+                <div class="col ">
                     {{form.fecha.label}}
                     {{form.fecha}}
                 </div>
-                <div class="form-group col-md-6">
+                <div class="col">
                     {{form.hora_inicio.label}}
                     {{form.hora_inicio}}
                 </div>
-            </div>
-            <div class="form-group">
-                {{form.hora_fin.label}}
-                {{form.hora_fin}}
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group col-md-5">
-                    {{form.lugar.label}}
-                    {{form.lugar}}
+                <div class="col">
+                    {{form.hora_fin.label}}
+                    {{form.hora_fin}}
                 </div>
-                <div class="form-group col-md-4">
-                    {{form.tema.label}}
-                    {{form.tema}}
-                </div>
-                <div class="form-group col-md-3">
+                <div class="col">
                     {{form.tipoCapacitacion.label}}
                     {{form.tipoCapacitacion}}
                 </div>
+            </div>
+           
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form.lugar.label}}
+                    {{form.lugar}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form.tema.label}}
+                    {{form.tema}}
+                </div>
+              
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -86,7 +88,7 @@
                 </div>
             </div>
           
-            <hr>
+            <div class="container"><h3>Empleados asignados a la capacitación</h3></div>
             <div class="form-row">
                 {{detalle_form.management_form}}
                 {% for form1 in detalle_form %}
@@ -96,13 +98,13 @@
                     {{form1.empleado}}
                 </div>
                 
-                <div id = 'js_cantidad'  class="form-group col-md-4">
+                <div id = 'js_cantidad'  class="form-group col-md-6">
                     {{form1.observacion.label}}
                     {{form1.observacion}}
                 </div>
                 {% endfor %}
             </div>
-            <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar Periferico</button>
+            <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar</button>
 
         
         

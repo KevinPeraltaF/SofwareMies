@@ -22,7 +22,8 @@ class PrestamoForm(forms.ModelForm):
             'fecha_entrega': forms.DateInput(format=('%Y-%m-%d'),
                 attrs={
                     'type':'date',
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
             'fecha_devolucion': forms.TextInput(

@@ -62,7 +62,7 @@ class UnidadAtencion(models.Model):
 
     def __str__(self):
         """Unicode representation of UnidadAtencion."""
-        return self.descripcion
+        return ("{}-{}").format(self.descripcion,self.codigo)
 
     def save(self, *args, **kwargs):
         """Save method for UnidadAtencion."""

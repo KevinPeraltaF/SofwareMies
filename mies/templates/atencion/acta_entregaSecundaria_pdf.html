@@ -5,7 +5,7 @@
 
 <HEAD>
 
-    <TITLE>RECEPCIÓN-DM-09D17-TIC-MIES- {{object.id}}</TITLE>
+    <TITLE>ATENCION-DM-09D17-TIC-MIES- {{object.id}}</TITLE>
 
 
 </HEAD>
@@ -20,7 +20,7 @@
     <P LANG="en-US" CLASS="western" ALIGN=CENTER>
         <FONT SIZE=2 STYLE="font-size: 11pt">
             <FONT SIZE=4 STYLE="font-size: 16pt"><U><B>ACTA
-                        DE ENTREGA– RECEPCIÓN</B></U></FONT>
+                        DE ENTREGA – RECEPCIÓN</B></U></FONT>
         </FONT>
     </P>
     <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
@@ -28,7 +28,7 @@
     <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY>
         <FONT SIZE=2 STYLE="font-size: 11pt">
             <FONT SIZE=4>En
-                la ciudad de Milagro a los {{ object.fecha_salida.day}} días del mes de 
+                la ciudad de Milagro a los {{ object.fecha_salida.day}} días del mes de
                 {% if object.fecha_salida.month == 1  %}
                 <span >Enero</span>
                 {% endif %}
@@ -65,17 +65,20 @@
                 {% if object.fecha_salida.month == 12  %}
                 <span >Diciembre</span>
                 {% endif %}
+              
+
+               
                 del {{ object.fecha_salida.year }}, se
                 procede a la <b>ENTREGA</b> de <b>{{object.equipo.equipo.categoria}}</b> , entre las siguientes personas, por
-                una parte quien <b>RECIBE</b> ING. {{object.responsable}}  </FONT>
+                una parte quien <b>ENTREGA</b> ING. {{object.responsable}} </FONT>
             <FONT SIZE=4><B>RESPONSABLE
                     ENCARGADO DE TICS </B></FONT>
             <FONT SIZE=4>de la DIRECCION DISTRITAL
-                MILAGRO MIES/ZONA 5, y por otro lado quien <b>ENTREGA</b> {{object.equipo.custodio}} con
+                MILAGRO MIES/ZONA 5, y por otro lado quien <b>RECIBE</b> {{object.recibe}} con
             </FONT>
-            <FONT SIZE=4><B>CI: {{object.equipo.custodio.cedula}}</B></FONT>
+            <FONT SIZE=4>CI: <B>{{object.recibe.cedula}}</B></FONT>
             <FONT SIZE=4>
-                <b>{{object.equipo.custodio.cargo}}</b>.</FONT>
+                <b>{{object.recibe.cargo}}</b>.</FONT>
         </FONT>
     </P>
    
@@ -129,60 +132,7 @@
                 </td>
             </tr>
 
-            <tr valign="TOP">
-                <td width="40"
-                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p lang="en-US" class="western">1
-                    </p>
-                </td>
-                <td width="90"
-                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p lang="en-US" class="western">
-                        {{object.equipo.equipo.categoria}}
-                    </p>
-                </td>
-                <td width="90"
-                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p lang="en-US" class="western">
-                        {% if  object.equipo.equipo.marca is none %}
-                            N/A
-                        {% else %}
-                            {{object.equipo.equipo.marca}}
-                       {% endif %}
-                       
-                    </p>
-                </td>
-                <td width="90"
-                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p lang="en-US" class="western">
-                       
-                       {% if  object.equipo.equipo.serie is none %}
-                            N/A
-                        {% else %}
-                            {{object.equipo.equipo.serie}}
-                       {% endif %}
-                           
-                    </p>
-                </td>
-                <td width="90"
-                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p lang="en-US" class="western">
-                        {% if  object.equipo.equipo.modelo is none %}
-                        N/A
-                    {% else %}
-                        {{object.equipo.equipo.modelo}}
-                   {% endif %}
-                        
-                    </p>
-                </td>
-                <td width="60"
-                    style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
-                    <p lang="en-US" class="western">
-                        {{object.equipo.equipo.condicion}}
-                    </p>
-                </td>
-            </tr>
-
+        
             {% for a in items %}
             <tr valign="TOP">
                 <td width="40"
@@ -299,8 +249,7 @@
 
     <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
     </P>
-    <P LANG="en-US" CLASS="western" ALIGN=JUSTIFY><BR>
-    </P>
+   
    
 
     <TABLE WIDTH=653 CELLPADDING=7 CELLSPACING=0>
@@ -310,7 +259,7 @@
             <TD WIDTH=312 STYLE="border: none; padding: 0in">
                 <P LANG="en-US" CLASS="western" ALIGN=CENTER>
                     <FONT FACE="Calibri, serif">
-                        <FONT SIZE=4><SPAN LANG="es-ES"><B>RECIBE
+                        <FONT SIZE=4><SPAN LANG="es-ES"><B>ENTREGA
                                     CONFORME:</B></SPAN></FONT>
                     </FONT>
                 </P>
@@ -318,7 +267,7 @@
             <TD WIDTH=312 STYLE="border: none; padding: 0in">
                 <P LANG="en-US" CLASS="western" ALIGN=CENTER>
                     <FONT FACE="Calibri, serif">
-                        <FONT SIZE=4><SPAN LANG="es-ES"><B>ENTREGA 
+                        <FONT SIZE=4><SPAN LANG="es-ES"><B>RECIBE
                                     CONFORME:</B></SPAN></FONT>
                     </FONT>
                 </P>
@@ -338,7 +287,7 @@
             </TD>
             <TD WIDTH=310 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
                 <P LANG="en-US" CLASS="western" ALIGN=CENTER>
-                    <FONT SIZE=4 STYLE="font-size: 11pt"><SPAN LANG="es-ES">{{object.equipo.custodio}}</SPAN></FONT>
+                    <FONT SIZE=4 STYLE="font-size: 11pt"><SPAN LANG="es-ES">{{object.recibe}}</SPAN></FONT>
                 </P>
             </TD>
         </TR>
@@ -353,7 +302,7 @@
             <TD WIDTH=310 BGCOLOR="#ffffff" STYLE="border: none; padding: 0in">
                 <P LANG="en-US" CLASS="western" ALIGN=CENTER>
                     <FONT SIZE=2 STYLE="font-size: 11pt">
-                        <FONT SIZE=4><SPAN LANG="es-ES"><B>{{object.equipo.custodio.cargo}}</B></SPAN></FONT>
+                        <FONT SIZE=4><SPAN LANG="es-ES"><B>{{object.recibe.cargo}}</B></SPAN></FONT>
                     </FONT>
                 </P>
             </TD>

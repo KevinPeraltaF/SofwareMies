@@ -1,0 +1,226 @@
+{% load static %}
+{% block content_extra_css %}
+<link href="{% static 'fonts/dropify.eot'%}">
+<link href="{% static 'fonts/dropify.svg'%}">
+<link href="{% static 'fonts/dropify.ttf'%}">
+<link href="{% static 'fonts/dropify.woff'%}">
+<link href="{% static 'css/dropify.min.css'%}" rel="stylesheet">
+
+{% endblock content_extra_css %}
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Registro</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          
+  
+        </div>
+        {% if form.errors %}
+  
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                        {{error}}
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+  
+        </div>
+        {% endif %}
+        
+        
+        
+        <form action="{% url 'atencionSecundaria_editar' object.id %}" method="post">
+            {% csrf_token %}
+            
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.tipoDocumento.label}}
+                            {{form.tipoDocumento}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.responsable.label}}
+                            {{form.responsable}}
+                        </div>
+                    </div>
+                   
+                </div>
+            
+            
+    
+                <div class="row list-group" >
+                    <div class="row ">
+                        <div class="col-1"></div>
+                        <div class="col">
+                            <div class="form-group">
+            
+                                {{form.instalacion}}
+                                {{form.instalacion.label}}
+                            </div>
+                            <div class="form-group">
+                                {{form.configuracion}}
+                                {{form.configuracion.label}}
+                            </div>
+            
+                        </div>
+            
+                        <div class="col">
+                            <div class="form-group">
+            
+                                {{form.hardware}}
+                                {{form.hardware.label}}
+                            </div>
+                            <div class="form-group">
+            
+                                {{form.software}}
+                                {{form.software.label}}
+                            </div>
+                        </div>
+            
+                        <div class="col">
+                            <div class="form-group">
+            
+                                {{form.capacitacion}}
+                                {{form.capacitacion.label}}
+                            </div>
+                            <div class="form-group">
+            
+                                {{form.prueba}}
+                                {{form.prueba.label}}
+                            </div>
+                        </div>
+                    </div>
+            
+            
+            
+            
+                </div>
+            
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.fecha_salida.label}}
+                            {{form.fecha_salida}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.hora_salida.label}}
+                            {{form.hora_salida}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            {{form.recibe.label}}
+                            {{form.recibe}}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    {{form.detalle.label}}
+                    {{form.detalle}}
+                </div>
+        
+                <div class="form-group">
+                    {{form.observacion.label}}
+                    {{form.observacion}}
+                </div>
+                <h4>Asignación de Piezas o partes Opcional.</h4>
+            
+                <hr>
+               
+                    <div class="form-row">
+        
+                        
+                        {{detalle_form.management_form}}
+                        {% for form1 in detalle_form %}
+                        {{form1.id}}
+                        <div id = 'js_periferico' class="form-group col-md-6">
+                            {{form1.pieza.label}}
+                            {{form1.pieza}}
+                        </div>
+                        
+                        <div id = 'js_cantidad'  class="form-group col-md-4">
+                            {{form1.cantidad.label}}
+                            {{form1.cantidad}}
+                        </div>
+                        <div id = 'js_eliminar'  class="form-group col-md-2">
+                            {{form1.DELETE.label}}
+                            {{form1.DELETE}}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar Periferico</button>
+        
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+
+  {% block content_extra_js %}
+  <script>
+      $(function(){
+          $('#id_tipoDocumento').select2();
+          $('#id_responsable').select2();
+      
+      });
+  </script>
+  
+  
+  <script>
+      function agregar_inputs(){
+          var total_forms = document.querySelector('#id_atenciondetalle_set-TOTAL_FORMS');
+          var value_last = parseInt(total_forms.value)-1;
+          //nuevo label e input para periferico
+          var nuevo_label_periferico = document.createElement('label');
+          nuevo_label_periferico.innerHTML = 'Pieza'
+          var nuevo_select_periferico = document.querySelector('#id_atenciondetalle_set-0-pieza').cloneNode(true);
+          var span_periferico = document.querySelector(".select2").cloneNode(true);
+          nuevo_select_periferico.name = 'atenciondetalle_set-'+total_forms.value+'-pieza';
+          nuevo_select_periferico.id = 'id_atenciondetalle_set-'+total_forms.value+'-pieza';
+          //nuevo label e input para cantidad
+          var nuevo_label_cantidad = document.createElement('label');
+          nuevo_label_cantidad.innerHTML = 'cantidad'
+          var nuevo_select_cantidad = document.querySelector('#id_atenciondetalle_set-0-cantidad').cloneNode(true);
+          nuevo_select_cantidad.name = 'atenciondetalle_set-'+total_forms.value+'-cantidad';
+          nuevo_select_cantidad.id = 'id_atenciondetalle_set-'+total_forms.value+'-cantidad';
+          
+          var span_periferico = document.querySelector(".select2").cloneNode(true);
+          document.querySelector('#js_periferico').appendChild(nuevo_label_periferico);
+          document.querySelector('#js_periferico').appendChild(nuevo_select_periferico);
+          document.querySelector('#js_cantidad').appendChild(nuevo_label_cantidad);
+          document.querySelector('#js_cantidad').appendChild(nuevo_select_cantidad);
+          total_forms.value = parseInt(total_forms.value)+1;
+          //nuevo label e input para eliminar
+          var nuevo_label_eliminar = document.createElement('label');
+          nuevo_label_eliminar.innerHTML = 'Eliminar'
+          var nuevo_select_eliminar = document.querySelector('#id_atenciondetalle_set-'+value_last+'-DELETE').cloneNode(true);
+          nuevo_select_eliminar.name = 'atenciondetalle_set-'+total_forms.value+'-DELETE';
+          nuevo_select_eliminar.id = 'id_atenciondetalle_set-'+total_forms.value+'-DELETE';
+          document.querySelector('#js_eliminar').appendChild(nuevo_label_eliminar);
+          document.querySelector('#js_eliminar').appendChild(nuevo_select_eliminar);
+          total_forms.value = parseInt(total_forms.value)+1;
+      }
+
+      
+  </script>
+  {% endblock content_extra_js %}
+  

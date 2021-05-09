@@ -19,7 +19,8 @@ class ZonaForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
         }
@@ -48,7 +49,8 @@ class ProvinciaForm(forms.ModelForm):
             ),
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
         }
@@ -56,6 +58,7 @@ class ProvinciaForm(forms.ModelForm):
 
 class DistritoForm(forms.ModelForm):
     """Form definition for Distrito."""
+ 
 
      #validaciones para que se envie como mayusculas los datos
     def clean_descripcion(self):
@@ -79,7 +82,8 @@ class DistritoForm(forms.ModelForm):
             ),
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
         }

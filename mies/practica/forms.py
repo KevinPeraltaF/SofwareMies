@@ -28,7 +28,8 @@ class PasanteForm(forms.ModelForm):
         widgets = {
             'nombres': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
             'apellidos': forms.TextInput(
@@ -107,7 +108,8 @@ class CarreraForm(forms.ModelForm):
             ),
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
         }
@@ -129,7 +131,8 @@ class UniversidadForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
                 }
             ),
         }
