@@ -1,4 +1,4 @@
-/** funcion para abrir el modal de editar */
+/** funcion para abrir el modal de editarr */
 
 function abrirModalEditar(url){
             
