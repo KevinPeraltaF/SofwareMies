@@ -8,6 +8,13 @@
 
 {% endblock content_extra_css %}
 
+<script>
+    $(function () {
+        $('.select').select2(
+            { theme: "bootstrap4", }
+        );
+    });
+</script>
 <div class="modal-dialog modal-lg"  role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -113,10 +120,11 @@
                 
                 
     
-                <div class="form-row">
+                <div id = "jsTotalForms" class="form-row">
                     {{detalle_form.management_form}}
                     {% for form1 in detalle_form %}
                         {{form1.id}}
+                    
                     <div id = 'js_periferico' class="form-group col-md-6">
                         {{form1.periferico.label}}
                         {{form1.periferico}}
