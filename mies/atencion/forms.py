@@ -7,8 +7,7 @@ from django.forms.models import inlineformset_factory
 class AtencionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AtencionForm, self).__init__(*args, **kwargs)
-        # Filtro al responsable de acuerdo a su cargo id =1; -> tics
-        self.fields['responsable'].queryset = Empleado.objects.filter(estado=1, area = 1)
+       
         #filtro para mostrar solo equipos vigentes
         self.fields['equipo'].queryset = Custodio.objects.filter(estado=1)
 
@@ -153,10 +152,7 @@ AtencionCabDetalleForm = inlineformset_factory(Atencion,AtencionDetalle,
 
 #atencion secundaria
 class AtencionSecundariaForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(AtencionSecundariaForm, self).__init__(*args, **kwargs)
-        # Filtro al responsable de acuerdo a su cargo id =1; -> tics
-        self.fields['responsable'].queryset = Empleado.objects.filter(estado=1, area = 1)
+   
 
     class Meta:
         model = AtencionSecundaria

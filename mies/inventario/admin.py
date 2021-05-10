@@ -42,8 +42,7 @@ class InventarioTicsAdmin(admin.ModelAdmin):
     'modelo','condicion','serie' ,'codigoMies' ,'cantidad' ,'foto',)
     list_filter = ('categoria','descripcion','marca',
     'modelo','condicion','serie' ,'codigoMies' ,)
-    search_fields = ('categoria','descripcion','marca',
-    'modelo','condicion','serie' ,'codigoMies',)
+    search_fields = ('descripcion','serie' ,'codigoMies',)
 
 @admin.register(CapacidadDisco)
 class CapacidadDiscoAdmin(admin.ModelAdmin):

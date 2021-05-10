@@ -123,6 +123,7 @@ class InventarioTics(models.Model):
         item = model_to_dict(self)
         item['cantidad'] = self.cantidad
         return item
+        
     def save(self, *args, **kwargs):
         """Save method for InventarioTics."""
         self.descripcion = self.descripcion and (self.descripcion).upper()

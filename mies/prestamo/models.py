@@ -2,6 +2,8 @@ from django.db import models
 from empleado.models import Empleado
 from inventario.models import Condicion , InventarioTics
 # Create your models here.
+from django.db.models import F
+
 class Prestamo(models.Model):
     """Model definition for PrestamoDevolucion."""
     fecha_entrega = models.DateField('Fecha Entrega', auto_now=False, auto_now_add=False)
@@ -21,6 +23,16 @@ class Prestamo(models.Model):
 
     def save(self, *args, **kwargs):
         self.observacion = self.observacion and (self.observacion).upper()
+
+        if self.estado:
+            item = InventarioTics.objects.get(id=self.item.id)
+            item.cantidad = (F('cantidad') +self.cantidad)
+            item.save()
+        else:
+            item = InventarioTics.objects.get(id=self.item.id)
+            item.cantidad = (F('cantidad') -self.cantidad)
+            item.save()
+
         return super(Prestamo, self).save(*args, **kwargs)
 
     def __str__(self):
