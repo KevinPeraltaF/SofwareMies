@@ -29,7 +29,8 @@ class CustodioForm(forms.ModelForm):
                 attrs={
                     'type':'date',
                     'class': 'form-control',
-                    'autofocus':'autofocus'                }
+                    'autofocus':'autofocus'    
+                    }
             ),
             'custodio': forms.Select(
                 attrs={

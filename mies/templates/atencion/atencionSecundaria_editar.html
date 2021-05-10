@@ -64,13 +64,14 @@
                         <div class="col-1"></div>
                         <div class="col">
                             <div class="form-group">
-            
-                                {{form.instalacion}}
                                 {{form.instalacion.label}}
+                               <input type="checkbox" name="instalacion" id="id_instalacion"  {% if object.instalacion %} checked {% endif %} > 
                             </div>
+                           
                             <div class="form-group">
-                                {{form.configuracion}}
                                 {{form.configuracion.label}}
+                               <input type="checkbox" name="configuracion" id="id_configuracion"  {% if object.configuracion %} checked {% endif %} >
+                         
                             </div>
             
                         </div>
@@ -78,26 +79,31 @@
                         <div class="col">
                             <div class="form-group">
             
-                                {{form.hardware}}
+                              
                                 {{form.hardware.label}}
+                               <input type="checkbox" name="hardware" id="id_hardware"  {% if object.hardware %} checked {% endif %} >
+                         
                             </div>
                             <div class="form-group">
-            
-                                {{form.software}}
                                 {{form.software.label}}
+                                <input type="checkbox" name="software" id="id_software"  {% if object.software %} checked {% endif %} >
+                          
+                                
                             </div>
                         </div>
             
                         <div class="col">
                             <div class="form-group">
-            
-                                {{form.capacitacion}}
                                 {{form.capacitacion.label}}
+                                <input type="checkbox" name="capacitacion" id="id_capacitacion"  {% if object.capacitacion %} checked {% endif %} >
+                          
+                             
                             </div>
                             <div class="form-group">
-            
-                                {{form.prueba}}
                                 {{form.prueba.label}}
+                                <input type="checkbox" name="prueba" id="id_prueba"  {% if object.prueba %} checked {% endif %} >
+                          
+                
                             </div>
                         </div>
                     </div>
@@ -106,7 +112,6 @@
             
             
                 </div>
-            
                 <div class="row">
                     <div class="col">
                         <div class="form-group">

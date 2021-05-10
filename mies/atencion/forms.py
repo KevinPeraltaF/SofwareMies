@@ -153,7 +153,6 @@ AtencionCabDetalleForm = inlineformset_factory(Atencion,AtencionDetalle,
 #atencion secundaria
 class AtencionSecundariaForm(forms.ModelForm):
    
-
     class Meta:
         model = AtencionSecundaria
         fields = (
