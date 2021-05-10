@@ -69,7 +69,7 @@
                         <td colspan="12">{{object.objetivo }}</td>
                     </tr>
                     <tr>
-                        <th colspan="12">Lista de participantes de la capacitación</th>
+                        <th colspan="13">Lista de participantes de la capacitación</th>
                     </tr>
 
 
@@ -79,7 +79,12 @@
                         <th>Empleado:</th>
                         <td colspan="6">{{a.empleado}}</td>
                         <th>Observación:</th>
-                        <td colspan="6">{{a.observacion }}</td>
+                        <td colspan="6">
+                        {% if a.observacion is None %}
+                        {% else %}
+                            {{a.observacion }}
+                        {% endif %}
+                            </td>
                     </tr>
                     {% endfor %}
 
