@@ -140,7 +140,8 @@ class AtencionDetalleForm(forms.ModelForm):
             'cantidad':forms.TextInput(
                 attrs={
                     'type':'number',
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'min':0
                 }
             ),
         }
@@ -286,7 +287,8 @@ class AtencionDetalleSecundariaForm(forms.ModelForm):
             'cantidad':forms.TextInput(
                 attrs={
                     'type':'number',
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'min':0
                 }
             ),
         }

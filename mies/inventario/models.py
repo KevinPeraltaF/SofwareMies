@@ -206,8 +206,6 @@ class CapacidadMemoriaRam(models.Model):
         return super(CapacidadMemoriaRam, self).save(*args, **kwargs)
 
     # TODO: Define custom methods here
-
-
    
 class Procesador(models.Model):
     """Model definition for Procesador."""
@@ -227,9 +225,6 @@ class Procesador(models.Model):
         """Save method for Procesador."""
         self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Procesador, self).save(*args, **kwargs)
-
-
-
 
 class EquipoCabecera(models.Model):
     """Model definition for InvetarioDistritoCabecera."""
@@ -269,7 +264,6 @@ class EquipoCabecera(models.Model):
         self.serie =self.serie and (self.serie).upper()
         self.codigoMies = self.codigoMies and (self.codigoMies).upper()
         return super(EquipoCabecera, self).save(*args, **kwargs)
-
 
 
 class EquipoDetalle(models.Model):

@@ -116,13 +116,12 @@ class CapacitacionDetalleForm(forms.ModelForm):
         widgets = {
             'empleado': forms.Select(
                 attrs={
-                    
+                    'onkeyup':"javascript:this.value=this.value.toUpperCase();",
                     'class': 'form-control select'
                 }
             ),
             'observacion':forms.Textarea(
                 attrs={
-                  
                     'class': 'form-control',
                     "rows":1, "cols":10
                 }

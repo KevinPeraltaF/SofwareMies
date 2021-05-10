@@ -81,7 +81,7 @@
                 </div>
 
                 <hr>
-                <div class="form-row">
+                <div id="jsTotalForms"  class="form-row">
                     {{detalle_form.management_form}}
                     {% for form1 in detalle_form %}
                     {{form1.id}}
@@ -101,8 +101,7 @@
                     {% endfor %}
 
                 </div>
-                <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar
-                    Periferico</button>
+                <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar</button>
 
             </div>
             <div class="modal-footer">
@@ -117,49 +116,65 @@
 
 {% block content_extra_js %}
 
-<script>
-    $(function(){
-        $('#id_empleado').select2();
- 
+
+ <script>
+    $(function () {
+        $('.select').select2(
+            { theme: "bootstrap4", }
+        );
     });
-</script>
-
-
-<script>
     function agregar_inputs(){
+        $('.select').select2("destroy");
         var total_forms = document.querySelector('#id_capacitaciondetalle_set-TOTAL_FORMS');
         var value_last = parseInt(total_forms.value)-1;
         //nuevo label e input para periferico
         var nuevo_label_periferico = document.createElement('label');
-        nuevo_label_periferico.innerHTML = 'Pieza'
+        nuevo_label_periferico.innerHTML = 'Empleado'
         var nuevo_select_periferico = document.querySelector('#id_capacitaciondetalle_set-0-empleado').cloneNode(true);
-        //var span_periferico = document.querySelector(".select2").cloneNode(true);
         nuevo_select_periferico.name = 'capacitaciondetalle_set-'+total_forms.value+'-empleado';
         nuevo_select_periferico.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-empleado';
+        nuevo_select_periferico.className = 'form-control select'
         //nuevo label e input para cantidad
         var nuevo_label_cantidad = document.createElement('label');
-        nuevo_label_cantidad.innerHTML = 'observacion'
+        nuevo_label_cantidad.innerHTML = 'observación'
         var nuevo_select_cantidad = document.querySelector('#id_capacitaciondetalle_set-0-observacion').cloneNode(true);
         nuevo_select_cantidad.name = 'capacitaciondetalle_set-'+total_forms.value+'-observacion';
         nuevo_select_cantidad.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-observacion';
-        
-        //var span_periferico = document.querySelector(".select2").cloneNode(true);
-        document.querySelector('#js_periferico').appendChild(nuevo_label_periferico);
-        document.querySelector('#js_periferico').appendChild(nuevo_select_periferico);
-        document.querySelector('#js_cantidad').appendChild(nuevo_label_cantidad);
-        document.querySelector('#js_cantidad').appendChild(nuevo_select_cantidad);
-        total_forms.value = parseInt(total_forms.value)+1;
         //nuevo label e input para eliminar
         var nuevo_label_eliminar = document.createElement('label');
         nuevo_label_eliminar.innerHTML = 'Eliminar'
+        nuevo_label_eliminar.className = 'col-md-12'
+        nuevo_label_eliminar.style.top = "40px"
+        nuevo_label_eliminar.style.bottom = "40px"
         var nuevo_select_eliminar = document.querySelector('#id_capacitaciondetalle_set-'+value_last+'-DELETE').cloneNode(true);
         nuevo_select_eliminar.name = 'capacitaciondetalle_set-'+total_forms.value+'-DELETE';
         nuevo_select_eliminar.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-DELETE';
-        document.querySelector('#js_eliminar').appendChild(nuevo_label_eliminar);
-        document.querySelector('#js_eliminar').appendChild(nuevo_select_eliminar);
-        total_forms.value = parseInt(total_forms.value)+1;
-    }
+        nuevo_select_eliminar.className = ' col-md-12'
+        nuevo_select_eliminar.style.top = "40px"
+        nuevo_select_eliminar.style.bottom = "40px"
 
+        var cantidadElemen = document.querySelectorAll("#js_periferico");
+        var cantidadElemen_cantidad = document.querySelectorAll("#js_cantidad");
+        var cantidadElemen_eliminar = document.querySelectorAll("#js_eliminar");
+
+        for (let i=0; i< cantidadElemen.length; i++){
+            if (i == cantidadElemen.length-1){
+                cantidadElemen[i].appendChild(nuevo_label_periferico);
+                cantidadElemen[i].appendChild(nuevo_select_periferico);
+                cantidadElemen_cantidad[i].appendChild(nuevo_label_cantidad);
+                cantidadElemen_cantidad[i].appendChild(nuevo_select_cantidad);
+                cantidadElemen_eliminar[i].appendChild(nuevo_label_eliminar);
+                cantidadElemen_eliminar[i].appendChild(nuevo_select_eliminar);
+            }
+        }
+        total_forms.value = parseInt(total_forms.value)+1;
     
+        $(function () {
+            $('.select').select2(
+                { theme: "bootstrap4", }
+            );
+        });
+    }
 </script>
+
 {% endblock content_extra_js %}

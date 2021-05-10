@@ -98,9 +98,13 @@
                     {{form1.empleado}}
                 </div>
                 
-                <div id = 'js_cantidad'  class="form-group col-md-6">
+                <div id = 'js_cantidad'  class="form-group col-md-4">
                     {{form1.observacion.label}}
                     {{form1.observacion}}
+                </div>
+                <div id='js_eliminar' class="form-group col-md-2">
+                    {{form1.DELETE.label}}
+                    {{form1.DELETE}}
                 </div>
                 {% endfor %}
             </div>
@@ -125,13 +129,13 @@
 
 <script>
     function agregar_inputs(){
+        $('.select').select2("destroy");
         var total_forms = document.querySelector('#id_capacitaciondetalle_set-TOTAL_FORMS');
-
+        var value_last = parseInt(total_forms.value)-1;
         //nuevo label e input para periferico
         var nuevo_label_periferico = document.createElement('label');
         nuevo_label_periferico.innerHTML = 'Empleado'
         var nuevo_select_periferico = document.querySelector('#id_capacitaciondetalle_set-0-empleado').cloneNode(true);
-        var span_periferico = document.querySelector(".select2").cloneNode(true);
         nuevo_select_periferico.name = 'capacitaciondetalle_set-'+total_forms.value+'-empleado';
         nuevo_select_periferico.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-empleado';
         //nuevo label e input para cantidad
@@ -140,13 +144,40 @@
         var nuevo_select_cantidad = document.querySelector('#id_capacitaciondetalle_set-0-observacion').cloneNode(true);
         nuevo_select_cantidad.name = 'capacitaciondetalle_set-'+total_forms.value+'-observacion';
         nuevo_select_cantidad.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-observacion';
-        
-        var span_periferico = document.querySelector(".select2").cloneNode(true);
-        document.querySelector('#js_periferico').appendChild(nuevo_label_periferico);
-        document.querySelector('#js_periferico').appendChild(nuevo_select_periferico);
-        document.querySelector('#js_cantidad').appendChild(nuevo_label_cantidad);
-        document.querySelector('#js_cantidad').appendChild(nuevo_select_cantidad);
+        //nuevo label e input para eliminar
+        var nuevo_label_eliminar = document.createElement('label');
+        nuevo_label_eliminar.innerHTML = 'Eliminar'
+        nuevo_label_eliminar.className = 'col-md-12'
+        nuevo_label_eliminar.style.top = "40px"
+        nuevo_label_eliminar.style.bottom = "40px"
+        var nuevo_select_eliminar = document.querySelector('#id_capacitaciondetalle_set-'+value_last+'-DELETE').cloneNode(true);
+        nuevo_select_eliminar.name = 'capacitaciondetalle_set-'+total_forms.value+'-DELETE';
+        nuevo_select_eliminar.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-DELETE';
+        nuevo_select_eliminar.className = ' col-md-12'
+        nuevo_select_eliminar.style.top = "40px"
+        nuevo_select_eliminar.style.bottom = "40px"
+
+        var cantidadElemen = document.querySelectorAll("#js_periferico");
+        var cantidadElemen_cantidad = document.querySelectorAll("#js_cantidad");
+        var cantidadElemen_eliminar = document.querySelectorAll("#js_eliminar");
+
+        for (let i=0; i< cantidadElemen.length; i++){
+            if (i == cantidadElemen.length-1){
+                cantidadElemen[i].appendChild(nuevo_label_periferico);
+                cantidadElemen[i].appendChild(nuevo_select_periferico);
+                cantidadElemen_cantidad[i].appendChild(nuevo_label_cantidad);
+                cantidadElemen_cantidad[i].appendChild(nuevo_select_cantidad);
+                cantidadElemen_eliminar[i].appendChild(nuevo_label_eliminar);
+                cantidadElemen_eliminar[i].appendChild(nuevo_select_eliminar);
+            }
+        }
         total_forms.value = parseInt(total_forms.value)+1;
+    
+        $(function () {
+            $('.select').select2(
+                { theme: "bootstrap4", }
+            );
+        });
     }
 </script>
 {% endblock content_extra_js %}
