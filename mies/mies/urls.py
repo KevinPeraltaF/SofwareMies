@@ -144,6 +144,7 @@ urlpatterns = [
     #--EQUIPO CABECERA DISTRITO
     path('Equipo', inventaio_views.EquipoListView.as_view(), name="equipo_listar"),
     path('Equipo/Crear',inventaio_views.EquipoCreateView.as_view(),name ="equipo_crear"),
+    path('Equipo/Excel', inventaio_views.EquipoReporteExcelView.as_view(), name="equipo_excel_crear") ,
     path('Equipo/Editar/<int:pk>',inventaio_views.EquipoUpdateView.as_view(),name ="equipo_editar"),
     path('Equipo/Eliminar/<int:pk>',inventaio_views.EquipoDeleteView.as_view(),name ="equipo_eliminar"),
     path('Equipo/Detalle/<int:pk>',inventaio_views.EquipoDetailView.as_view(),name ="equipo_detalle"),

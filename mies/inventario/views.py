@@ -483,4 +483,128 @@ class EquipoDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     model = EquipoCabecera
     template_name = "inventario/equipo_eliminar.html"
     success_url = reverse_lazy('equipo_listar')
+
+
+
+
+class EquipoReporteExcelView(TemplateView):
+     
+     
+      #Usamos el método get para generar el archivo excel 
+    def get(self, request, *args, **kwargs):
+        #Obtenemos todas las lista de nuestra base de listas
+        lista = EquipoCabecera.objects.all()
+        
+        #Creamos el libro de trabajo
+        wb = Workbook()
+        #Definimos como nuestra hoja de trabajo, la hoja activa, por defecto la primera del libro
+        ws = wb.active
+        #En la celda B1 ponemos el texto 'REPORTE DE lista'
+        ws['B1'] = 'INVENTARIO DE EQUIPOS'
+        #Juntamos las celdas desde la B1 hasta la E1, formando una sola celda
+        ws.merge_cells('B1:N1')
+        #Creamos los encabezados desde la celda B3 hasta la E3
+        ws['B3'] = '#'
+        ws['C3'] = 'FECHA INGRESO'
+        ws['D3'] = 'CATEGORIA'
+        ws['E3'] = 'MARCA'
+        ws['F3'] = 'MODELO'
+        ws['G3'] = 'CONDICIÓN'
+        ws['H3'] = 'SERIE'
+        ws['I3'] = 'CODIGO MIES'
+        ws['J3'] = 'DIRECCIÓN IP'
+        ws['K3'] = 'DIRECCIÓN MAC'
+        ws['L3'] = 'CAPACIDAD DISCO'
+        ws['M3'] = 'CAPACIDAD RAM'
+        ws['N3'] = 'PROCESADOR'
+        ws['O3'] = 'PERIFERICOS DEL EQUIPO'
+       
+
+        ws.merge_cells('O3:Y3')
+        #ancho de columna
+        ws.column_dimensions['A'].width = 15.0
+        ws.column_dimensions['B'].width = 25.0
+        ws.column_dimensions['C'].width = 25.0
+        ws.column_dimensions['D'].width = 25.0
+        ws.column_dimensions['E'].width = 25.0
+        ws.column_dimensions['F'].width = 25.0
+        ws.column_dimensions['G'].width = 25.0
+        ws.column_dimensions['H'].width = 25.0
+        ws.column_dimensions['I'].width = 25.0
+        ws.column_dimensions['J'].width = 25.0
+        ws.column_dimensions['K'].width = 25.0
+        ws.column_dimensions['L'].width = 25.0
+        ws.column_dimensions['M'].width = 25.0
+        ws.column_dimensions['N'].width = 25.0
+        ws.column_dimensions['O'].width = 25.0
+        
+        cont=4
+        enumerador = 1
+        #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
+        contadorDetalle =15
+        for dato in lista:
+
+
+
+            if dato.codigoMies is None:
+                DatoCodigoMies = 'N/A'
+            else:
+                DatoCodigoMies = dato.codigoMies
+               
+
+            if dato.serie is None:
+                DatoSerie = 'N/A'
+            else:
+                DatoSerie = dato.serie
+               
+            if dato.marca is None:
+                DatoMarca = 'N/A'
+            else:
+                DatoMarca = dato.marca.descripcion
+               
+            if dato.modelo is None:
+                DatoModelo = 'N/A'
+            else:
+                DatoModelo = dato.marca.descripcion
+
+            if dato.direccionIp is None:
+                DatoiP = 'N/A'
+            else:
+                DatoiP =dato.direccionIp
+                
+            if dato.direccionMac is None:
+                DatoMac = 'N/A'
+            else:
+                DatoMac =dato.direccionMac
+
+            ws.cell(row=cont,column=2).value = enumerador
+            ws.cell(row=cont,column=3).value = dato.fechaIngreso
+            ws.cell(row=cont,column=4).value = dato.categoria.descripcion
+            ws.cell(row=cont,column=5).value = DatoMarca
+            ws.cell(row=cont,column=6).value = DatoModelo
+            ws.cell(row=cont,column=7).value = dato.condicion.descripcion
+            ws.cell(row=cont,column=8).value = DatoSerie
+            ws.cell(row=cont,column=9).value = DatoCodigoMies 
+            ws.cell(row=cont,column=10).value = DatoiP
+            ws.cell(row=cont,column=11).value = DatoMac
+            ws.cell(row=cont,column=12).value = dato.capacidadDisco.descripcion
+            ws.cell(row=cont,column=13).value = dato.capacidadMemoria.descripcion
+            ws.cell(row=cont,column=14).value = dato.capacidadProcesador.descripcion
+ 
+            listaDetalle = EquipoDetalle.objects.filter(cabeceraDistrito=dato.id)
+            for detalle in listaDetalle:
+                ws.cell(row=cont,column=contadorDetalle).value = detalle.periferico.descripcion
+                contadorDetalle=contadorDetalle+1
+            enumerador = enumerador+1
+            cont = cont + 1
+        #Establecemos el nombre del archivo
+        nombre_archivo ="ReporteEquipo.xlsx"
+        #Definimos que el tipo de respuesta a devolver es un archivo de microsoft excel
+        response = HttpResponse(content_type="application/ms-excel") 
+        contenido = "attachment; filename={0}".format(nombre_archivo)
+        response["Content-Disposition"] = contenido
+        wb.save(response)
+        return response
+
+
     
