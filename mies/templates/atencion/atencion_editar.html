@@ -192,7 +192,7 @@
         //nuevo label e input para periferico
         var nuevo_label_periferico = document.createElement('label');
         nuevo_label_periferico.innerHTML = 'Pieza'
-        var nuevo_select_periferico = document.querySelector('#id_atenciondetalle_set-'+total_forms.value+'-pieza').cloneNode(true);
+        var nuevo_select_periferico = document.querySelector('#id_atenciondetalle_set-'+value_last+'-pieza').cloneNode(true);
         nuevo_select_periferico.name = 'atenciondetalle_set-'+total_forms.value+'-pieza';
         nuevo_select_periferico.id = 'id_atenciondetalle_set-'+total_forms.value+'-pieza';
         nuevo_select_periferico.className = 'form-control select'
@@ -200,7 +200,7 @@
         //nuevo label e input para cantidad
         var nuevo_label_cantidad = document.createElement('label');
         nuevo_label_cantidad.innerHTML = 'cantidad'
-        var nuevo_select_cantidad = document.querySelector('#id_atenciondetalle_set-'+total_forms.value+'-cantidad').cloneNode(true);
+        var nuevo_select_cantidad = document.querySelector('#id_atenciondetalle_set-'+value_last+'-cantidad').cloneNode(true);
         nuevo_select_cantidad.name = 'atenciondetalle_set-'+total_forms.value+'-cantidad';
         nuevo_select_cantidad.id = 'id_atenciondetalle_set-'+total_forms.value+'-cantidad';
         
