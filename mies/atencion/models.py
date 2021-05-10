@@ -4,7 +4,7 @@ from inventario.models import  InventarioTics
 from custodio.models import Custodio
 from django.utils import timezone
 # Create your models here.
-
+from django.db.models import F
 class Atencion(models.Model):
     """Model definition for Atencion."""
 
@@ -64,6 +64,7 @@ class AtencionDetalle(models.Model):
     pieza = models.ForeignKey(InventarioTics, on_delete=models.PROTECT)
     cantidad = models.IntegerField('Cantidad', default = 1)
 
+
     class Meta:
         """Meta definition for AtencionDetalle."""
 
@@ -73,6 +74,17 @@ class AtencionDetalle(models.Model):
     def __int__(self):
         """Unicode representation of AtencionDetalle."""
         return self.pieza
+
+    
+    def save(self,*args, **kwargs):
+        """Save method for Atencion."""
+ 
+        item = InventarioTics.objects.get(id=self.pieza.id)
+        item.cantidad = ( F('cantidad') -self.cantidad)
+        item.save()
+        return super(AtencionDetalle, self).save(*args, **kwargs)
+
+    
 
 
 
@@ -146,3 +158,10 @@ class AtencionSecundariaDetalle(models.Model):
     def __int__(self):
         """Unicode representation of AtencionDetalle."""
         return self.pieza
+
+    def save(self,*args, **kwargs):
+        """Save method for Atencion."""
+ 
+        item = InventarioTics.objects.get(id=self.pieza.id)
+        item.cantidad = ( F('cantidad') -self.cantidad)
+        item.save()

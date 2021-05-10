@@ -125,19 +125,20 @@
     });
     function agregar_inputs(){
         $('.select').select2("destroy");
-        var total_forms = document.querySelector('#id_capacitaciondetalle_set-TOTAL_FORMS');
+        var total_forms = document.querySelectorAll('#jsTotalForms input[type=hidden]')[0];
+        
         var value_last = parseInt(total_forms.value)-1;
         //nuevo label e input para periferico
         var nuevo_label_periferico = document.createElement('label');
         nuevo_label_periferico.innerHTML = 'Empleado'
-        var nuevo_select_periferico = document.querySelector('#id_capacitaciondetalle_set-0-empleado').cloneNode(true);
+        var nuevo_select_periferico = document.querySelector('#id_capacitaciondetalle_set-'+ value_last + '-empleado').cloneNode(true);
         nuevo_select_periferico.name = 'capacitaciondetalle_set-'+total_forms.value+'-empleado';
         nuevo_select_periferico.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-empleado';
         nuevo_select_periferico.className = 'form-control select'
         //nuevo label e input para cantidad
         var nuevo_label_cantidad = document.createElement('label');
         nuevo_label_cantidad.innerHTML = 'observación'
-        var nuevo_select_cantidad = document.querySelector('#id_capacitaciondetalle_set-0-observacion').cloneNode(true);
+        var nuevo_select_cantidad = document.querySelector('#id_capacitaciondetalle_set-'+ value_last + '-observacion').cloneNode(true);
         nuevo_select_cantidad.name = 'capacitaciondetalle_set-'+total_forms.value+'-observacion';
         nuevo_select_cantidad.id = 'id_capacitaciondetalle_set-'+total_forms.value+'-observacion';
         //nuevo label e input para eliminar

@@ -119,7 +119,7 @@ class AtencionForm(forms.ModelForm):
            
         }
 class AtencionDetalleForm(forms.ModelForm):
-    
+        
     class Meta:
         model = AtencionDetalle
         fields = ('cabecera',

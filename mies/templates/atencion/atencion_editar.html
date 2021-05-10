@@ -187,12 +187,12 @@
   <script>
       
     function agregar_inputs(){
-        var total_forms = document.querySelector('#id_atenciondetalle_set-TOTAL_FORMS');
+        var total_forms = document.querySelectorAll('#jsTotalForms input[type=hidden]')[0];
         var value_last = parseInt(total_forms.value)-1;
         //nuevo label e input para periferico
         var nuevo_label_periferico = document.createElement('label');
         nuevo_label_periferico.innerHTML = 'Pieza'
-        var nuevo_select_periferico = document.querySelector('#id_atenciondetalle_set-0-pieza').cloneNode(true);
+        var nuevo_select_periferico = document.querySelector('#id_atenciondetalle_set-'+total_forms.value+'-pieza').cloneNode(true);
         nuevo_select_periferico.name = 'atenciondetalle_set-'+total_forms.value+'-pieza';
         nuevo_select_periferico.id = 'id_atenciondetalle_set-'+total_forms.value+'-pieza';
         nuevo_select_periferico.className = 'form-control select'
@@ -200,7 +200,7 @@
         //nuevo label e input para cantidad
         var nuevo_label_cantidad = document.createElement('label');
         nuevo_label_cantidad.innerHTML = 'cantidad'
-        var nuevo_select_cantidad = document.querySelector('#id_atenciondetalle_set-0-cantidad').cloneNode(true);
+        var nuevo_select_cantidad = document.querySelector('#id_atenciondetalle_set-'+total_forms.value+'-cantidad').cloneNode(true);
         nuevo_select_cantidad.name = 'atenciondetalle_set-'+total_forms.value+'-cantidad';
         nuevo_select_cantidad.id = 'id_atenciondetalle_set-'+total_forms.value+'-cantidad';
         
@@ -219,18 +219,18 @@
 
         
         var cantidadElemen = document.querySelectorAll("#js_periferico");
-    var cantidadElemen_cantidad = document.querySelectorAll("#js_cantidad");
-    var cantidadElemen_eliminar = document.querySelectorAll("#js_eliminar");
-    for (let i=0; i< cantidadElemen.length; i++){
-        if (i == cantidadElemen.length-1){
-            cantidadElemen[i].appendChild(nuevo_label_periferico);
-            cantidadElemen[i].appendChild(nuevo_select_periferico);
-            cantidadElemen_cantidad[i].appendChild(nuevo_label_cantidad);
-            cantidadElemen_cantidad[i].appendChild(nuevo_select_cantidad);
-            cantidadElemen_eliminar[i].appendChild(nuevo_label_eliminar);
-            cantidadElemen_eliminar[i].appendChild(nuevo_select_eliminar);
+        var cantidadElemen_cantidad = document.querySelectorAll("#js_cantidad");
+        var cantidadElemen_eliminar = document.querySelectorAll("#js_eliminar");
+        for (let i=0; i< cantidadElemen.length; i++){
+            if (i == cantidadElemen.length-1){
+                cantidadElemen[i].appendChild(nuevo_label_periferico);
+                cantidadElemen[i].appendChild(nuevo_select_periferico);
+                cantidadElemen_cantidad[i].appendChild(nuevo_label_cantidad);
+                cantidadElemen_cantidad[i].appendChild(nuevo_select_cantidad);
+                cantidadElemen_eliminar[i].appendChild(nuevo_label_eliminar);
+                cantidadElemen_eliminar[i].appendChild(nuevo_select_eliminar);
+            }
         }
-    }
     total_forms.value = parseInt(total_forms.value)+1;
 
     $(function () {
