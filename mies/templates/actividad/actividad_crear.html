@@ -78,10 +78,24 @@
             </div>
            
             <h4>Actividad Detalles.</h4>
-            <div class="form-group">
-      
-                {{detalle_form}}
+           
+            <div id="jsTotalForms"  class="form-row">
+                {{detalle_form.management_form}}
+                {% for form1 in detalle_form %}
+               
+                <div id='js_periferico' class="form-group col-md-6">
+                    {{form1.asunto.label}}
+                    {{form1.asunto}}
+                </div>
+
+                <div id='js_eliminar' class="form-group col-md-4">
+                    {{form1.DELETE.label}}
+                    {{form1.DELETE}}
+                </div>
+                {% endfor %}
+
             </div>
+            <button class="button form-control col-md-4" type='button' onclick="agregar_inputs();">Agregar</button>
 
             <fieldset class="modal-footer">
                 <a type="button" class="btn btn-secondary" href="{% url 'actividad_listar' %}">Cancelar</a>
@@ -93,3 +107,56 @@
 </div>
 
 {% endblock %}
+
+
+{% block content_extra_js %}
+
+
+<script>
+    
+    function agregar_inputs(){
+        $('.select').select2("destroy");
+        var total_forms = document.querySelectorAll('#jsTotalForms input[type=hidden]')[0];
+        
+        var value_last = parseInt(total_forms.value)-1;
+        //nuevo label e input para periferico
+        var nuevo_label_periferico = document.createElement('label');
+        nuevo_label_periferico.innerHTML = 'Empleado'
+        var nuevo_select_periferico = document.querySelector('#id_actividaddetalle_set-'+ value_last + '-asunto').cloneNode(true);
+        nuevo_select_periferico.name = 'actividaddetalle_set-'+total_forms.value+'-asunto';
+        nuevo_select_periferico.id = 'id_actividaddetalle_set-'+total_forms.value+'-asunto';
+        nuevo_select_periferico.className = 'form-control select'
+        //nuevo label e input para eliminar
+        var nuevo_label_eliminar = document.createElement('label');
+        nuevo_label_eliminar.innerHTML = 'Eliminar'
+        nuevo_label_eliminar.className = 'col-md-12'
+        nuevo_label_eliminar.style.top = "40px"
+        nuevo_label_eliminar.style.bottom = "40px"
+        var nuevo_select_eliminar = document.querySelector('#id_actividaddetalle_set-'+value_last+'-DELETE').cloneNode(true);
+        nuevo_select_eliminar.name = 'actividaddetalle_set-'+total_forms.value+'-DELETE';
+        nuevo_select_eliminar.id = 'id_actividaddetalle_set-'+total_forms.value+'-DELETE';
+        nuevo_select_eliminar.className = ' col-md-12'
+        nuevo_select_eliminar.style.top = "40px"
+        nuevo_select_eliminar.style.bottom = "40px"
+
+        var cantidadElemen = document.querySelectorAll("#js_periferico");
+        var cantidadElemen_eliminar = document.querySelectorAll("#js_eliminar");
+
+        for (let i=0; i< cantidadElemen.length; i++){
+            if (i == cantidadElemen.length-1){
+                cantidadElemen[i].appendChild(nuevo_label_periferico);
+                cantidadElemen[i].appendChild(nuevo_select_periferico);
+                cantidadElemen_eliminar[i].appendChild(nuevo_label_eliminar);
+                cantidadElemen_eliminar[i].appendChild(nuevo_select_eliminar);
+            }
+        }
+        total_forms.value = parseInt(total_forms.value)+1;
+    
+        $(function () {
+            $('.select').select2(
+                { theme: "bootstrap4", }
+            );
+        });
+    }
+</script>
+{% endblock content_extra_js %}

@@ -88,7 +88,7 @@ class ActividadDetalleForm(forms.ModelForm):
             ),
             'asunto': forms.Select(
                 attrs ={
-                    'class': 'form-control',
+                    'class': 'form-control select',
                         'autofocus':'autofocus'
                 }
             ),

@@ -165,3 +165,4 @@ class AtencionSecundariaDetalle(models.Model):
         item = InventarioTics.objects.get(id=self.pieza.id)
         item.cantidad = ( F('cantidad') -self.cantidad)
         item.save()
+        return super(AtencionSecundariaDetalle  , self).save(*args, **kwargs)
