@@ -11,7 +11,10 @@ class Prestamo(models.Model):
     usuario = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     item = models.ForeignKey(InventarioTics, on_delete=models.PROTECT,verbose_name='Item')
     cantidad = models.IntegerField('Cantidad',default =1)
-    condicion = models.ForeignKey(Condicion, on_delete=models.PROTECT, verbose_name="estado de la  devolución", null=True, blank=True)
+    lista_condicion = [
+    ('1', 'BUENO'),
+    ('2', 'DAÑADO'),]
+    condicion = models.CharField('estado de la  devolución',max_length=1, choices=lista_condicion, null=True, blank=True)
     observacion = models.TextField('observación', null = True , blank=True)
     estado = models.BooleanField("Devuelto?")
     class Meta:
@@ -25,9 +28,12 @@ class Prestamo(models.Model):
         self.observacion = self.observacion and (self.observacion).upper()
 
         if self.estado:
-            item = InventarioTics.objects.get(id=self.item.id)
-            item.cantidad = (F('cantidad') +self.cantidad)
-            item.save()
+            if self.condicion =="1":
+                item = InventarioTics.objects.get(id=self.item.id)
+                item.cantidad = (F('cantidad') +self.cantidad)
+                item.save()
+            
+                
         else:
             item = InventarioTics.objects.get(id=self.item.id)
             item.cantidad = (F('cantidad') -self.cantidad)
