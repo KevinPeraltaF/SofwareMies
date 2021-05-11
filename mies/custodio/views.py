@@ -43,7 +43,7 @@ class CustodioReporteExcelView(TemplateView):
       #Usamos el método get para generar el archivo excel 
     def get(self, request, *args, **kwargs):
         #Obtenemos todas las lista de nuestra base de listas
-        lista = Custodio.objects.all()
+        lista = Custodio.objects.filter(estado=1)
         
         #Creamos el libro de trabajo
         wb = Workbook()
@@ -103,8 +103,9 @@ class CustodioReporteExcelView(TemplateView):
         cont=4
         enumerador = 1
         #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
-        contadorDetalle =18
+        
         for dato in lista:
+            contadorDetalle =18
             ws.cell(row=cont,column=2).value = enumerador
             ws.cell(row=cont,column=3).value = dato.custodio.area.distrito.provincia.zona.descripcion
             ws.cell(row=cont,column=4).value = dato.custodio.area.distrito.descripcion

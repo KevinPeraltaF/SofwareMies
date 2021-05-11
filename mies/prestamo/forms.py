@@ -1,8 +1,14 @@
 from django import forms
 from .models import Prestamo
+from inventario.models import InventarioTics
 
 class PrestamoForm(forms.ModelForm):
     """Form definition for Prestamo."""
+    def __init__(self, *args, **kwargs):
+        super(PrestamoForm, self).__init__(*args, **kwargs)
+      
+        self.fields['item'].queryset = InventarioTics.objects.exclude(cantidad =0 )
+        
 
     class Meta:
         """Meta definition for Prestamoform."""

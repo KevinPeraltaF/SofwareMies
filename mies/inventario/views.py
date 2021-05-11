@@ -541,10 +541,10 @@ class EquipoReporteExcelView(TemplateView):
         cont=4
         enumerador = 1
         #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
-        contadorDetalle =15
+        
         for dato in lista:
 
-
+            contadorDetalle =15
 
             if dato.codigoMies is None:
                 DatoCodigoMies = 'N/A'

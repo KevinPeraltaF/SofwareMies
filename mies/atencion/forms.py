@@ -3,7 +3,7 @@ from .models import  Atencion,AtencionDetalle, AtencionSecundaria , AtencionSecu
 from empleado.models import Empleado
 from custodio.models import Custodio
 from django.forms.models import inlineformset_factory
-
+from inventario.models import InventarioTics
 class AtencionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AtencionForm, self).__init__(*args, **kwargs)
@@ -118,6 +118,9 @@ class AtencionForm(forms.ModelForm):
            
         }
 class AtencionDetalleForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AtencionDetalleForm, self).__init__(*args, **kwargs)
+        self.fields['pieza'].queryset = InventarioTics.objects.exclude(cantidad =0)
         
     class Meta:
         model = AtencionDetalle
@@ -261,7 +264,9 @@ class AtencionSecundariaForm(forms.ModelForm):
            
         }
 class AtencionDetalleSecundariaForm(forms.ModelForm):
-    
+    def __init__(self, *args, **kwargs):
+        super(AtencionDetalleSecundariaForm, self).__init__(*args, **kwargs)
+        self.fields['pieza'].queryset = InventarioTics.objects.exclude(cantidad =0)
     class Meta:
         model = AtencionSecundariaDetalle
         fields = ('cabecera',
