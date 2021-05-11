@@ -350,7 +350,7 @@ class EquipoCabeceraForm(forms.ModelForm):
             ),
             'marca':forms.Select(
                 attrs={
-                    'class':'form-control'
+                    'class':'form-control select'
                 }
             ),
             'modelo':forms.Select(
@@ -429,7 +429,8 @@ class EquipoDetalleForm(forms.ModelForm):
             'cantidad':forms.TextInput(
                 attrs={
                     'type':'number',
-                    'class':'form-control'
+                    'class':'form-control',
+                    'min':0
                 }
             )
         }

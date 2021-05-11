@@ -282,7 +282,7 @@ class EquipoDetalle(models.Model):
 
     cabeceraDistrito = models.ForeignKey(EquipoCabecera, on_delete=models.CASCADE)
     periferico = models.ForeignKey(InventarioTics, on_delete=models.PROTECT, null=True,blank=True)
-    cantidad = models.IntegerField('Cantidad', default=1)
+    cantidad = models.IntegerField('Cantidad', default=0)
     class Meta:
         """Meta definition for InventarioDistritoDetalle."""
 
