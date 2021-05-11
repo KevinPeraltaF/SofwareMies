@@ -12,11 +12,13 @@ from django.http import  HttpResponseRedirect
 # VISTAS DEL MODULO ACTIVIDAD.
 #VISTA ACTIVIDAD
 class ActividadListView(LoginRequiredMixin,ListView):
+    permission_required = 'actividad.view_actividad'
     model = ActividadCabecera
     template_name = "actividad/actividad_listado.html"
 
     
 class ActividadCreateView(LoginRequiredMixin,CreateView):
+    permission_required = 'actividad.add_actividad'
     model = ActividadCabecera
     form_class = ActividadCabeceraForm
     template_name = "actividad/actividad_crear.html"
@@ -55,6 +57,7 @@ class ActividadCreateView(LoginRequiredMixin,CreateView):
 
 
 class ActividadDeleteView(LoginRequiredMixin,DeleteView):
+    permission_required = 'actividad.delete_actividad'
     model = ActividadCabecera
     template_name = "actividad/actividad_eliminar.html"
     success_url = reverse_lazy('actividad_listar')
@@ -63,6 +66,7 @@ class ActividadDeleteView(LoginRequiredMixin,DeleteView):
 
 
 class ActividadUpdateView(LoginRequiredMixin,UpdateView):
+    permission_required = 'actividad.change_actividad'
     model = ActividadCabecera
     form_class = ActividadCabeceraForm
   
