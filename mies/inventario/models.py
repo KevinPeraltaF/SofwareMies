@@ -116,8 +116,18 @@ class InventarioTics(models.Model):
         verbose_name_plural = 'Inventario Tics'
 
     def __str__(self):
+        if self.codigoMies is None:
+           VcodMies= "N/A"
+        else:
+           VcodMies= self.codigoMies
+        if self.serie is None:
+           VserMies= "N/A"
+        else:
+           VserMies= self.serie
+        
+
         """Unicode representation of InventarioTics."""
-        return self.descripcion
+        return ("{} - {}- {}").format(self.descripcion,VcodMies,VserMies)
     
     def toJSON(self):
         item = model_to_dict(self)

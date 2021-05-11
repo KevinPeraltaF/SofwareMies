@@ -49,9 +49,8 @@ class PrestamoForm(forms.ModelForm):
                     'class': 'form-control select'
                 }
             ),
-            'cantidad': forms.TextInput(
+            'cantidad': forms.NumberInput(
                 attrs={
-                    'type':'number',
                     'class': 'form-control',
                     'min':'0'
                 }
