@@ -169,6 +169,14 @@ class CustodioUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     template_name = "custodio/custodio_editar.html"
     success_url = reverse_lazy('custodio_listar')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["equipo"] = EquipoCabecera.objects.all()
+        context["custodioAnterior"] = Custodio.objects.all()
+      
+        return context
+    
+
 
     
 class CustodioDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
