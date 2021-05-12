@@ -53,13 +53,15 @@
                             <th><b>CUSTODIO ACTUAL</b></th>
                             <th><b>CUSTODIO ANTERIOR</b></th>
                             <th><b>EQUIPO</b></th>
+                           
                             <th><b>UBICACIÓN</b></th>
+                            <th><b>ESTADO</b></th>
                             <th><b>DIRECCIÓN IP</b></th>
                             <th><b>DIRECCIÓN MAC</b></th>
                             <th><b>SERIE</b></th>
                             <th><b>CODIGO MIES</b></th>
                             <th><b>CATEGORIA</b></th>
-                            <th><b>ESTADO</b></th>
+                            
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
@@ -83,8 +85,17 @@
                             <td>
                                 {{ custodio.equipo.descripcion }}
                             </td>
+                            
                             <td>
                                 {{ custodio.ubicacion }}
+                            </td>
+                            <td>
+                                {% if custodio.estado%}
+                                <span class="badge badge-success">Vigente</span>
+                                {% else %}
+                                <span class="badge badge-danger">No Vigente</span>
+                                {% endif %}
+
                             </td>
                             <td>
                                 {% if custodio.equipo.direccionIp  is none %}
@@ -122,14 +133,7 @@
                               
                                 {{ custodio.equipo.categoria }}
                             </td>
-                            <td>
-                                {% if custodio.estado%}
-                                <span class="badge badge-success">Vigente</span>
-                                {% else %}
-                                <span class="badge badge-danger">No Vigente</span>
-                                {% endif %}
-
-                            </td>
+                           
                             <td>
                                 <a class="btn btn-light btn-sm "
                                     onclick="abrirModalDetalle('{% url 'custodio_detalle' custodio.id%}')"> <i
