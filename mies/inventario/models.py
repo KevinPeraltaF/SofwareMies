@@ -72,25 +72,6 @@ class Categoria(models.Model):
         return super(Categoria, self).save(*args, **kwargs)
 
 
-class Condicion(models.Model):
-    """Model definition for Condicion."""
-
-    descripcion = models.CharField('Condición', max_length=50,unique= True)
-
-    class Meta:
-        """Meta definition for Condicion."""
-
-        verbose_name = 'Condicion'
-        verbose_name_plural = 'Condiciones'
-
-    def __str__(self):
-        """Unicode representation of Condicion."""
-        return self.descripcion 
-
-    def save(self,*args, **kwargs):
-        """Save method for Condicion."""
-        self.descripcion = self.descripcion and (self.descripcion).upper()
-        return super(Condicion, self).save(*args, **kwargs)
 
 
 class InventarioTics(models.Model):

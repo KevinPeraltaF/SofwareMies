@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inventario.models import Marca, Modelo, Categoria,Condicion,InventarioTics,CapacidadDisco,CapacidadMemoriaRam,Procesador,\
+from inventario.models import Marca, Modelo, Categoria,InventarioTics,CapacidadDisco,CapacidadMemoriaRam,Procesador,\
     EquipoCabecera, EquipoDetalle
 # Register your models here.
 @admin.register(Marca)
@@ -26,12 +26,7 @@ class CategoriaAdmin(admin.ModelAdmin):
     list_filter = ('descripcion',)
     search_fields = ('descripcion',)
 
-@admin.register(Condicion)
-class CondicionAdmin(admin.ModelAdmin):
-    '''Admin View for Condicion'''
-    list_display = ('descripcion',)
-    list_filter = ('descripcion',)
-    search_fields = ('descripcion',)
+
 
 
 @admin.register(InventarioTics)

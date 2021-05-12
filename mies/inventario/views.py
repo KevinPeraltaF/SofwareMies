@@ -4,9 +4,9 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
-from .models import InventarioTics, Marca, Modelo, Condicion, Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador,\
+from .models import InventarioTics, Marca, Modelo,  Categoria, CapacidadDisco, CapacidadMemoriaRam, Procesador,\
     EquipoCabecera, EquipoDetalle
-from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm, CondicionForm, CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm,\
+from .forms import InvTicsForm, MarcaForm, ModeloForm, CategoriaForm,  CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm,\
     EquipoCabeceraForm, EquipoDetalleForm,EquipoCabDetalleForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -125,38 +125,9 @@ class CategoriaDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView)
     permission_required = 'inventario.view_categoria'
     model = Categoria
     template_name = "inventario/categoria_detalle.html"
-#------------------CONDICION--------------------------------------
-class CondicionListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'inventario.view_condicion'
-    model = Condicion
-    template_name = "inventario/condicion_listado.html"
 
- 
-class CondicionCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
-    permission_required = 'inventario.add_condicion'
-    model = Condicion
-    form_class = CondicionForm
-    template_name= "inventario/condicion_crear.html"
-    success_url = reverse_lazy('condicion_listar')
 
-class CondicionDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
-    permission_required = 'inventario.delete_condicion'
-    model = Condicion
-    template_name = "inventario/condicion_eliminar.html"
-    success_url = reverse_lazy('condicion_listar')
-  
 
-class CondicionUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
-    permission_required = 'inventario.change_condicion'
-    model = Condicion
-    form_class = CondicionForm
-    template_name = "inventario/condicion_editar.html"
-    success_url = reverse_lazy('condicion_listar')
-  
-class CondicionDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
-    permission_required = 'inventario.view_condicion'
-    model = Condicion
-    template_name = "inventario/condicion_detalle.html"
 #------------------INVENTARIO TICS--------------------------------------
 class InvTicsListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'inventario.view_inventariotics'

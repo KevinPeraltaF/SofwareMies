@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.models import inlineformset_factory
-from .models import Marca, Modelo, Condicion, Categoria, InventarioTics, CapacidadDisco,CapacidadMemoriaRam, Procesador,\
+from .models import Marca, Modelo,  Categoria, InventarioTics, CapacidadDisco,CapacidadMemoriaRam, Procesador,\
     EquipoCabecera, EquipoDetalle
 from empleado.models import Empleado
 
@@ -179,27 +179,7 @@ class CategoriaForm(forms.ModelForm):
                 }
             )
         }
-class CondicionForm(forms.ModelForm):
-     #validaciones para que se envie como mayusculas los datos
-    def clean_descripcion(self):
-        data = self.cleaned_data["descripcion"].upper()
         
-        return data
-
-    class Meta:
-
-        model = Condicion
-        fields = (
-            'descripcion',
-        )
-        widgets ={
-            'descripcion':forms.TextInput(
-                attrs={
-                    'class':'form-control',
-                    'autofocus':'autofocus'
-                }
-            )
-        }
 class CapacidadDiscoForm(forms.ModelForm):
      #validaciones para que se envie como mayusculas los datos
     def clean_descripcion(self):

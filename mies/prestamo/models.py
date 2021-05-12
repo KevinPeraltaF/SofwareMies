@@ -1,6 +1,6 @@
 from django.db import models
 from empleado.models import Empleado
-from inventario.models import Condicion , InventarioTics
+from inventario.models import InventarioTics
 # Create your models here.
 from django.db.models import F
 

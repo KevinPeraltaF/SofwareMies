@@ -110,12 +110,7 @@ urlpatterns = [
     path('Categoria/Editar/<int:pk>',inventaio_views.CategoriaUpdateView.as_view(),name ="categoria_editar"),
     path('Categoria/Eliminar/<int:pk>',inventaio_views.CategoriaDeleteView.as_view(),name ="categoria_eliminar"),
     path('Categoria/Detalle/<int:pk>',inventaio_views.CategoriaDetailView.as_view(),name ="categoria_detalle"),
-    #--Condicion
-    path('Condicion', inventaio_views.CondicionListView.as_view(), name="condicion_listar"),
-    path('Condicion/Crear',inventaio_views.CondicionCreateView.as_view(),name ="condicion_crear"),
-    path('Condicion/Editar/<int:pk>',inventaio_views.CondicionUpdateView.as_view(),name ="condicion_editar"),
-    path('Condicion/Eliminar/<int:pk>',inventaio_views.CondicionDeleteView.as_view(),name ="condicion_eliminar"),
-    path('Condicion/Detalle/<int:pk>',inventaio_views.CondicionDetailView.as_view(),name ="condicion_detalle"),
+   
     #--INVENTARIO TICS
     path('InvTics', inventaio_views.InvTicsListView.as_view(), name="inv_tics_listar"),
     path('InvTics/excel', inventaio_views.InvTicsExcelListView.as_view(), name="inv_tics_excel_crear"),

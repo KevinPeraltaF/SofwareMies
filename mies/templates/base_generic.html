@@ -81,7 +81,7 @@
             {%url 'marca_listar' as marca_url%}
             {%url 'modelo_listar' as modelo_url%}
             {%url 'categoria_listar' as categoria_url%}
-            {%url 'condicion_listar' as condicion_url%}
+         
             {%url 'capacidad_disco_listar' as disco_url%}
             {%url 'capacidad_memoria_ram_listar' as ram_url%}
             {%url 'procesador_listar' as procesador_url%}
@@ -150,15 +150,15 @@
 
 
            
-           {% if perms.inventario.view_marca or perms.inventario.view_modelo or perms.inventario.view_categoria or  perms.inventario.view_condicion   or  perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_inventariotics or perms.inventario.view_equipo %}
+           {% if perms.inventario.view_marca or perms.inventario.view_modelo or perms.inventario.view_categoria or  perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_inventariotics or perms.inventario.view_equipo %}
                 <!-- Nav Item - Inventario Collapse Menu -->
-            <li class="nav-item  {% if marca_url in request.path or modelo_url in request.path or categoria_url in request.path or condicion_url in request.path or disco_url in request.path or ram_url in request.path or procesador_url in request.path or tics_url in request.path or det_url in request.path %} active {% endif%}">
+            <li class="nav-item  {% if marca_url in request.path or modelo_url in request.path or categoria_url in request.path  or disco_url in request.path or ram_url in request.path or procesador_url in request.path or tics_url in request.path or det_url in request.path %} active {% endif%}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventarioTics"
                     aria-expanded="true" aria-controls="collapseInventarioTics">
                     <i class="fas fa-th-list"></i>
                     <span>Inventarios</span>
                 </a>
-                <div id="collapseInventarioTics" class="collapse {% if marca_url in request.path or modelo_url in request.path or categoria_url in request.path or condicion_url in request.path or disco_url in request.path or ram_url in request.path or procesador_url in request.path or tics_url in request.path or equipo_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
+                <div id="collapseInventarioTics" class="collapse {% if marca_url in request.path or modelo_url in request.path or categoria_url in request.path or disco_url in request.path or ram_url in request.path or procesador_url in request.path or tics_url in request.path or equipo_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         
@@ -181,11 +181,7 @@
                         {% endif %}
                             
                         
-                        {% if perms.inventario.view_condicion %}
-                        <a class="collapse-item  {% if condicion_url in request.path%} active {% endif%}" href="{{condicion_url}}"><i class="fas fa-caret-right"></i>
-                            Condición</a>
-                        {% endif %}
-                            
+                     
                         
                         {% if perms.inventario.view_capacidaddisco %}
                         <a class="collapse-item  {% if disco_url in request.path%} active {% endif%}" href="{{disco_url}}"><i
