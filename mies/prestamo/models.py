@@ -35,11 +35,15 @@ class Prestamo(models.Model):
             
                 
         else:
+            guardar = False
             item = InventarioTics.objects.get(id=self.item.id)
-            item.cantidad = (F('cantidad') -self.cantidad)
-            item.save()
+            if item.cantidad>= self.cantidad:
+                item.cantidad = ( F('cantidad') -self.cantidad)
+                item.save()
+                guardar = True
 
-        return super(Prestamo, self).save(*args, **kwargs)
+        if guardar:
+             return  super(Prestamo, self).save(*args, **kwargs)
 
     def __str__(self):
         """Unicode representation of PrestamoDevolucion."""

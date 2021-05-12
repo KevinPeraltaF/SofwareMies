@@ -5,7 +5,10 @@ from custodio.models import Custodio
 from django.utils import timezone
 # Create your models here.
 from django.db.models import F
+
+
 class Atencion(models.Model):
+    
     """Model definition for Atencion."""
 
     fechaIncidente = models.DateField('Fecha Incidente',default=timezone.now)
@@ -78,10 +81,12 @@ class AtencionDetalle(models.Model):
     
     def save(self,*args, **kwargs):
         """Save method for Atencion."""
- 
+        
         item = InventarioTics.objects.get(id=self.pieza.id)
-        item.cantidad = ( F('cantidad') -self.cantidad)
-        item.save()
+        if item.cantidad>= self.cantidad:
+            item.cantidad = ( F('cantidad') -self.cantidad)
+            item.save()
+      
         return super(AtencionDetalle, self).save(*args, **kwargs)
 
     
@@ -163,6 +168,7 @@ class AtencionSecundariaDetalle(models.Model):
         """Save method for Atencion."""
  
         item = InventarioTics.objects.get(id=self.pieza.id)
-        item.cantidad = ( F('cantidad') -self.cantidad)
-        item.save()
+        if item.cantidad>= self.cantidad:
+            item.cantidad = ( F('cantidad') -self.cantidad)
+            item.save()
         return super(AtencionSecundariaDetalle  , self).save(*args, **kwargs)
