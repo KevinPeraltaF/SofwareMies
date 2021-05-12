@@ -26,21 +26,20 @@
                         <td>{{object.categoria}}</td>
                         <th>Condicion:</th>
                         <td>
-                            {% if object.condicion.descripcion == 'BUENO'%}
-                            <span class="badge badge-success">{{object.condicion}}</span>
+                            {% if object.condicion == '1'%}
+                            <span class="badge badge-success">BUENO</span>
 
                             {% endif %}
 
-                            {% if object.condicion.descripcion == 'REGULAR'%}
-                            <span class="badge badge-warning">{{object.condicion}}</span>
+                            {% if object.condicion == '2'%}
+                            <span class="badge badge-warning">REGULAR</span>
 
                             {% endif %}
 
-                            {% if object.condicion.descripcion == 'DAÑADO'%}
-                            <span class="badge badge-danger">{{object.condicion}}</span>
+                            {% if object.condicion == '3'%}
+                            <span class="badge badge-danger">DAÑADO</span>
 
                             {% endif %}
-
 
                         </td>
                     </tr>

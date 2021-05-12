@@ -232,6 +232,14 @@ class InvTicsExcelListView(TemplateView):
                 DatoModelo = 'N/A'
             else:
                  DatoModelo = dato.marca.descripcion
+
+            if dato.condicion == "1":
+                DatoCondicion = 'BUENO'
+                
+            if dato.condicion == "2":
+                 DatoCondicion = 'REGULAR'
+            if dato.condicion == "3":
+                 DatoCondicion = 'DAÑADO'
             
             ws.cell(row=cont,column=2).value = dato.fechaIngreso
             ws.cell(row=cont,column=3).value = dato.responsable.apellidos
@@ -243,7 +251,7 @@ class InvTicsExcelListView(TemplateView):
             ws.cell(row=cont,column=9).value = DatoMarca
             ws.cell(row=cont,column=10).value = DatoModelo
             ws.cell(row=cont,column=11).value = dato.ubicacion.descripcion
-            ws.cell(row=cont,column=12).value = dato.condicion.descripcion
+            ws.cell(row=cont,column=12).value = DatoCondicion
          
             cont = cont + 1
     
@@ -577,12 +585,20 @@ class EquipoReporteExcelView(TemplateView):
             else:
                 DatoMac =dato.direccionMac
 
+            if dato.condicion == "1":
+                DatoCondicion = 'BUENO'
+                
+            if dato.condicion == "2":
+                 DatoCondicion = 'REGULAR'
+            if dato.condicion == "3":
+                 DatoCondicion = 'DAÑADO'
+
             ws.cell(row=cont,column=2).value = enumerador
             ws.cell(row=cont,column=3).value = dato.fechaIngreso
             ws.cell(row=cont,column=4).value = dato.categoria.descripcion
             ws.cell(row=cont,column=5).value = DatoMarca
             ws.cell(row=cont,column=6).value = DatoModelo
-            ws.cell(row=cont,column=7).value = dato.condicion.descripcion
+            ws.cell(row=cont,column=7).value = DatoCondicion
             ws.cell(row=cont,column=8).value = DatoSerie
             ws.cell(row=cont,column=9).value = DatoCodigoMies 
             ws.cell(row=cont,column=10).value = DatoiP

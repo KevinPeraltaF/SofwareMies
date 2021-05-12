@@ -148,7 +148,8 @@ class CustodioCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["equipo"] = EquipoCabecera.objects.all()
+        #condicion dañado
+        context["equipo"] = EquipoCabecera.objects.exclude( condicion=3)
         context["custodioAnterior"] = Custodio.objects.all()
       
         return context

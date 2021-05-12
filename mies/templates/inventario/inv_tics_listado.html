@@ -97,22 +97,19 @@
                             <td>
                                 
                             
-                                {% if inv.condicion.descripcion == 'BUENO'%}
-                                <span class="badge badge-success">{{inv.condicion}}</span>
+                                {% if inv.condicion == '1'%}
+                                <span class="badge badge-success">BUENO</span>
     
                                 {% endif %}
     
-                                {% if inv.condicion.descripcion == 'REGULAR'%}
-                                <span class="badge badge-warning">{{inv.condicion}}</span>
+                                {% if inv.condicion == '2'%}
+                                <span class="badge badge-warning">REGULAR</span>
     
                                 {% endif %}
     
-                                {% if inv.condicion.descripcion == 'DAÑADO'%}
-                                <span class="badge badge-danger">{{inv.condicion}}</span>
-    
+                                {% if inv.condicion == '3'%}
+                                <span class="badge badge-danger">DAÑADO</span>
                                 {% endif %}
-    
-                            
                             </td>
 
                             <td>

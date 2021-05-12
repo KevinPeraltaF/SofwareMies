@@ -103,7 +103,11 @@ class InventarioTics(models.Model):
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)
     modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT, null=True,blank=True)
-    condicion = models.ForeignKey(Condicion,verbose_name="Condición", on_delete=models.PROTECT)
+    lista_condicion = [
+    ('1', 'BUENO'),
+    ('2', 'REGULAR'),
+    ('3', 'DAÑADO'),]
+    condicion = models.CharField('Condición',max_length=1, choices=lista_condicion, null=True, blank=True)
     serie = models.CharField('Serie', max_length=50, unique=True, null=True,blank=True)
     codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
     cantidad = models.IntegerField('Cantidad', default=1)
@@ -245,7 +249,11 @@ class EquipoCabecera(models.Model):
     descripcion = models.CharField('Descripción / Nombre', max_length=50)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)
     modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT, null=True,blank=True)
-    condicion = models.ForeignKey(Condicion, verbose_name="Condición",on_delete=models.PROTECT)
+    lista_condicion = [
+    ('1', 'BUENO'),
+    ('2', 'REGULAR'),
+    ('3', 'DAÑADO'),]
+    condicion = models.CharField('Condición',max_length=1, choices=lista_condicion, null=True, blank=True)
     serie = models.CharField('Serie', max_length=50,  unique=True, null=True,blank=True)
     codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
     direccionIp = models.CharField('Dirección Ip', max_length=50, unique=True, null=True,blank=True)
