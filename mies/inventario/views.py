@@ -391,7 +391,7 @@ class ProcesadorDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView
 #------------------CABECERA-DETALLE-EQUIPO--------------------------------------
 
 class EquipoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'inventario.view_Equipocabecera'
+    permission_required = 'inventario.view_equipocabecera'
     model = EquipoCabecera
     template_name = "inventario/equipo_listado.html"
     @method_decorator(csrf_exempt)
@@ -400,7 +400,7 @@ class EquipoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
 
         
 class EquipoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
-    permission_required = 'inventario.add_Equipocabecera'
+    permission_required = 'inventario.add_equipocabecera'
     model = EquipoCabecera
     form_class = EquipoCabeceraForm
     template_name= "inventario/equipo_crear.html"
@@ -435,7 +435,7 @@ class EquipoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
             self.get_context_data(form = form, detalle_form=detalle_form)
         )
 class EquipoUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
-    permission_required = 'inventario.change_Equipocabecera'
+    permission_required = 'inventario.change_equipocabecera'
     model = EquipoCabecera
     form_class = EquipoCabeceraForm
     template_name= "inventario/equipo_editar.html"
@@ -470,7 +470,7 @@ class EquipoUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
             self.get_context_data(form = form, detalle_form=detalle_form)
         )   
 class EquipoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
-    permission_required = 'inventario.view_Equipocabecera'
+    permission_required = 'inventario.view_equipocabecera'
     model = EquipoCabecera
     template_name = "inventario/equipo_detalle.html"
     def get_context_data(self, **kwargs):
@@ -479,7 +479,7 @@ class EquipoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
         context['items'] = EquipoDetalle.objects.filter(cabeceraDistrito=self.object.id)
         return context
 class EquipoDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
-    permission_required = 'inventario.delete_Equipocabecera'
+    permission_required = 'inventario.delete_equipocabecera'
     model = EquipoCabecera
     template_name = "inventario/equipo_eliminar.html"
     success_url = reverse_lazy('equipo_listar')

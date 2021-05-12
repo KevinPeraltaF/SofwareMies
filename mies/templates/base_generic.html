@@ -210,7 +210,7 @@
                             Inventario Tics</a>
                         {% endif %}
 
-                        {% if  perms.inventario.view_equipo %}
+                        {% if  perms.inventario.view_equipocabecera %}
                         <a class="collapse-item  {% if equipo_url in request.path%} active {% endif%}" href="{{equipo_url}}"><i class="fas fa-caret-right"></i>
                             Equipo - Distrito</a>
                         {% endif %}
@@ -220,7 +220,7 @@
             </li>
            {% endif %}
                
-           {% if  perms.capacitacion.view_capacitacion %}
+           {% if  perms.capacitacion.view_capacitacioncabecera %}
            <li class="nav-item  {% if capacitacion_url in request.path%} active {% endif%}">
                <a class="nav-link" href="{{capacitacion_url}}">
                    <i class="fas fa-fw fa-table"></i>
@@ -229,7 +229,7 @@
            {% endif %}
 
             
-            {% if  perms.atencion.view_atencion %}
+            {% if  perms.atencion.view_atencion or perms.atencion.view_atencionsecundaria%}
             <li class="nav-item  {% if atencion_url in request.path%} active {% endif%}">
                 <a class="nav-link" href="{{atencion_url}}">
                     <i class="fas fa-fw fa-table"></i>

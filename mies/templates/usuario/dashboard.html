@@ -4,10 +4,10 @@
 
 {% block content_main %}
 
-
- <!-- Content Row -->
- <div class="row">
-
+{% if perms.empleado.view_empleado or perms.practica.view_pasante or perms.capacitacion.view_capacitacioncabecera or perms.atencion.view_atencion or perms.atencion.view_atencionsecundaria%}
+<!-- Content Row -->
+<div class="row">
+    {% if perms.empleado.view_empleado %}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -15,8 +15,9 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            <a href="{% url 'empleado_listar' %}">Empleados</a></div>
-                     
+                            <a href="{% url 'empleado_listar' %}">Empleados</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-users  fa-2x text-gray-300"></i>
@@ -25,7 +26,9 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
+    {% if perms.practica.view_pasante %}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
@@ -33,8 +36,9 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                           <a href="{% url 'pasante_listar' %}"> Pasantes</a></div>
-                       
+                            <a href="{% url 'pasante_listar' %}"> Pasantes</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-user-tag fa-2x text-gray-300"></i>
@@ -43,20 +47,22 @@
             </div>
         </div>
     </div>
-
+    {% endif %}
+    {% if perms.capacitacion.view_capacitacioncabecera %}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="{%url 'capacitacion_listar' %}">Capacitaciones</a>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a
+                                href="{%url 'capacitacion_listar' %}">Capacitaciones</a>
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                              
+
                             </div>
-                           
+
                         </div>
                     </div>
                     <div class="col-auto">
@@ -66,7 +72,8 @@
             </div>
         </div>
     </div>
-
+    {% endif %}
+    {% if perms.atencion.view_atencion or perms.atencion.view_atencionsecundaria%}
     <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
@@ -74,8 +81,9 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="{% url 'atencion_listar' %}">Atenciones</a></div>
-                       
+                            <a href="{% url 'atencion_listar' %}">Atenciones</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -84,11 +92,18 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 
- <!-- Content Row -->
- <div class="row">
+    {% endif %}
 
+
+<!-- Content Row -->
+{% if perms.actividad.view_actividadcabecera or perms.custodio.view_custodio or perms.inventario.view_inventariotics or perms.red.view_accesored %}
+
+<div class="row">
+
+    {% if perms.actividad.view_actividadcabecera %}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -96,8 +111,9 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            <a href="{% url 'actividad_listar' %}">Actividades</a></div>
-                        
+                            <a href="{% url 'actividad_listar' %}">Actividades</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -106,7 +122,8 @@
             </div>
         </div>
     </div>
-
+    {% endif %}
+    {% if perms.custodio.view_custodio%}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
@@ -114,29 +131,32 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                           <a href="{% url 'custodio_listar' %}"> Inventario - Distrito</a></div>
-                      
+                            <a href="{% url 'custodio_listar' %}"> Inventario - Distrito</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
-                       
+
                         <i class="fas fa-indent fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    {% endif %}
+    {% if perms.inventario.view_inventariotics %}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="{%url 'inv_tics_listar' %}">Inventario Tics</a>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a
+                                href="{%url 'inv_tics_listar' %}">Inventario Tics</a>
                         </div>
                         <div class="row no-gutters align-items-center">
-                          
-                           
+
+
                         </div>
                     </div>
                     <div class="col-auto">
@@ -146,7 +166,8 @@
             </div>
         </div>
     </div>
-
+    {% endif %}
+    {% if perms.red.view_accesored %}
     <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
@@ -154,22 +175,26 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="{% url 'accesoRed_listar' %}">Acceso a la red</a></div>
-                       
+                            <a href="{% url 'accesoRed_listar' %}">Acceso a la red</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
-                        
+
                         <i class="fas fa-network-wired fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 
+{% endif %}
 <!-- Content Row -->
+{% if perms.prestamo.view_prestamo or perms.inventario.view_equipocabecera%}
 <div class="row">
-
+    {% if perms.prestamo.view_prestamo %}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -177,18 +202,21 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            
-                            <a href="{% url 'prestamo_listar' %}">Préstamos</a></div>
-                        
+
+                            <a href="{% url 'prestamo_listar' %}">Préstamos</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
-                       
+
                         <i class="fas fa-money-check fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
+    {% if perms.inventario.view_equipocabecera %}
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
@@ -196,21 +224,22 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                           <a href="{% url 'equipo_listar' %}"> Equipos</a></div>
-                      
+                            <a href="{% url 'equipo_listar' %}"> Equipos</a>
+                        </div>
+
                     </div>
                     <div class="col-auto">
-                       
+
                         <i class="fas fa-indent fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    {% endif %}
 
 </div>
-
+{% endif %}
 
 
 {% endblock %}

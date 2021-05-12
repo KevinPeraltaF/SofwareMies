@@ -16,7 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, JsonResponse
 # Create your views here.
 class CapacitacionListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'capacitacion.view_capacitacion'
+    permission_required = 'capacitacion.view_capacitacioncabecera'
     model = CapacitacionCabecera
     template_name = "capacitacion/capacitacion_listado.html"
     @method_decorator(csrf_exempt)
@@ -24,7 +24,7 @@ class CapacitacionListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
         return super().dispatch(request,*args, **kwargs)
 
 class CapacitacionCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
-    permission_required = 'capacitacion.add_capacitacion'
+    permission_required = 'capacitacion.add_capacitacioncabecera'
     model = CapacitacionCabecera
     form_class = CapacitacionCabeceraForm
     template_name = "capacitacion/capacitacion_crear.html"
@@ -62,7 +62,7 @@ class CapacitacionCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateVi
    
 
 class CapacitacionDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
-    permission_required = 'capacitacion.delete_capacitacion'
+    permission_required = 'capacitacion.delete_capacitacioncabecera'
     model = CapacitacionCabecera
     template_name = "capacitacion/capacitacion_eliminar.html"
     success_url = reverse_lazy('capacitacion_listar')
@@ -70,7 +70,7 @@ class CapacitacionDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteVi
 
 
 class CapacitacionUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
-    permission_required = 'capacitacion.change_capacitacion'
+    permission_required = 'capacitacion.change_capacitacioncabecera'
     model = CapacitacionCabecera
     form_class = CapacitacionCabeceraForm
     template_name = "capacitacion/capacitacion_editar.html"
@@ -109,7 +109,7 @@ class CapacitacionUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateVi
 
     
 class CapacitacionDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
-    permission_required = 'capacitacion.view_capacitacion'
+    permission_required = 'capacitacion.view_capacitacioncabecera'
     model = CapacitacionCabecera
     template_name = "capacitacion/capacitacion_detalle.html"
     def get_context_data(self, **kwargs):

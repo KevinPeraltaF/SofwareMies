@@ -201,7 +201,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             
-                                        {% if perms.atencion.add_atencion %}
+                                        {% if perms.atencion.add_atencionsecundaria %}
                                         <a class="dropdown-item" href="{% url 'atencionSecundaria_crear'%}">Nuevo Reporte Secundario</a>
                                       
                                         {% endif %}
@@ -313,7 +313,7 @@
                                                     class="fa fa-eye"></i>
                                             </a>
             
-                                            {% if perms.atencion.change_atencion %}
+                                            {% if perms.atencion.change_atencionsecundaria%}
                                             <button id="modalEditarAccesoRed" class="btn btn-light btn-sm"
                                                 onclick="abrirModalEditar('{% url 'atencionSecundaria_editar' atencion.id%}')"> <i
                                                     class="fa fa-edit"></i>
@@ -321,7 +321,7 @@
                                             {% endif %}
             
             
-                                            {% if perms.atencion.delete_atencion %}
+                                            {% if perms.atencion.delete_atencionsecundaria %}
                                             <a class="btn btn-light btn-sm"
                                                 onclick="abrirModalEliminar('{% url 'atencionSecundaria_eliminar' atencion.id%}')"><i
                                                     class="fa fa-trash"></i>

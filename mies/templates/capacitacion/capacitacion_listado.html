@@ -27,7 +27,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                            {% if perms.red.add_capacitacionred %}
+                            {% if perms.capacitacion.add_capacitacioncabecera %}
                             <a class="dropdown-item" href="{% url 'capacitacion_crear'%}">Nueva capacitación</a>
                             {% endif %}
 
@@ -97,7 +97,7 @@
                                         class="fa fa-eye"></i>
                                 </a>
 
-                                {% if perms.capacitacion.change_capacitacioncapacitacion %}
+                                {% if perms.capacitacion.change_capacitacioncabecera %}
                                 <button id="modalEditarcapacitacionRed" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'capacitacion_editar' capacitacion.id%}')"> <i
                                         class="fa fa-edit"></i>
@@ -105,7 +105,7 @@
                                 {% endif %}
 
 
-                                {% if perms.capacitacion.delete_capacitacion %}
+                                {% if perms.capacitacion.delete_capacitacioncabecera %}
                                 <a class="btn btn-light btn-sm"
                                     onclick="abrirModalEliminar('{% url 'capacitacion_eliminar' capacitacion.id%}')"><i
                                         class="fa fa-trash"></i>
