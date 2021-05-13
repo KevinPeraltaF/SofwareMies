@@ -155,7 +155,7 @@ class EmpleadoExcelListView(TemplateView):
              
             ws.cell(row=cont,column=2).value = dato.area.descripcion
             ws.cell(row=cont,column=3).value =  dato.cargo.descripcion
-            ws.cell(row=cont,column=4).value =(dato.apellidos + dato.nombres)
+            ws.cell(row=cont,column=4).value =(dato.apellidos +" " +dato.nombres)
             ws.cell(row=cont,column=5).value = dato.cedula
             ws.cell(row=cont,column=6).value = dato.correo
             ws.cell(row=cont,column=7).value = DatoGenero

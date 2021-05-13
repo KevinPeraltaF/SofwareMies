@@ -91,6 +91,7 @@ urlpatterns = [
     #--Pasante
     path('Pasante', practica_views.PasanteListView.as_view(), name="pasante_listar") ,
     path('Pasante/Crear', practica_views.PasanteCreateView.as_view(), name="pasante_crear") ,
+    path('Pasante/Excel', practica_views.PasanteExcelListView.as_view(), name="pasanteExcel_crear") ,
     path('Pasante/Editar/<int:pk>', practica_views.PasanteUpdateView.as_view(), name="pasante_editar") ,
     path('Pasante/Eliminar/<int:pk>', practica_views.PasanteDeleteView.as_view(), name="pasante_eliminar") ,
     path('Pasante/Detalle/<int:pk>', practica_views.PasanteDetailView.as_view(), name="pasante_detalle") ,

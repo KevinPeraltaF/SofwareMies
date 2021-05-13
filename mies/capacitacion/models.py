@@ -33,7 +33,6 @@ class CapacitacionCabecera(models.Model):
         """Save method for CapacitacionCabecera."""
         self.lugar =self.lugar and (self.lugar).upper()
         self.tema = self.tema and (self.tema).upper()
-        self.areaSolicitante =self.areaSolicitante and (self.areaSolicitante).upper()
         self.dirigido = self.dirigido and (self.dirigido).upper()
         self.objetivo = self.objetivo and (self.objetivo).upper()
         return super(CapacitacionCabecera, self).save(*args, **kwargs)
