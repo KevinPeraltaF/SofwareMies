@@ -176,7 +176,7 @@ class UnidadAtencionForm(forms.ModelForm):
             ),
             'codigo' : forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-numero'
                 }
             ),
         }

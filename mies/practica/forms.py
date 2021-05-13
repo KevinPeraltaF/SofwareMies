@@ -28,23 +28,23 @@ class PasanteForm(forms.ModelForm):
         widgets = {
             'nombres': forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'autofocus':'autofocus'
+                    'class': 'form-control solo-letra',
+                    'autofocus':'autofocus '
                 }
             ),
             'apellidos': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-letra'
                 }
             ),
             'cedula': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-numero'
                 }
             ),
             'telefono': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-numero'
                 }
             ),
           
@@ -73,7 +73,7 @@ class PasanteForm(forms.ModelForm):
             'horas_diarias': forms.TextInput(
                 attrs={
                     'type':'number',
-                    'class': 'form-control',
+                    'class': 'form-control solo-numero',
                     'min':'1'
                 }
             ),
