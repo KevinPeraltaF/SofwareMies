@@ -27,3 +27,4 @@ function abrirModalDetalle(url){
     )           
 }
 
+ 
