@@ -61,13 +61,13 @@ class EmpleadoForm(forms.ModelForm):
             ),
             'nombres': forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-letra',
                     'autofocus':'autofocus'
                 }
             ),
             'apellidos': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-letra'
                 }
             ),
             'genero' : forms.Select(
@@ -82,12 +82,12 @@ class EmpleadoForm(forms.ModelForm):
             ),                     
             'cedula': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-numero'
                 }
             ),
             'telefono': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-numero'
                 }
             ),
             'foto': forms.ClearableFileInput(
