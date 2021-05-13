@@ -33,11 +33,6 @@
 
     <form method="post">
         {% csrf_token %}
-
-        <div class="form-group">
-            {{form.fecha.label}}
-            {{form.fecha}}
-        </div>
         <div class="form-group">
             {{form.usuario.label}}
             {{form.usuario}}

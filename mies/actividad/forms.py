@@ -10,7 +10,9 @@ class AsuntoForm(forms.ModelForm):
     def clean_descripcion(self):
         data = self.cleaned_data["descripcion"].upper()
         return data
-        
+    def clean_observacion(self):
+        data = self.cleaned_data["observacion"].upper()
+        return data   
     class Meta:
         model = Asunto
         fields = ('descripcion',)

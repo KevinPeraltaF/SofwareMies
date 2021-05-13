@@ -1,0 +1,83 @@
+{% extends 'base_atencion_reporte_pdf.html' %}
+
+{% block content %}
+<TITLE>ACTIVIDADES-DDM-09D17-TICS-MIES</TITLE>
+<table WIDTH=900 cellpadding="7" cellspacing="0" >
+	<colgroup><col width="73">
+	<col width="26">
+	<col width="96">
+	<col width="109">
+	<col width="249">
+	</colgroup><tbody>
+	<tr>
+		<td colspan="5" width="608" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER"><B>INFORME DE ACTIVIDAD</B></p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" width="112" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">Fecha:</p>
+		</td>
+		<td width="96" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">{{object.fecha}}
+			</p>
+		</td>
+		<td width="109" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">Responsable:</p>
+		</td>
+		<td width="249" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">{{object.responsable}}
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" width="112" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">Ubicación</p>
+		</td>
+		<td colspan="3" width="482" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">{{object.ubicacion}}
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" width="112" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">Usuario</p>
+		</td>
+		<td colspan="3" width="482" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">{{object.usuario}}
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="222" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">Observación:</p>
+		</td>
+		<td colspan="2" width="372" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">{{object.observacion}}
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="73" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER"><b>#</b></p>
+		</td>
+		<td colspan="4" width="521" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER"><b>ACTIVIDAD REALIZADA</b></p>
+		</td>
+	</tr>
+    {% for actividad in items  %}
+    
+	<tr valign="TOP">
+		<td width="73" height="4" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">{{forloop.counter}}
+			</p>
+		</td>
+		<td colspan="4" width="521" style="border: 1px solid #00000a; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0.08in">
+			<p align="CENTER">{{actividad.asunto}}
+			</p>
+		</td>
+	</tr>
+    {% endfor %}
+        
+</tbody></table>
+{% endblock content %}

@@ -47,6 +47,10 @@ class ActividadCabecera(models.Model):
     def __int__(self):
         """Unicode representation of ActividadCabecera."""
         return self.fecha
+    def save(self,*args, **kwargs):
+        """Save method for ActividadCabecera."""
+        self.observacion = self.observacion and (self.observacion).upper()
+        return super(ActividadCabecera, self).save(*args, **kwargs)
 
  
 

@@ -4,15 +4,15 @@ from red.models import AccesoRed
 @admin.register(AccesoRed)
 class AccesoRedAdmin(admin.ModelAdmin):
     '''Admin View for AccesoRed'''
-    list_display = ('fecha','usuario','direccion_mac','direccion_ip','observacion','estado')
-    list_display_links = ('fecha','usuario',)
+    list_display = ('usuario','direccion_mac','direccion_ip','observacion','estado')
+    list_display_links = ('usuario',)
     list_editable =('direccion_mac','direccion_ip','estado')
-    list_filter = ('fecha','usuario','direccion_mac','direccion_ip',)
+    list_filter = ('usuario','direccion_mac','direccion_ip',)
     search_fields = ('usuario','direccion_mac','direccion_ip',)
     fieldsets = (
         ("Información del equipo", {
             "fields": (
-                'fecha',
+              
                 'usuario',
                 'direccion_mac',
                 'direccion_ip',

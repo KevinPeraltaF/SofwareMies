@@ -19,7 +19,7 @@ class AccesoRedForm(forms.ModelForm):
         model = AccesoRed
 
         fields = (
-            'fecha',
+           
             'usuario',
             'direccion_mac',
             'direccion_ip',
@@ -27,13 +27,7 @@ class AccesoRedForm(forms.ModelForm):
             'estado',)
         
         widgets = {
-            'fecha': forms.DateInput(format=('%Y-%m-%d'),
-                attrs={
-                    'type':'date',
-                    'class': 'form-control',
-                        'autofocus':'autofocus'
-                }
-            ),
+            
             'usuario': forms.TextInput(
                 attrs={
                     

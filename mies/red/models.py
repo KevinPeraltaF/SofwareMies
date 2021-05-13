@@ -4,8 +4,6 @@ from django.utils import timezone
 # Create your models here.
 class AccesoRed(models.Model):
     """Model definition for AccesoRed."""
-
-    fecha = models.DateField('Fecha',default=timezone.now)
     usuario = models.CharField('Usuario', max_length=50)
     direccion_mac = models.CharField('Dirección Mac', max_length=50, unique =True, null = True,blank=True)
     direccion_ip = models.CharField('Dirección Ip', max_length=50,unique =True,null = True, blank=True)

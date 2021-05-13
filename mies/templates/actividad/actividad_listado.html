@@ -49,6 +49,7 @@
                             <th><b>USUARIO</b></th>
                             <th><b>UBICACIÓN</b></th>
                             <th><b>PRIORIDAD</b></th>
+                            <th><b>DOCUMENTOS</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
                     </thead>
@@ -79,6 +80,7 @@
                                     
 
                             </td>
+                            <td><a href="{% url 'actividad_reporte_pdf' actividad.id%} " target="_blank">ACTIVIDADES-DDM-09D17-TICS-MIES</a></td>
                             <td>
                                 <a class="btn btn-light btn-sm "
                                     onclick="abrirModalDetalle('{% url 'actividad_detalle' actividad.id%}')"> <i

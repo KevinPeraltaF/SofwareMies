@@ -36,9 +36,10 @@ urlpatterns = [
     path('', usuario_views.dashboard_view.as_view(), name="dashboard") ,
    
     #MODULO OTROS
-    # ACCESO A REDES
+    # ACCESO A REDES  
     path('AccesoRed', red_views.AccesoRedListView.as_view(), name="accesoRed_listar") ,
     path('AccesoRed/Crear', red_views.AccesoRedCreateView.as_view(), name="accesoRed_crear") ,
+    path('AccesoRed/Excel', red_views.AccesoRedExcelListView.as_view(), name="accesoRedExcel_crear") ,
     path('AccesoRed/Editar/<int:pk>', red_views.AccesoRedUpdateView.as_view(), name="accesoRed_editar") ,
     path('AccesoRed/Eliminar/<int:pk>', red_views.AccesoRedDeleteView.as_view(), name="accesoRed_eliminar") ,
     path('AccesoRed/Detalle/<int:pk>', red_views.AccesoRedDetailView.as_view(), name="accesoRed_detalle") ,
@@ -113,6 +114,7 @@ urlpatterns = [
     #--Actividad
     path('Actividad', actividad_views.ActividadListView.as_view(), name="actividad_listar"),
     path('Actividad/Crear',actividad_views.ActividadCreateView.as_view(),name ="actividad_crear"),
+    path('Actividad/pdf/<int:pk>', actividad_views.ActividadReportePdfDetailView.as_view(), name="actividad_reporte_pdf") ,
     path('Actividad/Editar/<int:pk>',actividad_views.ActividadUpdateView.as_view(),name ="actividad_editar"),
     path('Actividad/Eliminar/<int:pk>',actividad_views.ActividadDeleteView.as_view(),name ="actividad_eliminar"),
     path('Actividad/Detalle/<int:pk>',actividad_views.ActividadDetailView.as_view(),name ="actividad_detalle"),

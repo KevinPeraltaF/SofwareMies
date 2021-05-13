@@ -8,6 +8,11 @@ from .forms import  AsuntoForm, ActividadCabeceraForm, ActividadDetalleForm, Act
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.utils.decorators import method_decorator
 from django.http import  HttpResponseRedirect
+#pdf libreria
+from django_xhtml2pdf.views import PdfMixin
+#
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect, JsonResponse
 
 # VISTAS DEL MODULO ACTIVIDAD.
 #VISTA ACTIVIDAD
@@ -151,3 +156,15 @@ class AsuntoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
     permission_required = 'actividad.view_asunto'
     model = Asunto
     template_name = "actividad/asunto_detalle.html"
+
+
+
+####   REPORTE ACTIVIDADES PDF
+class ActividadReportePdfDetailView(LoginRequiredMixin,PdfMixin, DetailView):
+    model = ActividadCabecera
+    template_name = "actividad/actividad_reporte_pdf.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = ActividadDetalle.objects.filter(cabeceraActividad=self.object.id)
+        return context

@@ -10,10 +10,10 @@
         <div class="modal-body">
             <table class="table table-bordered table-responsive-sm table-responsive-xl">
                 <tbody>
+                  
                     <tr>
-
-                        <th>Fecha:</th>
-                        <td> <b>{{object.fecha}}</b> </td>
+                        <th>Usuario:</th>
+                        <td >{{object.usuario}}</td>
                         <th>Estado:</th>
                         <td>
                             {% if object.estado%}
@@ -23,10 +23,6 @@
                             {% endif %}
 
                         </td>
-                    </tr>
-                    <tr>
-                        <th>Usuario:</th>
-                        <td colspan="4">{{object.usuario}}</td>
                     </tr>
                     <tr>
                         <th>Dirección Mac:</th>
