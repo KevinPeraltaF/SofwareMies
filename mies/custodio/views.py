@@ -112,7 +112,7 @@ class CustodioReporteExcelView(TemplateView):
             ws.cell(row=cont,column=5).value = dato.custodio.area.descripcion
             ws.cell(row=cont,column=6).value = dato.custodio.apellidos + ' '+ dato.custodio.nombres
             ws.cell(row=cont,column=7).value = dato.equipo.categoria.descripcion
-            ws.cell(row=cont,column=8).value = dato.equipo.condicion.descripcion
+            ws.cell(row=cont,column=8).value = dato.equipo.condicion
             ws.cell(row=cont,column=9).value = dato.equipo.marca.descripcion
             ws.cell(row=cont,column=10).value = dato.equipo.modelo.descripcion
             ws.cell(row=cont,column=11).value = dato.equipo.serie
