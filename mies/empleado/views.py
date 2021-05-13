@@ -7,12 +7,23 @@ from .models import Empleado, Area, Cargo, UnidadAtencion
 from .forms import EmpleadoForm, AreaForm, CargoForm, UnidadAtencionForm
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.utils.decorators import method_decorator
-
-
 from functools import wraps
 from django.utils.translation import gettext_lazy as _
 from django.db.models.deletion import ProtectedError
 from django.core.exceptions import PermissionDenied
+
+
+# excel
+#Vista genérica para mostrar resultados
+from django.views.generic.base import TemplateView
+#Workbook nos permite crear libros en excel
+from openpyxl import Workbook
+#Nos devuelve un objeto resultado, en este caso un archivo de excel
+from django.http.response import HttpResponse
+import csv
+from csv import reader
+
+from openpyxl.utils import get_column_letter
 
 
 def protected_error_as_api_error():
@@ -66,6 +77,106 @@ class EmpleadoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
     permission_required = 'empleado.view_empleado'
     model = Empleado
     template_name = "empleado/empleado_detalle.html"
+
+    #excel empleado
+
+
+
+
+#Nuestra clase hereda de la vista genérica TemplateView
+class EmpleadoExcelListView(TemplateView):
+     
+    #Usamos el método get para generar el archivo excel 
+    def get(self, request, *args, **kwargs):
+        #Obtenemos todas las lista de nuestra base de listas
+        lista = Empleado.objects.all()
+        #Creamos el libro de trabajo
+        wb = Workbook()
+        #Definimos como nuestra hoja de trabajo, la hoja activa, por defecto la primera del libro
+        ws = wb.active
+        #En la celda B1 ponemos el texto 'REPORTE DE lista'
+        ws['B1'] = 'EMPLEADOS DEL DISTRITO'
+        #Juntamos las celdas desde la B1 hasta la E1, formando una sola celda
+        ws.merge_cells('B1:E1')
+        #Creamos los encabezados desde la celda B3 hasta la E3
+        ws['B3'] = 'AREA'
+        ws['C3'] = 'CARGO'
+        ws['D3'] = 'NOMBRE'
+        ws['E3'] = 'CÉDULA'
+        ws['F3'] = 'CORREO'
+        ws['G3'] = 'GENERO'
+        ws['H3'] = 'TELEFONO'
+        ws['I3'] = 'UNIDAD DE ATENCIÓN'
+        ws['J3'] = 'ESTADO DEL EMPLEADO'
+      
+
+
+        #ancho de columna
+        ws.column_dimensions['B'].width = 30.0
+        ws.column_dimensions['C'].width = 60.0
+        ws.column_dimensions['D'].width = 40.0
+        ws.column_dimensions['E'].width = 15.0
+        ws.column_dimensions['F'].width = 40.0
+        ws.column_dimensions['G'].width = 15.0
+        ws.column_dimensions['H'].width = 15.0
+        ws.column_dimensions['I'].width = 40.0
+        ws.column_dimensions['J'].width = 25.0
+
+
+        cont=4
+        
+        #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
+        for dato in lista:
+
+            if dato.unidadAtencion is None:
+                DatounidadAtencion = 'N/A'
+            else:
+                DatounidadAtencion = dato.unidadAtencion.descripcion +"-"+dato.unidadAtencion.codigo
+               
+
+            if dato.telefono is None:
+                DatoTelefono = 'N/A'
+            else:
+                DatoTelefono = dato.telefono
+
+            if dato.genero == "1":
+                DatoGenero = 'MASCULINO'
+            if dato.genero == "2":
+                DatoGenero = 'FEMENINO'
+            if dato.genero == "3":
+                DatoGenero = 'GLBTI'
+
+            if dato.estado:
+                datoEstado = 'Activo'
+
+            if not dato.estado:
+                datoEstado = 'No activo'
+          
+             
+            ws.cell(row=cont,column=2).value = dato.area.descripcion
+            ws.cell(row=cont,column=3).value =  dato.cargo.descripcion
+            ws.cell(row=cont,column=4).value =(dato.apellidos + dato.nombres)
+            ws.cell(row=cont,column=5).value = dato.cedula
+            ws.cell(row=cont,column=6).value = dato.correo
+            ws.cell(row=cont,column=7).value = DatoGenero
+            ws.cell(row=cont,column=8).value = DatoTelefono
+            ws.cell(row=cont,column=9).value = DatounidadAtencion
+            ws.cell(row=cont,column=10).value = datoEstado
+ 
+         
+            cont = cont + 1
+    
+
+        #Establecemos el nombre del archivo
+        nombre_archivo ="ListadoEmpleadoDistrito.xlsx"
+        #Definimos que el tipo de respuesta a devolver es un archivo de microsoft excel
+        response = HttpResponse(content_type="application/ms-excel") 
+        contenido = "attachment; filename={0}".format(nombre_archivo)
+        response["Content-Disposition"] = contenido
+        wb.save(response)
+        return response
+
+
 
 # VISTA AREA.
 class AreaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):

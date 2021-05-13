@@ -19,13 +19,8 @@ from usuario import views as usuario_views
 from red import views as red_views
 from empleado import views as empleado_views
 from ubicacion import views as ubicacion_views
-from inventario import views as inventaio_views
-from prestamo import views as prestamo_views
 from practica import views as practica_views
-from custodio import views as custodio_views
-from atencion import views as atencion_views
 from actividad import views as actividad_views
-from capacitacion import views as tipocapacitacion_views
 from capacitacion import views as capacitacion_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -51,6 +46,7 @@ urlpatterns = [
     #-- empleado
     path('Empleado', empleado_views.EmpleadoListView.as_view(), name="empleado_listar") ,
     path('Empleado/Crear', empleado_views.EmpleadoCreateView.as_view(), name="empleado_crear") ,
+    path('Empleado/Excel', empleado_views.EmpleadoExcelListView.as_view(), name="empleadoExcel_crear") ,
     path('Empleado/Editar/<int:pk>', empleado_views.EmpleadoUpdateView.as_view(), name="empleado_editar") ,
     path('Empleado/Eliminar/<int:pk>', empleado_views.EmpleadoDeleteView.as_view(), name="empleado_eliminar") ,
     path('Empleado/Detalle/<int:pk>', empleado_views.EmpleadoDetailView.as_view(), name="empleado_detalle") ,
@@ -91,64 +87,6 @@ urlpatterns = [
     path('Distrito/Editar/<int:pk>', ubicacion_views.DistritoUpdateView.as_view(), name="distrito_editar") ,
     path('Distrito/Eliminar/<int:pk>', ubicacion_views.DistritoDeleteView.as_view(), name="distrito_eliminar") ,
     path('Distrito/Detalle/<int:pk>', ubicacion_views.DistritoDetailView.as_view(), name="distrito_detalle") ,
-    #Modulo Inventario Tics
-    #--Marca
-    path('Marca', inventaio_views.MarcaListView.as_view(), name="marca_listar"),
-    path('Marca/Crear',inventaio_views.MarcaCreateView.as_view(),name ="marca_crear"),
-    path('Marca/Editar/<int:pk>',inventaio_views.MarcaUpdateView.as_view(),name ="marca_editar"),
-    path('Marca/Eliminar/<int:pk>',inventaio_views.MarcaDeleteView.as_view(),name ="marca_eliminar"),
-    path('Marca/Detalle/<int:pk>',inventaio_views.MarcaDetailView.as_view(),name ="marca_detalle"),
-    #--Modelo
-    path('Modelo', inventaio_views.ModeloListView.as_view(), name="modelo_listar"),
-    path('Modelo/Crear',inventaio_views.ModeloCreateView.as_view(),name ="modelo_crear"),
-    path('Modelo/Editar/<int:pk>',inventaio_views.ModeloUpdateView.as_view(),name ="modelo_editar"),
-    path('Modelo/Eliminar/<int:pk>',inventaio_views.ModeloDeleteView.as_view(),name ="modelo_eliminar"),
-    path('Modelo/Detalle/<int:pk>',inventaio_views.ModeloDetailView.as_view(),name ="modelo_detalle"),
-    #--Categoria
-    path('Categoria', inventaio_views.CategoriaListView.as_view(), name="categoria_listar"),
-    path('Categoria/Crear',inventaio_views.CategoriaCreateView.as_view(),name ="categoria_crear"),
-    path('Categoria/Editar/<int:pk>',inventaio_views.CategoriaUpdateView.as_view(),name ="categoria_editar"),
-    path('Categoria/Eliminar/<int:pk>',inventaio_views.CategoriaDeleteView.as_view(),name ="categoria_eliminar"),
-    path('Categoria/Detalle/<int:pk>',inventaio_views.CategoriaDetailView.as_view(),name ="categoria_detalle"),
-   
-    #--INVENTARIO TICS
-    path('InvTics', inventaio_views.InvTicsListView.as_view(), name="inv_tics_listar"),
-    path('InvTics/excel', inventaio_views.InvTicsExcelListView.as_view(), name="inv_tics_excel_crear"),
-    path('InvTics/Crear',inventaio_views.InvTicsCreateView.as_view(),name ="inv_tics_crear"),
-    path('InvTics/Editar/<int:pk>',inventaio_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
-    path('InvTics/Eliminar/<int:pk>',inventaio_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),
-    path('InvTics/Detalle/<int:pk>',inventaio_views.InvTicsDetailView.as_view(),name ="inv_tics_detalle"),
-    #--CAPACIDAD DISCO
-    path('CapacidadDisco', inventaio_views.CapacidadDiscoListView.as_view(), name="capacidad_disco_listar"),
-    path('CapacidadDisco/Crear',inventaio_views.CapacidadDiscoCreateView.as_view(),name ="capacidad_disco_crear"),
-    path('CapacidadDisco/Editar/<int:pk>',inventaio_views.CapacidadDiscoUpdateView.as_view(),name ="capacidad_disco_editar"),
-    path('CapacidadDisco/Eliminar/<int:pk>',inventaio_views.CapacidadDiscoDeleteView.as_view(),name ="capacidad_disco_eliminar"),
-    path('CapacidadDisco/Detalle/<int:pk>',inventaio_views.CapacidadDiscoDetailView.as_view(),name ="capacidad_disco_detalle"),
-    #--CAPACIDAD MEMORIA
-    path('CapacidadMemoriaRam', inventaio_views.CapacidadMemoriaRamListView.as_view(), name="capacidad_memoria_ram_listar"),
-    path('CapacidadMemoriaRam/Crear',inventaio_views.CapacidadMemoriaRamCreateView.as_view(),name ="capacidad_memoria_ram_crear"),
-    path('CapacidadMemoriaRam/Editar/<int:pk>',inventaio_views.CapacidadMemoriaRamUpdateView.as_view(),name ="capacidad_memoria_ram_editar"),
-    path('CapacidadMemoriaRam/Eliminar/<int:pk>',inventaio_views.CapacidadMemoriaRamDeleteView.as_view(),name ="capacidad_memoria_ram_eliminar"),
-    path('CapacidadMemoriaRam/Detalle/<int:pk>',inventaio_views.CapacidadMemoriaRamDetailView.as_view(),name ="capacidad_memoria_ram_detalle"),
-    #--CPROCESADORProcesador
-    path('Procesador', inventaio_views.ProcesadorListView.as_view(), name="procesador_listar"),
-    path('Procesador/Crear',inventaio_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
-    path('Procesador/Editar/<int:pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
-    path('Procesador/Eliminar/<int:pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
-    path('Procesador/Detalle/<int:pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
-    #--EQUIPO CABECERA DISTRITO
-    path('Equipo', inventaio_views.EquipoListView.as_view(), name="equipo_listar"),
-    path('Equipo/Crear',inventaio_views.EquipoCreateView.as_view(),name ="equipo_crear"),
-    path('Equipo/Excel', inventaio_views.EquipoReporteExcelView.as_view(), name="equipo_excel_crear") ,
-    path('Equipo/Editar/<int:pk>',inventaio_views.EquipoUpdateView.as_view(),name ="equipo_editar"),
-    path('Equipo/Eliminar/<int:pk>',inventaio_views.EquipoDeleteView.as_view(),name ="equipo_eliminar"),
-    path('Equipo/Detalle/<int:pk>',inventaio_views.EquipoDetailView.as_view(),name ="equipo_detalle"),
-     #--PRESTAMO
-    path('Prestamo', prestamo_views.PrestamoListView.as_view(), name="prestamo_listar"),
-    path('Prestamo/Crear',prestamo_views.PrestamoCreateView.as_view(),name ="prestamo_crear"),
-    path('Prestamo/Editar/<int:pk>',prestamo_views.PrestamoUpdateView.as_view(),name ="prestamo_editar"),
-    path('Prestamo/Eliminar/<int:pk>',prestamo_views.PrestamoDeleteView.as_view(),name ="prestamo_eliminar"),
-    path('Prestamo/Detalle/<int:pk>',prestamo_views.PrestamoDetailView.as_view(),name ="prestamo_detalle"),
     #MODULO PRACTICAS PROFESIONALIZANTES
     #--Pasante
     path('Pasante', practica_views.PasanteListView.as_view(), name="pasante_listar") ,
@@ -169,40 +107,7 @@ urlpatterns = [
     path('Universidad/Eliminar/<int:pk>', practica_views.UniversidadDeleteView.as_view(), name="universidad_eliminar") ,
     path('Universidad/Detalle/<int:pk>', practica_views.UniversidadDetailView.as_view(), name="universidad_detalle") ,
     
-    #MODULO OTROS
-    #--Atencion secundaria
-    path('AtencionSecundaria', atencion_views.AtencionSecundariaListView.as_view(), name="atencionSecundaria_listar"),
-    path('AtencionSecundaria/Crear',atencion_views.AtencionSecundariaCreateView.as_view(),name ="atencionSecundaria_crear"),
-    path('AtencionSecundaria/Editar/<int:pk>',atencion_views.AtencionSecundariaUpdateView.as_view(),name ="atencionSecundaria_editar"),
-    path('AtencionSecundaria/Eliminar/<int:pk>',atencion_views.AtencionSecundariaDeleteView.as_view(),name ="atencionSecundaria_eliminar"),
-    path('AtencionSecundaria/Detalle/<int:pk>',atencion_views.AtencionSecundariaDetailView.as_view(),name ="atencionSecundaria_detalle"),
-    path('AtencionSecundaria/pdf/reporte-atencion/<int:pk>',atencion_views.ReporteAtencionSecundariaPdfView.as_view(),name ="atencionSecundaria_reporte_pdf"),
-    path('AtencionSecundaria/pdf/acta-entrega/<int:pk>',atencion_views.ReporteActaEntregaSecundariaPdfView.as_view(),name ="acta_entrega_atencionSecundaria_reporte_pdf"),
-     ##
-    path('AtencionSecundaria/pdf/acta-bienes/<int:pk>',atencion_views.ReporteBienesSecundariaPdfView.as_view(),name ="acta_bienesSecundaria_pdf"),
-    path('AtencionSecundaria/pdf/acta-entrega-reporte/<int:pk>',atencion_views.ReporteEntregaSecundariaPdfView.as_view(),name ="acta_entregaSecundaria_reporte_pdf"),
-    path('AtencionSecundaria/pdf/acta-recepcion/<int:pk>',atencion_views.ReporteRecepcionSecundariaPdfView.as_view(),name ="acta_recepcionSecundaria_reporte_pdf"),
-    #
-    ##
-    #--Atencion
-    path('Atencion', atencion_views.AtencionListView.as_view(), name="atencion_listar"),
-    path('Atencion/Crear',atencion_views.AtencionCreateView.as_view(),name ="atencion_crear"),
-    path('Atencion/Editar/<int:pk>',atencion_views.AtencionUpdateView.as_view(),name ="atencion_editar"),
-    path('Atencion/Eliminar/<int:pk>',atencion_views.AtencionDeleteView.as_view(),name ="atencion_eliminar"),
-    path('Atencion/Detalle/<int:pk>',atencion_views.AtencionDetailView.as_view(),name ="atencion_detalle"),
-    path('Atencion/pdf/reporte-atencion/<int:pk>',atencion_views.ReporteAtencionPdfView.as_view(),name ="atencion_reporte_pdf"),
-    path('Atencion/pdf/acta-entrega/<int:pk>',atencion_views.ReporteActaEntregaPdfView.as_view(),name ="acta_entrega_atencion_reporte_pdf"),
-    ##
-    path('Atencion/pdf/acta-bienes/<int:pk>',atencion_views.ReporteBienesPdfView.as_view(),name ="acta_bienes_pdf"),
-    path('Atencion/pdf/acta-entrega-reporte/<int:pk>',atencion_views.ReporteEntregaPdfView.as_view(),name ="acta_entrega_reporte_pdf"),
-    path('Atencion/pdf/acta-recepcion/<int:pk>',atencion_views.ReporteRecepcionPdfView.as_view(),name ="acta_recepcion_reporte_pdf"),
-    #
-    path('Procesador', inventaio_views.ProcesadorListView.as_view(), name="procesador_listar"),
-    path('Procesador/Crear',inventaio_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
-    path('Procesador/Editar/<int:pk>',inventaio_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
-    path('Procesador/Eliminar/<int:pk>',inventaio_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
-    path('Procesador/Detalle/<int:pk>',inventaio_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
-    
+
     #MODULO ACTIVIDAD
     #--Actividad
     path('Actividad', actividad_views.ActividadListView.as_view(), name="actividad_listar"),
@@ -217,14 +122,6 @@ urlpatterns = [
     path('Asunto/Editar/<int:pk>',actividad_views.AsuntoUpdateView.as_view(),name ="asunto_editar"),
     path('Asunto/Eliminar/<int:pk>',actividad_views.AsuntoDeleteView.as_view(),name ="asunto_eliminar"),
     path('Asunto/Detalle/<int:pk>',actividad_views.AsuntoDetailView.as_view(),name ="asunto_detalle"),
-
-    #--custodio
-    path('Custodio', custodio_views.CustodioListView.as_view(), name="custodio_listar") ,
-    path('Custodio/Crear', custodio_views.CustodioCreateView.as_view(), name="custodio_crear") ,
-    path('Custodio/Excel', custodio_views.CustodioReporteExcelView.as_view(), name="custodio_excel_crear") ,
-    path('Custodio/Editar/<int:pk>', custodio_views.CustodioUpdateView.as_view(), name="custodio_editar") ,
-    path('Custodio/Eliminar/<int:pk>', custodio_views.CustodioDeleteView.as_view(), name="custodio_eliminar") ,
-    path('Custodio/Detalle/<int:pk>', custodio_views.CustodioDetailView.as_view(), name="custodio_detalle") ,
 
      #--Capacitacion
     path('Capacitacion', capacitacion_views.CapacitacionListView.as_view(), name="capacitacion_listar") ,

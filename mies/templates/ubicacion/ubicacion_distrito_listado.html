@@ -44,6 +44,7 @@
                     <thead>
                         <tr>
                             <th><b>DISTRITO</b></th>
+                            <th><b>ALIAS</b></th>
                             <th><b>PROVINCIA</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
@@ -52,6 +53,7 @@
                         {% for distrito in object_list %}
                         <tr>
                             <td>{{ distrito.descripcion }}</td>
+                            <td>{{ distrito.alias }}</td>
                             <td>{{ distrito.provincia }}</td>
 
 

@@ -24,9 +24,9 @@ class ProvinciaAdmin(admin.ModelAdmin):
 class DistritoAdmin(admin.ModelAdmin):
     '''Admin View for Distrito'''
 
-    list_display = ('descripcion','provincia',)
-    list_filter = ('provincia','descripcion',)
-    search_fields = ('provincia','descripcion',)
+    list_display = ('descripcion','alias','provincia',)
+    list_filter = ('provincia','descripcion','alias',)
+    search_fields = ('provincia','descripcion','alias',)
 
 
 

@@ -32,8 +32,8 @@ class UnidadAtencionAdmin(admin.ModelAdmin):
 class EmpleadoAdmin(admin.ModelAdmin):
     '''Admin View for Empleado'''
 
-    list_display = ('fecha','area' ,'cargo','unidadAtencion','nombres','apellidos' ,'genero' ,'correo','cedula','telefono','foto','estado',)
-    list_editable = ('area' ,'cargo','unidadAtencion','nombres','apellidos' ,'genero' ,'correo','cedula','telefono','foto','estado',)
+    list_display = ('area' ,'cargo','unidadAtencion','nombres','apellidos' ,'genero' ,'correo','cedula','telefono','foto','estado',)
+    list_editable = ('cargo','unidadAtencion','nombres','apellidos' ,'genero' ,'correo','cedula','telefono','foto','estado',)
     list_filter = ('nombres','apellidos', 'unidadAtencion','correo','cedula',)
     search_fields = ('correo','cedula','nombres','apellidos',)
     fieldsets = (
@@ -51,7 +51,6 @@ class EmpleadoAdmin(admin.ModelAdmin):
         }),
         ("Información Empresarial", {
             "fields": (
-                'fecha',
                 'area',
                 'cargo',
                 'unidadAtencion',

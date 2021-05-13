@@ -72,8 +72,6 @@ class UnidadAtencion(models.Model):
 #modelo EMPLEADO
 class Empleado(models.Model):
     """Model definition for Empleado."""
-
-    fecha = models.DateField('Fecha Ingreso', auto_now=False, auto_now_add=False)
     area = models.ForeignKey(Area, on_delete=models.PROTECT)
     cargo = models.ForeignKey(Cargo, on_delete=models.PROTECT)
     unidadAtencion = models.ForeignKey(UnidadAtencion,verbose_name='Unidad de Atención',on_delete=models.PROTECT, null=True , blank= True)

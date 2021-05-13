@@ -16,7 +16,7 @@ class EmpleadoForm(forms.ModelForm):
         model= Empleado
 
         fields = (
-            'fecha',
+          
             'area',
             'cargo',
             'unidadAtencion',
@@ -30,12 +30,7 @@ class EmpleadoForm(forms.ModelForm):
             'foto',)
 
         widgets = {
-            'fecha': forms.DateInput(format=('%Y-%m-%d'),
-                attrs={
-                    'type':'date',
-                    'class': 'form-control'
-                }
-            ),
+            
             'area' : forms.Select(
                 attrs={
                     

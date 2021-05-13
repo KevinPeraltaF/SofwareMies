@@ -45,6 +45,7 @@ class Distrito(models.Model):
     """Model definition for Distrito."""
     provincia = models.ForeignKey(Provincia, on_delete=models.PROTECT)
     descripcion = models.CharField('Distrito', max_length=50, unique=True)
+    alias = models.CharField('Alias Distrito', max_length=50, unique=True)
 
     class Meta:
         """Meta definition for Distrito."""
@@ -60,5 +61,6 @@ class Distrito(models.Model):
     def save(self, *args, **kwargs):
         """Save method for Distrito."""
         self.descripcion = self.descripcion and (self.descripcion).upper()
+        self.alias = self.alias and (self.alias).upper()
         return super(Distrito, self).save(*args, **kwargs)
 

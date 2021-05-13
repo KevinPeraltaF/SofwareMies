@@ -10,9 +10,10 @@
         <div class="modal-body">
             <table class="table table-bordered table-responsive-sm table-responsive-xl">
                 <tbody>
+                   
                     <tr>
-                        <th>Fecha:</th>
-                        <td> <b>{{object.fecha}}</b> </td>
+                        <th>Nombres:</th>
+                        <td> {{object.apellidos}} {{object.nombres}}</td>
                         <th>Estado:</th>
                         <td>
                             {% if object.estado%}
@@ -22,12 +23,6 @@
                             {% endif %}
 
                         </td>
-                    </tr>
-                    <tr>
-                        <th>Nombres:</th>
-                        <td>{{object.nombres}}</td>
-                        <th>Apellidos:</th>
-                        <td>{{object.apellidos}}</td>
                     </tr>
                     <tr>
                         <th>Cédula:</th>

@@ -28,9 +28,11 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                             {% if perms.empleado.add_empleado %}
-                            <a class="dropdown-item" href="{% url 'empleado_crear'%}">Nuevo empleado</a>
+                            <a class="dropdown-item" href="{% url 'empleado_crear'%}">Nuevo Empleado</a>
 
                             {% endif %}
+                            <a class="dropdown-item" href="{% url 'empleadoExcel_crear'%}">Reporte Excel</a>
+
 
                         </div>
                     </div>
@@ -45,12 +47,11 @@
                     <thead>
                         <tr>
 
-                            <th><b>FECHA DE INGRESO</b></th>
                             <th><b>ÁREA</b></th>
                             <th><b>CARGO</b></th>
                             <th><b>UNIDAD DE ATENCIÓN</b></th>
                             <th><b>NOMBRES</b></th>
-                            <th><b>APELLIDOS</b></th>
+                           
                             <th><b>GÉNERO</b></th>
                             <th><b>CORREO</b></th>
                             <th><b>CÉDULA</b></th>
@@ -63,7 +64,7 @@
                         {% for empl in object_list %}
                         <tr>
 
-                            <td>{{ empl.fecha }}</td>
+                     
                             <td>{{ empl.area }}</td>
                             <td>{{ empl.cargo }}</td>
                             <td>
@@ -73,8 +74,8 @@
                                 {{ empl.unidadAtencion }}
                                 {% endif%}
                             </td>
-                            <td>{{ empl.nombres }}</td>
-                            <td>{{ empl.apellidos }}</td>
+                            <td >{{ empl.apellidos }} {{ empl.nombres }}</td>
+                         
                             <td>
                                 {% if empl.genero == '1' %}
                                 <p>MASCULINO</p>

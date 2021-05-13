@@ -17,17 +17,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
     'red',
     'practica',
     'empleado',
     'actividad',
     'ubicacion',
-    'inventario',
     'capacitacion',
-    'django.contrib.admin',
-    'prestamo',
-    'atencion',
-    'custodio',
+    
+   
     
     
 ]

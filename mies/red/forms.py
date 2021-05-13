@@ -37,7 +37,7 @@ class AccesoRedForm(forms.ModelForm):
             'usuario': forms.TextInput(
                 attrs={
                     
-                    'class': 'form-control'
+                    'class': 'form-control solo-letra'
                 }
             ),
             'direccion_mac': forms.TextInput(

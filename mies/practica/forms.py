@@ -108,7 +108,7 @@ class CarreraForm(forms.ModelForm):
             ),
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-letra',
                     'autofocus':'autofocus'
                 }
             ),
@@ -131,7 +131,7 @@ class UniversidadForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-letra',
                     'autofocus':'autofocus'
                 }
             ),

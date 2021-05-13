@@ -49,7 +49,7 @@ class ProvinciaForm(forms.ModelForm):
             ),
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-letra',
                     'autofocus':'autofocus'
                 }
             ),
@@ -64,6 +64,10 @@ class DistritoForm(forms.ModelForm):
     def clean_descripcion(self):
         data = self.cleaned_data["descripcion"].upper()
         return data
+
+    def clean_alias(self):
+        data = self.cleaned_data["alias"].upper()
+        return data
        
     class Meta:
         """Meta definition for Distrito."""
@@ -72,6 +76,7 @@ class DistritoForm(forms.ModelForm):
         fields = (
             'provincia',
             'descripcion',
+            'alias',
             )
         
         widgets = {
@@ -84,6 +89,12 @@ class DistritoForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control',
                     'autofocus':'autofocus'
+                }
+            ),
+             'alias': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                 
                 }
             ),
         }

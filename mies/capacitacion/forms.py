@@ -22,9 +22,7 @@ class CapacitacionCabeceraForm(forms.ModelForm):
         data = self.cleaned_data["dirigido"].upper()
         return data
 
-    def clean_areaSolicitante(self):
-        data = self.cleaned_data["areaSolicitante"].upper()
-        return data
+    
 
     class Meta:
 
@@ -77,14 +75,14 @@ class CapacitacionCabeceraForm(forms.ModelForm):
                      'class': 'form-control select'
                 }
             ), 
-            'areaSolicitante' : forms.TextInput(
+            'areaSolicitante' : forms.Select(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control select'
                 }
             ),
             'dirigido': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-letra'
                 }
             ),
             'instructor': forms.Select(
@@ -94,7 +92,7 @@ class CapacitacionCabeceraForm(forms.ModelForm):
             ),
             'objetivo': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-letra'
                 }
             ),
            
