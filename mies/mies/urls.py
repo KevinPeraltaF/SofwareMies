@@ -167,7 +167,56 @@ urlpatterns = [
     path('Procesador/Editar/<int:pk>',inventario_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
     path('Procesador/Eliminar/<int:pk>',inventario_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
     path('Procesador/Detalle/<int:pk>',inventario_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
-    #dispositivo
+    #
+    #-##########TipoDispositivo#######
+    path('tipoDispositivo', inventario_views.TipoDispositivoListView.as_view(), name="tipo_dispositivo_listar"),
+    path('tipoDispositivo/Crear',inventario_views.TipoDispositivoCreateView.as_view(),name ="tipo_dispositivo_crear"),
+    path('tipoDispositivo/Editar/<int:pk>',inventario_views.TipoDispositivoUpdateView.as_view(),name ="tipo_dispositivo_editar"),
+    path('tipoDispositivo/Eliminar/<int:pk>',inventario_views.TipoDispositivoDeleteView.as_view(),name ="tipo_dispositivo_eliminar"),
+    path('tipoDispositivo/Detalle/<int:pk>',inventario_views.TipoDispositivoDetailView.as_view(),name ="tipo_dispositivo_detalle"),
+    #
+    #-------------TipoImpresora---------
+    path('TipoImpresora', inventario_views.TipoImpresoraListView.as_view(), name="tipo_impresora_listar"),
+    path('TipoImpresora/Crear',inventario_views.TipoImpresoraCreateView.as_view(),name ="tipo_impresora_crear"),
+    path('TipoImpresora/Editar/<int:pk>',inventario_views.TipoImpresoraUpdateView.as_view(),name ="tipo_impresora_editar"),
+    path('TipoImpresora/Eliminar/<int:pk>',inventario_views.TipoImpresoraDeleteView.as_view(),name ="tipo_impresora_eliminar"),
+    path('TipoImpresora/Detalle/<int:pk>',inventario_views.TipoImpresoraDetailView.as_view(),name ="tipo_impresora_detalle"),
+    #
+    #----------------TipoEquipo-----------------
+    path('TipoEquipo', inventario_views.TipoEquipoListView.as_view(), name="tipo_equipo_listar"),
+    path('TipoEquipo/Crear',inventario_views.TipoEquipoCreateView.as_view(),name ="tipo_equipo_crear"),
+    path('TipoEquipo/Editar/<int:pk>',inventario_views.TipoEquipoUpdateView.as_view(),name ="tipo_equipo_editar"),
+    path('TipoEquipo/Eliminar/<int:pk>',inventario_views.TipoEquipoDeleteView.as_view(),name ="tipo_equipo_eliminar"),
+    path('TipoEquipo/Detalle/<int:pk>',inventario_views.TipoEquipoDetailView.as_view(),name ="tipo_equipo_detalle"),
+    #
+    #------------------ImpresoraTecnologia------------------
+    path('ImpresoraTecnologia', inventario_views.ImpresoraTecnologiaListView.as_view(), name="tecnologia_impresora_listar"),
+    path('ImpresoraTecnologia/Crear',inventario_views.ImpresoraTecnologiaCreateView.as_view(),name ="tecnologia_impresora_crear"),
+    path('ImpresoraTecnologia/Editar/<int:pk>',inventario_views.ImpresoraTecnologiaUpdateView.as_view(),name ="tecnologia_impresora_editar"),
+    path('ImpresoraTecnologia/Eliminar/<int:pk>',inventario_views.ImpresoraTecnologiaDeleteView.as_view(),name ="tecnologia_impresora_eliminar"),
+    path('ImpresoraTecnologia/Detalle/<int:pk>',inventario_views.ImpresoraTecnologiaDetailView.as_view(),name ="tecnologia_impresora_detalle"),
+    #
+    #--.--------------------SoftwareAntivirus----------
+    path('SoftwareAntivirus', inventario_views.SoftwareAntivirusListView.as_view(), name="software_antivirus_listar"),
+    path('SoftwareAntivirus/Crear',inventario_views.SoftwareAntivirusCreateView.as_view(),name ="software_antivirus_crear"),
+    path('SoftwareAntivirus/Editar/<int:pk>',inventario_views.SoftwareAntivirusUpdateView.as_view(),name ="software_antivirus_editar"),
+    path('SoftwareAntivirus/Eliminar/<int:pk>',inventario_views.SoftwareAntivirusDeleteView.as_view(),name ="software_antivirus_eliminar"),
+    path('SoftwareAntivirus/Detalle/<int:pk>',inventario_views.SoftwareAntivirusDetailView.as_view(),name ="software_antivirus_detalle"),
+    #
+    #------------------SoftwareOfimatica-----------
+    path('SoftwareOfimatica', inventario_views.SoftwareOfimaticaListView.as_view(), name="software_ofimatica_listar"),
+    path('SoftwareOfimatica/Crear',inventario_views.SoftwareOfimaticaCreateView.as_view(),name ="software_ofimatica_crear"),
+    path('SoftwareOfimatica/Editar/<int:pk>',inventario_views.SoftwareOfimaticaUpdateView.as_view(),name ="software_ofimatica_editar"),
+    path('SoftwareOfimatica/Eliminar/<int:pk>',inventario_views.SoftwareOfimaticaDeleteView.as_view(),name ="software_ofimatica_eliminar"),
+    path('SoftwareOfimatica/Detalle/<int:pk>',inventario_views.SoftwareOfimaticaDetailView.as_view(),name ="software_ofimatica_detalle"),
+    #
+    #------------------SistemaOperativo--------------
+    path('SistemaOperativo', inventario_views.SistemaOperativoListView.as_view(), name="sistema_operativo_listar"),
+    path('SistemaOperativo/Crear',inventario_views.SistemaOperativoCreateView.as_view(),name ="sistema_operativo_crear"),
+    path('SistemaOperativo/Editar/<int:pk>',inventario_views.SistemaOperativoUpdateView.as_view(),name ="sistema_operativo_editar"),
+    path('SistemaOperativo/Eliminar/<int:pk>',inventario_views.SistemaOperativoDeleteView.as_view(),name ="sistema_operativo_eliminar"),
+    path('SistemaOperativo/Detalle/<int:pk>',inventario_views.SistemaOperativoDetailView.as_view(),name ="sistema_operativo_detalle"),
+    #-----------------dispositivo--------------------------
     path('dispositivo', inventario_views.DispositivoListView.as_view(), name="dispositivo_listar"),
     path('dispositivo/Crear',inventario_views.DispositivoCreateView.as_view(),name ="dispositivo_crear"),
     path('dispositivo/Editar/<int:pk>',inventario_views.DispositivoUpdateView.as_view(),name ="dispositivo_editar"),

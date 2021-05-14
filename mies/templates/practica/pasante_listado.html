@@ -8,7 +8,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Pasante</li>
+        <li class="breadcrumb-item active" aria-current="page">Pasantes</li>
     </ol>
 </nav>
 <div class="container-fluid">
@@ -19,7 +19,35 @@
                 <div class="col">
                     <h6 class="m-0 font-weight-bold text-primary">Lista pasantes</h6>
                 </div>
-                <div class="col ">
+                <div class="col-md-4">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Configuraciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    
+                        {% if perms.practica.view_carrera  %}
+                        <a class="dropdown-item " href="{% url 'carrera_listar'%}">
+                            Carreras</a>
+                        {% endif %}
+                            
+                        
+                        {% if perms.practica.view_universidad %}
+                        <a class="dropdown-item " href="{% url 'universidad_listar'%}">
+                            Universidades</a>
+                        {% endif %}
+                            
+                        
+                       
+                           
+                
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="col-md-2 ">
                     <div class="dropdown float-right">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

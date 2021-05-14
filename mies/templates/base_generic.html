@@ -8,7 +8,7 @@
     <meta name="author" content="Fuentes Peralta Nelson Kevin">
     <title>SEIM - {% block title %}{% endblock %} </title>
     {% load static %}
-    
+
     <!-- Custom fonts for this template 
     
     <link
@@ -19,19 +19,19 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">
     <link href="{% static 'js/jquery-ui.min.css'%}" rel="stylesheet">
-    
+
 
     <!-- Custom styles for this page -->
     <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
-    
-    
+
+
     <link rel="stylesheet" href="{% static 'touchSpin/jquery.bootstrap-touchspin.min.css'%}">
     <link rel="stylesheet" href="{% static 'touchSpin/jquery-confirm.min.css'%}">
-    
+
     <link href="{% static 'css/select2.min.css'%}" rel="stylesheet">
     <link href="{% static 'css/select2-bootstrap4.min.css'%}" rel="stylesheet">
 
-    
+
     {% block content_extra_css %}
 
     {% endblock content_extra_css %}
@@ -56,7 +56,7 @@
 
 
 
-            
+
             {% if user.is_staff %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'admin:index' %}" target="_blank">
@@ -64,7 +64,7 @@
                     <span>Administración Django</span></a>
             </li>
             {% endif %}
-                
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -73,276 +73,152 @@
             <div class="sidebar-heading">
                 Módulo Principal
             </div>
-            
+
             {%url 'empleado_listar' as empleado_url%}
-            {%url 'area_listar' as area_url%}
-            {%url 'cargo_listar' as cargo_url%}
-            {%url 'unidad_listar' as unidad_url%}
-         
+            {%url 'dispositivo_listar' as dispositivo_url%}
+            {%url 'capacitacion_listar' as capacitacion_url%}
             {%url 'pasante_listar' as pasante_url%}
-            {%url 'carrera_listar' as carrera_url%}
-            {%url 'universidad_listar' as universidad_url%}
-
-            {%url 'accesoRed_listar' as red_url%}
-
             {%url 'actividad_listar' as actividad_url%}
-            {%url 'asunto_listar' as asunto_url%}
-
+            {%url 'accesoRed_listar' as red_url%}
             {%url 'zona_listar' as zona_url%}
             {%url 'provincia_listar' as provincia_url%}
             {%url 'distrito_listar' as distrito_url%}
-
-            {%url 'capacitacion_listar' as capacitacion_url %}
-            {%url 'marca_listar' as marca_url%}
-            {%url 'modelo_listar' as modelo_url%}
-            {%url 'capacidad_disco_listar' as disco_url%}
-            {%url 'capacidad_memoria_ram_listar' as ram_url%}
-            {%url 'procesador_listar' as procesador_url%}
-            {%url 'dispositivo_listar' as dispositivo_url%}
-
-            <!-- Nav Item - Empleado Collapse Menu -->
             
-            {% if  perms.empleado.view_empleado or  perms.empleado.view_area or perms.empleado.view_cargo or perms.empleado.view_unidadatencion%}
-            <li class="nav-item {% if empleado_url in request.path or area_url in request.path or cargo_url in request.path or unidad_url in request.path %} active {% endif%}">
-                <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseEmppleado"
-                    aria-expanded="true" aria-controls="collapseEmppleado">
-                    <i class="fas fa-users"></i>
-                    <span>Empleado</span>
-                </a>
-                <div id="collapseEmppleado" class="collapse {% if empleado_url in request.path or area_url in request.path or cargo_url in request.path or unidad_url in request.path%} show {% endif%}" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+            
+            <!-- Nav Item - Empleado Collapse Menu -->
 
-                        
-                        {% if  perms.empleado.view_empleado %}
-                        <a class="collapse-item {% if empleado_url in request.path%} active {% endif%}" href="{{empleado_url}}"><i class="fas fa-caret-right"></i>
-                            Empleado</a>
-                        {% endif %}
-                            
-                        
-                        {% if perms.empleado.view_area %}
-                        <a class="collapse-item {% if area_url in request.path%} active {% endif%}" href="{{area_url}}"><i class="fas fa-caret-right"></i>
-                            Área</a>
-                        {% endif %}
-                            
-                        
-                        {% if perms.empleado.view_cargo %}
-                        <a class="collapse-item  {% if cargo_url in request.path%} active {% endif%}" href="{{cargo_url}}"><i class="fas fa-caret-right"></i>
-                            Cargo</a>
-                        {% endif %}
-                            
-                        
-                        {% if perms.empleado.view_unidadatencion %}
-                        <a class="collapse-item  {% if unidad_url in request.path%} active {% endif%}" href="{{unidad_url}}"><i class="fas fa-caret-right"></i>
-                            Unidad de Atención</a>
-                        {% endif %}
-                            
+            {% if perms.empleado.view_empleado %}
 
-                    </div>
-                </div>
+            <li class="nav-item  {% if empleado_url in request.path%} active {% endif%}">
+                <a class="nav-link" href="{{empleado_url}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Empleados</span></a>
+            </li>
+
+            {% endif %}
+
+            {% if perms.inventario.view_dispositivo %}
+            <!-- Nav Item - Inventario Collapse Menu -->
+
+            <li class="nav-item  {% if dispositivo_url in request.path%} active {% endif%}">
+                <a class="nav-link" href="{{dispositivo_url}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Equipos</span></a>
+            </li>
+
+
+            {% endif %}
+
+
+
+            {% if perms.capacitacion.view_capacitacioncabecera %}
+            <li class="nav-item  {% if capacitacion_url in request.path%} active {% endif%}">
+                <a class="nav-link" href="{{capacitacion_url}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Capacitación</span></a>
             </li>
             {% endif %}
-                
-            {% if perms.inventario.view_marca or perms.inventario.view_modelo or   perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_dispositivo %}
-                <!-- Nav Item - Inventario Collapse Menu -->
-            <li class="nav-item  {% if marca_url in request.path or modelo_url in request.path or  disco_url in request.path or ram_url in request.path or procesador_url in request.path or dispositivo_url in request.path  %} active {% endif%}">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventarioTics"
-                    aria-expanded="true" aria-controls="collapseInventarioTics">
-                    <i class="fas fa-th-list"></i>
-                    <span>Inventarios</span>
-                </a>
-                <div id="collapseInventarioTics" class="collapse {% if marca_url in request.path or modelo_url in request.path or disco_url in request.path or ram_url in request.path or procesador_url in request.path or dispositivo_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        
-                        {% if perms.inventario.view_marca %}
-                            
-                        <a class="collapse-item  {% if marca_url in request.path%} active {% endif%}" href="{{marca_url}}"><i class="fas fa-caret-right"></i>
-                            Marca</a>
-                        {% endif %}
-                        
-                        {% if perms.inventario.view_modelo %}
-                        <a class="collapse-item  {% if modelo_url in request.path%} active {% endif%}" href="{{modelo_url}}"><i class="fas fa-caret-right"></i>
-                            Modelo</a>
-                        {% endif %}
-                            
-    
-                        {% if perms.inventario.view_capacidaddisco %}
-                        <a class="collapse-item  {% if disco_url in request.path%} active {% endif%}" href="{{disco_url}}"><i
-                            class="fas fa-caret-right"></i> Capacidad Disco</a>
-                        {% endif %}
-                            
-                        
-                        {% if perms.inventario.view_capacidadmemoriaram %}
-                        <a class="collapse-item  {% if ram_url in request.path%} active {% endif%}" href="{{ram_url}}"><i
-                            class="fas fa-caret-right"></i> Capacidad Ram</a>
-                        {% endif %}
-                            
-                        
-                        {% if perms.inventario.view_procesador %}
-                        <a class="collapse-item  {% if procesador_url in request.path%} active {% endif%}" href="{{procesador_url}}"><i class="fas fa-caret-right"></i>
-                            Procesador</a>
-                        {% endif %}
-                            
-                        {% if  perms.inventario.view_dispositivo %}
-                        <a class="collapse-item  {% if dispositivo_url in request.path%} active {% endif%}" href="{{dispositivo_url}}"><i class="fas fa-caret-right"></i>
-                            Equipos</a>
-                        {% endif %}
-                            
-                    </div>
-                </div>
-            </li>
-           {% endif %}
 
 
 
-      
-               
-           {% if  perms.capacitacion.view_capacitacioncabecera %}
-           <li class="nav-item  {% if capacitacion_url in request.path%} active {% endif%}">
-               <a class="nav-link" href="{{capacitacion_url}}">
-                   <i class="fas fa-fw fa-table"></i>
-                   <span>Capacitación</span></a>
-           </li>
-           {% endif %}
 
-            
-        
-                
             <!-- Heading -->
             <div class="sidebar-heading">
                 Módulo adicionales
             </div>
             <!-- Nav Item - Practicas Profesionalizantes  Collapse Menu -->
-           
-           {% if perms.practica.view_pasante or perms.practica.view_carrera or perms.practica.view_universidad %}
-           <li class="nav-item  {% if pasante_url in request.path or carrera_url in request.path or universidad_url in request.path%} active {% endif%}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePracticas"
-                aria-expanded="true" aria-controls="collapsePracticas">
-                <i class="fas fa-cubes"></i>
-                <span>Prácticas Profesionales</span>
-            </a>
-            <div id="collapsePracticas" class="collapse {% if pasante_url in request.path or carrera_url in request.path or universidad_url in request.path%} show {% endif%}" aria-labelledby="headingTwo"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
 
-                    
-                    {% if perms.practica.view_pasante %}
-                    <a class="collapse-item  {% if pasante_url in request.path%} active {% endif%}" href="{{pasante_url}}"><i class="fas fa-caret-right"></i>
-                        Pasantes</a>
-                    {% endif %}
-                        
-                    
-                    {% if  perms.practica.view_carrera %}
-                    <a class="collapse-item  {% if carrera_url in request.path%} active {% endif%}" href="{{carrera_url}}"><i class="fas fa-caret-right"></i>
-                        Carreras</a>
-                    {% endif %}
-                        
-                    
-                    {% if perms.practica.view_universidad %}
-                    <a class="collapse-item  {% if universidad_url in request.path%} active {% endif%}" href="{{universidad_url}}"><i
-                        class="fas fa-caret-right"></i> Universidades</a>
-                    {% endif %}
-                        
-                </div>
-            </div>
-        </li>
+            {% if perms.practica.view_pasante %}
 
-           {% endif %}
-               
 
-            <!-- Nav Item - Otros Menu -->
-            
-            {% if perms.red.view_accesored  %}
-            <li class="nav-item  {%  if red_url in request.path   %} active {% endif%}">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccesoRed"
-                    aria-expanded="true" aria-controls="collapseAccesoRed">
-                    <i class="fas fa-clone"></i>
-                    <span>Otros</span>
-                </a>
-                <div id="collapseAccesoRed" class="collapse {% if red_url  in request.path %} show {% endif%}" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        
-                        {% if perms.red.view_accesored %}
-                        <a class="collapse-item  {% if red_url in request.path%} active {% endif%}" href="{{red_url}}"><i class="fas fa-caret-right"></i>
-                            Acceso a la Red</a>
-                        {% endif %}
-                            
-                      
-                    </div>
-                </div>
+            <li class="nav-item  {% if pasante_url in request.path %} active {% endif%}">
+                <a class="nav-link" href="{{pasante_url}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Pasantes</span></a>
             </li>
-
             {% endif %}
 
-             <!-- Nav Item - Actividades  Collapse Menu -->
-             
-             {% if perms.actividad.view_actividadcabecera %}
-             <li class="nav-item  {% if actividad_url in request.path or prioridad_url in request.path or  asunto_url in request.path %} active {% endif%}">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseActividades"
-                    aria-expanded="true" aria-controls="collapseActividades">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Actividad</span>
+            <!-- Nav Item - Otros Menu -->
+
+            {% if perms.red.view_accesored or perms.red.view_actividadcabecera %}
+            <li
+                class="nav-item  {% if red_url in request.path or  actividad_url in request.path  %} active {% endif%}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOtros"
+                    aria-expanded="true" aria-controls="collapseOtros">
+                    <i class="fas fa-globe"></i>
+                    <span>Otros</span>
                 </a>
-                <div id="collapseActividades" class="collapse {% if actividad_url in request.path or prioridad_url in request.path or  asunto_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
+                <div id="collapseOtros"
+                    class="collapse {% if red_url in request.path or  actividad_url in request.path  %} show {% endif%}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        
-                        {% if perms.actividad.view_actividadcabecera %}
-                        <a class="collapse-item  {% if actividad_url in request.path%} active {% endif%}" href="{{actividad_url}}"><i class="fas fa-caret-right"></i>
-                            Actividades</a>
-                        {% endif %}
-                            
-                        {% if perms.actividad.view_asunto %}
-                        <a class="collapse-item  {% if asunto_url in request.path%} active {% endif%}" href="{{asunto_url}}"><i class="fas fa-caret-right"></i>
-                            Asuntos</a>
+                        {% if perms.red.view_accesored %}
+                        <a class="collapse-item  {% if red_url in request.path%} active {% endif%}"
+                            href="{{red_url}}"><i class="fas fa-caret-right"></i>
+                            Acceso a la Red</a>
                         {% endif %}
 
-                        
+
+                        {% if perms.red.view_actividadcabecera %}
+                        <a class="collapse-item  {% if actividad_url in request.path%} active {% endif%}"
+                            href="{{actividad_url}}"><i class="fas fa-caret-right"></i>
+                            Actividades</a>
+                        {% endif %}
+
+
+
                     </div>
                 </div>
             </li>
-             {% endif %}
-                 
-                
+            {% endif %}
+
+
+
+
+
+
             <!-- Nav Item - Ubicación Collapse Menu -->
-            
+
             {% if perms.ubicacion.view_zona or perms.ubicacion.view_provincia or perms.ubicacion.view_distrito %}
-            <li class="nav-item  {% if zona_url in request.path or  provincia_url in request.path  or  distrito_url in request.path %} active {% endif%}">
+            <li
+                class="nav-item  {% if zona_url in request.path or  provincia_url in request.path  or  distrito_url in request.path %} active {% endif%}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUbicacionDistrital"
                     aria-expanded="true" aria-controls="collapseUbicacionDistrital">
                     <i class="fas fa-globe"></i>
                     <span>Ubicación</span>
                 </a>
-                <div id="collapseUbicacionDistrital" class="collapse {% if zona_url in request.path or  provincia_url in request.path  or  distrito_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
+                <div id="collapseUbicacionDistrital"
+                    class="collapse {% if zona_url in request.path or  provincia_url in request.path  or  distrito_url in request.path %} show {% endif%}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        
+
                         {% if perms.ubicacion.view_zona %}
-                        <a class="collapse-item  {% if zona_url in request.path%} active {% endif%}" href="{{zona_url}}"><i class="fas fa-caret-right"></i>
+                        <a class="collapse-item  {% if zona_url in request.path%} active {% endif%}"
+                            href="{{zona_url}}"><i class="fas fa-caret-right"></i>
                             Zona</a>
                         {% endif %}
-                            
-                        
+
+
                         {% if perms.ubicacion.view_provincia %}
-                        <a class="collapse-item  {% if provincia_url in request.path%} active {% endif%}" href="{{provincia_url}}"><i class="fas fa-caret-right"></i>
+                        <a class="collapse-item  {% if provincia_url in request.path%} active {% endif%}"
+                            href="{{provincia_url}}"><i class="fas fa-caret-right"></i>
                             Provincia</a>
                         {% endif %}
-                            
-                        
+
+
                         {% if perms.ubicacion.view_distrito %}
-                        <a class="collapse-item  {% if distrito_url in request.path%} active {% endif%}" href="{{distrito_url}}"><i class="fas fa-caret-right"></i>
+                        <a class="collapse-item  {% if distrito_url in request.path%} active {% endif%}"
+                            href="{{distrito_url}}"><i class="fas fa-caret-right"></i>
                             Distrito</a>
                         {% endif %}
-                            
+
                     </div>
                 </div>
             </li>
             {% endif %}
-           
-           
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -385,20 +261,20 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            
+
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <strong>Hola, Bienvenido </strong>  {{user.last_name}} {{user.first_name}}
+                                    <strong>Hola, Bienvenido </strong> {{user.last_name}} {{user.first_name}}
                                 </span>
-                                <img class="img-profile rounded-circle" src= "{% static 'img/undraw_profile.svg' %}">
+                                <img class="img-profile rounded-circle" src="{% static 'img/undraw_profile.svg' %}">
 
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                              
+
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'logout'%}">
@@ -456,7 +332,7 @@
 
 
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    
+
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
@@ -468,17 +344,17 @@
     <script src="{% static 'js/jquery-ui.min.js' %}"></script>
 
 
-     <script src="{% static 'vendor/fontawesome-free/js/all.min.js' %}"></script>
-     
-     <script src="{% static 'touchSpin/jquery.bootstrap-touchspin.min.js' %}"></script>
-     <script src="{% static 'touchSpin/jquery-confirm.min.js' %}"></script>
-     
-     <script src="{% static 'js/select2.min.js' %}"></script>
-     <script src="{% static 'js/es.min.js' %}"></script>
-     <script src="{% static 'js/funciones_mies.js' %}"></script>
-    
-        
-   
+    <script src="{% static 'vendor/fontawesome-free/js/all.min.js' %}"></script>
+
+    <script src="{% static 'touchSpin/jquery.bootstrap-touchspin.min.js' %}"></script>
+    <script src="{% static 'touchSpin/jquery-confirm.min.js' %}"></script>
+
+    <script src="{% static 'js/select2.min.js' %}"></script>
+    <script src="{% static 'js/es.min.js' %}"></script>
+    <script src="{% static 'js/funciones_mies.js' %}"></script>
+
+
+
 
     {% block content_extra_js %}
 
@@ -491,8 +367,8 @@
             );
         });
 
-        
-     </script>
+
+    </script>
 
 
 

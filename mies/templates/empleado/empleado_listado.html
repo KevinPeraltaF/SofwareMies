@@ -11,15 +11,48 @@
         <li class="breadcrumb-item active" aria-current="page">Empleado</li>
     </ol>
 </nav>
+
 <div class="container-fluid">
     <!-- DataTales -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row ">
                 <div class="col">
-                    <h6 class="m-0 font-weight-bold text-primary">Lista empleados</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Lista de empleados</h6>
                 </div>
-                <div class="col ">
+
+
+                <div class="col-md-4">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Configuraciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    
+                        {% if perms.empleado.view_area %}
+                        <a class="dropdown-item " href="{% url 'area_listar'%}">
+                            Área</a>
+                        {% endif %}
+                            
+                        
+                        {% if perms.empleado.view_cargo %}
+                        <a class="dropdown-item " href="{% url 'cargo_listar'%}">
+                            Cargo</a>
+                        {% endif %}
+                            
+                        
+                        {% if perms.empleado.view_unidadatencion %}
+                        <a class="dropdown-item " href="{% url 'unidad_listar'%}">
+                            Unidad de Atención</a>
+                        {% endif %}
+                           
+                
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 ">
                     <div class="dropdown float-right">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -1,0 +1,53 @@
+{% extends 'base_generic.html' %}
+{% block title %}NUEVA MARCA{% endblock %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dispositivo_listar' %}">Dispositivo</a></li>
+        
+        <li class="breadcrumb-item"><a href="{% url 'tipo_equipo_listar' %}">Tipo Equipo</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+    </ol>
+</nav>
+<div class="container">
+
+    {% if form.errors %}
+
+    <div class="alert alert-danger" role="alert">
+        <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+        <ul>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <li>
+                {{error}}
+            </li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+
+    </div>
+    {% endif %}
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {{form.descripcion.label}}
+            {{form.descripcion}}
+        </div>
+
+
+
+        <fieldset class="modal-footer">
+            <a type="button" class="btn btn-secondary" href="{% url 'tipo_equipo_listar' %}">Cancelar</a>
+            <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+        </fieldset>
+    </form>
+</div>
+
+{% endblock %}

@@ -19,7 +19,25 @@
                 <div class="col">
                     <h6 class="m-0 font-weight-bold text-primary">Listado de actividades</h6>
                 </div>
-                <div class="col ">
+
+                <div class="col-md-4">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Configuraciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    
+                        {% if perms.practica.view_asunto  %}
+                        <a class="dropdown-item " href="{% url 'asunto_listar'%}">
+                            Asuntos</a>
+                        {% endif %} 
+                
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 ">
                     <div class="dropdown float-right">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

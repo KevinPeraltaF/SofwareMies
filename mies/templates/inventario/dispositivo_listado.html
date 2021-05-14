@@ -7,7 +7,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Equipos</li>
+        <li class="breadcrumb-item active" aria-current="page">Dispositivo</li>
     </ol>
 </nav>
 <div class="container-fluid">
@@ -16,7 +16,8 @@
         <div class="card-header py-3">
             <div class="row ">
                 <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Listado de equipos, impresoras y otros dispositivos</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Listado de equipos, impresoras y otros dispositivos
+                    </h6>
                 </div>
                 <div class="col-md-4">
                     <div class="dropdown float-right">
@@ -26,30 +27,61 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                            {% if perms.inventario.add_dispositivo %}
-                            <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Tipo impresora</a>
+                            {% if perms.inventario.view_tipoimpresora %}
+                            <a class="dropdown-item" href="{% url 'tipo_impresora_listar'%}">Tipo impresora</a>
                             {% endif %}
-                            {% if perms.inventario.add_dispositivo %}
-                            <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Tipo equipo</a>
-                            {% endif %}
-
-                            {% if perms.inventario.add_dispositivo %}
-                            <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Tipo dispositivo</a>
+                            {% if perms.inventario.view_tipoequipo %}
+                            <a class="dropdown-item" href="{% url 'tipo_equipo_listar'%}">Tipo equipo</a>
                             {% endif %}
 
-                            {% if perms.inventario.add_dispositivo %}
-                            <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Tecnologia impresora</a>
+                            {% if perms.inventario.view_tipodispositivo %}
+                            <a class="dropdown-item" href="{% url 'tipo_dispositivo_listar' %}">Tipo dispositivo</a>
                             {% endif %}
-                            {% if perms.inventario.add_dispositivo %}
-                            <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Software Ofimática</a>
+
+                            {% if perms.inventario.view_impresoratecnologia %}
+                            <a class="dropdown-item" href="{% url 'tecnologia_impresora_listar'%}">Tecnologia
+                                impresora</a>
                             {% endif %}
-                            {% if perms.inventario.add_dispositivo %}
-                            <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Software Antivirus</a>
+                            {% if perms.inventario.view_softwareofimatica %}
+                            <a class="dropdown-item" href="{% url 'software_ofimatica_listar'%}">Software Ofimática</a>
                             {% endif %}
-                            {% if perms.inventario.add_dispositivo %}
-                            <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Sistemas Operativos</a>
+                            {% if perms.inventario.view_softwareantivirus %}
+                            <a class="dropdown-item" href="{% url 'software_antivirus_listar'%}">Software Antivirus</a>
                             {% endif %}
-                         
+                            {% if perms.inventario.view_sistemaoperativo %}
+                            <a class="dropdown-item" href="{% url 'sistema_operativo_listar'%}">Sistemas Operativos</a>
+                            {% endif %}
+                            {% if perms.inventario.view_marca %}
+
+                            <a class="dropdown-item"
+                                href="{% url 'marca_listar'%}">
+                                Marca</a>
+                            {% endif %}
+                            {% if perms.inventario.view_modelo %}
+                            <a class="dropdown-item"
+                                href="{% url 'modelo_listar'%}">
+                                Modelo</a>
+                            {% endif %}
+
+
+                            {% if perms.inventario.view_capacidaddisco %}
+                            <a class="dropdown-item"
+                                href="{% url 'capacidad_disco_listar'%}"> Capacidad Disco</a>
+                            {% endif %}
+
+
+                            {% if perms.inventario.view_capacidadmemoriaram %}
+                            <a class="dropdown-item"
+                                href="{% url 'capacidad_memoria_ram_listar'%}">Capacidad Ram</a>
+                            {% endif %}
+
+
+                            {% if perms.inventario.view_procesador %}
+                            <a class="dropdown-item  "
+                                href="{% url 'procesador_listar'%}">                     Procesador</a>
+                            {% endif %}
+
+
 
                         </div>
                     </div>
@@ -65,7 +97,7 @@
                             {% if perms.inventario.add_dispositivo %}
                             <a class="dropdown-item" href="{% url 'dispositivo_crear'%}">Nuevo Dispositivo</a>
                             {% endif %}
-                         
+
 
                         </div>
                     </div>
@@ -79,7 +111,7 @@
                 <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            
+
                             <th><b>CATEGORIA</b></th>
                             <th><b>NOMBRE EQUIPO</b></th>
                             <th><b>DIRECCIÓN IP</b></th>
@@ -96,21 +128,21 @@
                         {% for dispositivo in object_list %}
                         <tr>
                             <td>
-                                
-                                
+
+
                                 {% if dispositivo.categoria == '1' %}
-                                 <span >COMPUTADORAS</span> 
+                                <span>COMPUTADORAS</span>
                                 {% endif%}
 
                                 {% if dispositivo.categoria == '2' %}
-                                    <span >IMPRESORAS</span> 
+                                <span>IMPRESORAS</span>
                                 {% endif%}
                                 {% if dispositivo.categoria == '3' %}
-                                    <span >OTROS DISPOSITIVOS</span> 
+                                <span>OTROS DISPOSITIVOS</span>
                                 {% endif%}
 
-                               
-                            
+
+
                             </td>
                             <td>
                                 {% if dispositivo.nombreEquipo is none %}
@@ -118,8 +150,8 @@
                                 {% else%}
                                 {{ dispositivo.nombreEquipo }}
                                 {% endif%}
-                                
-                                </td>
+
+                            </td>
                             <td>
                                 {% if dispositivo.direccionIp is none %}
                                 N/A
@@ -163,19 +195,19 @@
                                 {{ dispositivo.condigoMies }}
                                 {% endif%}
                             </td>
-                        
+
                             <td>
-                          
+
                                 {% if dispositivo.estado == '1'%}
                                 <span class="badge badge-success">BUENO</span>
-    
+
                                 {% endif %}
-    
+
                                 {% if dispositivo.estado == '2'%}
                                 <span class="badge badge-warning">REGULAR</span>
-    
+
                                 {% endif %}
-    
+
                                 {% if dispositivo.estado == '3'%}
                                 <span class="badge badge-danger">MALO</span>
                                 {% endif %}

@@ -6,12 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from .models import Dispositivo, Marca, Modelo,  CapacidadDisco, CapacidadMemoriaRam, Procesador, TipoDispositivo, TipoImpresora,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,TipoEquipo
 from .forms import  MarcaForm, ModeloForm,  CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm,DispositivoForm,TipoDispositivoForm,TipoImpresoraForm,ImpresoraTecnologiaForm,SoftwareAntivirusForm,SoftwareOfimaticaForm,SistemaOperativoForm,TipoEquipoForm
 
-
-
-
-
-
-
 #------------------MARCA--------------------------------------
 class MarcaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'inventario.view_marca'
@@ -363,8 +357,6 @@ class ImpresoraTecnologiaDetailView(LoginRequiredMixin,PermissionRequiredMixin,D
     permission_required = 'inventario.view_impresoratecnologia'
     model = ImpresoraTecnologia
     template_name = "inventario/tecnologia_impresora_detalle.html"
-
-
 
 
 #------------------ SoftwareAntivirus--------------------------------------
