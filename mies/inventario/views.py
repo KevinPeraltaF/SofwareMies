@@ -218,7 +218,10 @@ class DispositivoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailVie
     model = Dispositivo
     template_name = "inventario/dispositivo_detalle.html"
 
-
+#############################################33
+#
+#
+#
 ####
 #------------------TIPO DISPOSITIVO--------------------------------------
 class TipoDispositivoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
@@ -325,3 +328,150 @@ class TipoEquipoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView
     permission_required = 'inventario.view_tipoequipo'
     model = TipoEquipo
     template_name = "inventario/tipo_equipo_detalle.html"
+
+#------------------ ImpresoraTecnologia--------------------------------------
+class ImpresoraTecnologiaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'inventario.view_impresoratecnologia'
+    model = ImpresoraTecnologia
+    template_name = "inventario/tecnologia_impresora_listado.html"
+
+    
+class ImpresoraTecnologiaCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_impresoratecnologia'
+    model = ImpresoraTecnologia
+    form_class = ImpresoraTecnologiaForm
+    template_name= "inventario/tecnologia_impresora_crear.html"
+    success_url = reverse_lazy('tecnologia_impresora_listar')
+
+
+class ImpresoraTecnologiaDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'inventario.delete_impresoratecnologia'
+    model = ImpresoraTecnologia
+    template_name = "inventario/tecnologia_impresora_eliminar.html"
+    success_url = reverse_lazy('tecnologia_impresora_listar')
+    
+    
+class ImpresoraTecnologiaUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'inventario.change_impresoratecnologia'
+    model = ImpresoraTecnologia
+    form_class = ImpresoraTecnologiaForm
+    template_name = "inventario/tecnologia_impresora_editar.html"
+    success_url = reverse_lazy('tecnologia_impresora_listar')
+    
+        
+class ImpresoraTecnologiaDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'inventario.view_impresoratecnologia'
+    model = ImpresoraTecnologia
+    template_name = "inventario/tecnologia_impresora_detalle.html"
+
+
+
+
+#------------------ SoftwareAntivirus--------------------------------------
+class SoftwareAntivirusListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'inventario.view_softwareantivirus'
+    model = SoftwareAntivirus
+    template_name = "inventario/software_antivirus_listado.html"
+
+    
+class SoftwareAntivirusCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_softwareantivirus'
+    model = SoftwareAntivirus
+    form_class = SoftwareAntivirusForm
+    template_name= "inventario/software_antivirus_crear.html"
+    success_url = reverse_lazy('software_antivirus_listar')
+
+
+class SoftwareAntivirusDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'inventario.delete_softwareantivirus'
+    model = SoftwareAntivirus
+    template_name = "inventario/software_antivirus_eliminar.html"
+    success_url = reverse_lazy('software_antivirus_listar')
+    
+    
+class SoftwareAntivirusUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'inventario.change_softwareantivirus'
+    model = SoftwareAntivirus
+    form_class = SoftwareAntivirusForm
+    template_name = "inventario/software_antivirus_editar.html"
+    success_url = reverse_lazy('software_antivirus_listar')
+    
+        
+class SoftwareAntivirusDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'inventario.view_softwareantivirus'
+    model = SoftwareAntivirus
+    template_name = "inventario/software_antivirus_detalle.html"
+
+
+
+#------------------ SoftwareOfimatica--------------------------------------
+class SoftwareOfimaticaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'inventario.view_softwareofimatica'
+    model = SoftwareOfimatica
+    template_name = "inventario/software_ofimatica_listado.html"
+
+    
+class SoftwareOfimaticaCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_softwareofimatica'
+    model = SoftwareOfimatica
+    form_class = SoftwareOfimaticaForm
+    template_name= "inventario/software_ofimatica_crear.html"
+    success_url = reverse_lazy('software_ofimatica_listar')
+
+
+class SoftwareOfimaticaDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'inventario.delete_softwareofimatica'
+    model = SoftwareOfimatica
+    template_name = "inventario/software_ofimatica_eliminar.html"
+    success_url = reverse_lazy('software_ofimatica_listar')
+    
+    
+class SoftwareOfimaticaUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'inventario.change_softwareofimatica'
+    model = SoftwareOfimatica
+    form_class = SoftwareOfimaticaForm
+    template_name = "inventario/software_ofimatica_editar.html"
+    success_url = reverse_lazy('software_ofimatica_listar')
+    
+        
+class SoftwareOfimaticaDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'inventario.view_softwareofimatica'
+    model = SoftwareOfimatica
+    template_name = "inventario/software_ofimatica_detalle.html"
+
+
+
+#------------------ SistemaOperativo--------------------------------------
+class SistemaOperativoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'inventario.view_sistemaoperativo'
+    model = SistemaOperativo
+    template_name = "inventario/sistema_operativo_listado.html"
+
+    
+class SistemaOperativoCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_sistemaoperativo'
+    model = SistemaOperativo
+    form_class = SistemaOperativoForm
+    template_name= "inventario/sistema_operativo_crear.html"
+    success_url = reverse_lazy('sistema_operativo_listar')
+
+
+class SistemaOperativoDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'inventario.delete_sistemaoperativo'
+    model = SistemaOperativo
+    template_name = "inventario/sistema_operativo_eliminar.html"
+    success_url = reverse_lazy('sistema_operativo_listar')
+    
+    
+class SistemaOperativoUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'inventario.change_sistemaoperativo'
+    model = SistemaOperativo
+    form_class = SistemaOperativoForm
+    template_name = "inventario/sistema_operativo_editar.html"
+    success_url = reverse_lazy('sistema_operativo_listar')
+    
+class SistemaOperativoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'inventario.view_sistemaoperativo'
+    model = SistemaOperativo
+    template_name = "inventario/sistema_operativo_detalle.html"
+
