@@ -47,26 +47,14 @@
 
                         <th>TIPO EQUIPO:</th>
                         <td>
-                            {% if object.tipoEquipo == '1'%}
-                            ALL IN ONE
-
+                           
+                            
+                            {% if object.tipoEquipo is none%}
+                            N/A
+                            {% else %}
+                            {{object.tipoEquipo}}
                             {% endif %}
-
-                            {% if object.tipoEquipo == '2'%}
-                            DESKTOP
-
-                            {% endif %}
-
-                            {% if object.tipoEquipo == '3'%}
-                            LAPTOP
-
-                            {% endif %}
-
-                            {% if object.tipoEquipo == '4'%}
-                            SERVIDOR
-
-                            {% endif %}
-
+                            
                         </td>
                     </tr>
 
@@ -137,45 +125,13 @@
                         </td>
                         <th>SISTEMA OPERATIVO:</th>
                         <td>
-                            {% if object.sistemaOperativo == '1'%}
-                            WINDOWS XP
-
+                            
+                
+                            {% if object.sistemaOperativo is none%}
+                            N/A
+                            {% else %}
+                            {{object.sistemaOperativo}}
                             {% endif %}
-
-                            {% if object.sistemaOperativo == '2'%}
-                            WINDOWS VISTA
-
-                            {% endif %}
-
-                            {% if object.sistemaOperativo == '3'%}
-                            WINDOWS 7
-
-                            {% endif %}
-
-                            {% if object.sistemaOperativo == '4'%}
-                            WINDOWS 8
-
-                            {% endif %}
-                            {% if object.sistemaOperativo == '5'%}
-                            WINDOWS 10
-
-                            {% endif %}
-
-                            {% if object.sistemaOperativo == '6'%}
-                            LINUX
-
-                            {% endif %}
-
-                            {% if object.sistemaOperativo == '7'%}
-
-                            IOS
-                            {% endif %}
-
-                            {% if object.sistemaOperativo == '8'%}
-
-                            OTROS
-                            {% endif %}
-
                         </td>
                     </tr>
                     <tr>
@@ -201,36 +157,13 @@
                     <tr>
                         <th>SOFTWARE ANTIVIRUS:</th>
                         <td>
-                            {% if object.antivirus == '1'%}
-                            KASPERSKY
-
+                          
+                            {% if object.antivirus is none%}
+                            N/A
+                            {% else %}
+                            {{object.antivirus}}
                             {% endif %}
-
-                            {% if object.antivirus == '2'%}
-                            AVAST  
-
-                            {% endif %}
-
-                            {% if object.antivirus == '3'%}
-                            AVG 
-
-                            {% endif %}
-
-                            {% if object.antivirus == '4'%}
-                            ESET 
-
-                            {% endif %}
-
-                            {% if object.antivirus == '5'%}
-                            AVIRA
-
-                            {% endif %}
-
-                            {% if object.tipoEquipo == '6'%}
-                            OTROS 
-
-                            {% endif %}
-
+                           
                         </td>
                         <th>SOFTWARE ADICIONAL:</th>
                         <td>
@@ -297,22 +230,12 @@
 
                         <th>TECNOLOGIA:</th>
                         <td>
-                            {% if object.tecnologia == '1'%}
-                            LASER
-
+                         
+                            {% if object.tecnologia is none%}
+                            N/A
+                            {% else %}
+                            {{object.tecnologia}}
                             {% endif %}
-
-                            {% if object.tecnologia == '2'%}
-                            MATRICIAL
-
-                            {% endif %}
-
-                            {% if object.tecnologia == '3'%}
-                            INYECCIÓN A TINTA
-
-                            {% endif %}
-
-                           
 
                         </td>
 
@@ -320,28 +243,11 @@
 
                         <th>TIPO:</th>
                         <td>
-                            {% if object.tipoImpresora == '1'%}
-                            MULTIFUNCIÓN B/N
-
+                            {% if object.tipoImpresora is none%}
+                            N/A
+                            {% else %}
+                            {{object.tipoImpresora}}
                             {% endif %}
-
-                            {% if object.tipoImpresora == '2'%}
-                            MULTIFUNCIÓN COLOR
-
-                            {% endif %}
-
-                            {% if object.tipoImpresora == '3'%}
-                            SIMPLE B/N
-
-                            {% endif %}
-
-                            {% if object.tipoImpresora == '4'%}
-                            SIMPLE COLOR
-
-                            {% endif %}
-
-                           
-
                         </td>
                     </tr>
 
@@ -461,29 +367,11 @@
 
                         <th>TIPO DISPOSITIVO:</th>
                         <td colspan="12">
-                            {% if object.tipoDispositivo == '1'%}
-                            MONITOR
-
+                            {% if object.tipoDispositivo is none%}
+                            N/A
+                            {% else %}
+                            {{object.tipoDispositivo}}
                             {% endif %}
-
-                            {% if object.tipoDispositivo == '2'%}
-                            PROYECTOR
-
-                            {% endif %}
-
-                            {% if object.tipoDispositivo == '3'%}
-                            ESCANER
-
-                            {% endif %}
-                            {% if object.tipoDispositivo == '4'%}
-                            TELEVISOR
-
-                            {% endif %}
-                            {% if object.tipoDispositivo == '5'%}
-                            OTRO
-
-                            {% endif %}
-
                            
 
                         </td>
@@ -539,7 +427,7 @@
                         </td>
                     </tr>
                     <tr class="text-center">
-                        <th>Foto:</th>
+                        <th>FOTO:</th>
                         <td colspan="8">
                             {% if object.foto %}
                             <img class="img-rounded " src="{{object.foto.url}}" alt="" width="600" height="400">

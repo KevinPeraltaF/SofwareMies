@@ -107,6 +107,148 @@ class Procesador(models.Model):
         self.descripcion = self.descripcion and (self.descripcion).upper()
         return super(Procesador, self).save(*args, **kwargs)
 
+# Create your models here.
+class TipoEquipo(models.Model):
+    """Model definition for TipoEquipo."""
+    descripcion = models.CharField('Tipo Equipo', max_length=80,unique= True)
+  
+
+    class Meta:
+        """Meta definition for TipoEquipo."""
+
+        verbose_name = 'Tipo Equipo'
+        verbose_name_plural = 'Tipo Equipos'
+
+    def __str__(self):
+        """Unicode representation of TipoEquipo."""
+        return self.descripcion
+
+    def save(self,*args, **kwargs):
+        """Save method for TipoEquipo."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        return super(TipoEquipo, self).save(*args, **kwargs)
+
+# Create your models here.
+class SistemaOperativo(models.Model):
+    """Model definition for Equipo."""
+    descripcion = models.CharField('Sistema Operativo', max_length=80,unique= True)
+  
+
+    class Meta:
+        """Meta definition for SistemaOperativo."""
+
+        verbose_name = 'Sistema Operativo'
+        verbose_name_plural = 'Sistema Operativos'
+
+    def __str__(self):
+        """Unicode representation of SistemaOperativo."""
+        return self.descripcion
+
+    def save(self,*args, **kwargs):
+        """Save method for SistemaOperativo."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        return super(SistemaOperativo, self).save(*args, **kwargs)
+
+# Create your models here.
+class SoftwareOfimatica(models.Model):
+    """Model definition for SistemaOfimatica."""
+    descripcion = models.CharField('Software Ofimática', max_length=80,unique= True)
+  
+
+    class Meta:
+        """Meta definition for SoftwareOfimatica."""
+
+        verbose_name = 'Software Ofimatica'
+        verbose_name_plural = 'Software Ofimatica'
+
+    def __str__(self):
+        """Unicode representation of SoftwareOfimatica."""
+        return self.descripcion
+
+    def save(self,*args, **kwargs):
+        """Save method for SoftwareOfimatica."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        return super(SoftwareOfimatica, self).save(*args, **kwargs)
+
+class SoftwareAntivirus(models.Model):
+    """Model definition for SoftwareAntivirus."""
+    descripcion = models.CharField('Software Antivirus', max_length=80,unique= True)
+  
+
+    class Meta:
+        """Meta definition for SoftwareAntivirus."""
+
+        verbose_name = 'Software Antivirus'
+        verbose_name_plural = 'Software Antivirus'
+
+    def __str__(self):
+        """Unicode representation of SoftwareAntivirus."""
+        return self.descripcion
+
+    def save(self,*args, **kwargs):
+        """Save method for SoftwareAntivirus."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        return super(SoftwareAntivirus, self).save(*args, **kwargs)
+
+class ImpresoraTecnologia(models.Model):
+    """Model definition for impresoraTecnologia."""
+    descripcion = models.CharField('impresora Tecnologia', max_length=80,unique= True)
+  
+
+    class Meta:
+        """Meta definition for impresoraTecnologia."""
+
+        verbose_name = 'Impresora Tecnologia'
+        verbose_name_plural = 'Impresora Tecnologia'
+
+    def __str__(self):
+        """Unicode representation of impresoraTecnologia."""
+        return self.descripcion
+
+    def save(self,*args, **kwargs):
+        """Save method for impresoraTecnologia."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        return super(ImpresoraTecnologia, self).save(*args, **kwargs)
+
+class TipoImpresora(models.Model):
+    """Model definition for TipoImpresora."""
+    descripcion = models.CharField('Tipo Impresora', max_length=80,unique= True)
+  
+
+    class Meta:
+        """Meta definition for Tipo Impresora."""
+
+        verbose_name = 'Tipo Impresora'
+        verbose_name_plural = 'Tipo Impresoras'
+
+    def __str__(self):
+        """Unicode representation of TipoImpresora."""
+        return self.descripcion
+
+    def save(self,*args, **kwargs):
+        """Save method for TipoImpresora."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        return super(TipoImpresora, self).save(*args, **kwargs)
+
+class TipoDispositivo(models.Model):
+    """Model definition for TipoDispositivo."""
+    descripcion = models.CharField('Tipo Dispositivo', max_length=80,unique= True)
+  
+
+    class Meta:
+        """Meta definition for TipoDispositivo."""
+
+        verbose_name = 'Tipo Dispositivo'
+        verbose_name_plural = 'Tipo Dispositivos'
+
+    def __str__(self):
+        """Unicode representation of TipoDispositivo."""
+        return self.descripcion
+
+    def save(self,*args, **kwargs):
+        """Save method for TipoDispositivo."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        return super(TipoDispositivo, self).save(*args, **kwargs)
 
 class Dispositivo(models.Model):
     """Model definition for InventarioTics."""
@@ -116,12 +258,7 @@ class Dispositivo(models.Model):
     ('3', 'OTROS DISPOSITIVOS'),]
     categoria = models.CharField('Categoria',max_length=1, choices=lista_categoria, default='1')
     nombreEquipo = models.CharField('Nombre del equipo', max_length=80, null=True,blank=True)
-    lista_tipoEquipo= [
-    ('1', 'ALL IN ONE'),
-    ('2', 'DESKTOP'),
-    ('3', 'LAPTOP'),
-    ('4', 'SERVIDOR'),]
-    tipoEquipo = models.CharField('Tipo Equipo',max_length=1, choices=lista_tipoEquipo , null=True,blank=True)
+    tipoEquipo = models.ForeignKey(TipoEquipo, on_delete=models.PROTECT, null=True,blank=True)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)
     modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT, null=True,blank=True)
     serie = models.CharField('Serie', max_length=50, unique=True, null=True,blank=True)
@@ -129,63 +266,18 @@ class Dispositivo(models.Model):
     capacidadProcesador = models.ForeignKey(Procesador,verbose_name="Procesador", on_delete=models.PROTECT, null=True,blank=True)
     capacidadDisco = models.ForeignKey(CapacidadDisco, verbose_name="Capacidad Disco Duro",on_delete=models.PROTECT, null=True,blank=True)
     capacidadMemoriaRam = models.ForeignKey(CapacidadMemoriaRam,verbose_name="Tamaño Memoria Ram", on_delete=models.PROTECT, null=True,blank=True)
-    lista_sistemaOperativos = [
-    ('1', 'WINDOWS XP'),
-    ('2', 'WINDOWS VISTA'),
-    ('3', 'WINDOWS 7'),
-    ('4', 'WINDOWS 8'),
-    ('5', 'WINDOWS 10'),
-    ('6', 'LINUX'),
-    ('7', 'IOS'),
-    ('8', 'OTROS'),]
-    sistemaOperativo = models.CharField('Sistema Operativo',max_length=1, choices=lista_sistemaOperativos, null=True, blank=True)
+    sistemaOperativo = models.ForeignKey(SistemaOperativo, on_delete=models.PROTECT, null=True,blank=True)
     direccionIp = models.CharField('Dirección Ip', max_length=50, unique=True, null=True,blank=True)
     direccionMac = models.CharField('Dirección Mac Address', max_length=50,unique=True, null=True,blank=True)
-    
-
-    lista_ofimatica= [
-    ('1', 'MICROSOFT OFFICE'),
-    ('2', 'LIBRE OFFICE'),
-    ('3', 'OPEN OFFICE'),
-    ('4', 'OTROS'),]
-    ofimatica = models.CharField('Software Ofimática',max_length=1, choices=lista_ofimatica , null=True, blank=True)
-
-    lista_antivirus= [
-    ('1', 'KASPERSKY'),
-    ('2', 'AVAST'),
-    ('3', 'AVG'),
-    ('4', 'ESET'),
-    ('5', 'AVIRA'),
-    ('6', 'OTRO'),]
-    antivirus = models.CharField('Software Antivirus',max_length=1, choices=lista_antivirus , null=True, blank=True)
-
+    ofimatica = models.ForeignKey(SoftwareOfimatica, on_delete=models.PROTECT, null=True,blank=True)
+    antivirus = models.ForeignKey(SoftwareAntivirus, on_delete=models.PROTECT, null=True,blank=True)
     softwareAdicional = models.CharField('Software Adicional', max_length=240, null=True, blank=True)
 
-
     #impresoras
-    lista_tecnologia= [
-    ('1', 'LASER'),
-    ('2', 'MATRICIAL'),
-    ('3', 'INYECCIÓN A TINTA'),
-    ]
-    tecnologia = models.CharField('Tecnologia',max_length=1, choices=lista_tecnologia, null=True, blank=True)
-    lista_tipoImpresora= [
-    ('1', 'MULTIFUNCIÓN B/N'),
-    ('2', 'MULTIFUNCIÓN COLOR'),
-    ('3', 'SIMPLE B/N'),
-    ('4', 'SIMPLE COLOR'),]
-    tipoImpresora = models.CharField('Tipo Impresora',max_length=1, choices=lista_tipoImpresora, null=True, blank=True)
+    tecnologia =models.ForeignKey(ImpresoraTecnologia, on_delete=models.PROTECT, null=True,blank=True)
+    tipoImpresora  =models.ForeignKey(TipoImpresora, on_delete=models.PROTECT, null=True,blank=True)
     #otros dispositivos
-    lista_tipoDispositivo= [
-    ('1', 'MONITOR'),
-    ('2', 'PROYECTOR'),
-    ('3', 'ESCANER'),
-    ('4', 'TELEVISOR'),
-    ('5', 'OTRO'),
-    ]
-    tipoDispositivo = models.CharField('Tipo Dispositivo',max_length=1, choices=lista_tipoDispositivo, null=True, blank=True)
-
-
+    tipoDispositivo = models.ForeignKey(TipoDispositivo, on_delete=models.PROTECT, null=True,blank=True)
     lista_estado= [
     ('1', 'BUENO'),
     ('2', 'REGULAR'),

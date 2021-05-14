@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inventario.models import Marca, Modelo,Dispositivo,CapacidadDisco,CapacidadMemoriaRam,Procesador
+from inventario.models import Marca, Modelo,Dispositivo,CapacidadDisco,CapacidadMemoriaRam,Procesador , TipoDispositivo, TipoImpresora,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,TipoEquipo
 # Register your models here.
 
 @admin.register(Marca)
@@ -18,10 +18,6 @@ class ModeloAdmin(admin.ModelAdmin):
     list_filter = ('descripcion',)
     search_fields = ('descripcion',)
 
-
-
-
-
 @admin.register(CapacidadDisco)
 class CapacidadDiscoAdmin(admin.ModelAdmin):
     '''Admin View for CapacidadDisco'''
@@ -29,8 +25,6 @@ class CapacidadDiscoAdmin(admin.ModelAdmin):
     list_display = ('descripcion',)
     list_filter = ('descripcion',)
     search_fields = ('descripcion',)
-
-
 
 @admin.register(CapacidadMemoriaRam)
 class CapacidadMemoriaRamAdmin(admin.ModelAdmin):
@@ -47,6 +41,67 @@ class ProcesadorAdmin(admin.ModelAdmin):
     list_display = ('descripcion',)
     list_filter = ('descripcion',)
     search_fields = ('descripcion',)
+#######333
+@admin.register(TipoEquipo)
+class TipoEquipoAdmin(admin.ModelAdmin):
+    '''Admin View for TipoEquipo'''
+
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
+
+@admin.register(SistemaOperativo)
+class SistemaOperativoAdmin(admin.ModelAdmin):
+    '''Admin View for SistemaOperativo'''
+
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
+
+@admin.register(SoftwareOfimatica)
+class SoftwareOfimaticaAdmin(admin.ModelAdmin):
+    '''Admin View for SoftwareOfimatica'''
+
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
+
+
+@admin.register(SoftwareAntivirus)
+class SoftwareAntivirusAdmin(admin.ModelAdmin):
+    '''Admin View for SoftwareAntivirus'''
+
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
+@admin.register(ImpresoraTecnologia)
+class ImpresoraTecnologiaAdmin(admin.ModelAdmin):
+    '''Admin View for ImpresoraTecnologia'''
+
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
+@admin.register(TipoImpresora)
+class TipoImpresoraAdmin(admin.ModelAdmin):
+    '''Admin View for TipoImpresora'''
+
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
+@admin.register(TipoDispositivo)
+class TipoDispositivoAdmin(admin.ModelAdmin):
+    '''Admin View for TipoDispositivo'''
+
+    list_display = ('descripcion',)
+    list_filter = ('descripcion',)
+    search_fields = ('descripcion',)
+
 
 
 
