@@ -22,6 +22,7 @@ from ubicacion import views as ubicacion_views
 from practica import views as practica_views
 from actividad import views as actividad_views
 from capacitacion import views as capacitacion_views
+from inventario import views as inventario_views
 from django.conf import settings
 from django.conf.urls.static import static
 #400
@@ -134,6 +135,45 @@ urlpatterns = [
     path('Capacitacion/Detalle/<int:pk>', capacitacion_views.CapacitacionDetailView.as_view(), name="capacitacion_detalle") ,
     path('Capacitacion/pdf/<int:pk>', capacitacion_views.CapacitacionReportePdfDetailView.as_view(), name="capacitacion_reporte_pdf") ,
 
+
+    #Modulo Inventario 
+    #--Marca
+    path('Marca', inventario_views.MarcaListView.as_view(), name="marca_listar"),
+    path('Marca/Crear',inventario_views.MarcaCreateView.as_view(),name ="marca_crear"),
+    path('Marca/Editar/<int:pk>',inventario_views.MarcaUpdateView.as_view(),name ="marca_editar"),
+    path('Marca/Eliminar/<int:pk>',inventario_views.MarcaDeleteView.as_view(),name ="marca_eliminar"),
+    path('Marca/Detalle/<int:pk>',inventario_views.MarcaDetailView.as_view(),name ="marca_detalle"),
+    #--Modelo
+    path('Modelo', inventario_views.ModeloListView.as_view(), name="modelo_listar"),
+    path('Modelo/Crear',inventario_views.ModeloCreateView.as_view(),name ="modelo_crear"),
+    path('Modelo/Editar/<int:pk>',inventario_views.ModeloUpdateView.as_view(),name ="modelo_editar"),
+    path('Modelo/Eliminar/<int:pk>',inventario_views.ModeloDeleteView.as_view(),name ="modelo_eliminar"),
+    path('Modelo/Detalle/<int:pk>',inventario_views.ModeloDetailView.as_view(),name ="modelo_detalle"),
+    #--CAPACIDAD DISCO
+    path('CapacidadDisco', inventario_views.CapacidadDiscoListView.as_view(), name="capacidad_disco_listar"),
+    path('CapacidadDisco/Crear',inventario_views.CapacidadDiscoCreateView.as_view(),name ="capacidad_disco_crear"),
+    path('CapacidadDisco/Editar/<int:pk>',inventario_views.CapacidadDiscoUpdateView.as_view(),name ="capacidad_disco_editar"),
+    path('CapacidadDisco/Eliminar/<int:pk>',inventario_views.CapacidadDiscoDeleteView.as_view(),name ="capacidad_disco_eliminar"),
+    path('CapacidadDisco/Detalle/<int:pk>',inventario_views.CapacidadDiscoDetailView.as_view(),name ="capacidad_disco_detalle"),
+    #--CAPACIDAD MEMORIA
+    path('CapacidadMemoriaRam', inventario_views.CapacidadMemoriaRamListView.as_view(), name="capacidad_memoria_ram_listar"),
+    path('CapacidadMemoriaRam/Crear',inventario_views.CapacidadMemoriaRamCreateView.as_view(),name ="capacidad_memoria_ram_crear"),
+    path('CapacidadMemoriaRam/Editar/<int:pk>',inventario_views.CapacidadMemoriaRamUpdateView.as_view(),name ="capacidad_memoria_ram_editar"),
+    path('CapacidadMemoriaRam/Eliminar/<int:pk>',inventario_views.CapacidadMemoriaRamDeleteView.as_view(),name ="capacidad_memoria_ram_eliminar"),
+    path('CapacidadMemoriaRam/Detalle/<int:pk>',inventario_views.CapacidadMemoriaRamDetailView.as_view(),name ="capacidad_memoria_ram_detalle"),
+    #--Procesador
+    path('Procesador', inventario_views.ProcesadorListView.as_view(), name="procesador_listar"),
+    path('Procesador/Crear',inventario_views.ProcesadorCreateView.as_view(),name ="procesador_crear"),
+    path('Procesador/Editar/<int:pk>',inventario_views.ProcesadorUpdateView.as_view(),name ="procesador_editar"),
+    path('Procesador/Eliminar/<int:pk>',inventario_views.ProcesadorDeleteView.as_view(),name ="procesador_eliminar"),
+    path('Procesador/Detalle/<int:pk>',inventario_views.ProcesadorDetailView.as_view(),name ="procesador_detalle"),
+    #dispositivo
+    path('dispositivo', inventario_views.DispositivoListView.as_view(), name="dispositivo_listar"),
+    path('dispositivo/Crear',inventario_views.DispositivoCreateView.as_view(),name ="dispositivo_crear"),
+    path('dispositivo/Editar/<int:pk>',inventario_views.DispositivoUpdateView.as_view(),name ="dispositivo_editar"),
+    path('dispositivo/Eliminar/<int:pk>',inventario_views.DispositivoDeleteView.as_view(),name ="dispositivo_eliminar"),
+    path('dispositivo/Detalle/<int:pk>',inventario_views.DispositivoDetailView.as_view(),name ="dispositivo_detalle"),
+   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #Add Django site authentication urls (for login, logout, password management)

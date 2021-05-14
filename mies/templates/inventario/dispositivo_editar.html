@@ -1,0 +1,243 @@
+{% load static %}
+{% block content_extra_css %}
+<link href="{% static 'fonts/dropify.eot'%}">
+<link href="{% static 'fonts/dropify.svg'%}">
+<link href="{% static 'fonts/dropify.ttf'%}">
+<link href="{% static 'fonts/dropify.woff'%}">
+<link href="{% static 'css/dropify.min.css'%}" rel="stylesheet">
+
+{% endblock content_extra_css %}
+
+<div class="modal-dialog modal-lg"  role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editar Registro</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% if form.errors %}
+  
+        <div class="alert alert-danger" role="alert">
+            <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                        {{error}}
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+  
+        </div>
+        {% endif %}
+        
+        
+        
+        <form action="{% url 'dispositivo_editar' object.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="modal-body">
+                <div class='form-row'>
+                    <div class="form-group col">
+                        {{form.categoria.label}}
+                        {{form.categoria}}
+                    </div>
+                </div>
+        
+                <div id="id_field_computadora">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{form.nombreEquipo.label}}
+                            {{form.nombreEquipo}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{form.tipoEquipo.label}}
+                            {{form.tipoEquipo}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{form.capacidadProcesador.label}}
+                            {{form.capacidadProcesador}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{form.capacidadDisco.label}}
+                            {{form.capacidadDisco}}
+                        </div>
+            
+                        <div class="form-group col-md-6">
+                            {{form.capacidadMemoriaRam.label}}
+                            {{form.capacidadMemoriaRam}}
+                        </div>
+            
+                        <div class="form-group col-md-6">
+                            {{form.sistemaOperativo.label}}
+                            {{form.sistemaOperativo}}
+                        </div>
+            
+                        <div class="form-group col-md-6">
+                            {{form.ofimatica.label}}
+                            {{form.ofimatica}}
+                        </div>
+            
+                        <div class="form-group col-md-6">
+                            {{form.antivirus.label}}
+                            {{form.antivirus}}
+                        </div>               
+                    </div>
+                    <div class="form-group col ">
+                        {{form.softwareAdicional.label}}
+                        {{form.softwareAdicional}}
+                    </div>
+                </div>
+                <div id ="id_field_otro">
+                    <div class='form-row'>
+                        <div class="form-group col-md-12">
+                            {{form.tipoDispositivo.label}}
+                            {{form.tipoDispositivo}}
+                        </div>
+                    </div>
+                </div>
+                <div id="id_field_impresora">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{form.tecnologia.label}}
+                            {{form.tecnologia}}
+                        </div>  
+                        <div class="form-group col-md-6">
+                            {{form.tipoImpresora.label}}
+                            {{form.tipoImpresora}}
+                        </div>  
+                    </div>   
+                </div>
+        
+                <div id="id_field_generico">
+                    <div class='form-row'>
+                        <div class="form-group col-md-6">
+                            {{form.marca.label}}
+                            {{form.marca}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{form.modelo.label}}
+                            {{form.modelo}}
+                        </div>
+                       
+                        <div class="form-group col-md-6">
+                            {{form.serie.label}}
+                            {{form.serie}}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{form.codigoMies.label}}
+                            {{form.codigoMies}}
+                        </div>
+        
+                    </div>
+                </div>
+               <div class='form-row'>
+                
+                <div class="form-group col-md-12">
+                    {{form.estado.label}}
+                    {{form.estado}}
+                </div>
+               </div>
+               <div class="form-row">
+                <div class="form-group col-md-12">
+                    {{form.observacion.label}}
+                    {{form.observacion}}
+                </div>
+               </div>
+        
+                <div class="form-row">
+                    <div class="form-group col-md-12 ">
+                        {{form.foto.label}}
+                        {{form.foto}}
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  {% block content_extra_js %}
+  <script src="{% static 'js/dropify.min.js' %}"></script>
+<script>
+    $(function(){
+        $('#id_responsable').select2();
+        $('#id_ubicacion').select2();
+        $('#id_categoria').select2();
+
+        $('#id_marca').select2();
+        $('#id_modelo').select2();
+        $('#id_condicion').select2();
+        $('.dropify').dropify({
+            tpl: {
+                wrap: '<div class="dropify-wrapper"></div>',
+                loader: '<div class="dropify-loader"></div>',
+                message: '<div class="dropify-message"><span class="file-icon" /> <h5> Arrastre y suelte un archivo aquí o haga clic.</h5></div>',
+                preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">Reemplazar</p></div></div></div>',
+                filename: '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
+                clearButton: '<button type="button" class="dropify-clear">remover </button>',
+                errorLine: '<p class="dropify-error">error</p>',
+                errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
+            }
+        });
+       
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        var categoria =$("#id_categoria").val();
+        var div_computadora = document.getElementById("id_field_computadora");
+        var div_impresora = document.getElementById("id_field_impresora");
+        var div_otro = document.getElementById("id_field_otro");
+        if (categoria == '1') {
+            div_computadora.style.display = "block";
+            div_impresora.style.display = "none";
+            div_otro.style.display = "none";
+        } 
+        if (categoria == '2') {
+            div_impresora.style.display = "block";
+            div_computadora.style.display = "none";
+            div_otro.style.display = "none";
+            
+        } 
+        if (categoria == '3') {
+            div_otro.style.display = "block";
+            div_impresora.style.display = "none";
+            div_computadora.style.display = "none";
+        } 
+     });
+  </script>
+<script>
+    
+        $("#id_categoria").change(function() {
+            var div_computadora = document.getElementById("id_field_computadora");
+            var div_impresora = document.getElementById("id_field_impresora");
+            var div_otro = document.getElementById("id_field_otro");
+            var categoria =$("#id_categoria").val();
+            if (categoria == '1') {
+                div_computadora.style.display = "block";
+                div_impresora.style.display = "none";
+            } 
+            if (categoria == '2') {
+                div_impresora.style.display = "block";
+                div_computadora.style.display = "none";
+                
+            } 
+            if (categoria == '3') {
+                div_otro.style.display = "block";
+                div_impresora.style.display = "none";
+                div_computadora.style.display = "none";
+            } 
+
+          });
+        
+
+</script>
+{% endblock content_extra_js %}

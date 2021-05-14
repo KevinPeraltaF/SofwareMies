@@ -79,21 +79,26 @@
             {%url 'cargo_listar' as cargo_url%}
             {%url 'unidad_listar' as unidad_url%}
          
-         
-           
             {%url 'pasante_listar' as pasante_url%}
             {%url 'carrera_listar' as carrera_url%}
             {%url 'universidad_listar' as universidad_url%}
+
             {%url 'accesoRed_listar' as red_url%}
-  
+
             {%url 'actividad_listar' as actividad_url%}
             {%url 'asunto_listar' as asunto_url%}
+
             {%url 'zona_listar' as zona_url%}
             {%url 'provincia_listar' as provincia_url%}
             {%url 'distrito_listar' as distrito_url%}
-           
+
             {%url 'capacitacion_listar' as capacitacion_url %}
-            
+            {%url 'marca_listar' as marca_url%}
+            {%url 'modelo_listar' as modelo_url%}
+            {%url 'capacidad_disco_listar' as disco_url%}
+            {%url 'capacidad_memoria_ram_listar' as ram_url%}
+            {%url 'procesador_listar' as procesador_url%}
+            {%url 'dispositivo_listar' as dispositivo_url%}
 
             <!-- Nav Item - Empleado Collapse Menu -->
             
@@ -138,7 +143,57 @@
             </li>
             {% endif %}
                 
-            
+            {% if perms.inventario.view_marca or perms.inventario.view_modelo or   perms.inventario.view_capacidaddisco or perms.inventario.view_capacidadmemoriaram or perms.inventario.view_procesador or perms.inventario.view_dispositivo %}
+                <!-- Nav Item - Inventario Collapse Menu -->
+            <li class="nav-item  {% if marca_url in request.path or modelo_url in request.path or  disco_url in request.path or ram_url in request.path or procesador_url in request.path or dispositivo_url in request.path  %} active {% endif%}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventarioTics"
+                    aria-expanded="true" aria-controls="collapseInventarioTics">
+                    <i class="fas fa-th-list"></i>
+                    <span>Inventarios</span>
+                </a>
+                <div id="collapseInventarioTics" class="collapse {% if marca_url in request.path or modelo_url in request.path or disco_url in request.path or ram_url in request.path or procesador_url in request.path or dispositivo_url in request.path %} show {% endif%}" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        {% if perms.inventario.view_marca %}
+                            
+                        <a class="collapse-item  {% if marca_url in request.path%} active {% endif%}" href="{{marca_url}}"><i class="fas fa-caret-right"></i>
+                            Marca</a>
+                        {% endif %}
+                        
+                        {% if perms.inventario.view_modelo %}
+                        <a class="collapse-item  {% if modelo_url in request.path%} active {% endif%}" href="{{modelo_url}}"><i class="fas fa-caret-right"></i>
+                            Modelo</a>
+                        {% endif %}
+                            
+    
+                        {% if perms.inventario.view_capacidaddisco %}
+                        <a class="collapse-item  {% if disco_url in request.path%} active {% endif%}" href="{{disco_url}}"><i
+                            class="fas fa-caret-right"></i> Capacidad Disco</a>
+                        {% endif %}
+                            
+                        
+                        {% if perms.inventario.view_capacidadmemoriaram %}
+                        <a class="collapse-item  {% if ram_url in request.path%} active {% endif%}" href="{{ram_url}}"><i
+                            class="fas fa-caret-right"></i> Capacidad Ram</a>
+                        {% endif %}
+                            
+                        
+                        {% if perms.inventario.view_procesador %}
+                        <a class="collapse-item  {% if procesador_url in request.path%} active {% endif%}" href="{{procesador_url}}"><i class="fas fa-caret-right"></i>
+                            Procesador</a>
+                        {% endif %}
+                            
+                        {% if  perms.inventario.view_dispositivo %}
+                        <a class="collapse-item  {% if dispositivo_url in request.path%} active {% endif%}" href="{{dispositivo_url}}"><i class="fas fa-caret-right"></i>
+                            Equipos</a>
+                        {% endif %}
+                            
+                    </div>
+                </div>
+            </li>
+           {% endif %}
+
 
 
       

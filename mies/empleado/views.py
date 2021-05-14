@@ -147,10 +147,10 @@ class EmpleadoExcelListView(TemplateView):
                 DatoGenero = 'GLBTI'
 
             if dato.estado:
-                datoEstado = 'Activo'
+                datoEstado = 'ACTIVO'
 
             if not dato.estado:
-                datoEstado = 'No activo'
+                datoEstado = 'NO ACTIVO'
           
              
             ws.cell(row=cont,column=2).value = dato.area.descripcion
