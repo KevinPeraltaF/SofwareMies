@@ -21,35 +21,35 @@
                 </div>
                 <div class="col-md-4">
                     <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Configuraciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    
-                        {% if perms.practica.view_carrera  %}
-                        <a class="dropdown-item " href="{% url 'carrera_listar'%}">
-                            Carreras</a>
-                        {% endif %}
-                            
-                        
-                        {% if perms.practica.view_universidad %}
-                        <a class="dropdown-item " href="{% url 'universidad_listar'%}">
-                            Universidades</a>
-                        {% endif %}
-                            
-                        
-                       
-                           
-                
+
+                            {% if perms.practica.view_carrera %}
+                            <a class="dropdown-item " href="{% url 'carrera_listar'%}">
+                                Carreras</a>
+                            {% endif %}
+
+
+                            {% if perms.practica.view_universidad %}
+                            <a class="dropdown-item " href="{% url 'universidad_listar'%}">
+                                Universidades</a>
+                            {% endif %}
+
+
+
+
+
                         </div>
                     </div>
                 </div>
-                
+
 
                 <div class="col-md-2 ">
                     <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Acciones
                         </button>
@@ -79,7 +79,7 @@
                             <th><b>TELÉFONO MÓVIL</b></th>
                             <th><b>CARRERA</b></th>
                             <th><b>TUTOR PROFESIONAL</b></th>
-                        
+
                             <th><b>ESTADO</b></th>
                             <th><b>ACCIONES</b></th>
                         </tr>
@@ -94,12 +94,17 @@
                             <td>{{ pasante.telefono }}</td>
                             <td>{{ pasante.carrera }}</td>
                             <td>{{ pasante.tutor_profesional }}</td>
-                            
+
                             <td>
-                                {% if pasante.estado%}
-                                <span class="badge badge-danger">Finalizado</span>
-                                {% else %}
-                                <span class="badge badge-success">En funciones</span>
+                                {% if pasante.estado == '1' %}
+                                <span class="badge badge-success">EN FUNCIONES</span>
+                                {% endif %}
+                                
+                                {% if pasante.estado == '2' %}
+                                <span class="badge badge-warning">SOLICITADO</span>
+                                {% endif %}
+                                {% if pasante.estado == '3' %}
+                                <span class="badge badge-danger">FINALIZADO</span>
                                 {% endif %}
 
                             </td>

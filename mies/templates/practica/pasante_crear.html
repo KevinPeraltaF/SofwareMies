@@ -36,38 +36,35 @@
         {% csrf_token %}
 
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 {{form.nombres.label}}
                 {{form.nombres}}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 {{form.apellidos.label}}
                 {{form.apellidos}}
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 {{form.cedula.label}}
                 {{form.cedula}}
             </div>
-            <div class="form-group col-md-6">
+        </div>
+        <div class="row">
+           
+            <div class="form-group col-md-4">
                 {{form.telefono.label}}
                 {{form.telefono}}
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 {{form.tutor_profesional.label}}
                 {{form.tutor_profesional}}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 {{form.horas_diarias.label}}
                 {{form.horas_diarias}}
             </div>
-
-            
-
         </div>
+       
         <div class="row">
             <div class="form-group col-md-6">
                 
@@ -95,25 +92,20 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 {{form.fecha_inicio.label}}
                 {{form.fecha_inicio}}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 {{form.fecha_fin.label}}
                 {{form.fecha_fin}}
             </div>
+            <div class="form-group col-md-4">
+                {{form.estado.label}}
+                {{form.estado}}
+            </div>
             
 
-        </div>
-
-        <div class="row mt-3">
-            <div class="form-group">
-                <div class="form-check">
-                    <label for="id_estado">{{form.estado.label}}</label>
-                    {{form.estado}}
-                </div>
-            </div>
         </div>
 
         <fieldset class="modal-footer">

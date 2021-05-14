@@ -77,13 +77,11 @@ class PasanteForm(forms.ModelForm):
                     'min':'1'
                 }
             ),
-            'estado': forms.TextInput(
+            'estado': forms.Select(
                 attrs={
-                    'type':'checkbox',
-                    'class': 'form-group ',
-                    
+                    'class': 'form-control select'
                 }
-            ),                    
+            ),                   
             }
 
 class CarreraForm(forms.ModelForm):

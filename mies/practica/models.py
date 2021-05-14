@@ -58,7 +58,12 @@ class Pasante(models.Model):
     fecha_inicio = models.DateField('Fecha Inicio', auto_now=False, auto_now_add=False)
     fecha_fin = models.DateField('Fecha Fin', auto_now=False, auto_now_add=False, null= True, blank=True)
     horas_diarias = models.IntegerField('Horas Diarias', default =1)
-    estado = models.BooleanField('Prácticas profesionales finalizadas?')
+    lista_estado= [
+    ('1', 'EN FUNCIONES'),
+    ('2', 'SOLICITADO'),
+    ('3', 'FINALIZADO'),]
+    estado = models.CharField('Estado',max_length=1, choices=lista_estado, default='1')
+  
     class Meta:
         """Meta definition for Pasante."""
 
