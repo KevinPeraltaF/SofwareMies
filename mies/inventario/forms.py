@@ -1,5 +1,5 @@
 from django import forms
-from .models import Marca, Modelo, Dispositivo, CapacidadDisco,CapacidadMemoriaRam, Procesador
+from .models import Marca, Modelo, Dispositivo, CapacidadDisco,CapacidadMemoriaRam, Procesador, TipoDispositivo, TipoImpresora,TipoEquipo,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo
 from empleado.models import Empleado
 
 
@@ -47,8 +47,6 @@ class ModeloForm(forms.ModelForm):
             )
         }
 
-
-        
 class CapacidadDiscoForm(forms.ModelForm):
      #validaciones para que se envie como mayusculas los datos
     def clean_descripcion(self):
@@ -114,9 +112,168 @@ class ProcesadorForm(forms.ModelForm):
             )
         }
 
+########################
 
+class TipoDispositivoForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
 
+    class Meta:
 
+        model = TipoDispositivo
+
+        fields = (
+            'descripcion',)
+        
+        widgets = {
+            'descripcion' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
+                }
+            ),
+        }
+
+class TipoImpresoraForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
+
+        model = TipoImpresora
+
+        fields = (
+            'descripcion',)
+        
+        widgets = {
+            'descripcion' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
+                }
+            ),
+        }
+
+class ImpresoraTecnologiaForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
+
+        model = ImpresoraTecnologia
+
+        fields = (
+            'descripcion',)
+        
+        widgets = {
+            'descripcion' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
+                }
+            ),
+        }
+
+class SoftwareAntivirusForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
+
+        model = SoftwareAntivirus
+
+        fields = (
+            'descripcion',)
+        
+        widgets = {
+            'descripcion' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
+                }
+            ),
+        }
+
+class SoftwareOfimaticaForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
+
+        model = SoftwareOfimatica
+
+        fields = (
+            'descripcion',)
+        
+        widgets = {
+            'descripcion' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
+                }
+            ),
+        }
+
+class SistemaOperativoForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
+
+        model = SistemaOperativo
+
+        fields = (
+            'descripcion',)
+        
+        widgets = {
+            'descripcion' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
+                }
+            ),
+        }
+
+class TipoEquipoForm(forms.ModelForm):
+      #validaciones para que se envie como mayusculas los datos
+    def clean_descripcion(self):
+        data = self.cleaned_data["descripcion"].upper()
+        
+        return data
+
+    class Meta:
+
+        model = TipoEquipo
+
+        fields = (
+            'descripcion',)
+        
+        widgets = {
+            'descripcion' : forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autofocus':'autofocus'
+                }
+            ),
+        }
 
 class DispositivoForm(forms.ModelForm):
       #validaciones para que se envie como mayusculas los datos
