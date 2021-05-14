@@ -91,7 +91,7 @@
 
             <li class="nav-item  {% if empleado_url in request.path%} active {% endif%}">
                 <a class="nav-link" href="{{empleado_url}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-users"></i>
                     <span>Empleados</span></a>
             </li>
 
@@ -114,7 +114,7 @@
             {% if perms.capacitacion.view_capacitacioncabecera %}
             <li class="nav-item  {% if capacitacion_url in request.path%} active {% endif%}">
                 <a class="nav-link" href="{{capacitacion_url}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-clipboard-list  text-gray-300"></i>
                     <span>Capacitación</span></a>
             </li>
             {% endif %}
@@ -133,7 +133,7 @@
 
             <li class="nav-item  {% if pasante_url in request.path %} active {% endif%}">
                 <a class="nav-link" href="{{pasante_url}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-user-tag "></i>
                     <span>Pasantes</span></a>
             </li>
             {% endif %}
@@ -155,14 +155,14 @@
 
                         {% if perms.red.view_accesored %}
                         <a class="collapse-item  {% if red_url in request.path%} active {% endif%}"
-                            href="{{red_url}}"><i class="fas fa-caret-right"></i>
+                            href="{{red_url}}"><i class="fas fa-network-wired  "></i>
                             Acceso a la Red</a>
                         {% endif %}
 
 
                         {% if perms.red.view_actividadcabecera %}
                         <a class="collapse-item  {% if actividad_url in request.path%} active {% endif%}"
-                            href="{{actividad_url}}"><i class="fas fa-caret-right"></i>
+                            href="{{actividad_url}}"><i class="fas fa-calendar "></i>
                             Actividades</a>
                         {% endif %}
 
