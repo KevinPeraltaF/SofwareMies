@@ -21,19 +21,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de sistemas Operativos</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.inventario.add_sistemaoperativo %}
-                            <a class="dropdown-item" href="{% url 'sistema_operativo_crear'%}">Nuevo sistema operativo</a>
-                            {% endif %}
-
-                        </div>
-                    </div>
+                    <div class="float-right">
+                        {% if perms.inventario.add_sistemaoperativo %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'sistema_operativo_crear'%}" role="button"> Nuevo</a>
+                   
+                        {% endif %}
+                        
+                    </div> 
+                   
                 </div>
             </div>
 

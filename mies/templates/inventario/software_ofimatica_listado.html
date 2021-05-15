@@ -21,19 +21,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de software de ofimática</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.inventario.add_softwareofimatica %}
-                            <a class="dropdown-item" href="{% url 'software_ofimatica_crear'%}">Nuevo software de ofimática</a>
-                            {% endif %}
-
-                        </div>
-                    </div>
+                    <div class="float-right">
+                        {% if perms.inventario.add_softwareofimatica %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'software_ofimatica_crear'%}" role="button"> Nuevo</a>
+                   
+                        {% endif %}
+                        
+                    </div> 
+                   
                 </div>
             </div>
 

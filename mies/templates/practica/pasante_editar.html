@@ -81,21 +81,23 @@
 </div>
 
 {% block content_extra_js %}
-<script>
-    $(function(){
-        $('#id_carrera').select2();
-        $('#id_tutor_profesional').select2();
-    
-  
-       
-    });
-</script>
+
+
 <script>
     $(function () {
         $('#id_carrera').select2();
         $('#id_tutor_profesional').select2();
         $("#id_carrera").chained("#id_universidad");
     });
+
+</script>
+<script>
+    $(function () {
+        $('.select').select2(
+            { theme: "bootstrap4", }
+        );
+    });
+
 
 </script>
 {% endblock content_extra_js %}

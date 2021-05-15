@@ -21,19 +21,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de Unidades de Atención</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.empleado.add_unidadatencion%}
-                            <a class="dropdown-item" href="{% url 'unidad_crear'%}">Nueva Unidad de Atención</a>
-                            {% endif %}
-
-                        </div>
+                    
+                    {% if perms.empleado.add_unidadatencion %}
+                    <div class="float-right">
+                        <a class="btn btn-secondary btn-sm" href="{% url 'unidad_crear'%}" role="button"> Nuevo</a>
+                   
                     </div>
+                    {% endif %}
+                   
                 </div>
             </div>
 

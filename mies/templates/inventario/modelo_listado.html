@@ -21,19 +21,13 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de Modelos</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.inventario.add_modelo %}
-                            <a class="dropdown-item" href="{% url 'modelo_crear'%}">Nuevo Modelo</a>
-                            {% endif %}
-
-                        </div>
-                    </div>
+                    <div class="float-right">
+                        {% if perms.inventario.add_modelo %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'modelo_crear'%}" role="button"> Nuevo</a>
+                   
+                        {% endif %}
+                        
+                    </div> 
                 </div>
             </div>
 

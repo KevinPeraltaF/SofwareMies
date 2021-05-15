@@ -21,11 +21,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Lista de Áreas</h6>
                 </div>
                 <div class="col  ">
+                    {% if perms.empleado.add_area %}
                     <div class="float-right">
-                        <a class="btn btn-primary btn-sm" href="{% url 'area_crear'%}" role="button"> Nuevo</a>
-                   
+                        <a class="btn btn-secondary btn-sm" href="{% url 'area_crear'%}" role="button"> Nuevo</a>
+
                     </div>
-                    
+                    {% endif %}
+
+
                 </div>
             </div>
 
@@ -46,25 +49,30 @@
                         <tr>
                             <td>{{ area.descripcion }}</td>
                             <td>{{ area.distrito }}</td>
-                            
-                           
+
+
                             <td>
-                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm " onclick="abrirModalDetalle('{% url 'area_detalle' area.id%}')"> <i data-toggle="popover" title="Ver" class="fa fa-eye"></i>
+                                <a data-toggle="popover" title="Ver" class="btn btn-light btn-sm "
+                                    onclick="abrirModalDetalle('{% url 'area_detalle' area.id%}')"> <i
+                                        data-toggle="popover" title="Ver" class="fa fa-eye"></i>
                                 </a>
-                                
-                                {% if perms.empleado.change_area  %}
-                                <button data-toggle="popover" title="Editar" id="modalEditarZona" class="btn btn-light btn-sm"
-                                onclick="abrirModalEditar('{% url 'area_editar' area.id%}')"> <i data-toggle="popover" title="Editar"
-                                    class="fa fa-edit"></i>
-                            </button>
+
+                                {% if perms.empleado.change_area %}
+                                <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                                    class="btn btn-light btn-sm"
+                                    onclick="abrirModalEditar('{% url 'area_editar' area.id%}')"> <i
+                                        data-toggle="popover" title="Editar" class="fa fa-edit"></i>
+                                </button>
                                 {% endif %}
-                                    
-                                
-                                {% if  perms.empleado.delete_area  %}
-                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm" onclick="abrirModalEliminar('{% url 'area_eliminar' area.id%}')"><i data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
+
+
+                                {% if perms.empleado.delete_area %}
+                                <a data-toggle="popover" title="Eliminar" class="btn btn-light btn-sm"
+                                    onclick="abrirModalEliminar('{% url 'area_eliminar' area.id%}')"><i
+                                        data-toggle="popover" title="Eliminar" class="fa fa-trash"></i>
                                 </a>
                                 {% endif %}
-                                    
+
                             </td>
                         </tr>
                         {% endfor %}
@@ -90,7 +98,7 @@
 
 <!-- Large modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="detalle" aria-hidden="true">
- 
+
 </div>
 
 

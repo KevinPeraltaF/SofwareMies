@@ -21,19 +21,15 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de Universidades</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                            {% if perms.practica.add_universidad %}
-                            <a class="dropdown-item" href="{% url 'universidad_crear'%}">Nueva Universidad</a>
+                    {% if perms.practica.add_universidad %}
+                            <div class="float-right">
+                        
+                                <a class="btn btn-secondary btn-sm" href="{% url 'universidad_crear'%}" role="button"> Nuevo</a>
+                           
+                            </div>
                             {% endif %}
-
-                        </div>
-                    </div>
+                 
                 </div>
             </div>
 

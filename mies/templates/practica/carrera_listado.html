@@ -21,19 +21,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de Carreras</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.practica.add_carrera %}
-                            <a class="dropdown-item" href="{% url 'carrera_crear'%}">Nueva Carrera</a>
-                            {% endif %}
-
+                    {% if perms.practica.add_carrera %}
+                        <div class="float-right">
+                            
+                            <a class="btn btn-secondary btn-sm" href="{% url 'carrera_crear'%}" role="button"> Nuevo</a>
+                    
                         </div>
-                    </div>
+                    {% endif %}
+                   
                 </div>
             </div>
 

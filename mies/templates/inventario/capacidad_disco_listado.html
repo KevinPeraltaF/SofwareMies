@@ -21,19 +21,15 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de Capacidad de disco</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            
-                            {% if perms.inventario.add_capacidaddisco %}
-                            <a class="dropdown-item" href="{% url 'capacidad_disco_crear'%}">Nueva Capacidad de disco</a>
-                            {% endif %}
-                                
-                        </div>
+                    {% if perms.inventario.add_capacidaddisco %}
+                    <div class="float-right">
+                        
+                        <a class="btn btn-secondary btn-sm" href="{% url 'capacidad_disco_crear'%}" role="button"> Nuevo</a>
+                   
                     </div>
+                    {% endif %}
+                                
+
                 </div>
             </div>
 

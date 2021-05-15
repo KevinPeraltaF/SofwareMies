@@ -21,19 +21,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de software antivirus</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.inventario.add_softwareantivirus %}
-                            <a class="dropdown-item" href="{% url 'software_antivirus_crear'%}">Nuevo software antivirus</a>
-                            {% endif %}
-
-                        </div>
-                    </div>
+                    <div class="float-right">
+                        {% if perms.inventario.add_softwareantivirus %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'software_antivirus_crear'%}" role="button"> Nuevo</a>
+                   
+                        {% endif %}
+                        
+                    </div> 
+                   
                 </div>
             </div>
 

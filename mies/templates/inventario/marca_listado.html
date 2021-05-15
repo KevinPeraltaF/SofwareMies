@@ -21,19 +21,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Listado de Marcas</h6>
                 </div>
                 <div class="col ">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Acciones
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                            {% if perms.inventario.add_marca %}
-                            <a class="dropdown-item" href="{% url 'marca_crear'%}">Nueva Marca</a>
-                            {% endif %}
-
-                        </div>
+                    <div class="float-right">
+                        {% if perms.inventario.add_marca %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'marca_crear'%}" role="button"> Nuevo</a>
+                   
+                        {% endif %}
+                        
                     </div>
+                  
                 </div>
             </div>
 
