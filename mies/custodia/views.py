@@ -96,12 +96,10 @@ class CustodiaUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["equipo"] = Dispositivo.objects.all()
+        #todos los dispositivos con estado 3 --> malo no se muestran
+        context["equipos"] = Dispositivo.objects.exclude( estado=3)
         context["custodioAnterior"] = Custodia.objects.all()
-        context["dispositivos"] = Dispositivo.objects.all()
-        context["update_dispositivos"] = self.object.equipo.id
-        context["update_dispositivos"] = self.object.carrera.universidad.id
-      
+        context["update_equipo"] = self.object.equipo.id
         return context
     
     

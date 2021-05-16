@@ -115,8 +115,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="id_marca">{{form.direccionIp.label}}</label>
+                {{form.direccionIp}}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="id_modelo">{{form.direccionMac.label}}</label>
+                {{form.direccionMac}}
+            </div>
+        </div>
         <div id="id_field_generico">
             <div class='form-row'>
+               
                 <div class="form-group col-md-6">
                     <label for="id_marca">{{form.marca.label}}</label>
                     {{form.marca}}
@@ -137,7 +149,9 @@
 
             </div>
         </div>
+       
        <div class='form-row'>
+
         
         <div class="form-group col-md-12">
             <label for="id_estado">{{form.estado.label}}</label>

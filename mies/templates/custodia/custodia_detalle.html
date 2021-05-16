@@ -11,87 +11,422 @@
             <table class="table table-bordered table-responsive-sm table-responsive-xl">
                 <tbody>
                     <tr>
-
-                        <th>Fecha:</th>
-                        <td> <b>{{object.fecha}}</b> </td>
-                        <th>Estado:</th>
+                        <th>CUSTODIA VIGENTE:</th>
                         <td>
                             {% if object.estado%}
-                            <span class="badge badge-success">Vigente</span>
+                            <span class="badge badge-success">VIGENTE</span>
                             {% else %}
-                            <span class="badge badge-danger">No Vigente</span>
+                            <span class="badge badge-danger">NO VIGENTE</span>
+                            {% endif %}
+                        </td>
+                        <th>ESTADO DEL EQUIPO:</th>
+                        <td>
+                            {% if object.equipo.estado == '1'%}
+                            <span class="badge badge-success">BUENO</span>
+
+                            {% endif %}
+
+                            {% if object.equipo.estado == '2'%}
+                            <span class="badge badge-warning">REGULAR</span>
+
+                            {% endif %}
+
+                            {% if object.equipo.estado == '3'%}
+                            <span class="badge badge-danger">MALO</span>
+
                             {% endif %}
 
                         </td>
                     </tr>
                     <tr>
-                        <th>Custodio Actual:</th>
-                        <td colspan="4">{{object.custodio}}</td>
+                        <th>CATEGORIA:</th>
+                        <td colspan="6"> 
+                            {% if object.equipo.categoria == '1' %}
+                            <span>COMPUTADORAS</span>
+                            {% endif%}
+
+                            {% if object.equipo.categoria == '2' %}
+                            <span>IMPRESORAS</span>
+                            {% endif%}
+                            {% if object.equipo.categoria == '3' %}
+                            <span>OTROS DISPOSITIVOS</span>
+                            {% endif%}
+
+
+
+                        </td>
+
                     </tr>
+                    {% if object.equipo.categoria == '1' %}
+
+
+
                     <tr>
-                        <th>Custodio Anterior:</th>
-                        <td colspan="4">
-                            
-                            {% if object.custodioAnterior is none %}
-                                SIN CUSTODIO ANTERIOR
+                        <th>NOMBRE EQUIPO:</th>
+                        <td>
+                            {% if object.equipo.nombreEquipo is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.nombreEquipo}}
                             {% endif %}
-                                
+                        </td>
+
+                        <th>TIPO EQUIPO:</th>
+                        <td>
+
+
+                            {% if object.equipo.tipoEquipo is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.tipoEquipo}}
+                            {% endif %}
+
                         </td>
                     </tr>
 
                     <tr>
-                        <th>Equipo:</th>
+                        <th>MARCA:</th>
                         <td>
-                            {{object.equipo.descripcion}}
-                        </td>
-                        <th>Serie:</th>
-                        <td>
-                             {% if object.equipo.serie is none %}
-                            <p>-</p>
+                            {% if object.equipo.marca %}
+                            {{object.equipo.marca}}
                             {% else %}
-                            {{ object.equipo.serie }}
-                            {% endif%}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>MODELO:</th>
+                        <td>
+                            {% if object.equipo.modelo %}
+                            {{object.equipo.modelo}}
+                            {% else %}
+                            N/A
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>
-                        <th>Codigo Mies:</th>
+                        <th>SERIE:</th>
                         <td>
-                            {% if object.equipo.codigoMies is none %}
-                            <p>-</p>
+                            {% if object.equipo.serie %}
+                            {{object.equipo.serie}}
                             {% else %}
-                            {{ object.equipo.codigoMies }}
-                            {% endif%}
+                            N/A
+                            {% endif %}
                         </td>
-                        <th>Categoria:</th>
+                        <th>CÓDIGO MIES:</th>
                         <td>
-                            {{object.equipo.categoria}}
+                            {% if object.equipo.codigoMies %}
+                            {{object.equipo.codigoMies}}
+                            {% else %}
+                            N/A
+                            {% endif %}
                         </td>
                     </tr>
 
                     <tr>
-                        <th>dirección Ip:</th>
+                        <th>PROCESADOR:</th>
                         <td>
-                            {% if object.equipo.direccionIp is none %}
-                            <p>-</p>
+                            {% if object.equipo.capacidadProcesador %}
+                            {{object.equipo.capacidadProcesador}}
                             {% else %}
-                            {{ object.equipo.direccionIp }}
-                            {% endif%}
+                            N/A
+                            {% endif %}
                         </td>
-                        <th>Dirección Mac:</th>
+                        <th>CAPACIDAD DISCO DURO:</th>
                         <td>
-                            {% if object.equipo.direccionMac is none %}
-                            <p>-</p>
+                            {% if object.equipo.capacidadDisco %}
+                            {{object.equipo.capacidadDisco}}
                             {% else %}
-                            {{ object.equipo.direccionMac }}
-                            {% endif%}
+                            N/A
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>RAM:</th>
+                        <td>
+                            {% if object.equipo.capacidadMemoriaRam %}
+                            {{object.equipo.capacidadMemoriaRam}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>SISTEMA OPERATIVO:</th>
+                        <td>
+
+
+                            {% if object.equipo.sistemaOperativo is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.sistemaOperativo}}
+                            {% endif %}
                         </td>
                     </tr>
+                    <tr>
+                        <th>DIRECCIÓN IP:</th>
+                        <td>
+                            {% if object.equipo.direccionIp %}
+                            {{object.equipo.direccionIp}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>DIRECCIÓN MAC:</th>
+                        <td>
+                            {% if object.equipo.direccionMac %}
+                            {{object.equipo.direccionMac}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>SOFTWARE ANTIVIRUS:</th>
+                        <td>
+
+                            {% if object.equipo.antivirus is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.antivirus}}
+                            {% endif %}
+
+                        </td>
+                        <th>SOFTWARE ADICIONAL:</th>
+                        <td>
+                            {% if object.equipo.softwareAdicional is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.softwareAdicional}}
+                            {% endif %}
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>OBSERVACIÓN:</th>
+                        <td colspan="12">
+                            {% if object.equipo.observacion is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.observacion}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <th>Foto:</th>
+                        <td colspan="8">
+                            {% if object.equipo.foto %}
+                            <img class="img-rounded " src="{{object.foto.url}}" alt="" width="600" height="400">
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+
+
+                    {% endif %}
+
+                    {% if object.equipo.categoria == '2' %}
+                    <tr>
+
+
+                        <th>TECNOLOGIA:</th>
+                        <td>
+
+                            {% if object.equipo.tecnologia is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.tecnologia}}
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <th>TIPO:</th>
+                        <td>
+                            {% if object.equipo.tipoImpresora is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.tipoImpresora}}
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>MARCA:</th>
+                        <td>
+                            {% if object.equipo.marca %}
+                            {{object.equipo.marca}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>MODELO:</th>
+                        <td>
+                            {% if object.equipo.modelo %}
+                            {{object.equipo.modelo}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>SERIE:</th>
+                        <td>
+                            {% if object.equipo.serie %}
+                            {{object.equipo.serie}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>CÓDIGO MIES:</th>
+                        <td>
+                            {% if object.equipo.codigoMies %}
+                            {{object.equipo.codigoMies}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <th>DIRECCIÓN IP:</th>
+                        <td>
+                            {% if object.equipo.direccionIp %}
+                            {{object.equipo.direccionIp}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>DIRECCIÓN MAC:</th>
+                        <td>
+                            {% if object.equipo.direccionMac %}
+                            {{object.equipo.direccionMac}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+                        <th>OBSERVACIÓN:</th>
+                        <td colspan="12">
+                            {% if object.equipo.observacion is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.observacion}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <th>Foto:</th>
+                        <td colspan="8">
+                            {% if object.equipo.foto %}
+                            <img class="img-rounded " src="{{object.foto.url}}" alt="" width="600" height="400">
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+
+
+
+                    {% endif %}
+
+                    {% if object.equipo.categoria == '3' %}
+
+
+
+                    <tr>
+
+
+                        <th>TIPO DISPOSITIVO:</th>
+                        <td colspan="12">
+                            {% if object.equipo.tipoDispositivo is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.tipoDispositivo}}
+                            {% endif %}
+
+
+                        </td>
+
+
+                    </tr>
+
+                    <tr>
+                        <th>MARCA:</th>
+                        <td>
+                            {% if object.equipo.marca %}
+                            {{object.equipo.marca}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>MODELO:</th>
+                        <td>
+                            {% if object.equipo.modelo %}
+                            {{object.equipo.modelo}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>SERIE:</th>
+                        <td>
+                            {% if object.equipo.serie %}
+                            {{object.equipo.serie}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <th>CÓDIGO MIES:</th>
+                        <td>
+                            {% if object.equipo.codigoMies %}
+                            {{object.equipo.codigoMies}}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>OBSERVACIÓN:</th>
+                        <td colspan="12">
+                            {% if object.equipo.observacion is none%}
+                            N/A
+                            {% else %}
+                            {{object.equipo.observacion}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <th>FOTO:</th>
+                        <td colspan="8">
+                            {% if object.equipo.foto %}
+                            <img class="img-rounded " src="{{object.foto.url}}" alt="" width="600" height="400">
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+
+
+                    {% endif %}
                 </tbody>
+
             </table>
-           
+
 
         </div>
-       
+
         </form>
     </div>
 
