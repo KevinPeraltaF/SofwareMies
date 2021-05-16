@@ -36,13 +36,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2">
+                    {% if perms.custodia.add_custodia %}
+                    <div class="float-right">
+
+                        <a class="btn btn-secondary btn-sm" href="{% url 'custodia_reasignar'%}" role="button"> Reasignar custodio</a>
+
+                    </div>
+
+                    {% endif %}
+                </div>
 
 
                 <div class="col-md-2">
                     {% if perms.custodia.add_custodia %}
                     <div class="float-right">
 
-                        <a class="btn btn-secondary btn-sm" href="{% url 'custodia_crear'%}" role="button"> Nuevo</a>
+                        <a class="btn btn-secondary btn-sm" href="{% url 'custodia_crear'%}" role="button"> Asignar custodio</a>
 
                     </div>
 
@@ -91,7 +101,17 @@
 
                             <td>
 
-                                {{ custodio.equipo.categoria }}
+                               
+                               {% if  custodio.equipo.categoria == '1' %}
+                                   COMPUTADORA
+                               {% endif %}
+                               {% if  custodio.equipo.categoria == '2' %}
+                                   IMPRESORA
+                               {% endif %}
+                               {% if  custodio.equipo.categoria == '3' %}
+                                   OTROS DISPOSITIVOS
+                               {% endif %}
+                                   
                             </td>
 
 

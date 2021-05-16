@@ -228,6 +228,7 @@ urlpatterns = [
     ##---------------------custodia-------------------------------
     path('Custodia', custodia_views.CustodiaListView.as_view(), name="custodia_listar") ,
     path('Custodia/Crear', custodia_views.CustodiaCreateView.as_view(), name="custodia_crear") ,
+    path('Custodia/Reasignar', custodia_views.CustodiaReasignarView.as_view(), name="custodia_reasignar") ,
     #path('Custodia/Excel', custodia_views.CustodioaReporteExcelView.as_view(), name="custodia_excel_crear") ,
     path('Custodia/Editar/<int:pk>', custodia_views.CustodiaUpdateView.as_view(), name="custodia_editar") ,
     path('Custodia/Eliminar/<int:pk>', custodia_views.CustodiaDeleteView.as_view(), name="custodia_eliminar") ,

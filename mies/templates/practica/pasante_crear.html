@@ -37,30 +37,30 @@
 
         <div class="row">
             <div class="form-group col-md-4">
-                {{form.nombres.label}}
+                <label for="id_nomnbres">{{form.nombres.label}}*</label>
                 {{form.nombres}}
             </div>
             <div class="form-group col-md-4">
-                {{form.apellidos.label}}
+               <label for="id_apellidos"> {{form.apellidos.label}}*</label>
                 {{form.apellidos}}
             </div>
             <div class="form-group col-md-4">
-                {{form.cedula.label}}
+                <label for="id_cedula">{{form.cedula.label}}*</label>
                 {{form.cedula}}
             </div>
         </div>
         <div class="row">
            
             <div class="form-group col-md-4">
-                {{form.telefono.label}}
+                <label for="id_telefono">{{form.telefono.label}}</label>
                 {{form.telefono}}
             </div>
             <div class="form-group col-md-4">
-                {{form.tutor_profesional.label}}
+                <label for="id_tutor_profesional">{{form.tutor_profesional.label}}*</label>
                 {{form.tutor_profesional}}
             </div>
             <div class="form-group col-md-4">
-                {{form.horas_diarias.label}}
+                <label for="id_horas_diariras">{{form.horas_diarias.label}}*</label>
                 {{form.horas_diarias}}
             </div>
         </div>
@@ -69,12 +69,12 @@
             <div class="form-group col-md-6">
                 
                 <label for="id_universidad">Universidad</label>
-                {{form.universidad.label}}
+                <label for="id_universidad">{{form.universidad.label}}</label>
                 {{form.universidad}}
             </div>
            
             <div class="form-group col-md-6">
-                <label for="id_carrera">Carrera</label>
+                <label for="id_carrera">Carrera*</label>
                 <select name="carrera" id="id_carrera" class="form-control select">
                     <option value="0">---------</option>
                     {% for item in carreras %}
@@ -86,15 +86,15 @@
 
         <div class="row">
             <div class="form-group col-md-4">
-                {{form.fecha_inicio.label}}
+                <label for="id_fecha_inicio">{{form.fecha_inicio.label}}*</label>
                 {{form.fecha_inicio}}
             </div>
             <div class="form-group col-md-4">
-                {{form.fecha_fin.label}}
+                <label for="id_fecha_fin">{{form.fecha_fin.label}}*</label>
                 {{form.fecha_fin}}
             </div>
             <div class="form-group col-md-4">
-                {{form.estado.label}}
+                <label for="id_estado">{{form.estado.label}}*</label>
                 {{form.estado}}
             </div>
             

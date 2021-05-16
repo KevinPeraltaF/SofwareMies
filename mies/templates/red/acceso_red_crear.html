@@ -34,22 +34,22 @@
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
-            {{form.usuario.label}}
+            <label for="id_usuario">{{form.usuario.label}}*</label>
             {{form.usuario}}
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                {{form.direccion_mac.label}}
+                <label for="id_direccion_mac">{{form.direccion_mac.label}}</label>
                 {{form.direccion_mac}}
             </div>
             <div class="form-group col-md-6">
-                {{form.direccion_ip.label}}
+                <label for="id_direccion_ip">{{form.direccion_ip.label}}</label>
                 {{form.direccion_ip}}
             </div>
         </div>
         <div class="form-group">
-            {{form.observacion.label}}
+            <label for="id_observacion">{{form.observacion.label}}</label>
             {{form.observacion}}
         </div>
         <div class="form-row">

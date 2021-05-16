@@ -53,11 +53,11 @@ class AccesoRedForm(forms.ModelForm):
                     "rows":3, "cols":10
                 }
             ),
-            'estado': forms.TextInput(
+            'estado': forms.CheckboxInput(
                 attrs={
-                    'type':'checkbox',
+                   
                     'class': 'form-group ',
-                    'checked':'True',
+                  
                 }
             ),
         }

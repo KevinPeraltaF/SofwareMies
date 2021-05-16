@@ -42,6 +42,8 @@ class CapacitacionCabeceraForm(forms.ModelForm):
             'instructor', 
             'objetivo',
             )
+
+   
         
         widgets = {
             'fecha': forms.DateInput(format=('%Y-%m-%d'),

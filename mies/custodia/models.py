@@ -20,7 +20,7 @@ class Custodia(models.Model):
 
     def __str__(self):
         """Unicode representation of AccesoRed."""
-        return ("{} {}- {}").format(self.custodio.apellidos, self.custodio.nombres)
+        return ("{} {}").format(self.custodio.apellidos, self.custodio.nombres)
 
     def save(self, *args, **kwargs):
         

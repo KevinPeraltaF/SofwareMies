@@ -38,19 +38,19 @@
             {% csrf_token %}
             <div class='form-row'>
                 <div class="col ">
-                    {{form.fecha.label}}
+                   <label for="id_fecha"> {{form.fecha.label}}*</label>
                     {{form.fecha}}
                 </div>
                 <div class="col">
-                    {{form.hora_inicio.label}}
+                    <label for="id_hora_inicio">{{form.hora_inicio.label}}*</label>
                     {{form.hora_inicio}}
                 </div>
                 <div class="col">
-                    {{form.hora_fin.label}}
+                   <label for="id_hora_fin">{{form.hora_fin.label}}*</label>
                     {{form.hora_fin}}
                 </div>
                 <div class="col">
-                    {{form.tipoCapacitacion.label}}
+                    <label for="id_tipoCapacitacion">{{form.tipoCapacitacion.label}}*</label>
                     {{form.tipoCapacitacion}}
                 </div>
             </div>
@@ -58,32 +58,32 @@
             
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    {{form.lugar.label}}
+                    <label for="id_lugar">{{form.lugar.label}}*</label>
                     {{form.lugar}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.tema.label}}
+                    <label for="id_tema">{{form.tema.label}}*</label>
                     {{form.tema}}
                 </div>
               
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    {{form.areaSolicitante.label}}
+                    <label for="id_areaSolicitante">{{form.areaSolicitante.label}}*</label>
                     {{form.areaSolicitante}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.dirigido.label}}
+                    <label for="id_dirigido">{{form.dirigido.label}}*</label>
                     {{form.dirigido}}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    {{form.instructor.label}}
+                   <label for="id_instructor"> {{form.instructor.label}}*</label>
                     {{form.instructor}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.objetivo.label}}
+                    <label for="id_objetivo">{{form.objetivo.label}}*</label>
                     {{form.objetivo}}
                 </div>
             </div>

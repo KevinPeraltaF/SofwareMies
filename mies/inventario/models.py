@@ -315,7 +315,7 @@ class Dispositivo(models.Model):
         if self.nombreEquipo is None:
            VnomEquipo= "N/A"
         else:
-           VdireccionMac= self.nombreEquipo
+           VnomEquipo= self.nombreEquipo
         
 
         """Unicode representation of Dispositivo."""

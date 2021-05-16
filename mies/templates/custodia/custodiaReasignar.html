@@ -8,7 +8,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
         <li class="breadcrumb-item"><a href="{% url 'custodia_listar' %}">Custodia</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+        <li class="breadcrumb-item active" aria-current="page">Reasignar Custodia</li>
     </ol>
 </nav>
 <div class="container">
@@ -40,41 +40,60 @@
                     <label for="id_fecha">{{form.fecha.label}}*</label>
                     {{form.fecha}}
                 </div>
-                <div class="form-group ">
-                    <label for="id_categoria">{{form.categoria.label}}*</label>
-                    {{form.categoria }}
-                </div>
+
             </div>
             <div class="col">
                 <div class="form-group ">
                     <label for="id_custodio">{{form.custodio.label}}*</label>
                     {{form.custodio}}
                 </div>
-        
-                <div class="form-group ">
-                    <label for="id_equipo">Equipo*</label>
-                    <select name="equipo" id="id_equipo" class="form-control select">
-                        <option value="0">---------</option>
-                        {% for item in equipos %}
-                        <option value="{{item.id}}" class="{{item.categoria}}">
-        
-                            {% if item.categoria == '1' %}
-                            {{item.tipoEquipo}}-{{item.nombreEquipo}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
-                            {% endif %}
-                            {% if item.categoria == '2' %}
-                            {{item.tipoImpresora}}-{{item.tecnologia}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
-                            {% endif %}
-                            {% if item.categoria == '3' %}
-                            {{item.tipoDispositivo}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
-                            {% endif %}
-        
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+
+            <div class="form-group col-md-6">
+                
+                    <div class="form-group ">
+                        <label for="id_categoria">{{form.categoria.label}}</label>
+                        {{form.categoria }}
+                    </div>
+
+             
+                <label for="id_equipo">Equipo*</label>
+                <select name="equipo" id="id_equipo" class="form-control select">
+                    <option value="0">---------</option>
+                    {% for item in equipos %}
+                    <option value="{{item.id}}" class="{{item.categoria}}">
+
+                        {% if item.categoria == '1' %}
+                        {{item.tipoEquipo}}-{{item.nombreEquipo}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
+                        {% endif %}
+                        {% if item.categoria == '2' %}
+                        {{item.tipoImpresora}}-{{item.tecnologia}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
+                        {% endif %}
+                        {% if item.categoria == '3' %}
+                        {{item.tipoDispositivo}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
+                        {% endif %}
+
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="id_custodioAnterior">Custodio Anterior*</label>
+                <select name="custodioAnterior" id="id_custodioAnterior" class="form-control " readonly>
+
+                    {% for item in custodioAnterior %}
+                    <option value="{{item.custodio.id}}" class="{{item.equipo.id}}">{{item.custodio}}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
-       
+
         <div class="form-row">
             <div class="form-group">
                 <div class="form-check">
@@ -99,6 +118,7 @@
     $(function () {
 
         $("#id_equipo").chained("#id_categoria");
+        $("#id_custodioAnterior").chained("#id_equipo");
     });
 
 </script>

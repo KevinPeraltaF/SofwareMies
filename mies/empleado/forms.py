@@ -54,11 +54,11 @@ class EmpleadoForm(forms.ModelForm):
                     'class': 'form-control select'
                 }
             ),
-            'estado': forms.TextInput(
+            'estado': forms.CheckboxInput(
                 attrs={
-                    'type':'checkbox',
+                   
                     'class': 'form-group ',
-                    'checked':'True',
+                  
                 }
             ),
             'nombres': forms.TextInput(

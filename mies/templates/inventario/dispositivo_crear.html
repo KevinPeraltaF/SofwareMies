@@ -45,7 +45,7 @@
         {% csrf_token %}
         <div class='form-row'>
             <div class="form-group col">
-                {{form.categoria.label}}
+                <label for="id_categoria">{{form.categoria.label}}*</label>
                 {{form.categoria}}
             </div>
         </div>
@@ -53,44 +53,44 @@
         <div id="id_field_computadora">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    {{form.nombreEquipo.label}}
+                    <label for="id_nombreEquipo">{{form.nombreEquipo.label}}*</label>
                     {{form.nombreEquipo}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.tipoEquipo.label}}
+                    <label for="id_tipoEquipo">{{form.tipoEquipo.label}}*</label>
                     {{form.tipoEquipo}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.capacidadProcesador.label}}
+                    <label for="id_capacidadProcesador">{{form.capacidadProcesador.label}}*</label>
                     {{form.capacidadProcesador}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.capacidadDisco.label}}
+                    <label for="id_capacidadDisco">{{form.capacidadDisco.label}}*</label>
                     {{form.capacidadDisco}}
                 </div>
     
                 <div class="form-group col-md-6">
-                    {{form.capacidadMemoriaRam.label}}
+                    <label for="id_capacidadMemoriaRam">{{form.capacidadMemoriaRam.label}}*</label>
                     {{form.capacidadMemoriaRam}}
                 </div>
     
                 <div class="form-group col-md-6">
-                    {{form.sistemaOperativo.label}}
+                    <label for="id_sistemaOerativo">{{form.sistemaOperativo.label}}*</label>
                     {{form.sistemaOperativo}}
                 </div>
     
                 <div class="form-group col-md-6">
-                    {{form.ofimatica.label}}
+                    <label for="id_ofimatica">{{form.ofimatica.label}}*</label>
                     {{form.ofimatica}}
                 </div>
     
                 <div class="form-group col-md-6">
-                    {{form.antivirus.label}}
+                    <label for="id_antivirus">{{form.antivirus.label}}*</label>
                     {{form.antivirus}}
                 </div>               
             </div>
             <div class="form-group col ">
-                {{form.softwareAdicional.label}}
+                <label for="id_softwareAdicional">{{form.softwareAdicional.label}}*</label>
                 {{form.softwareAdicional}}
             </div>
         </div>
@@ -98,11 +98,11 @@
         <div id="id_field_impresora">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    {{form.tecnologia.label}}
+                    <label for="id_tecnologia">{{form.tecnologia.label}}*</label>
                     {{form.tecnologia}}
                 </div>  
                 <div class="form-group col-md-6">
-                    {{form.tipoImpresora.label}}
+                    <label for="id_tipoImpresora">{{form.tipoImpresora.label}}</label>
                     {{form.tipoImpresora}}
                 </div>  
             </div>   
@@ -110,7 +110,7 @@
         <div id ="id_field_otro">
             <div class='form-row'>
                 <div class="form-group col-md-12">
-                    {{form.tipoDispositivo.label}}
+                    <label for="id_tipoImpresora">{{form.tipoDispositivo.label}}*</label>
                     {{form.tipoDispositivo}}
                 </div>
             </div>
@@ -118,20 +118,20 @@
         <div id="id_field_generico">
             <div class='form-row'>
                 <div class="form-group col-md-6">
-                    {{form.marca.label}}
+                    <label for="id_marca">{{form.marca.label}}</label>
                     {{form.marca}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.modelo.label}}
+                    <label for="id_modelo">{{form.modelo.label}}</label>
                     {{form.modelo}}
                 </div>
                
                 <div class="form-group col-md-6">
-                    {{form.serie.label}}
+                    <label for="id_serie">{{form.serie.label}}*</label>
                     {{form.serie}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form.codigoMies.label}}
+                    <label for="id_codigoMies">{{form.codigoMies.label}}*</label>
                     {{form.codigoMies}}
                 </div>
 
@@ -140,20 +140,20 @@
        <div class='form-row'>
         
         <div class="form-group col-md-12">
-            {{form.estado.label}}
+            <label for="id_estado">{{form.estado.label}}</label>
             {{form.estado}}
         </div>
        </div>
        <div class="form-row">
         <div class="form-group col-md-12">
-            {{form.observacion.label}}
+            <label for="id_observacion">{{form.observacion.label}}</label>
             {{form.observacion}}
         </div>
        </div>
 
         <div class="form-row">
             <div class="form-group col-md-12 ">
-                {{form.foto.label}}
+                <label for="id_foto">{{form.foto.label}}</label>
                 {{form.foto}}
             </div>
         </div>
