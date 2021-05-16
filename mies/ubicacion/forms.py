@@ -28,6 +28,9 @@ class ZonaForm(forms.ModelForm):
     
 class ProvinciaForm(forms.ModelForm):
     """Form definition for provincia."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['zona'].empty_label = "------N/A--------"
     def clean_descripcion(self):
         data = self.cleaned_data["descripcion"].upper()
         return data
@@ -59,7 +62,9 @@ class ProvinciaForm(forms.ModelForm):
 class DistritoForm(forms.ModelForm):
     """Form definition for Distrito."""
  
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['provincia'].empty_label = "------N/A--------"
      #validaciones para que se envie como mayusculas los datos
     def clean_descripcion(self):
         data = self.cleaned_data["descripcion"].upper()

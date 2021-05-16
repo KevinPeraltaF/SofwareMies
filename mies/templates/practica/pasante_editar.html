@@ -46,11 +46,38 @@
         </div>
        
         <div class="row">
+
+            <div class="form-group col-md-6">
+                <label for="id_carrera">Universidad</label>
+                <select name="universidad" id="id_universidad" class="form-control select">
+                    <option value="0">---------</option>
+                    {% for item in universidades %}
+                    <option value="{{item.id}}" 
+                    {% if update_universidad == item.id %}
+                       selected
+                    {% endif %}
+                    >{{item.descripcion}}</option>
+                    {% endfor %}
+                </select>
+            </div>
            
            
-            <div class="form-group col-md-12">
-                {{form.carrera.label}}
-                {{form.carrera}}
+
+            <div class="form-group col-md-6">
+                <label for="id_carrera">Carrera</label>
+                <select name="carrera" id="id_carrera" class="form-control select">
+                    <option value="0">---------</option>
+                    {% for item in carreras %}
+                    <option value="{{item.id}}" class="{{item.universidad.id}}"
+                    {% if update_carrera == item.id %}
+                       selected
+                    {% endif %}
+                    
+                    >{{item.descripcion}}</option>
+                    
+                        
+                    {% endfor %}
+                </select>
             </div>
 
         </div>
@@ -85,19 +112,13 @@
 
 <script>
     $(function () {
-        $('#id_carrera').select2();
-        $('#id_tutor_profesional').select2();
+
+     
         $("#id_carrera").chained("#id_universidad");
+        
     });
 
 </script>
-<script>
-    $(function () {
-        $('.select').select2(
-            { theme: "bootstrap4", }
-        );
-    });
 
 
-</script>
 {% endblock content_extra_js %}

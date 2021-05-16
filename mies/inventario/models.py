@@ -311,11 +311,16 @@ class Dispositivo(models.Model):
            VdireccionMac= "N/A"
         else:
            VdireccionMac= self.direccionMac
+
+        if self.nombreEquipo is None:
+           VnomEquipo= "N/A"
+        else:
+           VdireccionMac= self.nombreEquipo
         
 
         """Unicode representation of Dispositivo."""
         if self.categoria =="1":
-            return ("{} - {}- {} - {} - {}").format(self.nombreEquipo,VcodMies,VserMies,VdireccionIp,VdireccionMac)
+            return ("{} - {}- {} - {} - {}").format("COMPUTADORAS",VnomEquipo,VcodMies,VserMies,VdireccionIp,VdireccionMac)
         if self.categoria =="2":
             return ("{} - {} - {} - {} - {}").format("IMPRESORA",VcodMies,VserMies,VdireccionIp,VdireccionMac)
         if self.categoria =="3":

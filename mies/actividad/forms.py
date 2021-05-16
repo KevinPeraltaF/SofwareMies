@@ -27,6 +27,13 @@ class AsuntoForm(forms.ModelForm):
         }
 
 class ActividadCabeceraForm(forms.ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['responsable'].empty_label = "------N/A--------"
+        self.fields['usuario'].empty_label = "------N/A--------"
+        self.fields['ubicacion'].empty_label = "------N/A--------"    
     
     class Meta:
         model = ActividadCabecera
@@ -76,7 +83,9 @@ class ActividadCabeceraForm(forms.ModelForm):
         }
 
 class ActividadDetalleForm(forms.ModelForm):
-    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['asunto'].empty_label = "------N/A--------"
     class Meta:
         model = ActividadDetalle
         fields = ('cabeceraActividad',

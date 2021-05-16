@@ -29,10 +29,15 @@
                         </td>
                         <th>Estado:</th>
                         <td>
-                            {% if object.estado %}
-                            <span class="badge badge-danger">Finalizado</span>
-                            {% else %}
-                            <span class="badge badge-success">En funciones</span>
+
+                            {% if object.estado == '1' %}
+                                <span class="badge badge-success">EN FUNCIONES</span>
+                            {% endif %}
+                            {% if object.estado == '2' %}
+                                <span class="badge badge-warning">SOLICITADO</span>
+                            {% endif %}
+                            {% if object.estado == '3' %}
+                                <span class="badge badge-danger">FINALIZADO</span>
                             {% endif %}
                         </td>
                     </tr>

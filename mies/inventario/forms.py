@@ -276,6 +276,20 @@ class TipoEquipoForm(forms.ModelForm):
         }
 
 class DispositivoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['tipoEquipo'].empty_label = "------N/A--------"
+        self.fields['marca'].empty_label = "------N/A--------"
+        self.fields['modelo'].empty_label = "------N/A--------"
+        self.fields['capacidadProcesador'].empty_label = "------N/A--------"
+        self.fields['capacidadDisco'].empty_label = "------N/A--------"
+        self.fields['capacidadMemoriaRam'].empty_label = "------N/A--------"
+        self.fields['sistemaOperativo'].empty_label = "------N/A--------"
+        self.fields['ofimatica'].empty_label = "------N/A--------"
+        self.fields['antivirus'].empty_label = "------N/A--------"
+        self.fields['tecnologia'].empty_label = "------N/A--------"
+        self.fields['tipoImpresora'].empty_label = "------N/A--------"
+        self.fields['tipoDispositivo'].empty_label = "------N/A--------"
       #validaciones para que se envie como mayusculas los datos
     def clean_serie(self):
         data = None

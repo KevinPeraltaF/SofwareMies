@@ -1,16 +1,36 @@
 from django import forms
 from .models import Pasante, Carrera, Universidad
+from django.utils.encoding import force_text
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
+
 
 
 
 class PasanteForm(forms.ModelForm):       
     """Form definition for Pasant."""
-    
+    #extra field -no estan directamente en el modelo
+    universidad = forms.ModelChoiceField(
+         queryset= Universidad.objects.all(), 
+         widget= forms.Select( attrs={
+                    'class': 'form-control select'
+                }
+            ))
+
+
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['tutor_profesional'].empty_label = "------N/A--------"
+        self.fields['carrera'].empty_label = "------N/A--------"
+        self.fields['universidad'].empty_label = "------N/A--------"
+       
+      
     class Meta:
         """Meta definition for Pasanteform."""
 
         model= Pasante
-
         fields = (
             'nombres',
             'apellidos',
@@ -22,14 +42,14 @@ class PasanteForm(forms.ModelForm):
             'fecha_fin',
             'horas_diarias',
             'estado',
+            
             )
       
 
         widgets = {
             'nombres': forms.TextInput(
                 attrs={
-                    'class': 'form-control solo-letra',
-                    'autofocus':'autofocus '
+                    'class': 'form-control solo-letra'
                 }
             ),
             'apellidos': forms.TextInput(
@@ -116,7 +136,6 @@ class UniversidadForm(forms.ModelForm):
 
     def clean_descripcion(self):
         data = self.cleaned_data["descripcion"].upper()
-        
         return data
 
     class Meta:

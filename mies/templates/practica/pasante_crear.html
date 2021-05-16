@@ -69,14 +69,8 @@
             <div class="form-group col-md-6">
                 
                 <label for="id_universidad">Universidad</label>
-                <select name="universidad" id="id_universidad" class="form-control select">
-                    <option value="0">---------</option>
-
-                    {% for item in universidades %}
-                    <option value="{{item.id}}">{{item.descripcion}}</option>
-                    {% endfor %}
-
-                </select>
+                {{form.universidad.label}}
+                {{form.universidad}}
             </div>
            
             <div class="form-group col-md-6">
@@ -88,7 +82,6 @@
                     {% endfor %}
                 </select>
             </div>
-
         </div>
 
         <div class="row">
@@ -121,12 +114,11 @@
 
 <script>
     $(function () {
-        $('#id_carrera').select2();
-        $('#id_tutor_profesional').select2();
+
         $("#id_carrera").chained("#id_universidad");
     });
 
 </script>
-<script src="{% static 'js/jquery.chained.min.js' %}"></script>
+
 
 {% endblock content_extra_js %}

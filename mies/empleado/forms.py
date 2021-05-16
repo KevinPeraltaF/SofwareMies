@@ -4,6 +4,12 @@ from .models import Empleado, Area, Cargo, UnidadAtencion
 
 class EmpleadoForm(forms.ModelForm):
     """Form definition for Empleado."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['area'].empty_label = "------N/A--------"
+        self.fields['cargo'].empty_label = "------N/A--------"
+        self.fields['unidadAtencion'].empty_label = "------N/A--------"
+
      #validaciones para que se envie como mayusculas los datos
     def clean_correo(self):
         data = self.cleaned_data["correo"].upper()
@@ -31,7 +37,8 @@ class EmpleadoForm(forms.ModelForm):
 
         widgets = {
             
-            'area' : forms.Select(
+            'area' : forms.Select( 
+               
                 attrs={
                     
                     'class': 'form-control select'

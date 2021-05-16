@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'ubicacion',
     'capacitacion',
     'inventario',
+    'custodia',
+    
     
    
     

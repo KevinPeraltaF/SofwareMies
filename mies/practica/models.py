@@ -27,8 +27,8 @@ class Universidad(models.Model):
 class Carrera(models.Model):
     """Model definition for Carrera."""
 
-    universidad = models.ForeignKey(Universidad, on_delete=models.PROTECT)
-    descripcion = models.CharField('Carrera', max_length=50)
+    universidad = models.ForeignKey(Universidad, on_delete=models.PROTECT )
+    descripcion = models.CharField('Carrera', max_length=50 )
 
     class Meta:
         """Meta definition for Carrera."""

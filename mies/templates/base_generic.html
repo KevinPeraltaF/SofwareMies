@@ -83,7 +83,7 @@
             {%url 'zona_listar' as zona_url%}
             {%url 'provincia_listar' as provincia_url%}
             {%url 'distrito_listar' as distrito_url%}
-            
+            {%url 'custodia_listar' as custodia_url%}
             
             <!-- Nav Item - Empleado Collapse Menu -->
 
@@ -97,18 +97,14 @@
 
             {% endif %}
 
-            {% if perms.inventario.view_dispositivo %}
-            <!-- Nav Item - Inventario Collapse Menu -->
-
-            <li class="nav-item  {% if dispositivo_url in request.path%} active {% endif%}">
-                <a class="nav-link" href="{{dispositivo_url}}">
+          
+            {% if  perms.custodia.view_custodia%}
+            <li class="nav-item  {% if custodia_url in request.path%} active {% endif%}">
+                <a class="nav-link" href="{{custodia_url}}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Equipos</span></a>
+                    <span>Custodia</span></a>
             </li>
-
-
             {% endif %}
-
 
 
             {% if perms.capacitacion.view_capacitacioncabecera %}
@@ -354,7 +350,7 @@
     <script src="{% static 'js/funciones_mies.js' %}"></script>
 
 
-
+    <script src="{% static 'js/jquery.chained.min.js' %}"></script>
 
     {% block content_extra_js %}
 

@@ -1,0 +1,82 @@
+{% extends 'base_generic.html' %}
+{% block title %}NUEVA ASIGNACIÓN{% endblock %}
+{% load static %}
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'custodia_listar' %}">Custodia</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+    </ol>
+</nav>
+<div class="container">
+
+    {% if form.errors %}
+
+    <div class="alert alert-danger" role="alert">
+        <h5 class="icon fas fa-bin">Error al guardar el registro!</h5>
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                <li>
+                    {{error}}
+                </li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+
+    </div>
+    {% endif %}
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {{form.fecha.label}}
+            {{form.fecha}}
+        </div>
+        <div class="form-group">
+            {{form.custodio.label}}
+            {{form.custodio}}
+        </div>
+        <div class="form-group">
+            {{form.fieldCategoria.label}}
+            {{form.fieldCategoria}}
+        </div>
+        <div class="form-group">
+            {{form.equipo.label}}
+            {{form.equipo}}
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <div class="form-check">
+                    {{form.estado.label}}
+                    {{form.estado}}
+                </div>
+            </div>
+        </div>
+
+        <fieldset class="modal-footer">
+            <a type="button" class="btn btn-secondary" href="{% url 'custodia_listar' %}">Cancelar</a>
+            <button type="submit" class="btn  btn-primary">Guardar Registro</button>
+        </fieldset>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block content_extra_js %}
+<script>
+    $(function(){
+        $('#id_custodio').select2();  
+        $('#id_equipo').select2(); 
+        $("#id_custodioAnterior").chained("#id_equipo");
+       
+    });
+  
+</script>
+<script src="{% static 'js/jquery.chained.min.js' %}"></script>
+{% endblock content_extra_js %}

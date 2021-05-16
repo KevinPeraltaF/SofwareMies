@@ -23,6 +23,7 @@ from practica import views as practica_views
 from actividad import views as actividad_views
 from capacitacion import views as capacitacion_views
 from inventario import views as inventario_views
+from custodia import views as custodia_views
 from django.conf import settings
 from django.conf.urls.static import static
 #400
@@ -222,12 +223,24 @@ urlpatterns = [
     path('dispositivo/Editar/<int:pk>',inventario_views.DispositivoUpdateView.as_view(),name ="dispositivo_editar"),
     path('dispositivo/Eliminar/<int:pk>',inventario_views.DispositivoDeleteView.as_view(),name ="dispositivo_eliminar"),
     path('dispositivo/Detalle/<int:pk>',inventario_views.DispositivoDetailView.as_view(),name ="dispositivo_detalle"),
+
+    
+    ##---------------------custodia-------------------------------
+    path('Custodia', custodia_views.CustodiaListView.as_view(), name="custodia_listar") ,
+    path('Custodia/Crear', custodia_views.CustodiaCreateView.as_view(), name="custodia_crear") ,
+    #path('Custodia/Excel', custodia_views.CustodioaReporteExcelView.as_view(), name="custodia_excel_crear") ,
+    path('Custodia/Editar/<int:pk>', custodia_views.CustodiaUpdateView.as_view(), name="custodia_editar") ,
+    path('Custodia/Eliminar/<int:pk>', custodia_views.CustodiaDeleteView.as_view(), name="custodia_eliminar") ,
+    path('Custodia/Detalle/<int:pk>', custodia_views.CustodiaDetailView.as_view(), name="custodia_detalle") ,
+
    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
+    
+    
 ]
 
 

@@ -146,6 +146,8 @@ class PasanteUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
         context = super().get_context_data(**kwargs)
         context["universidades"] = Universidad.objects.all()
         context["carreras"] = Carrera.objects.all()
+        context["update_carrera"] = self.object.carrera.id
+        context["update_universidad"] = self.object.carrera.universidad.id
         return context
  
 

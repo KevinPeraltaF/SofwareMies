@@ -22,7 +22,10 @@ class CapacitacionCabeceraForm(forms.ModelForm):
         data = self.cleaned_data["dirigido"].upper()
         return data
 
-    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['areaSolicitante'].empty_label = "------N/A--------"
+       
 
     class Meta:
 
@@ -100,6 +103,9 @@ class CapacitacionCabeceraForm(forms.ModelForm):
 
 
 class CapacitacionDetalleForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['empleado'].empty_label = "------N/A--------"
    
     class Meta:
 
