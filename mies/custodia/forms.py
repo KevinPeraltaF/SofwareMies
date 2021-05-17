@@ -45,7 +45,7 @@ class CustodiaForm(forms.ModelForm):
                 attrs={
                     
                     'class': 'form-control ',
-                    'disabled':'True',
+                    
                     
                 }
             ),

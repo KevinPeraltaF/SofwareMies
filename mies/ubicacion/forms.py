@@ -19,7 +19,7 @@ class ZonaForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-numero',
                     'autofocus':'autofocus'
                 }
             ),
@@ -92,7 +92,7 @@ class DistritoForm(forms.ModelForm):
             ),
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-letra',
                     'autofocus':'autofocus'
                 }
             ),

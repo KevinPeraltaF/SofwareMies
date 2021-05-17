@@ -11,16 +11,9 @@
             <table class="table table-bordered table-responsive-sm table-responsive-xl">
                 <tbody>
                     <tr>
-                        <th>CUSTODIA VIGENTE:</th>
-                        <td>
-                            {% if object.estado%}
-                            <span class="badge badge-success">VIGENTE</span>
-                            {% else %}
-                            <span class="badge badge-danger">NO VIGENTE</span>
-                            {% endif %}
-                        </td>
+                        
                         <th>ESTADO DEL EQUIPO:</th>
-                        <td>
+                        <td colspan="6">
                             {% if object.equipo.estado == '1'%}
                             <span class="badge badge-success">BUENO</span>
 

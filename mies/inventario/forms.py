@@ -131,7 +131,7 @@ class TipoDispositivoForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control ',
                     'autofocus':'autofocus'
                 }
             ),
@@ -154,7 +154,7 @@ class TipoImpresoraForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control ',
                     'autofocus':'autofocus'
                 }
             ),
@@ -177,8 +177,8 @@ class ImpresoraTecnologiaForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'autofocus':'autofocus'
+                    'class': 'form-control solo-letra',
+                    'autofocus':'autofocus '
                 }
             ),
         }
@@ -200,8 +200,8 @@ class SoftwareAntivirusForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'autofocus':'autofocus'
+                    'class': 'form-control solo-letra',
+                    'autofocus':'autofocus '
                 }
             ),
         }
@@ -223,8 +223,8 @@ class SoftwareOfimaticaForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'autofocus':'autofocus'
+                    'class': 'form-control solo-letra',
+                    'autofocus':'autofocus '
                 }
             ),
         }
@@ -269,8 +269,8 @@ class TipoEquipoForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'autofocus':'autofocus'
+                    'class': 'form-control solo-letra',
+                    'autofocus':'autofocus '
                 }
             ),
         }

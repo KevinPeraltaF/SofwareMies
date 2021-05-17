@@ -67,12 +67,12 @@ class CapacitacionCabeceraForm(forms.ModelForm):
             ),
             'lugar' : forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-letra'
                 }
             ),
             'tema': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control solo-letra'
                 }
             ),
             'tipoCapacitacion': forms.Select(
@@ -128,7 +128,7 @@ class CapacitacionDetalleForm(forms.ModelForm):
             ),
             'observacion':forms.Textarea(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-letra',
                     "rows":1, "cols":10
                 }
             ),

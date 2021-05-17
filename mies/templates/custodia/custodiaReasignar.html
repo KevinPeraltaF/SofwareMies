@@ -69,13 +69,13 @@
                     <option value="{{item.id}}" class="{{item.categoria}}">
 
                         {% if item.categoria == '1' %}
-                        {{item.tipoEquipo}}-{{item.nombreEquipo}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
+                        [{{item.tipoEquipo}}]---[{{item.nombreEquipo}}]---[{{item.marca}}]---[{{item.modelo}}]---[{{item.codigoMies}}]---[{{item.serie}}]---[{{item.direccionIp}}]---[{{item.direccionMac}}]
                         {% endif %}
                         {% if item.categoria == '2' %}
-                        {{item.tipoImpresora}}-{{item.tecnologia}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
+                        [{{item.tipoImpresora}}]---[{{item.marca}}]---[{{item.modelo}}]---[{{item.tecnologia}}]---[{{item.codigoMies}}]---[{{item.serie}}]---[{{item.direccionIp}}]---[{{item.direccionMac}}]
                         {% endif %}
                         {% if item.categoria == '3' %}
-                        {{item.tipoDispositivo}}-{{item.codigoMies}}-{{item.serie}}-{{item.direccionIp}}-{{item.direccionMac}}
+                        [{{item.tipoDispositivo}}]---[{{item.marca}}]---[{{item.modelo}}]---[{{item.codigoMies}}]---[{{item.serie}}]---[{{item.direccionIp}}]---[{{item.direccionMac}}]
                         {% endif %}
 
                     </option>

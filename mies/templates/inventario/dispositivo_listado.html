@@ -79,7 +79,7 @@
 
                             {% if perms.inventario.view_procesador %}
                             <a class="dropdown-item  "
-                                href="{% url 'procesador_listar'%}">                     Procesador</a>
+                                href="{% url 'procesador_listar'%}">    Procesador</a>
                             {% endif %}
 
 
@@ -190,10 +190,10 @@
                                 {% endif%}
                             </td>
                             <td>
-                                {% if dispositivo.condigoMies is none %}
+                                {% if dispositivo.codigoMies is none %}
                                 N/A
                                 {% else%}
-                                {{ dispositivo.condigoMies }}
+                                {{ dispositivo.codigoMies }}
                                 {% endif%}
                             </td>
 

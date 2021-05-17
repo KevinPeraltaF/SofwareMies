@@ -124,8 +124,8 @@ class AreaForm(forms.ModelForm):
             ),
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
-                    'autofocus':'autofocus'
+                    'class': 'form-control solo-letra',
+                    'autofocus':'autofocus ',
                 }
             ),
         }
@@ -147,7 +147,7 @@ class CargoForm(forms.ModelForm):
         widgets = {
             'descripcion' : forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control ',
                     'autofocus':'autofocus'
                 }
             ),

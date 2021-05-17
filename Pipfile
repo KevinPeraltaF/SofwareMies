@@ -10,6 +10,7 @@ pillow = "*"
 xhtml2pdf = "*"
 django-xhtml2pdf = "*"
 openpyxl = "*"
+django-select2 = "*"
 
 [dev-packages]
 

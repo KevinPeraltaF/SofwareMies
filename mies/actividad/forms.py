@@ -20,7 +20,7 @@ class AsuntoForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.TextInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-control solo-letra',
                         'autofocus':'autofocus'
                 }
             ),
