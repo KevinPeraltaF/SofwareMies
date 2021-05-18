@@ -102,9 +102,16 @@
             <li class="nav-item  {% if custodia_url in request.path%} active {% endif%}">
                 <a class="nav-link" href="{{custodia_url}}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Custodia</span></a>
+                    <span>Inventario Distrito</span></a>
             </li>
             {% endif %}
+            <li class="nav-item  ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Inventario Tics</span></a>
+            </li>
+
+            
 
 
             {% if perms.capacitacion.view_capacitacioncabecera %}
@@ -114,6 +121,12 @@
                     <span>Capacitación</span></a>
             </li>
             {% endif %}
+
+            <li class="nav-item  {% if atencion_url in request.path%} active {% endif%}">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Entrega/Recepción</span></a>
+            </li>
 
 
 
@@ -156,7 +169,7 @@
                         {% endif %}
 
 
-                        {% if perms.red.view_actividadcabecera %}
+                        {% if perms.actividad.view_actividadcabecera %}
                         <a class="collapse-item  {% if actividad_url in request.path%} active {% endif%}"
                             href="{{actividad_url}}"><i class="fas fa-calendar "></i>
                             Actividades</a>

@@ -41,7 +41,6 @@
                     <div class="float-right">
 
                         <a class="btn btn-secondary btn-sm" href="{% url 'custodia_reasignar'%}" role="button"> Reasignar custodio</a>
-
                     </div>
 
                     {% endif %}
@@ -162,7 +161,7 @@
                                         class="fa fa-eye"></i>
                                 </a>
 
-                                {% if perms.custodio.change_custodio %}
+                                {% if perms.custodia.change_custodia %}
                                 <button id="modalEditarcustodio" class="btn btn-light btn-sm"
                                     onclick="abrirModalEditar('{% url 'custodia_editar' custodio.id%}')"> <i
                                         class="fa fa-edit"></i>
@@ -170,7 +169,7 @@
                                 {% endif %}
 
 
-                                {% if perms.custodio.delete_custodio %}
+                                {% if perms.custodia.delete_custodia %}
                                 <a class="btn btn-light btn-sm"
                                     onclick="abrirModalEliminar('{% url 'custodia_eliminar' custodio.id%}')"><i
                                         class="fa fa-trash"></i>
