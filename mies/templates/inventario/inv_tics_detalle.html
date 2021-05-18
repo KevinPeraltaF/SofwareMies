@@ -11,20 +11,11 @@
             <table class="table table-bordered table-responsive-sm table-responsive-xl">
                 <tbody>
 
+                  
                     <tr>
-                        <th>Fecha Ingreso:</th>
-                        <td>{{object.fechaIngreso}}</td>
-                        <th>Ubicacion:</th>
-                        <td>{{object.ubicacion}}</td>
-                    </tr>
-                    <tr>
-                        <th>Responsable:</th>
-                        <td colspan="4">{{object.responsable}}</td>
-                    </tr>
-                    <tr>
-                        <th>Categoria:</th>
-                        <td>{{object.categoria}}</td>
-                        <th>Condicion:</th>
+                        <th>DESCRIPCIÓN:</th>
+                        <td>{{object.tipo}}</td>
+                        <th>CONDICIÓN:</th>
                         <td>
                             {% if object.condicion == '1'%}
                             <span class="badge badge-success">BUENO</span>
@@ -44,13 +35,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Nombre:</th>
-                        <td>{{object.descripcion}}</td>
-                        <th>Cantidad:</th>
-                        <td>{{object.cantidad}}</td>
+                 
+                        <th>CANTIDAD:</th>
+                        <td colspan="6">{{object.cantidad}}</td>
                     </tr>
                     <tr>
-                        <th>Marca:</th>
+                        <th>MARCA:</th>
                         <td>
                             {% if object.marca %}
                             {{object.marca}}
@@ -58,7 +48,7 @@
                             N/A
                             {% endif %}
                         </td>
-                        <th>Modelo:</th>
+                        <th>MODELO:</th>
                         <td>
                             {% if object.modelo %}
                             {{object.modelo}}
@@ -68,7 +58,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Serie:</th>
+                        <th>SERIE:</th>
                         <td>
                             {% if object.serie %}
                             {{object.serie}}
@@ -76,7 +66,7 @@
                             N/A
                             {% endif %}
                         </td>
-                        <th>Serie MIES:</th>
+                        <th>CÓDIGO MIES:</th>
                         <td>
                             {% if object.codigoMies %}
                             {{object.codigoMies}}
@@ -88,7 +78,7 @@
 
 
                     <tr class="text-center">
-                        <th>Foto:</th>
+                        <th>FOTO:</th>
                         <td colspan="4">
                             {% if object.foto %}
                             <img class="img-rounded " src="{{object.foto.url}}" alt="" width="600" height="400">

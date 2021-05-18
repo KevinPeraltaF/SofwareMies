@@ -6,6 +6,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from .models import Dispositivo, Marca, Modelo,  CapacidadDisco, CapacidadMemoriaRam, Procesador, TipoDispositivo, TipoImpresora,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,TipoEquipo,InventarioTics
 from .forms import  MarcaForm, ModeloForm,  CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm,DispositivoForm,TipoDispositivoForm,TipoImpresoraForm,ImpresoraTecnologiaForm,SoftwareAntivirusForm,SoftwareOfimaticaForm,SistemaOperativoForm,TipoEquipoForm,InvTicsForm
 from django.http import HttpResponseRedirect, JsonResponse
+# excel
+#Vista genérica para mostrar resultados
+from django.views.generic.base import TemplateView
+#Workbook nos permite crear libros en excel
+from openpyxl import Workbook
+#Nos devuelve un objeto resultado, en este caso un archivo de excel
+from django.http.response import HttpResponse
+import csv
+from csv import reader
+
+from openpyxl.utils import get_column_letter
 #------------------MARCA--------------------------------------
 class MarcaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'inventario.view_marca'
@@ -482,6 +493,96 @@ class InvTicsListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     template_name = "inventario/inv_tics_listado.html"
 
  #excel 
+
+
+#Nuestra clase hereda de la vista genérica TemplateView
+class InvTicsExcelListView(TemplateView):
+     
+    #Usamos el método get para generar el archivo excel 
+    def get(self, request, *args, **kwargs):
+        #Obtenemos todas las lista de nuestra base de listas
+        lista = InventarioTics.objects.all()
+        #Creamos el libro de trabajo
+        wb = Workbook()
+        #Definimos como nuestra hoja de trabajo, la hoja activa, por defecto la primera del libro
+        ws = wb.active
+        #En la celda B1 ponemos el texto 'REPORTE DE lista'
+        ws['B1'] = 'INVENTARIO OFICINA TICS'
+        #Juntamos las celdas desde la B1 hasta la E1, formando una sola celda
+        ws.merge_cells('B1:E1')
+        #Creamos los encabezados desde la celda B3 hasta la E3
+    
+        ws['C3'] = 'DESCRIPCIÓN'
+        ws['D3'] = 'MARCA'
+        ws['E3'] = 'MODELO'
+        ws['F3'] = 'SERIE'
+        ws['G3'] = 'CODIGO MIES'
+        ws['H3'] = 'CANTIDAD'
+        ws['I3'] = 'CONDICIÓN'
+
+
+        #ancho de columna
+        ws.column_dimensions['B'].width = 15.0
+        ws.column_dimensions['C'].width = 30.0
+        ws.column_dimensions['D'].width = 25.0
+        ws.column_dimensions['E'].width = 20.0
+        ws.column_dimensions['F'].width = 20.0
+        ws.column_dimensions['G'].width = 25.0
+        ws.column_dimensions['H'].width = 15.0
+        ws.column_dimensions['I'].width = 25.0
+        cont=4
+        
+        #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
+        for dato in lista:
+
+            if dato.codigoMies is None:
+                DatoCodigoMies = 'N/A'
+            else:
+                DatoCodigoMies = dato.codigoMies
+               
+
+            if dato.serie is None:
+                DatoSerie = 'N/A'
+            else:
+                DatoSerie = dato.serie
+               
+            if dato.marca is None:
+                DatoMarca = 'N/A'
+            else:
+                DatoMarca = dato.marca.descripcion
+               
+            if dato.modelo is None:
+                DatoModelo = 'N/A'
+            else:
+                 DatoModelo = dato.marca.descripcion
+
+            if dato.condicion == "1":
+                DatoCondicion = 'BUENO'
+                
+            if dato.condicion == "2":
+                 DatoCondicion = 'REGULAR'
+            if dato.condicion == "3":
+                 DatoCondicion = 'DAÑADO'
+            
+            ws.cell(row=cont,column=2).value = dato.descripcion
+            ws.cell(row=cont,column=3).value = DatoCodigoMies
+            ws.cell(row=cont,column=4).value = DatoSerie
+            ws.cell(row=cont,column=5).value = dato.cantidad
+            ws.cell(row=cont,column=6).value = DatoMarca
+            ws.cell(row=cont,column=7).value = DatoModelo
+            ws.cell(row=cont,column=8).value = DatoCondicion
+         
+            cont = cont + 1
+    
+
+        #Establecemos el nombre del archivo
+        nombre_archivo ="InventarioTics.xlsx"
+        #Definimos que el tipo de respuesta a devolver es un archivo de microsoft excel
+        response = HttpResponse(content_type="application/ms-excel") 
+        contenido = "attachment; filename={0}".format(nombre_archivo)
+        response["Content-Disposition"] = contenido
+        wb.save(response)
+        return response
  
 
 class InvTicsCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
@@ -511,6 +612,9 @@ class InvTicsDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
     permission_required = 'inventario.view_inventariotics'
     model = InventarioTics
     template_name = "inventario/inv_tics_detalle.html"
+
+
+    
 #------------------CAPACIDAD DISCO--------------------------------------
 class CapacidadDiscoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'inventario.view_capacidaddisco'

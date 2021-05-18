@@ -84,6 +84,7 @@
             {%url 'provincia_listar' as provincia_url%}
             {%url 'distrito_listar' as distrito_url%}
             {%url 'custodia_listar' as custodia_url%}
+            {%url 'inv_tics_listar' as tics_url%}
             
             <!-- Nav Item - Empleado Collapse Menu -->
 
@@ -105,8 +106,8 @@
                     <span>Inventario Distrito</span></a>
             </li>
             {% endif %}
-            <li class="nav-item  ">
-                <a class="nav-link" href="#">
+            <li class="nav-item {% if tics_url in request.path%} active {% endif%} ">
+                <a class="nav-link" href="{{tics_url}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Inventario Tics</span></a>
             </li>

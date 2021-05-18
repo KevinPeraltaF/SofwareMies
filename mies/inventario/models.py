@@ -387,8 +387,7 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
 class InventarioTics(models.Model):
     """Model definition for InventarioTics."""
-    cantidad = models.IntegerField('Cantidad', default=1)
-    descripcion = models.CharField('Item', max_length=80)
+    tipo = models.ForeignKey(TipoDispositivo, on_delete=models.PROTECT, null=True,blank=True)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)
     modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT, null=True,blank=True)
     serie = models.CharField('Serie', max_length=50, unique=True, null=True,blank=True)
@@ -398,6 +397,7 @@ class InventarioTics(models.Model):
     ('2', 'REGULAR'),
     ('3', 'DAÑADO'),]
     condicion = models.CharField('Condición',max_length=1, choices=lista_condicion, null=True, blank=True)
+    cantidad = models.IntegerField('Cantidad', default=1)
     foto = models.ImageField('Foto', upload_to='InventarioTics/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
 
     class Meta:
@@ -418,11 +418,11 @@ class InventarioTics(models.Model):
         
 
         """Unicode representation of InventarioTics."""
-        return ("{} - {}- {} - {}- {}").format(self.descripcion,self.marca, self.modelo,VcodMies,VserMies)
+        return ("{} - {}- {} - {}- {}").format(self.tipo,self.marca, self.modelo,VcodMies,VserMies)
     
     def save(self, *args, **kwargs):
         """Save method for InventarioTics."""
-        self.descripcion = self.descripcion and (self.descripcion).upper()
+
         self.serie = self.serie and  (self.serie).upper()
         self.codigoMies = self.codigoMies and (self.codigoMies).upper()
         return super(InventarioTics, self).save(*args, **kwargs)

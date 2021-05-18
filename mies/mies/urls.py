@@ -236,7 +236,14 @@ urlpatterns = [
     path('Custodia/Eliminar/<int:pk>', custodia_views.CustodiaDeleteView.as_view(), name="custodia_eliminar") ,
     path('Custodia/Detalle/<int:pk>', custodia_views.CustodiaDetailView.as_view(), name="custodia_detalle") ,
 
-   #inventario tics
+   #--INVENTARIO TICS
+    path('InvTics', inventario_views.InvTicsListView.as_view(), name="inv_tics_listar"),
+    path('InvTics/excel', inventario_views.InvTicsExcelListView.as_view(), name="inv_tics_excel_crear"),
+    path('InvTics/Crear',inventario_views.InvTicsCreateView.as_view(),name ="inv_tics_crear"),
+    path('InvTics/Editar/<int:pk>',inventario_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
+    path('InvTics/Eliminar/<int:pk>',inventario_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),
+    path('InvTics/Detalle/<int:pk>',inventario_views.InvTicsDetailView.as_view(),name ="inv_tics_detalle"),
+    #--CAPACIDAD DISCO
    
 
 

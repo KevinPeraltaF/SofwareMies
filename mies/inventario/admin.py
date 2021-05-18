@@ -123,7 +123,7 @@ class DispositivoAdmin(admin.ModelAdmin):
 @admin.register(InventarioTics)
 class InventarioTicsAdmin(admin.ModelAdmin):
     '''Admin View for InventarioTics'''
-    list_display = ('descripcion','marca',
+    list_display = ('tipo','marca',
     'modelo','condicion','serie' ,'codigoMies' ,'cantidad' ,'foto',)
     list_filter = ('marca','modelo','condicion',)
-    search_fields = ('descripcion','serie' ,'codigoMies','marca','modelo',)
+    search_fields = ('tipo','serie' ,'codigoMies','marca','modelo',)

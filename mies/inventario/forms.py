@@ -483,11 +483,7 @@ class DispositivoForm(forms.ModelForm):
 
 
 class InvTicsForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(InvTicsForm, self).__init__(*args, **kwargs)
-        # Filtro al responsable de acuerdo a su cargo id =1; -> tics
-        #self.fields['responsable'].queryset = Empleado.objects.filter(cargo=1)
-
+   
      #validaciones para que se envie como mayusculas los datos
     def clean_serie(self):
         data = None
@@ -510,7 +506,7 @@ class InvTicsForm(forms.ModelForm):
         model = InventarioTics
 
         fields = (
-            'descripcion',
+            'tipo',
             'marca',
             'modelo',
             'condicion',
@@ -523,16 +519,15 @@ class InvTicsForm(forms.ModelForm):
         widgets = {
     
 
-            'descripcion':forms.Textarea(
+            'tipo':forms.Select(
                 attrs={
-                    'class':'form-control',
-                    "rows":3, "cols":10,
+                    'class':'form-control select',
                     'autofocus':'autofocus'
                 }
             ),
             'marca':forms.Select(
                 attrs={
-                    'class':'form-control select'
+                    'class':'form-control select select'
                 }
             ),
             'modelo':forms.Select(
