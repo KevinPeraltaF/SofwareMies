@@ -378,3 +378,84 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
         ruta = settings.MEDIA_ROOT +"\\"+ str(old_file)
         if os.path.isfile(ruta):
             os.remove(ruta)
+
+
+####################}
+###
+###
+#######################
+
+class InventarioTics(models.Model):
+    """Model definition for InventarioTics."""
+    cantidad = models.IntegerField('Cantidad', default=1)
+    descripcion = models.CharField('Item', max_length=80)
+    marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)
+    modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT, null=True,blank=True)
+    serie = models.CharField('Serie', max_length=50, unique=True, null=True,blank=True)
+    codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
+    lista_condicion = [
+    ('1', 'NUEVO'),
+    ('2', 'REGULAR'),
+    ('3', 'DAÑADO'),]
+    condicion = models.CharField('Condición',max_length=1, choices=lista_condicion, null=True, blank=True)
+    foto = models.ImageField('Foto', upload_to='InventarioTics/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
+
+    class Meta:
+        """Meta definition for InventarioTics."""
+
+        verbose_name = 'Inventario Tics'
+        verbose_name_plural = 'Inventario Tics'
+
+    def __str__(self):
+        if self.codigoMies is None:
+           VcodMies= "N/A"
+        else:
+           VcodMies= self.codigoMies
+        if self.serie is None:
+           VserMies= "N/A"
+        else:
+           VserMies= self.serie
+        
+
+        """Unicode representation of InventarioTics."""
+        return ("{} - {}- {} - {}- {}").format(self.descripcion,self.marca, self.modelo,VcodMies,VserMies)
+    
+    def save(self, *args, **kwargs):
+        """Save method for InventarioTics."""
+        self.descripcion = self.descripcion and (self.descripcion).upper()
+        self.serie = self.serie and  (self.serie).upper()
+        self.codigoMies = self.codigoMies and (self.codigoMies).upper()
+        return super(InventarioTics, self).save(*args, **kwargs)
+    
+
+@receiver(post_delete, sender=InventarioTics)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `MediaFile` object is deleted.
+    """
+    ruta = settings.MEDIA_ROOT +"\\"+ str(instance.foto)
+    print(ruta)
+    if ruta:
+        if os.path.isfile(ruta):
+            os.remove(ruta)
+@receiver(pre_save, sender=InventarioTics)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """
+    Deletes old file from filesystem
+    when corresponding `MediaFile` object is updated
+    with new file.
+    """
+    if not instance.pk:
+        return False
+
+    try:
+        old_file = InventarioTics.objects.get(pk=instance.pk).foto
+    except InventarioTics.DoesNotExist:
+        return False
+
+    new_file = instance.foto
+    if not old_file == new_file:
+        ruta = settings.MEDIA_ROOT +"\\"+ str(old_file)
+        if os.path.isfile(ruta):
+            os.remove(ruta)

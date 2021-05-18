@@ -1,5 +1,5 @@
 from django import forms
-from .models import Marca, Modelo, Dispositivo, CapacidadDisco,CapacidadMemoriaRam, Procesador, TipoDispositivo, TipoImpresora,TipoEquipo,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo
+from .models import Marca, Modelo, Dispositivo, CapacidadDisco,CapacidadMemoriaRam, Procesador, TipoDispositivo, TipoImpresora,TipoEquipo,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,InventarioTics
 from empleado.models import Empleado
 
 
@@ -350,6 +350,7 @@ class DispositivoForm(forms.ModelForm):
             'observacion',
             'foto'
         )
+        
 
         widgets = {
             'categoria':forms.Select(
@@ -475,6 +476,98 @@ class DispositivoForm(forms.ModelForm):
                     'type':'file',
                     'class': 'dropify',
                     'data-allowed-file-extensions':'jpg jpeg JPEG JPG png'
+                }
+            )
+        }
+
+
+
+class InvTicsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(InvTicsForm, self).__init__(*args, **kwargs)
+        # Filtro al responsable de acuerdo a su cargo id =1; -> tics
+        #self.fields['responsable'].queryset = Empleado.objects.filter(cargo=1)
+
+     #validaciones para que se envie como mayusculas los datos
+    def clean_serie(self):
+        data = None
+        try:
+            data = self.cleaned_data["serie"].upper()
+        except:
+            pass
+        
+        return data
+    
+    def clean_codigoMies(self):
+        data = None
+        try:
+            data = self.cleaned_data["codigoMies"].upper()
+        except:
+            pass
+        return data
+
+    class Meta:
+        model = InventarioTics
+
+        fields = (
+            'descripcion',
+            'marca',
+            'modelo',
+            'condicion',
+            'serie',
+            'codigoMies',
+            'cantidad',
+            'foto'
+        )
+
+        widgets = {
+    
+
+            'descripcion':forms.Textarea(
+                attrs={
+                    'class':'form-control',
+                    "rows":3, "cols":10,
+                    'autofocus':'autofocus'
+                }
+            ),
+            'marca':forms.Select(
+                attrs={
+                    'class':'form-control select'
+                }
+            ),
+            'modelo':forms.Select(
+                attrs={
+                    'class':'form-control select'
+                }
+            ),
+            'condicion':forms.Select(
+                attrs={
+                    'class':'form-control select'
+                }
+            ),
+            'serie':forms.TextInput(
+                attrs={
+                    'class':'form-control'
+                }
+            ),
+            'codigoMies':forms.TextInput(
+                attrs={
+                    'class':'form-control'
+                }
+            ),
+            'cantidad':forms.TextInput(
+                attrs={
+                    'type':'number',
+                    'class':'form-control',
+                    'min':'0'
+                }
+            ),
+            'foto':forms.ClearableFileInput(
+                attrs={
+                    'type':'file',
+                    'class': 'dropify',
+                    'data-allowed-file-extensions':'jpg jpeg JPEG JPG png',
+                    
                 }
             )
         }

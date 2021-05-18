@@ -229,12 +229,17 @@ urlpatterns = [
     path('Custodia', custodia_views.CustodiaListView.as_view(), name="custodia_listar") ,
     path('Custodia/Crear', custodia_views.CustodiaCreateView.as_view(), name="custodia_crear") ,
     path('Custodia/Reasignar', custodia_views.CustodiaReasignarView.as_view(), name="custodia_reasignar") ,
-    #path('Custodia/Excel', custodia_views.CustodioaReporteExcelView.as_view(), name="custodia_excel_crear") ,
+    path('Custodia/ExcelComputadora', custodia_views.ComputadorasExcelView.as_view(), name="inventarioComputadora") ,
+    path('Custodia/Excelimpresoras', custodia_views.ImpresorasReporteExcelView.as_view(), name="inventarioImpresoras") ,
+    path('Custodia/ExcelOtrosDispositivo', custodia_views.OtrosDispositivosReporteExcelView.as_view(), name="inventarioOtrosDispositivos") ,
     path('Custodia/Editar/<int:pk>', custodia_views.CustodiaUpdateView.as_view(), name="custodia_editar") ,
     path('Custodia/Eliminar/<int:pk>', custodia_views.CustodiaDeleteView.as_view(), name="custodia_eliminar") ,
     path('Custodia/Detalle/<int:pk>', custodia_views.CustodiaDetailView.as_view(), name="custodia_detalle") ,
 
+   #inventario tics
    
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #Add Django site authentication urls (for login, logout, password management)

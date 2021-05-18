@@ -11,7 +11,8 @@
             <table class="table table-bordered table-responsive-sm table-responsive-xl">
                 <tbody>
                     <tr>
-                        
+                        <th>CUSTODIO</th>
+                        <td>{{object.custodio}}</td>
                         <th>ESTADO DEL EQUIPO:</th>
                         <td colspan="6">
                             {% if object.equipo.estado == '1'%}
@@ -33,7 +34,7 @@
                     </tr>
                     <tr>
                         <th>CATEGORIA:</th>
-                        <td colspan="6"> 
+                        <td colspan="6">
                             {% if object.equipo.categoria == '1' %}
                             <span>COMPUTADORAS</span>
                             {% endif%}

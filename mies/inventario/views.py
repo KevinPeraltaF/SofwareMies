@@ -3,9 +3,9 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
-from .models import Dispositivo, Marca, Modelo,  CapacidadDisco, CapacidadMemoriaRam, Procesador, TipoDispositivo, TipoImpresora,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,TipoEquipo
-from .forms import  MarcaForm, ModeloForm,  CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm,DispositivoForm,TipoDispositivoForm,TipoImpresoraForm,ImpresoraTecnologiaForm,SoftwareAntivirusForm,SoftwareOfimaticaForm,SistemaOperativoForm,TipoEquipoForm
-
+from .models import Dispositivo, Marca, Modelo,  CapacidadDisco, CapacidadMemoriaRam, Procesador, TipoDispositivo, TipoImpresora,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,TipoEquipo,InventarioTics
+from .forms import  MarcaForm, ModeloForm,  CapacidadDiscoForm, CapacidadMemoriaRamForm, ProcesadorForm,DispositivoForm,TipoDispositivoForm,TipoImpresoraForm,ImpresoraTecnologiaForm,SoftwareAntivirusForm,SoftwareOfimaticaForm,SistemaOperativoForm,TipoEquipoForm,InvTicsForm
+from django.http import HttpResponseRedirect, JsonResponse
 #------------------MARCA--------------------------------------
 class MarcaListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = 'inventario.view_marca'
@@ -466,4 +466,56 @@ class SistemaOperativoDetailView(LoginRequiredMixin,PermissionRequiredMixin,Deta
     permission_required = 'inventario.view_sistemaoperativo'
     model = SistemaOperativo
     template_name = "inventario/sistema_operativo_detalle.html"
+
+
+
+
+
+###
+###
+##
+
+#------------------INVENTARIO TICS--------------------------------------
+class InvTicsListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'inventario.view_inventariotics'
+    model = InventarioTics
+    template_name = "inventario/inv_tics_listado.html"
+
+ #excel 
+ 
+
+class InvTicsCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_inventariotics'
+    model = InventarioTics
+    form_class = InvTicsForm
+    template_name= "inventario/inv_tics_crear.html"
+    success_url = reverse_lazy('inv_tics_listar')
+    
+
+class InvTicsDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'inventario.delete_inventariotics'
+    model = InventarioTics
+    template_name = "inventario/inv_tics_eliminar.html"
+    success_url = reverse_lazy('inv_tics_listar')
+    
+    
+class InvTicsUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'inventario.change_inventariotics'
+    model = InventarioTics
+    form_class = InvTicsForm
+    template_name = "inventario/inv_tics_editar.html"
+    success_url = reverse_lazy('inv_tics_listar')
+    
+        
+class InvTicsDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+    permission_required = 'inventario.view_inventariotics'
+    model = InventarioTics
+    template_name = "inventario/inv_tics_detalle.html"
+#------------------CAPACIDAD DISCO--------------------------------------
+class CapacidadDiscoListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = 'inventario.view_capacidaddisco'
+    model = CapacidadDisco
+    template_name = "inventario/capacidad_disco_listado.html"
+
+
 

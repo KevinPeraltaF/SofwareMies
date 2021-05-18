@@ -12,7 +12,7 @@
 
                 {% if object.categoria == '1' %}
                 <tbody>
-
+                    
                     <tr>
                         <th>CATEGORIA:</th>
                         <td>COMPUTADORAS</td>
@@ -47,14 +47,14 @@
 
                         <th>TIPO EQUIPO:</th>
                         <td>
-                           
-                            
+
+
                             {% if object.tipoEquipo is none%}
                             N/A
                             {% else %}
                             {{object.tipoEquipo}}
                             {% endif %}
-                            
+
                         </td>
                     </tr>
 
@@ -125,8 +125,8 @@
                         </td>
                         <th>SISTEMA OPERATIVO:</th>
                         <td>
-                            
-                
+
+
                             {% if object.sistemaOperativo is none%}
                             N/A
                             {% else %}
@@ -157,13 +157,13 @@
                     <tr>
                         <th>SOFTWARE ANTIVIRUS:</th>
                         <td>
-                          
+
                             {% if object.antivirus is none%}
                             N/A
                             {% else %}
                             {{object.antivirus}}
                             {% endif %}
-                           
+
                         </td>
                         <th>SOFTWARE ADICIONAL:</th>
                         <td>
@@ -178,7 +178,7 @@
 
                     <tr>
                         <th>OBSERVACIÓN:</th>
-                        <td colspan="12"> 
+                        <td colspan="12">
                             {% if object.observacion is none%}
                             N/A
                             {% else %}
@@ -226,11 +226,11 @@
                         </td>
                     </tr>
                     <tr>
-                       
+
 
                         <th>TECNOLOGIA:</th>
                         <td>
-                         
+
                             {% if object.tecnologia is none%}
                             N/A
                             {% else %}
@@ -239,7 +239,7 @@
 
                         </td>
 
-                        
+
 
                         <th>TIPO:</th>
                         <td>
@@ -288,8 +288,8 @@
                         </td>
                     </tr>
 
-                   
-                  
+
+
                     <tr>
                         <th>DIRECCIÓN IP:</th>
                         <td>
@@ -310,11 +310,11 @@
 
                     </tr>
 
-                 
+
 
                     <tr>
                         <th>OBSERVACIÓN:</th>
-                        <td colspan="12"> 
+                        <td colspan="12">
                             {% if object.observacion is none%}
                             N/A
                             {% else %}
@@ -363,7 +363,7 @@
                         </td>
                     </tr>
                     <tr>
-                       
+
 
                         <th>TIPO DISPOSITIVO:</th>
                         <td colspan="12">
@@ -372,11 +372,11 @@
                             {% else %}
                             {{object.tipoDispositivo}}
                             {% endif %}
-                           
+
 
                         </td>
 
- 
+
                     </tr>
 
                     <tr>
@@ -418,7 +418,7 @@
 
                     <tr>
                         <th>OBSERVACIÓN:</th>
-                        <td colspan="12"> 
+                        <td colspan="12">
                             {% if object.observacion is none%}
                             N/A
                             {% else %}

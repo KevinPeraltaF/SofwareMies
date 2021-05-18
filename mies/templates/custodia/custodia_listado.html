@@ -36,27 +36,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    {% if perms.custodia.add_custodia %}
-                    <div class="float-right">
-
-                        <a class="btn btn-secondary btn-sm" href="{% url 'custodia_reasignar'%}" role="button"> Reasignar custodio</a>
-                    </div>
-
-                    {% endif %}
-                </div>
-
 
                 <div class="col-md-2">
-                    {% if perms.custodia.add_custodia %}
-                    <div class="float-right">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                        <a class="btn btn-secondary btn-sm" href="{% url 'custodia_crear'%}" role="button"> Asignar custodio</a>
+                            {% if perms.custodia.add_custodia %}
+                            
+                                <a class="dropdown-item" href="{% url 'custodia_reasignar'%}">Reasignar custodio</a>
+                            
+        
+                            {% endif %}
 
+                            {% if perms.custodia.add_custodia %}
+                          
+                                <a class="dropdown-item" href="{% url 'custodia_crear'%}">Asignar custodio</a>
+                         
+        
+                            {% endif %}
+
+                            {% if perms.custodia.view_custodia %}
+                          
+                                <a class="dropdown-item" href="{% url 'inventarioComputadora'%}">Excel-computadoras</a>
+                                <a class="dropdown-item" href="{% url 'inventarioImpresoras'%}">Excel-impresoras</a>
+                                <a class="dropdown-item" href="{% url 'inventarioOtrosDispositivos'%}">Excel-otros dispositivo</a>
+                            {% endif %}
+
+                     
+
+
+                        </div>
                     </div>
-
-                    {% endif %}
                 </div>
+            
             </div>
 
         </div>
@@ -70,7 +86,7 @@
                             <th><b>CUSTODIO ANTERIOR</b></th>
 
                             <th><b>CATEGORIA</b></th>
-
+                            <th><b>DESCRIPCIÓN</b></th>
                             <th><b>DIRECCIÓN IP</b></th>
                             <th><b>DIRECCIÓN MAC</b></th>
                             <th><b>SERIE</b></th>
@@ -113,6 +129,20 @@
                                    
                             </td>
 
+                            <td>
+
+                               
+                                {% if  custodio.equipo.categoria == '1' %}
+                                {{custodio.equipo.tipoEquipo}}-{{custodio.equipo.nombreEquipo}}
+                                {% endif %}
+                                {% if  custodio.equipo.categoria == '2' %}
+                                {{custodio.equipo.tipoImpresora}}-{{custodio.equipo.tecnologia}}
+                                {% endif %}
+                                {% if  custodio.equipo.categoria == '3' %}
+                                {{custodio.equipo.tipoDispositivo}}
+                                {% endif %}
+                                    
+                             </td>
 
                             <td>
                                 {% if custodio.equipo.direccionIp is none %}

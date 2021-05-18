@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inventario.models import Marca, Modelo,Dispositivo,CapacidadDisco,CapacidadMemoriaRam,Procesador , TipoDispositivo, TipoImpresora,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,TipoEquipo
+from inventario.models import Marca, Modelo,Dispositivo,CapacidadDisco,CapacidadMemoriaRam,Procesador , TipoDispositivo, TipoImpresora,ImpresoraTecnologia ,SoftwareAntivirus , SoftwareOfimatica,SistemaOperativo,TipoEquipo,InventarioTics
 # Register your models here.
 
 @admin.register(Marca)
@@ -114,3 +114,16 @@ class DispositivoAdmin(admin.ModelAdmin):
     list_filter = ('categoria','tipoEquipo','tipoImpresora',
     'tipoDispositivo','sistemaOperativo' ,'tecnologia' ,)
     search_fields = ('nombreEquipo','serie' ,'codigoMies',)
+
+
+####
+##
+##
+##3
+@admin.register(InventarioTics)
+class InventarioTicsAdmin(admin.ModelAdmin):
+    '''Admin View for InventarioTics'''
+    list_display = ('descripcion','marca',
+    'modelo','condicion','serie' ,'codigoMies' ,'cantidad' ,'foto',)
+    list_filter = ('marca','modelo','condicion',)
+    search_fields = ('descripcion','serie' ,'codigoMies','marca','modelo',)
