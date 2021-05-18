@@ -509,27 +509,27 @@ class InvTicsExcelListView(TemplateView):
         #En la celda B1 ponemos el texto 'REPORTE DE lista'
         ws['B1'] = 'INVENTARIO OFICINA TICS'
         #Juntamos las celdas desde la B1 hasta la E1, formando una sola celda
-        ws.merge_cells('B1:E1')
+        ws.merge_cells('B1:I1')
         #Creamos los encabezados desde la celda B3 hasta la E3
     
-        ws['C3'] = 'DESCRIPCIÓN'
-        ws['D3'] = 'MARCA'
-        ws['E3'] = 'MODELO'
-        ws['F3'] = 'SERIE'
-        ws['G3'] = 'CODIGO MIES'
-        ws['H3'] = 'CANTIDAD'
-        ws['I3'] = 'CONDICIÓN'
+        ws['B3'] = 'TIPO'
+        ws['C3'] = 'MARCA'
+        ws['D3'] = 'MODELO'
+        ws['E3'] = 'SERIE'
+        ws['F3'] = 'CODIGO MIES'
+        ws['G3'] = 'CANTIDAD'
+        ws['H3'] = 'CONDICIÓN'
 
 
         #ancho de columna
-        ws.column_dimensions['B'].width = 15.0
+        ws.column_dimensions['B'].width = 40.0
         ws.column_dimensions['C'].width = 30.0
         ws.column_dimensions['D'].width = 25.0
-        ws.column_dimensions['E'].width = 20.0
-        ws.column_dimensions['F'].width = 20.0
+        ws.column_dimensions['E'].width = 25.0
+        ws.column_dimensions['F'].width = 25.0
         ws.column_dimensions['G'].width = 25.0
         ws.column_dimensions['H'].width = 15.0
-        ws.column_dimensions['I'].width = 25.0
+       
         cont=4
         
         #Recorremos el conjunto de lista y vamos escribiendo cada uno de los listas en las celdas
@@ -564,12 +564,12 @@ class InvTicsExcelListView(TemplateView):
             if dato.condicion == "3":
                  DatoCondicion = 'DAÑADO'
             
-            ws.cell(row=cont,column=2).value = dato.descripcion
-            ws.cell(row=cont,column=3).value = DatoCodigoMies
-            ws.cell(row=cont,column=4).value = DatoSerie
-            ws.cell(row=cont,column=5).value = dato.cantidad
-            ws.cell(row=cont,column=6).value = DatoMarca
-            ws.cell(row=cont,column=7).value = DatoModelo
+            ws.cell(row=cont,column=2).value = str(dato.tipo)
+            ws.cell(row=cont,column=3).value = DatoMarca 
+            ws.cell(row=cont,column=4).value =  DatoModelo
+            ws.cell(row=cont,column=5).value = DatoSerie
+            ws.cell(row=cont,column=6).value = DatoCodigoMies
+            ws.cell(row=cont,column=7).value =  dato.cantidad
             ws.cell(row=cont,column=8).value = DatoCondicion
          
             cont = cont + 1
