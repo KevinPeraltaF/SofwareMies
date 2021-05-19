@@ -5,7 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
 from .models import  CapacitacionCabecera, CapacitacionDetalle
 from .forms import  CapacitacionCabeceraForm, CapacitacionCabDetalleForm, CapacitacionDetalleForm
-
+from configuracion.models import Configuracion
 from django.contrib.auth.mixins import PermissionRequiredMixin,LoginRequiredMixin
 from django.http import HttpRequest
 from django.utils.decorators import method_decorator
@@ -125,5 +125,6 @@ class CapacitacionReportePdfDetailView(LoginRequiredMixin,PdfMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['items'] = CapacitacionDetalle.objects.filter(capacitacionCabecera=self.object.id)
+        context['configuracion']= Configuracion.objects.all().first()
         return context
 

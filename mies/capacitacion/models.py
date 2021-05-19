@@ -1,5 +1,6 @@
 from django.db import models
 from empleado.models import Empleado, Area
+from configuracion.models import Configuracion
 # Create your models here.
 
 class CapacitacionCabecera(models.Model):
@@ -17,7 +18,7 @@ class CapacitacionCabecera(models.Model):
     tipoCapacitacion = models.CharField('Tipo Capacitación',max_length=1, choices=lista_tipo_capacitacion, default='1')
     areaSolicitante = models.ForeignKey(Area, on_delete=models.PROTECT)
     dirigido = models.CharField('Dirigido a', max_length=80)
-    instructor = models.ForeignKey(Empleado, on_delete=models.PROTECT)
+    instructor = models.ForeignKey(Configuracion, on_delete=models.PROTECT)
     objetivo = models.TextField('Objetivo')
     class Meta:
         """Meta definition for CapacitacionCabecera."""

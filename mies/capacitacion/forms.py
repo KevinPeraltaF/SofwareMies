@@ -92,7 +92,7 @@ class CapacitacionCabeceraForm(forms.ModelForm):
             ),
             'instructor': forms.Select(
                 attrs={
-                     'class': 'form-control select'
+                     'class': 'form-control '
                 }
             ),
             'objetivo': forms.TextInput(
