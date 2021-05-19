@@ -8,6 +8,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'empleado_listar' %}">Empleado</a></li>
         <li class="breadcrumb-item active" aria-current="page">Provincia</li>
     </ol>
 </nav>
@@ -21,7 +22,7 @@
                 </div>
                 <div class="col ">
                     <div class="float-right">
-                        {% if perms.inventario.add_provincia %}
+                        {% if perms.ubicacion.add_provincia %}
                         <a class="btn btn-secondary btn-sm" href="{% url 'provincia_crear'%}" role="button"> Nuevo</a>
                    
                         {% endif %}

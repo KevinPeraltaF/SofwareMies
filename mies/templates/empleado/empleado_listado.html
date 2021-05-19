@@ -27,6 +27,24 @@
                             Configuraciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.ubicacion.view_zona %}
+                            <a class="dropdown-item " href="{% url 'zona_listar'%}">
+                                Zona</a>
+                            {% endif %}
+                                
+                            
+                            {% if perms.ubicacion.view_provincia %}
+                            <a class="dropdown-item " href="{% url 'provincia_listar'%}">
+                                Provincia</a>
+                            {% endif %}
+                                
+                            
+                            {% if perms.ubicacion.view_distrito %}
+                            <a class="dropdown-item " href="{% url 'distrito_listar'%}">
+                                Distrito</a>
+                            {% endif %}
+                            
                                                     
                         {% if perms.empleado.view_area %}
                         <a class="dropdown-item " href="{% url 'area_listar'%}">

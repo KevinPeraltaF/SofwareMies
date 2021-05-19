@@ -1,0 +1,139 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %}CONFIGURACION {% endblock title %}
+
+
+{% block content_main %}
+<!-- Page Heading -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Configuracion</li>
+    </ol>
+</nav>
+<div class="container-fluid">
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row ">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Configuración</h6>
+                </div>
+                <div class="col">
+                    {% if perms.configuracion.add_configuracion %}
+                    
+                    {% if validador < 1 %}
+                    <div class="float-right">
+                        <a class="btn btn-secondary btn-sm" href="{% url 'configuracion_crear'%}" role="button"> Nuevo</a>
+                    </div>
+                    {% endif %}
+                        
+                   
+                    {% endif %}
+                   
+                </div>
+
+            </div>
+
+        </div>
+       
+
+        <div class="card-body">
+            
+
+            {% for item in object_list %}
+            <div class="col ">
+                {% if perms.configuracion.change_configuracion %}
+                <div class="float-right">
+                    <button data-toggle="popover" title="Editar" id="modalEditarZona"
+                    class="btn btn-light btn-sm"
+                    onclick="abrirModalEditar('{% url 'configuracion_editar' item.id%}')"> <i
+                        data-toggle="popover" title="Editar" class="fa fa-edit"></i>
+                </button>
+
+                </div>
+                
+                           
+                {% endif %}
+                            
+                 
+            </div>
+            <br><br>
+              
+            <div class="card-body table-responsive p-0 ">
+                <table class="table table-hover">
+
+                    <tbody >
+                        <tr >
+                            <td><b>ENCARGADO(A) DE TICS</b></td>
+                            <td colspan="4">{{ item.encargadoTics }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>ENCARGADO(A) DE BIENES</b></td>
+                            <td colspan="4">{{ item.encargadoBienes }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>LOGO IZQUIERDO</b> </td>
+                            <td colspan="4">
+
+                                <figure class="figure">
+                                    <img src="{% if item.logoIzquierdo %}{{item.logoIzquierdo.url}} {% else %}# {% endif %}" class="img-fluid" width="400"
+                                        alt="N/A">
+                                    <figcaption class="figure-caption">Pie de página, logo izquierdo, reportes.</figcaption>
+                                </figure>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>LOGO CENTRO</b></td>
+                            <td colspan="4">
+
+                                <img src="{% if item.logocentro %}{{item.logocentro.url}} {% else %}# {% endif %}" class="figure-img img-fluid rounded"width="200"
+                                    alt="N/A">
+                                <figcaption class="figure-caption">Pie de página, logo centro, reportes.</figcaption>
+                                </figure>
+
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>LOGO DERECHO</b></td>
+                            <td colspan="4">
+                                <img src="{% if item.logoDerecho %}{{item.logoDerecho.url}} {% else %}# {% endif %}" class="figure-img img-fluid rounded" width="400"
+                                    alt="N/A">
+                                <figcaption class="figure-caption">Pie de página, logo derecho, reportes.</figcaption>
+                                </figure>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editar" role="dialog">
+
+</div>
+
+
+
+
+
+{% endblock content_main%}
+
+
+{% block content_extra_js %}
+<script src="{% static 'js/jquery.chained.min.js' %}"></script>
+{% endblock content_extra_js %}

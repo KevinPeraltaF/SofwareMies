@@ -24,6 +24,7 @@ from actividad import views as actividad_views
 from capacitacion import views as capacitacion_views
 from inventario import views as inventario_views
 from custodia import views as custodia_views
+from configuracion import views as configuracion_views
 from django.conf import settings
 from django.conf.urls.static import static
 #400
@@ -252,7 +253,19 @@ urlpatterns = [
     path('inventarioTic/tipoDispositivo/Crear',inventario_views.TipoDispositivoInvCreateView.as_view(),name ="tipo_dispositivoInv_crear"),
     #
 
+    #######33
+    #####3
+    ######33
+    ###########CONFIGURACIONES
+    path('configuracion',configuracion_views.ConfiguracionListView.as_view(),name ="configuracion_listar"),
+    path('configuracion/Editar/<int:pk>',configuracion_views.ConfiguracionUpdateView.as_view(),name ="configuracion_editar"),
 
+
+    path('configuracion/Editar/<int:pk>',configuracion_views.ConfiguracionUpdateView.as_view(),name ="configuracion_editar"),
+    path('configuracion/Crear',configuracion_views.ConfiguracionCreateView.as_view(),name ="configuracion_crear"),
+
+
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #Add Django site authentication urls (for login, logout, password management)

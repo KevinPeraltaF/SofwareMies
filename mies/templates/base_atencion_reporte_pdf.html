@@ -109,9 +109,9 @@
                                 href="http://www.inclusion.gob.ec/">www.inclusion.gob.ec</a> </font>
                         </p>
                     </td>
-                    <td colspan="1"><img src="{{configuracion.logoIzquierdo.url}}" width="75"></td>
-                    <td colspan="1"><img src="{{configuracion.logocentro.url}}" width="75"></td>
-                    <td colspan="1"><img src="{{configuracion.logoDerecho.url}}" width="125" ></td>
+                    <td colspan="1"><img src="{% if configuracion.logoIzquierdo %}{{configuracion.logoIzquierdo.url}} {% else %}# {% endif %}" width="75"></td>
+                    <td colspan="1"><img src="{% if configuracion.logocentro %}{{configuracion.logocentro.url}} {% else %}# {% endif %}" width="75"></td>
+                    <td colspan="1"><img src="{% if configuracion.logoDerecho %}{{configuracion.logoDerecho.url}} {% else %}# {% endif %}" width="125" ></td>
                 </tr>
 
             </thead>
