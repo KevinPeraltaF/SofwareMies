@@ -8,7 +8,17 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+
+        {%url 'inv_tics_listar' as tics_url%}
+        {%url 'tipo_dispositivoInv_crear' as ticsCrear_url%}
+
+        {% if tics_url in request.META.HTTP_REFERER or ticsCrear_url in  request.META.HTTP_REFERER %}
+        <li class="breadcrumb-item"><a href="{% url 'inv_tics_listar' %}">Inventario Tics</a></li>
+        {% else %}
         <li class="breadcrumb-item"><a href="{% url 'dispositivo_listar' %}">Dispositivo</a></li>
+        {% endif%}
+
+
         <li class="breadcrumb-item active" aria-current="page">Tipo Dispositivo</li>
     </ol>
 </nav>
@@ -22,13 +32,23 @@
                 </div>
                 <div class="col ">
                     <div class="float-right">
+
                         {% if perms.inventario.add_tipodispositivo %}
-                        <a class="btn btn-secondary btn-sm" href="{% url 'tipo_dispositivo_crear'%}" role="button"> Nuevo</a>
-                   
+                        {% if tics_url in request.META.HTTP_REFERER %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'tipo_dispositivoInv_crear'%}" role="button">
+                            Nuevo</a>
+                        {% else %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'tipo_dispositivo_crear'%}" role="button">
+                            Nuevo</a>
+                        {% endif%}
+
+
                         {% endif %}
-                        
-                    </div> 
-                  
+
+
+
+                    </div>
+
                 </div>
             </div>
 

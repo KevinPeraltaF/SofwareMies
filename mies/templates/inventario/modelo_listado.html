@@ -8,9 +8,18 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+
+        {%url 'inv_tics_listar' as tics_url%}
+        {%url 'modeloInv_crear' as ticsCrear_url%}
+        {% if tics_url  in request.META.HTTP_REFERER  or ticsCrear_url in  request.META.HTTP_REFERER %} 
+        <li class="breadcrumb-item"><a href="{% url 'inv_tics_listar' %}">Inventario Tics</a></li>
+        {% else %}
         <li class="breadcrumb-item"><a href="{% url 'dispositivo_listar' %}">Dispositivo</a></li>
+        {% endif%}
+        
         <li class="breadcrumb-item active" aria-current="page">Modelo</li>
     </ol>
+    
 </nav>
 <div class="container-fluid">
     <!-- DataTales -->
@@ -23,7 +32,13 @@
                 <div class="col ">
                     <div class="float-right">
                         {% if perms.inventario.add_modelo %}
+
+                        {% if tics_url in request.META.HTTP_REFERER %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'modeloInv_crear'%}" role="button"> Nuevo</a>
+                        {% else %}
                         <a class="btn btn-secondary btn-sm" href="{% url 'modelo_crear'%}" role="button"> Nuevo</a>
+                        {% endif%}
+                        
                    
                         {% endif %}
                         

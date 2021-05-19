@@ -18,9 +18,36 @@
                 <div class="col">
                     <h6 class="m-0 font-weight-bold text-primary">Inventario Tics</h6>
                 </div>
-                <div class="col ">
+                <div class="col-md-4">
                     <div class="dropdown float-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Configuraciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            {% if perms.inventario.view_tipodispositivo %}
+                            <a class="dropdown-item" href="{% url 'tipo_dispositivo_listar' %}">Tipo dispositivo</a>
+                            {% endif %}
+
+                            {% if perms.inventario.view_marca %}
+
+                            <a class="dropdown-item"
+                                href="{% url 'marca_listar'%}">
+                                Marca</a>
+                            {% endif %}
+                            {% if perms.inventario.view_modelo %}
+                            <a class="dropdown-item"
+                                href="{% url 'modelo_listar'%}">
+                                Modelo</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Acciones
                         </button>

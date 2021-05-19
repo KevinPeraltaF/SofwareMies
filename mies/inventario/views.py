@@ -478,7 +478,28 @@ class SistemaOperativoDetailView(LoginRequiredMixin,PermissionRequiredMixin,Deta
     model = SistemaOperativo
     template_name = "inventario/sistema_operativo_detalle.html"
 
+##mantenimientos para inventario tics hice duplicados
+    
+class TipoDispositivoInvCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_tipodispositivo'
+    model = TipoDispositivo
+    form_class = TipoDispositivoForm
+    template_name= "inventario/tipo_dispositivoInv_crear.html"
+    success_url = reverse_lazy('tipo_dispositivo_listar')
 
+class ModeloInvCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_modelo'
+    model = Modelo
+    form_class = ModeloForm
+    template_name= "inventario/modeloInv_crear.html"
+    success_url = reverse_lazy('modelo_listar')
+
+class MarcaInvCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'inventario.add_marca'
+    model = Marca
+    form_class = MarcaForm
+    template_name= "inventario/marcaInv_crear.html"
+    success_url = reverse_lazy('marca_listar')
 
 
 

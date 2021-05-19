@@ -243,8 +243,14 @@ urlpatterns = [
     path('InvTics/Editar/<int:pk>',inventario_views.InvTicsUpdateView.as_view(),name ="inv_tics_editar"),
     path('InvTics/Eliminar/<int:pk>',inventario_views.InvTicsDeleteView.as_view(),name ="inv_tics_eliminar"),
     path('InvTics/Detalle/<int:pk>',inventario_views.InvTicsDetailView.as_view(),name ="inv_tics_detalle"),
-    #--CAPACIDAD DISCO
-   
+    #
+     #--Marca
+    path('inventarioTic/Marca/Crear',inventario_views.MarcaInvCreateView.as_view(),name ="marcaInv_crear"),
+    #--Modelo
+    path('inventarioTic/Modelo/Crear',inventario_views.ModeloInvCreateView.as_view(),name ="modeloInv_crear"),
+    #---tipo
+    path('inventarioTic/tipoDispositivo/Crear',inventario_views.TipoDispositivoInvCreateView.as_view(),name ="tipo_dispositivoInv_crear"),
+    #
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
