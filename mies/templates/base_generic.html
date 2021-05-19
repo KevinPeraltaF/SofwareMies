@@ -107,11 +107,15 @@
                     <span>Inventario Distrito</span></a>
             </li>
             {% endif %}
+
+            {% if perms.inventario.view_inventariotics%}
             <li class="nav-item {% if tics_url in request.path%} active {% endif%} ">
                 <a class="nav-link" href="{{tics_url}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Inventario Tics</span></a>
             </li>
+            {% endif %}
+           
 
 
 
@@ -143,7 +147,7 @@
 
             <!-- Nav Item - Otros Menu -->
 
-            {% if perms.red.view_accesored or perms.red.view_actividadcabecera or perm.practica.view_pasante %}
+            {% if perms.red.view_accesored or perms.actividad.view_actividadcabecera or perm.practica.view_pasante %}
             <li class="nav-item  {% if red_url in request.path or  actividad_url in request.path  %} active {% endif%}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOtros"
                     aria-expanded="true" aria-controls="collapseOtros">
@@ -167,6 +171,7 @@
                             href="{{actividad_url}}"><i class="fas fa-calendar "></i>
                             Actividades</a>
                         {% endif %}
+
                         {% if perms.practica.view_pasante %}
 
                         <a class="collapse-item  {% if pasante_url in request.path%} active {% endif%}"
