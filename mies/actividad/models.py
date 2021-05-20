@@ -1,6 +1,6 @@
 from django.db import models
 from empleado.models import Area, Empleado
-       
+from configuracion.models import Configuracion
 
 class Asunto(models.Model):
     """Model definition for Asunto."""
@@ -28,7 +28,7 @@ class ActividadCabecera(models.Model):
     """Model definition for ActividadCabecera."""
 
     fecha = models.DateField('Fecha', auto_now=False, auto_now_add=False)
-    responsable = models.ForeignKey(Empleado, on_delete=models.PROTECT,related_name='responsable_de_actividad')
+    responsable = models.ForeignKey(Configuracion, on_delete=models.PROTECT,related_name='responsable_de_actividad')
     usuario = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     ubicacion = models.ForeignKey(Area,verbose_name='Ubicación', on_delete=models.PROTECT)
     lista_tipo_prioridad = [
