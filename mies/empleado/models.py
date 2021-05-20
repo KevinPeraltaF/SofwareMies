@@ -85,7 +85,7 @@ class Empleado(models.Model):
     correo = models.EmailField('Correo', max_length=254, unique= True)
     cedula = models.CharField('Cédula', max_length=10, null=True, blank=True, unique = True)
     telefono = models.CharField('Télefono móvil', max_length=10, null=True, blank=True)
-    foto = models.ImageField('Foto', upload_to='Empleados/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
+    foto = models.ImageField('Foto', upload_to='Empleados/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
     estado = models.BooleanField('Empleado está activo', default = True)
     class Meta:
         """Meta definition for Empleado."""

@@ -98,8 +98,8 @@ USE_L10N = True
 
 USE_TZ = True
 #temporizador de sesion activa 1 hora en segundos
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE =7200
+#SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+#SESSION_COOKIE_AGE =7200
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'

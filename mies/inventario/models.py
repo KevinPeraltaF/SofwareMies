@@ -399,7 +399,7 @@ class InventarioTics(models.Model):
     ]
     condicion = models.CharField('Condición',max_length=1, choices=lista_condicion, null=True, blank=True)
     cantidad = models.IntegerField('Cantidad', default=1)
-    foto = models.ImageField('Foto', upload_to='InventarioTics/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
+    foto = models.ImageField('Foto', upload_to='InventarioTics/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
 
     class Meta:
         """Meta definition for InventarioTics."""
