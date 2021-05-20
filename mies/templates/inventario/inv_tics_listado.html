@@ -26,10 +26,6 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                            {% if perms.inventario.view_tipodispositivo %}
-                            <a class="dropdown-item" href="{% url 'tipo_dispositivo_listar' %}">Tipo dispositivo</a>
-                            {% endif %}
-
                             {% if perms.inventario.view_marca %}
 
                             <a class="dropdown-item"
@@ -122,12 +118,12 @@
                                 
                             
                                 {% if inv.condicion == '1'%}
-                                <span class="badge badge-success">BUENO</span>
+                                <span class="badge badge-success">NUEVO</span>
     
                                 {% endif %}
     
                                 {% if inv.condicion == '2'%}
-                                <span class="badge badge-warning">REGULAR</span>
+                                <span class="badge badge-warning">BUENO</span>
     
                                 {% endif %}
     

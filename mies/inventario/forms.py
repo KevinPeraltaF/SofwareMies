@@ -519,10 +519,9 @@ class InvTicsForm(forms.ModelForm):
         widgets = {
     
 
-            'tipo':forms.Select(
+            'tipo':forms.TextInput(
                 attrs={
-                    'class':'form-control select',
-                    'autofocus':'autofocus'
+                    'class':'form-control'
                 }
             ),
             'marca':forms.Select(

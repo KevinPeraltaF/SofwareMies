@@ -387,15 +387,16 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
 class InventarioTics(models.Model):
     """Model definition for InventarioTics."""
-    tipo = models.ForeignKey(TipoDispositivo, on_delete=models.PROTECT, null=True,blank=True)
+    tipo =  models.CharField('Descripción', max_length=100)
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, null=True,blank=True)
     modelo = models.ForeignKey(Modelo, on_delete=models.PROTECT, null=True,blank=True)
     serie = models.CharField('Serie', max_length=50, unique=True, null=True,blank=True)
     codigoMies = models.CharField('Código Mies', max_length=50, unique=True, null=True,blank=True)
     lista_condicion = [
     ('1', 'NUEVO'),
-    ('2', 'REGULAR'),
-    ('3', 'DAÑADO'),]
+    ('2', 'BUENO'),
+    ('3', 'DAÑADO'),
+    ]
     condicion = models.CharField('Condición',max_length=1, choices=lista_condicion, null=True, blank=True)
     cantidad = models.IntegerField('Cantidad', default=1)
     foto = models.ImageField('Foto', upload_to='InventarioTics/%Y/%m/%d/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
@@ -422,7 +423,7 @@ class InventarioTics(models.Model):
     
     def save(self, *args, **kwargs):
         """Save method for InventarioTics."""
-
+        self.tipo = self.tipo and  (self.tipo).upper()
         self.serie = self.serie and  (self.serie).upper()
         self.codigoMies = self.codigoMies and (self.codigoMies).upper()
         return super(InventarioTics, self).save(*args, **kwargs)
