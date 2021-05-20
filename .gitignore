@@ -1,10 +1,5 @@
-media/
-actividad/migrations/
-capacitacion/migrations/
-configuracion/migrations/
-custodia/migrations/
-empleado/migrations/
-inventario/migrations/
-practica/migrations/
-red/migrations/
-ubicacion/migrations/
+media/**
+!media/**/init.txt
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
