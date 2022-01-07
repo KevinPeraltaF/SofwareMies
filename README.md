@@ -1,5 +1,2 @@
-# SofwareMies
-Sofware para Mies
-#CRUD-COMPLETO
-#CONECCIÓN A POSTGREST
-#ENTORNOS DE DESARROLLO DEV,PROD Y BASE
+# Desarrollo de un sistema web
+practicas propfesionales
