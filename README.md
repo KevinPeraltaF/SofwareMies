@@ -1,2 +1,2 @@
 # Desarrollo de un sistema web
-practicas propfesionales
+practicas profesionales
